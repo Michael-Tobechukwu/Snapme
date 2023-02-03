@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
-    <link rel="stylesheet" href="index-light.css" />
+    <link rel="stylesheet" href="index.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
     />
@@ -42,7 +42,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <img src="Images/hamburger gray.svg" />
+              <img src="Images/hamburger.svg" />
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -80,50 +80,20 @@
               </div>
             </ul>
           </div>
-          <button class="hamburger"></button>
-          <div id="menu-items">
-            <ul class="menu-list"></ul>
-          </div>
         </div>
         <div class="main-logo">
-          <a href="index-light.html"
-            ><img src="Images/Snapme logo main white .png"
-          /></a>
+          <a href="index.html"><img src="Images/white logo.png" /></a>
         </div>
         <div class="navbuttons">
-          <a href="index.html" id="toggle">
-            <img class="toggle-button" src="Images/toggle white.svg" />
-          </a>
-          <button class="live-button">LIVE</button>
-          <button class="search">
-            <img class="search-icon" src="Images/search icon gray.svg" />
-          </button>
-          <div class="user-create">
-            <a href="#"
-              ><img class="user-image" src="Images/user image.svg"
-            /></a>
-            <a href="#"
-              ><img class="create-plus" src="Images/create plus.svg"
-            /></a>
-          </div>
-        </div>
-
-        <!--Mobile nav buttons-->
-
-        <div class="navbuttonsMobile">
-          <a href="index.html" id="toggle">
-            <img
-              class="toggle-button"
-              src="Images/toggle white.svg"
-              width="50px"
-            />
+          <a href="index-light.html" id="toggle">
+            <img class="toggle-button" src="Images/toggle dark.svg" />
           </a>
           <button class="live-button">LIVE</button>
           <button
             onClick="window.location = 'https://snapme-ng.com/api/v1/search'"
             class="search"
           >
-            <img class="search-icon" src="Images/search icon gray.svg" />
+            <img class="search-icon" src="Images/search icon.svg" />
           </button>
           <div class="user-create">
             <a href="signup.html"
@@ -136,9 +106,40 @@
         </div>
 
         <!--Mobile nav buttons-->
+
+        <div class="navbuttonsMobile">
+          <a href="index-light.html" id="toggle">
+            <img
+              class="toggle-button"
+              src="Images/toggle dark.svg"
+              width="50px"
+            />
+          </a>
+          <button class="live-button">LIVE</button>
+          <button
+            onClick="window.location = 'https://snapme-ng.com/api/v1/search'"
+            class="search"
+          >
+            <img class="search-icon" src="Images/search icon.svg" />
+          </button>
+          <div class="user-create">
+            <a href="signup.html"
+              ><img class="user-image" src="Images/user image.svg"
+            /></a>
+            <a href="https://snapme-ng.com/api/v1/create-pin/:catalog"
+              ><img class="create-plus" src="Images/create plus.svg"
+            /></a>
+          </div>
+        </div>
+
+        <!--Mobile nav buttons-->
+
+        <!--nav-->
       </nav>
       <div class="tabs">
-        <a href="#"><p>Music</p></a>
+        <a href="https://snapme-ng.com/api/v1/catalog/:music/follow"
+          ><p>Music</p></a
+        >
         <a href="#"><p>Shows & Concerts</p></a>
         <a href="#"><p>Dance</p></a>
         <a href="#"><p>Afrobeats</p></a>
@@ -161,6 +162,7 @@
         <a href="#"><p>Pets</p></a>
         <a href="#"><p>Others</p></a>
       </div>
+
       <!--catalog tabs end-->
 
       <!--Tab for mobile-->
@@ -667,25 +669,25 @@
               </div>
             </div>
           </div>
-
           <!--grid row two-->
         </div>
       </div>
+      <!--grid-->
 
       <!--Mobile footer-->
       <div class="mobileView">
-        <button onClick="window.location='index-light.html'">
-          <img src="Images/white house.svg" alt="" />
+        <button onClick="window.location='index.html'">
+          <img src="Images/black house.svg" alt="" />
         </button>
-        <button><img src="Images/love white.svg" alt="" /></button>
+        <button><img src="Images/black heart.svg" alt="" /></button>
         <button
           class="mobileCreate"
           onClick="window.location='https://snapme-ng.com/api/v1/create-pin/:catalog'"
         >
           <img src="Images/plus-svgrepo-com.svg" alt="" />
         </button>
-        <button><img src="Images/bell white.svg" alt="" /></button>
-        <button><img src="Images/sliders white.svg" alt="" /></button>
+        <button><img src="Images/bell.svg" alt="" /></button>
+        <button><img src="Images/sliders black.svg" alt="" /></button>
       </div>
 
       <!--Mobile footer-->

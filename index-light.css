@@ -432,4 +432,12 @@ fa-bookmark {
   .discover p {
     font-size: 0.8rem;
   }
+  
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon,
+  .carousel-control-next,
+  .carousel-control-prev {
+    color: #000 !important;
+  }
 }

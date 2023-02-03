@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="create-pin.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="Images/Snapme iccon.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Snapme | Create new pin</title>
+  </head>
+  <body>
+    <div class="wrapper container">
+      <div class="lead">
+        <h3>Create your catalog</h3>
+      </div>
+      <div class="main-card">
+        <div class="box-left">
+          <h4>
+            High quality mp4 video or image recommended: .jpg, .svg, .jpeg,
+            .gif, .tiff, .png or mp4 less than 20MB.
+          </h4>
+
+          <div class="input-group custom-file-button">
+            <label class="input-group-text" for="inputGroupFile"
+              ><img src="Images/upload-2-svgrepo-com.svg" width="40px"
+            /></label>
+            <input
+              type="file"
+              class="form-control upload-input"
+              id="inputGroupFile"
+            />
+          </div>
+        </div>
+
+        <div class="box-right">
+          <div class="caption">
+            <input
+              type="text"
+              name="caption"
+              id="caption"
+              placeholder="Add caption"
+            />
+            <label for="caption">(50 characters maximum)</label>
+          </div>
+
+          <div class="textarea">
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              placeholder="Write your message"
+            ></textarea>
+            <label for="message">(300 characters maximum)</label>
+          </div>
+
+          <input
+            class="link"
+            type="url"
+            name="link"
+            id="link"
+            placeholder="Add a link, e.g. www.twitter.com/tiwasavage"
+          />
+          <div class="category" id="category">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Select a category</option>
+              <option value="1">Music</option>
+              <option value="2">Fashion</option>
+              <option value="3">Dance</option>
+              <option value="3">Arts</option>
+              <option value="3">Comedy</option>
+              <option value="3">Artistes</option>
+              <option value="3">Shows & Concerts</option>
+              <option value="3">Museums</option>
+              <option value="3">House Decoration</option>
+              <option value="3">Food</option>
+              <option value="3">Photography</option>
+              <option value="3">Photo</option>
+              <option value="3">Television</option>
+              <option value="3">Nature</option>
+              <option value="3">Tourism</option>
+              <option value="3">Quotes</option>
+              <option value="3">Sports</option>
+              <option value="3">News</option>
+              <option value="3">Cars</option>
+              <option value="3">Pets</option>
+              <option value="3">Others</option>
+            </select>
+
+            <button type="submit"><img src="Images/send.svg" alt="" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

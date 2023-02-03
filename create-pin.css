@@ -1,0 +1,170 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #021129 !important;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.lead {
+  margin: 1rem auto;
+  width: 100%;
+}
+
+.lead h3 {
+  text-align: center;
+  color: #fff;
+}
+
+.main-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: 3px 3px 8px #000;
+  width: 60%;
+  margin: 2rem auto;
+  padding: 3rem !important;
+  border-radius: 3rem;
+}
+
+.box-right input,
+.box-right textarea {
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 12px;
+}
+
+.box-right label {
+  font-size: 0.9rem;
+}
+
+.box-right {
+  width: 45%;
+  padding: 0;
+}
+
+.box-left {
+  width: 45%;
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.box-left h4 {
+  color: #fff;
+}
+
+.box-left input {
+  margin-top: 4rem;
+}
+.form-select {
+  background: #021129;
+  color: #fff;
+  transition: ease 0.4s;
+}
+
+.form-select option:hover {
+  background: #cc1ccc !important;
+}
+
+label {
+  color: #fff;
+}
+
+.input-group {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.upload-input {
+  display: none;
+  background: none !important;
+}
+
+.box-right button {
+  background: none;
+  border: none;
+}
+
+.box-right button img {
+  width: 10%;
+}
+.caption,
+#caption,
+#message,
+#category {
+  width: 90%;
+  margin-bottom: 1rem;
+}
+
+#link {
+  border: none;
+  border-bottom: 2px solid #021129;
+  background: none;
+  width: 90%;
+  color: #fff;
+  padding-left: 0;
+}
+
+/*MOBILE VIEW*/
+@media (max-width: 768px) {
+  .main-card {
+    width: 90%;
+    padding: 1rem !important;
+  }
+
+  .box-left {
+    width: 90%;
+    margin: 0.4rem auto 0.5rem auto;
+  }
+
+  .box-right {
+    width: 90%;
+    margin: 0.5rem auto 1rem auto;
+  }
+
+  #caption,
+  #message,
+  #category,
+  #link {
+    width: 95%;
+  }
+
+  input {
+    width: 95%;
+  }
+}
+
+@media (max-width: 568px) {
+  .main-card {
+    width: 95%;
+  }
+
+  .box-left {
+    width: 92%;
+  }
+
+  .box-right {
+    width: 95%;
+  }
+
+  .box-right {
+    padding: 0;
+  }
+
+  #caption,
+  #message,
+  #category,
+  #link {
+    width: 95%;
+  }
+
+  input {
+    width: 95%;
+  }
+}

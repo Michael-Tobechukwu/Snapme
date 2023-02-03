@@ -84,6 +84,7 @@ button {
 
 .navmenu .main-logo {
   width: 25%;
+  margin-top: -15px;
 }
 
 .navmenu .main-logo img {

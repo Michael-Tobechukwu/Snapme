@@ -1,0 +1,133 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-image: url("Images/Ayra-starr\ 20.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background: #021129;
+  margin: 0.8rem auto;
+  width: 40%;
+  border-radius: 2rem;
+  box-shadow: 3px 3px 8px #000;
+  padding: 2rem 2rem;
+}
+
+.inner {
+  width: 90%;
+  margin: 0 1rem;
+}
+
+.logo {
+  width: 50%;
+  margin: 1rem auto;
+}
+
+.logo img {
+  width: 100%;
+}
+
+input {
+  margin: 0.5rem 0;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: none;
+}
+
+.gender-birthday {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.gender-input {
+  width: 45%;
+}
+
+.gender-input p {
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+.gender-input label {
+  color: #fff;
+  padding: 0;
+  font-size: 1.1rem;
+  width: 40%;
+}
+
+.birthday {
+  margin: 1.5rem 0;
+  color: #fff;
+  width: 45%;
+}
+
+.birthday label {
+  font-size: 1.2rem;
+}
+
+.occupation-country {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  margin: 1rem auto;
+  background: #021129;
+  border: 3px solid #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 50%;
+}
+
+button i {
+  color: #fff;
+}
+
+.already {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.already p {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.already a {
+  text-decoration: none;
+  margin-top: 0;
+}
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 1024px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .gender-birthday {
+    width: 100%;
+  }
+
+  .gender-birthday input {
+    width: 100%;
+  }
+}

@@ -1,0 +1,106 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: url("Images/liquorose\ 4.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 50%;
+  box-shadow: 3px 3px 12px #000;
+  background: #021129 !important;
+  border-radius: 2rem !important;
+  padding: 2rem 1rem;
+}
+
+.card1 {
+  background: #021129;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.card1 img {
+  margin: 2rem auto;
+  width: 100%;
+}
+
+.card {
+  width: 60%;
+  background: #021129 !important;
+  border-radius: 2rem !important;
+  padding: 3rem 2rem;
+  border: 2px solid #fff;
+}
+
+input {
+  margin-bottom: 2rem;
+  padding: 0.7rem 1rem;
+  border-radius: 1.5rem;
+  border: none;
+  width: 100%;
+}
+
+.forgot {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+  gap: 0.4rem;
+  color: #fff;
+}
+
+.forgot a {
+  text-decoration: none;
+}
+
+button {
+  margin: 0.5rem auto;
+  background: #021129;
+  border: 3px solid #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 50%;
+}
+
+button i {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  .card,
+  .card1 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 568px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .card,
+  .card1 {
+    width: 90%;
+  }
+}

@@ -1,0 +1,389 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #fff !important;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.dropdown button {
+  border: none !important;
+}
+
+.dropdown-menu {
+  margin-top: 2rem !important;
+  position: absolute;
+  background: #fff !important;
+  padding: 1rem 1rem !important;
+  width: 300px;
+  box-shadow: 3px 3px 6px #000;
+  border-radius: 2rem;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  color: #000 !important;
+  font-size: 0.9rem !important;
+}
+
+.dropdown-menu hr {
+  border: 1px solid #000;
+  width: 100px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #000 !important;
+  font-size: 0.9rem;
+  transition: 0.4s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: none;
+  transform: scale(105%);
+}
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons li a {
+  color: #fff;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+.social-icons li a img {
+  width: 2rem;
+}
+
+.social-icons .copy {
+  font-size: 0.8rem !important;
+}
+
+.navmenu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  padding: 1rem 0;
+}
+
+.navbuttonsMobile {
+  display: none;
+}
+
+.navmenu .main-logo {
+  width: 25%;
+}
+
+.navmenu .main-logo img {
+  width: 100%;
+  margin-left: -120px;
+}
+
+.navmenu .navbuttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+
+.navmenu .live-button {
+  border-radius: 0.9rem;
+  border: none;
+  padding: 0.2rem 2rem;
+  background: #bd74bd;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: ease 0.4s;
+}
+
+.navmenu .live-button:hover {
+  background: #cc1ccc;
+}
+
+.navbuttons img {
+  width: 3rem;
+  transition: 0.4s;
+}
+
+.navbuttons img:hover {
+  transform: scale(110%);
+}
+
+.navbuttons :nth-child(3) img {
+  width: 2rem;
+}
+
+.navbuttons .user-create {
+  display: flex !important;
+  gap: 0.4rem;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: center;
+  margin: 3rem auto;
+}
+
+.tabs p {
+  border-radius: 2rem;
+  border: #beb9b9 solid 2px;
+  padding: 0.2rem 1.6rem;
+  transition: 0.3s ease;
+  color: #000;
+  font-weight: 500;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0.2rem 0.7rem;
+}
+
+.tabs p:hover {
+  background: #bd74bd;
+  border: #bd74bd solid 2px;
+  transform: scale(110%);
+}
+
+.fa-solid,
+fa-bookmark {
+  color: #fff;
+}
+
+#more-icons,
+#more-iconsII,
+#more-iconsIII,
+#more-iconsIV,
+#more-iconsV,
+#more-iconsVI {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: none;
+}
+
+#myBtn,
+#myBtnII,
+#myBtnIII,
+#myBtnIV,
+#myBtnV,
+#myBtnVI {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+#more-icons li,
+#more-iconsII li,
+#more-iconsIII li,
+#more-iconsIV li,
+#more-iconsV li,
+#more-iconsVI li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.6rem;
+}
+
+#more-icons li p,
+#more-iconsII li p,
+#more-iconsIII li p,
+#more-iconsIV li p,
+#more-iconsV li p,
+#more-iconsVI li p {
+  color: #fff;
+}
+
+#image-cards {
+  justify-content: space-between !important;
+  width: 85%;
+}
+
+#image-cards .card {
+  background: #cc1ccc;
+  border-radius: 2rem !important;
+  margin-bottom: 2rem;
+  transition: ease 0.4s;
+}
+
+#image-cards .card:hover {
+  cursor: pointer;
+  background: #5a015a;
+}
+
+#image-cards .card .card-body {
+  padding-bottom: 0 !important;
+}
+
+#image-cards .card .post-img {
+  position: relative !important;
+}
+
+#image-cards .card .post-img a {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  text-decoration: none;
+}
+
+#image-cards .card img {
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+#image-cards .icons-list {
+  display: flex;
+  justify-content: start;
+  margin-left: -2rem !important;
+}
+
+#image-cards .icons-list li {
+  list-style: none;
+}
+
+.myrow .card-body {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#image-cards .icons-list .more-icon {
+  margin-bottom: 0 !important;
+}
+
+/*Media queries*/
+/*Tablet view*/
+@media (max-width: 1024px) {
+  .navmenu .main-logo img {
+    margin-left: 0px;
+  }
+}
+
+.profile-name p {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #image-cards .myrow {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  #image-cards .col,
+  #image-cards .col-5 {
+    width: 95% !important;
+  }
+}
+
+/*Mobile view*/
+@media (max-width: 568px) {
+  .navmenu .navbuttons {
+    display: none;
+  }
+
+  .navmenu {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+    width: 100%;
+    padding: 0.3rem;
+  }
+
+  .navmenu .hamburger,
+  .navmenu .main-logo,
+  .navmenu .navbuttons {
+    width: 45%;
+  }
+
+  .navmenu .navbuttonsMobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0.4rem auto;
+  }
+
+  .navmenu .navbuttons img,
+  .navmenu .navbuttons button {
+    margin-right: 0.1rem;
+  }
+
+  .navmenu .live-button {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .user-create .create-plus {
+    display: none;
+  }
+
+  #image-cards .col,
+  #image-cards .col-5 {
+    width: 100% !important;
+  }
+
+  .wrapper,
+  .container {
+    padding: 0.5rem 0.3rem !important;
+  }
+
+  .mobileView {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    background: #021129;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    padding: 1rem 2rem;
+    margin: 0;
+    width: 100%;
+  }
+
+  .mobileView button {
+    width: 13%;
+    transition: ease 0.4s;
+  }
+
+  .mobileView button:hover {
+    transform: scale(105%);
+  }
+
+  .mobileView button img {
+    width: 100%;
+  }
+
+  .mobileCreate {
+    border-radius: 50%;
+    background: #cc1ccc;
+    color: #fff;
+    padding: 0.8rem 0.8rem;
+    font-size: 1.2rem;
+    transition: ease 0.4s;
+    margin-bottom: 1rem;
+    width: 20% !important;
+  }
+
+  .mobileCreate img {
+    width: 80% !important;
+  }
+
+  .mobileCreate:hover {
+    background: #5a015a;
+  }
+}

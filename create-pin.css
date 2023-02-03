@@ -68,6 +68,12 @@ body {
   transition: ease 0.4s;
 }
 
+.box-left p {
+  margin: 2rem auto 0 auto;
+  color: #fff;
+  text-align: center;
+}
+
 .form-select option:hover {
   background: #cc1ccc !important;
 }
@@ -78,7 +84,11 @@ label {
 
 .input-group {
   text-align: center;
-  margin: 2rem auto;
+  margin: 0.3rem auto 2rem auto;
+}
+
+.custom-file-button label {
+  margin: 0.1rem auto;
 }
 
 .upload-input {
@@ -94,21 +104,49 @@ label {
 .box-right button img {
   width: 10%;
 }
-.caption,
-#caption,
-#message,
-#category {
+
+.textarea {
+  width: 95%;
+  margin-bottom: 2rem;
+}
+
+textarea {
   width: 90%;
+}
+
+#category {
   margin-bottom: 1rem;
+  width: 90%;
+}
+
+.caption {
+  width: 90%;
+  margin-bottom: 2rem;
+}
+
+.caption input {
+  width: 95%;
+  margin-bottom: 0.1rem;
 }
 
 #link {
   border: none;
-  border-bottom: 2px solid #021129;
+  border-bottom: 2px solid #fff;
   background: none;
   width: 90%;
   color: #fff;
   padding-left: 0;
+  margin-bottom: 1rem;
+  border-radius: 0;
+}
+
+.send-button {
+  width: 90%;
+}
+
+.send-button img {
+  float: right;
+  width: 17% !important;
 }
 
 /*MOBILE VIEW*/

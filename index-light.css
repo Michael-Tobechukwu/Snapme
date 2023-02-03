@@ -160,6 +160,11 @@ button {
   transform: scale(110%);
 }
 
+.mobileTabs,
+.discover {
+  display: none;
+}
+
 .fa-solid,
 fa-bookmark {
   color: #fff;
@@ -347,7 +352,7 @@ fa-bookmark {
     justify-content: space-between;
     position: sticky;
     bottom: 0;
-    background: #021129;
+    background: #adacac;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
     padding: 1rem 2rem;
@@ -385,5 +390,42 @@ fa-bookmark {
 
   .mobileCreate:hover {
     background: #5a015a;
+  }
+
+  .mobileTabs {
+    display: block;
+    margin: 3rem auto;
+    text-align: center;
+  }
+
+  .mobileTabs a {
+    text-decoration: none;
+    border-radius: 2rem;
+    border: white solid 2px;
+    padding: 0.2rem 0.3rem;
+    transition: 0.3s ease;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .discover {
+    display: block;
+    margin: 1rem auto;
+    color: #000;
+    text-align: center;
+  }
+
+  .discover h4 {
+    color: #cc1ccc;
+    font-size: 1.5rem;
+  }
+
+  .discover p {
+    font-size: 0.8rem;
   }
 }

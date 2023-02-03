@@ -84,12 +84,13 @@ button {
 
 .navmenu .main-logo {
   width: 25%;
-  margin-top: -15px;
+  
 }
 
 .navmenu .main-logo img {
   width: 100%;
   margin-left: -120px;
+  margin-top: -30px;
 }
 
 .navmenu .navbuttons {
@@ -402,10 +403,10 @@ fa-bookmark {
   .mobileTabs a {
     text-decoration: none;
     border-radius: 2rem;
-    border: white solid 2px;
+    border: #000 solid 2px;
     padding: 0.2rem 0.3rem;
     transition: 0.3s ease;
-    color: #fff;
+    color: #000;
     font-weight: 500;
     margin: 0 auto;
   }

@@ -400,16 +400,18 @@ fa-bookmark {
     text-align: center;
   }
 
+
   .mobileTabs a {
     text-decoration: none;
     border-radius: 2rem;
     border: #000 solid 2px;
-    padding: 0.2rem 0.3rem;
+    padding: 0.7rem 0.3rem 0.2rem 0.1rem;
     transition: 0.3s ease;
     color: #000;
     font-weight: 500;
     margin: 0 auto;
   }
+
 
   .tabs {
     display: none;

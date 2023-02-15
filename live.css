@@ -1,0 +1,161 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #021129;
+}
+
+.liveHeadline {
+  margin: 1rem auto;
+  color: #fff;
+  text-align: center;
+}
+
+.wrapper {
+  box-shadow: 3px 3px 8px #000;
+  padding: 1rem 1rem;
+  background: #021129;
+  width: 45%;
+  border-radius: 0.5rem;
+}
+
+#liveBox {
+  margin: 3rem auto 1rem auto;
+  padding: 0.7rem 2rem;
+  border: 2px solid #fff;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.liveButton {
+  display: flex;
+  justify-content: right;
+}
+
+.liveButton button {
+  border-radius: 0.5rem;
+  background: #cc1ccc;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  animation-name: blinking-button;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blinking-button {
+  from {
+    background: #cc1ccc;
+  }
+  to {
+    background: #740374;
+  }
+}
+
+.liveInfo {
+  margin-top: 8rem;
+  color: #fff;
+}
+
+.liveInfo p {
+  font-size: 14px;
+}
+
+.liveInfo span {
+  font-size: 12px;
+}
+
+.liveDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#liveTitle {
+  margin-bottom: 0.2rem;
+}
+
+.icons button {
+  background: none;
+  border: none;
+  color: #fff;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.liveDetailsInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.3rem;
+  width: 95%;
+}
+
+.liveDetailsInner img,
+.liveDetailsInner p {
+  cursor: pointer;
+}
+
+.liveText {
+  text-align: left;
+  font-size: 13px;
+}
+
+.liveText p {
+  margin-bottom: 0rem;
+}
+
+.liveText p a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.liveText .icons {
+  line-height: 0.8rem;
+}
+
+#followButton,
+#followButton2 {
+  background: #cc1ccc;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  margin-left: 1rem;
+}
+
+#moreIcon {
+  background: none;
+  border: none;
+  margin-left: 3rem;
+}
+
+/*MEDIA VIEWS*/
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  #liveBox {
+    padding: 0.7rem 1rem;
+  }
+
+  .liveDetailsInner {
+    width: 100%;
+  }
+}
+
+@media (max-width: 568px) {
+  .wrapper {
+    width: 95%;
+  }
+}

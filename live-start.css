@@ -1,0 +1,223 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: url("Images/Joeboy.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  box-shadow: 3px 3px 8px #000;
+  padding: 1rem;
+  background: #021129;
+  width: 60%;
+  border-radius: 1rem;
+  height: 700px;
+}
+
+.wrapper .main-logo {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.wrapper .main-logo img {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.wrapper .main-logo img:hover {
+  cursor: pointer;
+}
+
+.content {
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background: #021129;
+  border: 2px solid #fff;
+}
+
+.content .live {
+  display: flex;
+  justify-content: right;
+}
+.live button {
+  border-radius: 0.5rem;
+  background: #cc1ccc;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  animation-name: blinking-button;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blinking-button {
+  from {
+    background: #cc1ccc;
+  }
+  to {
+    background: #740374;
+  }
+}
+
+.caption {
+  margin-top: 6rem;
+}
+
+.caption-input {
+  background: #021129;
+  padding: 0.5rem 0.7rem 0.2rem 0.7rem;
+  border-radius: 0.5rem;
+  width: 40%;
+  border: 2px solid #fff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.caption-input button {
+  background: none;
+  padding: 0.3rem;
+  border: none;
+  justify-content: flex-end;
+}
+
+.caption button img {
+  width: 30px;
+}
+
+.caption-input input {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  margin: 0.3rem 0;
+  width: 100%;
+  font-size: 12px;
+}
+
+.caption-input textarea {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  margin: 0.3rem 0;
+  width: 100%;
+  font-size: 12px;
+}
+
+.content #go-live {
+  margin: 0.5rem 0;
+  background: #021129;
+  border: 2px solid #fff;
+  width: 35%;
+  border-radius: 0.3rem;
+  color: #fff;
+  transition: 0.4s ease;
+}
+
+.content #go-live:hover {
+  background: #cc1ccc;
+  border: 2px solid #cc1ccc;
+}
+
+.content button img {
+  transition: 0.4s ease;
+}
+
+.content button img:hover {
+  transform: rotateY(45deg);
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.3rem 0;
+  width: 85%;
+}
+
+.user img,
+.user p {
+  display: inline;
+  color: #fff;
+}
+
+.user p,
+.user span {
+  font-size: 13px;
+}
+.user img {
+  width: 40px;
+}
+
+.userIcon button {
+  background: none;
+  border: none;
+}
+
+.icons {
+  margin-top: 0.3rem;
+}
+
+.icons button {
+  background: none;
+  border: none;
+  color: #fff;
+  line-height: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .content,
+  .caption {
+    width: 95%;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .caption-input {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .caption {
+    width: 100%;
+  }
+
+  .caption-input {
+    width: 70%;
+  }
+
+  .wrapper {
+    width: 90%;
+    height: 100vh;
+  }
+
+  .content #go-live {
+    width: 45%;
+  }
+}
+
+@media (max-width: 568px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .caption-input {
+    width: 95%;
+  }
+}

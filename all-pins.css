@@ -1,6 +1,8 @@
-* {
+*,
+input {
   font-family: "Poppins", sans-serif;
 }
+
 body {
   background: #021129 !important;
 }
@@ -107,10 +109,30 @@ button {
   color: #fff;
   font-size: 1.5rem;
   transition: ease 0.4s;
+  animation-name: blinking-button;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 
-.navmenu .live-button:hover {
-  background: #cc1ccc;
+@keyframes blinking-button {
+  from {
+    background: #cc1ccc;
+  }
+  to {
+    background: #740374;
+  }
+}
+
+#searchBar {
+  padding: 0.4rem 0.5rem;
+  border: none;
+  border-bottom: solid 2px #fff;
+  background: none;
+  color: #fff;
+  width: 160px;
+  font-size: 12px;
 }
 
 .navbuttons img {
@@ -131,33 +153,52 @@ button {
   gap: 0.4rem;
 }
 
+.search button img {
+  width: 20px !important;
+}
+
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
+  width: 85%;
   justify-content: center;
   margin: 3rem auto;
 }
 
-.tabs p {
+.tabs button {
   border-radius: 2rem;
   border: white solid 2px;
-  padding: 0.2rem 1.6rem;
+  padding: 0.3rem 1.6rem !important;
   transition: 0.3s ease;
   color: #fff;
   font-weight: 500;
+  margin: 0.4rem 0.7rem;
 }
 
 .tabs a {
   text-decoration: none;
-  color: #fff;
-  margin: 0.2rem 0.7rem;
+  color: #fff !important;
+  margin: 0.2rem auto;
+  background: #cc1ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }
 
-.tabs p:hover {
+.tabs a:hover {
+  cursor: pointer;
+}
+
+.tabs button:hover {
   background: #bd74bd;
   border: #bd74bd solid 2px;
   transform: scale(110%);
+  color: #fff;
+}
+
+.btn-close:hover {
+  background: #fff !important;
+  border: none !important;
+  color: #000 !important;
 }
 
 .mobileTabs,
@@ -220,7 +261,7 @@ fa-bookmark {
 
 #image-cards .card {
   background: #cc1ccc;
-  border-radius: 2rem !important;
+  border-radius: 1rem !important;
   margin-bottom: 2rem;
   transition: ease 0.4s;
 }
@@ -236,6 +277,25 @@ fa-bookmark {
 
 #image-cards .card .post-img {
   position: relative !important;
+  text-align: left;
+}
+
+#image-cards .card .post-img p {
+  position: absolute;
+  bottom: 5rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 0 !important;
+}
+
+#image-cards .card .post-img h4 {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 0;
 }
 
 #image-cards .card .post-img a {
@@ -246,8 +306,8 @@ fa-bookmark {
 }
 
 #image-cards .card img {
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 #image-cards .icons-list {
@@ -272,6 +332,11 @@ fa-bookmark {
 
 .mobileView {
   display: none;
+}
+
+.username span img {
+  width: 20px;
+  /*  display: none;*/
 }
 
 /*Media queries*/
@@ -328,7 +393,7 @@ fa-bookmark {
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    margin: 0.4rem auto;
+    margin: 0.4rem 0;
   }
 
   .navmenu .navbuttonsMobile img,
@@ -342,6 +407,16 @@ fa-bookmark {
 
   .user-create .create-plus {
     display: none;
+  }
+
+  #mobileSearchBar {
+    padding: 0.4rem 0.5rem;
+    border: none;
+    border-bottom: solid 2px #fff;
+    background: none;
+    color: #fff;
+    width: 160px;
+    font-size: 12px;
   }
 
   #image-cards .col,

@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    
     <link rel="stylesheet" href="create-pin.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -40,8 +36,8 @@
       <div class="main-card">
         <div class="box-left">
           <h4>
-            High quality mp4 video or image recommended: .jpg, .svg, .jpeg,
-            .gif, .tiff, .png or mp4 less than 20MB.
+            High quality video or image recommended: .jpg, .svg, .jpeg,
+            .gif, .tiff, .png or mp4 not more than 20MB.
           </h4>
 
           <p>Upload video or image</p>
@@ -80,43 +76,44 @@
             <label for="message">(300 characters maximum)</label>
           </div>
 
-          <input
+          <!--<input
             class="link"
             type="url"
             name="link"
             id="link"
             placeholder="Add a link, e.g. www.twitter.com/tiwasavage"
-          />
+          />-->
           <div class="category" id="category">
             <select class="form-select" aria-label="Default select example">
-              <option selected>Select a category</option>
+              <option selected>Select a catalog</option>
               <option value="1">Music</option>
-              <option value="2">Fashion</option>
+              <option value="2">Shows & Concerts</option>
               <option value="4">Dance</option>
-              <option value="5">Arts</option>
+              <option value="5">Afrobeats</option>
               <option value="6">Comedy</option>
-              <option value="7">Football</option>
-              <option value="8">Artistes</option>
-              <option value="9">Fitness</option>
-              <option value="10">Shows & Concerts</option>
-              <option value="11">Museums</option>
-              <option value="12">House Decoration</option>
-              <option value="13">Food</option>
-              <option value="14">Photography</option>
-              <option value="15">Photo</option>
-              <option value="16">Television</option>
-              <option value="17">Nature</option>
-              <option value="18">Tourism</option>
-              <option value="19">Quotes</option>
-              <option value="20">Sports</option>
-              <option value="21">News</option>
-              <option value="22">Cars</option>
-              <option value="23">Pets</option>
-              <option value="24">Others</option>
+              <option value="7">Photo</option>
+              <option value="8">Photography</option>
+              <option value="9">Art</option>
+              <option value="10">Museums</option>
+              <option value="11">Tourism</option>
+              <option value="12">Fashion</option>
+              <option value="13">Beauty & Kits</option>
+              <option value="14">Food</option>
+              <option value="15">Fitness</option>
+              <option value="16">Football</option>
+              <option value="17">Sports</option>
+              <option value="18">News</option>
+              <option value="19">Fashion TV</option>
+              <option value="20">Cars</option>
+              <option value="21">House Decoration</option>
+              <option value="22">Nature</option>
+              <option value="23">Quotes</option>
+              <option value="24">Pets</option>
+              <option value="25">Others</option>
             </select>
           </div>
           <button
-            onClick="window.location='https://snapme-ng.com/api/v1/create-pin/:catalog'"
+            onClick="window.location='https://snapme-ng.com/create-pin/:catalog'"
             class="send-button"
             type="submit"
           >
@@ -125,5 +122,7 @@
         </div>
       </div>
     </div>
+      <script src="main.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

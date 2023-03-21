@@ -1,0 +1,46 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #021129 !important;
+}
+
+.content {
+  color: #fff;
+  width: 50%;
+  margin: 1rem auto;
+  border: 2px solid #fff;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+
+.content p {
+  margin: 1.5rem auto;
+}
+
+.stand {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.stand img {
+  width: 30px;
+}
+
+/*MEDIA VIEWS*/
+@media (max-width: 768px) {
+  .content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 568px) {
+  .content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}

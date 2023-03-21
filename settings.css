@@ -1,0 +1,139 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+body {
+  background: #021129 !important;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.content {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 0.5rem auto;
+  width: 40%;
+  border: 2px solid #fff;
+}
+
+.content .heading {
+  color: #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.content .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.buttons button {
+  background: #ba00ba;
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+}
+
+.top {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.top .backArrow i {
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+input {
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.3rem;
+  border: none;
+  width: 95%;
+}
+
+form.deleteAccount {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.deleteAccount h4 {
+  margin: 1rem auto;
+  color: #fff;
+}
+
+.passwordInner {
+  position: relative;
+}
+
+.password label {
+  display: block;
+  margin: 1.4rem auto 0.3rem auto;
+  color: #fff;
+}
+
+.password img {
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  cursor: pointer;
+  background: none;
+}
+
+.sendBtn {
+  display: flex;
+  justify-content: right;
+  margin-top: 1rem;
+  background: none;
+  border: none;
+}
+
+.bottom {
+  color: #fff;
+  margin: 2rem auto;
+  width: 90%;
+}
+
+/*MOBILE VIEWS*/
+@media (max-width: 768px) {
+  .delete,
+  .bottom {
+    width: 70%;
+  }
+
+  .content {
+    width: 70%;
+  }
+}
+
+@media (max-width: 568px) {
+  .delete,
+  .bottom {
+    width: 90%;
+  }
+  .content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 425px) {
+  .delete,
+  .bottom {
+    width: 95%;
+  }
+
+  .content {
+    width: 95%;
+  }
+}

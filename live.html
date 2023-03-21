@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
 
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -14,11 +15,7 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
     />
-    <link
-      rel="shortcut icon"
-      href="Images/Snapme iccon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="Snapme logo.png" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -43,14 +40,10 @@
           <p id="liveTitle">Nana's daily broadcast episode 4</p>
           <div class="liveDetails">
             <div class="liveDetailsInner">
-              <img
-                onClick="window.location='https://snapme-ng.com/user/profile'"
-                src="Images/azizy.png"
-                width="50px"
-              />
+              <img onclick="thisUser()" src="Images/azizy.png" width="50px" />
               <div class="liveText">
                 <p>
-                  <a href="https://snapme-ng.com/user/profile">nana</a> |
+                  <a onclick="thisUser()">nana</a> |
                   <span id="currentDateTime"></span>
                 </p>
                 <div class="icons">
@@ -64,12 +57,15 @@
                   </button>
                 </div>
               </div>
+
               <button
-                onClick="winwdow.location='https://snapme-ng.com/:username/follow'"
-                id="followButton"
+                class="followButton"
+                id="followBtn"
+                onclick="toggleFollow()"
               >
                 Follow +
               </button>
+
               <button id="moreIcon">
                 <img src="Images/more icon.svg" />
               </button>
@@ -85,14 +81,10 @@
           <p id="liveTitle">BBNaija Titans episode 3</p>
           <div class="liveDetails">
             <div class="liveDetailsInner">
-              <img
-                onClick="window.location='https://snapme-ng.com/user/profile'"
-                src="Images/azizy.png"
-                width="50px"
-              />
+              <img onclick="thisUser()" src="Images/azizy.png" width="50px" />
               <div class="liveText">
                 <p>
-                  <a href="https://snapme-ng.com/user/profile">bbnaija</a> |
+                  <a onclick="thisUser()">bbnaija</a> |
                   <span id="currentDateTime2"></span>
                 </p>
                 <div class="icons">
@@ -106,12 +98,15 @@
                   </button>
                 </div>
               </div>
+
               <button
-                onClick="winwdow.location='https://snapme-ng.com/:username/follow'"
-                id="followButton2"
+                class="followButton"
+                id="followBtn2"
+                onclick="toggleFollow2()"
               >
                 Follow +
               </button>
+
               <button id="moreIcon">
                 <img src="Images/more icon.svg" />
               </button>
@@ -122,76 +117,21 @@
     </div>
 
     <!--Scripts-->
-    <script>
-      // Current date and time of livestream
-      var monthNames = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-
-      var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-
-      const date = new Date();
-      let dayName = dayNames[date.getDay()];
-      let day = date.getDate();
-      let month = monthNames[date.getMonth()];
-      let year = date.getFullYear();
-      let hour = date.getHours();
-      let minutes = date.getMinutes();
-
-      let currentDate =
-        dayName +
-        ", " +
-        " " +
-        day +
-        " " +
-        month +
-        " " +
-        year +
-        " " +
-        hour +
-        ":" +
-        minutes;
-      document.getElementById("currentDateTime").innerHTML = currentDate;
-
-      document.getElementById("currentDateTime2").innerHTML = currentDate;
-
-      //Follow/unfollow buttons
-      const follow_Button = document.getElementById("followButton");
-      const unfollow_button = document.getElementById("followButton");
-
-      follow_Button.addEventListener("click", function () {
-        if (follow_Button.style.display === "block") {
-          follow_Button.innerHTML = "Follow +";
-        } else {
-          follow_Button.innerHTML = "Unfollow";
-        }
-      });
-
-      //
-
-      const follow_Button2 = document.getElementById("followButton2");
-      const unfollow_button2 = document.getElementById("followButton2");
-
-      follow_Button2.addEventListener("click", function () {
-        if (follow_Button2.style.display === "block") {
-          follow_Button2.innerHTML = "Follow +";
-        } else {
-          follow_Button2.innerHTML = "Unfollow";
-        }
-      });
-    </script>
-    <script src="main.js"></script>
+    <script src="live.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(function (registration) {
+              console.log("Service worker registered:", registration);
+            })
+            .catch(function (error) {
+              console.log("Service worker registration failed:", error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

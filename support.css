@@ -1,0 +1,41 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #021129 !important;
+}
+
+.content {
+  color: #fff;
+  width: 45%;
+  margin: 2rem auto;
+  border: 2px solid #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  box-shadow: 5px 5px 8px #000;
+}
+
+.content h3 {
+  text-align: center;
+}
+
+.content p {
+  margin: 1rem auto;
+}
+
+/*MEDIA VIEWS*/
+@media (max-width: 768px) {
+  .content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 568px) {
+  .content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}

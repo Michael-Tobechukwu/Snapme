@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta
+      name="google-signin-client_id"
+      content="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
+    />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
@@ -14,11 +18,7 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
     />
-    <link
-      rel="shortcut icon"
-      href="Images/Snapme iccon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="Snapme logo.png" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -33,9 +33,18 @@
     <title>Snapme | Login</title>
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0&appId=1237048957228430&autoLogAppEvents=1"
+      nonce="bE9NZBvL"
+    ></script>
+
     <div class="container">
       <a href="index.html"
-        ><img src="Images/Snapme logo main.png" width="30%"
+        ><img src="Images/Snapme logo main.png" class="main-logo"
       /></a>
       <div class="card bg-transparent">
         <div class="logo">
@@ -43,33 +52,69 @@
           <i class="fa-solid fa-lock"></i>
         </div>
 
-        <button onClick="window.location = '/snapme-login.html'" class="snapme">
-          Snapme login
+        <div class="introText">
+          <h4>Please login to create & explore catalogs</h4>
+        </div>
+
+        <button onClick="window.location = 'snapme-login.html'" class="snapme">
+          <img src="Images/snapme.png" style="width: 30px !important" />
+          Login with Snapme
         </button>
-        <button
-          onClick="window.location = 'https://snapme-ng.com/api/v1/auth/twitter'"
+        <!--<button
+          onclick="window.location = 'https://snapme-ng.com/auth/twitter'"
           class="twitter"
         >
           Login with Twitter <i class="fa-brands fa-twitter"></i>
+        </button>-->
+        <button onclick="loginInstagram()">
+          <i class="fa-brands fa-instagram"></i>
+          Login with Instagram
         </button>
-        <button
-          onClick="window.location = 'https://snapme-ng.com/api/v1/auth/instagram'"
-          class="instagram"
-        >
+
+        <!--  <button id="instagramLoginBtn" class="instagram">
           Login with Instagram <i class="fa-brands fa-instagram"></i>
-        </button>
-        <button
-          onClick="window.location = 'https://snapme-ng.com/api/v1/auth/facebook'"
-          class="facebook"
-        >
+        </button>-->
+
+        <!--<button id="facebookLoginBtn" class="facebook">
           Login with Facebook <i class="fa-brands fa-facebook"></i>
-        </button>
-        <button
-          onClick="window.location = 'https://snapme-ng.com/api/v1/auth/google'"
-          class="google"
-        >
+        </button>-->
+
+        <div
+          class="fb-login-button"
+          data-width="250px"
+          data-size="large"
+          data-button-type=""
+          data-layout=""
+          data-auto-logout-link="true"
+          data-use-continue-as="true"
+        ></div>
+
+        <div id="googleBtn">Login with Google</div>
+        <!--<div
+          id="g_id_onload"
+          data-client_id="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
+          data-auto_select="true"
+          data-context="signup"
+          data-ux_mode="popup"
+          data-login_uri="https://snapme-ng.com/login"
+          data-nonce=""
+          data-auto_prompt="false"
+        ></div>
+
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-shape="pill"
+          data-theme="filled_blue"
+          data-text="signin_with"
+          data-size="medium"
+          data-locale="en"
+          data-logo_alignment="left"
+        ></div>-->
+        <!--<button id="googleLoginBtn" class="google">
           Login with Google <i class="fa-brands fa-google"></i>
-        </button>
+        </button>-->
+
         <div class="signup">
           <p>Don't have a Snapme account?</p>
           <a href="signup.html">Sign up</a>
@@ -79,9 +124,25 @@
       <!--wrapper ends-->
     </div>
     <!--scripts-->
-    <script src="main.js"></script>
+    <script src="login.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(function (registration) {
+              console.log("Service worker registered:", registration);
+            })
+            .catch(function (error) {
+              console.log("Service worker registration failed:", error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

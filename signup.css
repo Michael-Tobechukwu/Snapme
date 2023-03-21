@@ -2,6 +2,13 @@
 input {
   font-family: "Poppins", sans-serif;
 }
+
+input,
+label,
+select {
+  font-size: 14px;
+}
+
 body {
   background-image: url("Images/Ayra-starr\ 20.jpeg");
   background-repeat: no-repeat;
@@ -10,21 +17,21 @@ body {
 
 .container {
   background: #021129;
-  margin: 0.8rem auto;
+  margin: 0 auto;
   width: 40%;
-  border-radius: 2rem;
+  border-radius: 1rem;
   box-shadow: 3px 3px 8px #000;
-  padding: 2rem 2rem;
+  padding: 1rem 1.5rem;
 }
 
 .inner {
   width: 90%;
-  margin: 0 1rem;
+  margin: 0 auto;
 }
 
 .logo {
   width: 50%;
-  margin: 1rem auto;
+  margin: 0.4rem auto 0.7rem auto;
 }
 
 .logo img {
@@ -33,7 +40,7 @@ body {
 
 input {
   margin: 0.5rem 0;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   width: 100%;
   padding: 0.7rem 1rem;
   border: none;
@@ -60,7 +67,6 @@ input {
 .gender-input label {
   color: #fff;
   padding: 0;
-  font-size: 1.1rem;
   width: 40%;
 }
 
@@ -70,8 +76,10 @@ input {
   width: 45%;
 }
 
-.birthday label {
-  font-size: 1.2rem;
+.birthday input {
+  background: #fff;
+  color: #696868;
+  border: 2px solid #fff;
 }
 
 .occupation-country {
@@ -79,6 +87,32 @@ input {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.occupation,
+.country {
+  width: 45%;
+}
+
+#countryList {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.3rem;
+  background: #fff;
+  color: #696868;
+  border: 2px solid #fff;
+}
+
+.password {
+  position: relative;
+}
+
+.password img {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: none;
+  cursor: pointer;
 }
 
 button {
@@ -98,11 +132,13 @@ button i {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.3rem;
+  font-size: 14px;
 }
 
 .already p {
   color: #fff;
   margin-bottom: 0;
+  font-size: 14px;
 }
 
 .already a {
@@ -110,17 +146,26 @@ button i {
   margin-top: 0;
 }
 
+.agree {
+  margin: 1rem auto;
+  font-size: 12px;
+}
+
+.agree p {
+  color: #fff;
+}
+
 /*MEDIA QUERIES*/
 
 @media (max-width: 1024px) {
   .container {
-    width: 80%;
+    width: 60%;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    width: 100%;
+    width: 80%;
   }
 
   .gender-birthday {
@@ -129,5 +174,27 @@ button i {
 
   .gender-birthday input {
     width: 100%;
+  }
+}
+
+@media (max-width: 568px) {
+  .container {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .occupation,
+  .country {
+    width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  span.male {
+    gap: 20px !important;
+  }
+
+  span.custom {
+    gap: 8px !important ;
   }
 }

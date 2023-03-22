@@ -47,7 +47,7 @@ body {
 }
 .live button {
   border-radius: 0.5rem;
-  background: #cc1ccc;
+  background: #ba00ba;
   color: #fff;
   padding: 0.3rem 1rem;
   border: none;
@@ -62,7 +62,7 @@ body {
 
 @keyframes blinking-button {
   from {
-    background: #cc1ccc;
+    background: #ba00ba;
   }
   to {
     background: #740374;
@@ -125,8 +125,8 @@ body {
 }
 
 .content #go-live:hover {
-  background: #cc1ccc;
-  border: 2px solid #cc1ccc;
+  background: #ba00ba;
+  border: 2px solid #ba00ba;
 }
 
 .content button img {

@@ -1,0 +1,598 @@
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #021129 !important;
+}
+
+.content {
+  width: 85%;
+  margin: 0.5rem auto;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.main-logo {
+  margin: 1rem auto;
+  width: 40%;
+}
+
+.main-logo img {
+  width: 100%;
+}
+
+.backArrow i {
+  transition: ease 0.3s;
+}
+
+.backArrow i:hover {
+  cursor: pointer;
+  color: #ba00ba;
+}
+
+.topMobile,
+.mobileFollow {
+  display: none;
+}
+
+.fa-arrow-left-long {
+  color: #fff;
+  font-size: 2rem;
+}
+
+#profile-card {
+  margin: 1rem auto;
+  width: 100%;
+  background: #031738;
+  box-shadow: 3px 3px 8px #031738;
+  border-radius: 1rem;
+  border: 2px solid #fff;
+  position: relative;
+}
+
+.banner {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  height: 250px;
+  width: 100%;
+}
+
+.banner img {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  width: 100%;
+  height: 250px;
+}
+
+.banner #bannerImage {
+  display: none;
+}
+
+.top {
+  margin: 3rem auto 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout button {
+  border: none;
+  color: #fff;
+  background: #ba00ba;
+  border-radius: 50%;
+}
+
+.userDetails {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 95%;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.userDetails button {
+  background: #ba00ba;
+  color: #fff;
+  border: none;
+  border-radius: 3rem;
+  padding: 0.4rem 2rem;
+  font-weight: 500;
+}
+
+.userDetails button:hover {
+  background: #770477;
+}
+
+.userInfo {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.userInfo .profilePic {
+  position: absolute;
+  left: 2rem;
+  top: 220px;
+  width: 100px;
+}
+
+.userInfoInner {
+  line-height: 1rem;
+  position: absolute;
+  left: 9rem;
+  top: 250px;
+}
+
+.userNameBadge {
+  display: flex;
+  align-items: center;
+}
+
+.userNameBadge img {
+  width: 20px !important;
+  position: absolute;
+  top: 10px;
+  left: 205px;
+}
+
+.userInfoInner h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.userInfoInner p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.follow-button {
+  margin-right: 20px;
+}
+
+.user-List {
+  margin-left: 3.4rem;
+  margin-top: 3rem;
+}
+
+.user-List li {
+  list-style: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.userTabs {
+  margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.userTabs button {
+  color: #000;
+  background: #fff;
+  border-radius: 3rem;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.4s;
+  font-weight: 500;
+  border: none;
+}
+
+.userTabs button:hover {
+  background: #ba00ba;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card-body button {
+  background: none;
+  border: none;
+}
+
+.fa-solid,
+fa-bookmark {
+  color: #fff;
+  background: none;
+}
+
+#more-icons,
+#more-iconsII,
+#more-iconsIII,
+#more-iconsIV,
+#more-iconsV,
+#more-iconsVI {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: none;
+}
+
+#myBtn,
+#myBtnII,
+#myBtnIII,
+#myBtnIV,
+#myBtnV,
+#myBtnVI {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+#more-icons li,
+#more-iconsII li,
+#more-iconsIII li,
+#more-iconsIV li,
+#more-iconsV li,
+#more-iconsVI li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.6rem;
+}
+
+#more-icons li p,
+#more-iconsII li p,
+#more-iconsIII li p,
+#more-iconsIV li p,
+#more-iconsV li p,
+#more-iconsVI li p {
+  color: #fff;
+}
+
+.other-icons {
+  display: block;
+}
+
+#image-cards {
+  justify-content: space-between !important;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+#image-cards .card {
+  background: #ba00ba;
+  border-radius: 1rem !important;
+  margin-bottom: 2rem;
+  transition: ease 0.4s;
+  position: relative;
+}
+
+#image-cards .card:hover {
+  cursor: pointer;
+  background: #5a015a;
+}
+
+#image-cards .card-text {
+  position: absolute;
+  top: 14rem;
+  left: 0.5rem;
+  text-align: left;
+  line-height: 0.1rem;
+  color: #fff;
+}
+
+#image-cards .card-text2 {
+  position: absolute;
+  top: 14rem;
+  left: 0.5rem;
+  text-align: left;
+  line-height: 0.1rem;
+  color: #fff;
+}
+
+#image-cards .card-text3 {
+  position: absolute;
+  top: 17rem;
+  left: 0.5rem;
+  text-align: left;
+  line-height: 0.1rem;
+  color: #fff;
+}
+
+#image-cards .card-text p,
+#image-cards .card-text2 p,
+#image-cards .card-text3 p {
+  font-size: 0.7rem;
+}
+
+#image-cards .card-text h4,
+#image-cards .card-text2 h4,
+#image-cards .card-text3 h4 {
+  font-weight: bold;
+}
+
+#image-cards .card .card-body {
+  padding-bottom: 0 !important;
+}
+
+#image-cards .card .post-img {
+  position: relative !important;
+  text-align: left;
+}
+
+#image-cards .card .post-img a {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  text-decoration: none;
+}
+
+#image-cards .card .post-img p {
+  position: absolute;
+  bottom: 5rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 0 !important;
+}
+
+#image-cards .card .post-img h4 {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+#image-cards .card img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+#image-cards .icons-list {
+  display: flex;
+  justify-content: start;
+  margin-left: -2rem !important;
+}
+
+#image-cards .icons-list li {
+  list-style: none;
+}
+
+.myrow .card-body {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#image-cards .icons-list .more-icon {
+  margin-bottom: 0 !important;
+}
+
+/* The Modal (background) */
+.shareUserModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+/* The Close Button */
+.closeX {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeX:hover,
+.closeX:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalContent p {
+  margin-bottom: 1rem;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+}
+
+.share_popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.share_popup a {
+  width: 25%;
+  color: #000;
+}
+
+.share_popup img {
+  width: 100%;
+}
+
+.timePinned {
+  font-size: 13px;
+  color: #fff;
+  padding: 0.2rem 0.3rem;
+  background: #021129;
+}
+
+.likeListItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#mobileUserTabs {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .modalContent {
+    width: 50%;
+  }
+}
+
+/*MOBILE VIEWS*/
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 !important;
+  }
+  .content {
+    width: 95%;
+  }
+
+  .userDetails {
+    width: 100%;
+    margin-top: 2.5rem;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+
+  .userInfo .profilePic {
+    width: 100px;
+  }
+
+  .userInfoInner h3 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .userInfoInner p {
+    font-size: 13px;
+  }
+
+  .mobileFollow {
+    padding: 0.5rem 1.2rem !important;
+    display: block;
+  }
+
+  .topMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .user-List {
+    margin-left: 1rem;
+  }
+
+  .userTabs {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .userTabs p {
+    padding: 0.5rem 1.3rem;
+  }
+
+  #image-cards,
+  .myrow {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .col,
+  .col-5,
+  .card {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .post-img {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .userNameBadge img {
+    left: 130px;
+  }
+
+  .modalContent {
+    width: 70%;
+  }
+}
+
+@media (max-width: 568px) {
+  .userDetails {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .userInfoInner {
+    margin-top: 0;
+  }
+
+  #mobileUserTabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem auto 1rem auto;
+  }
+
+  #mobileUserTabs button {
+    border: 2px solid #fff;
+    background: #031738;
+    padding: 0.4rem 0.8rem;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0.5rem;
+  }
+
+  .userTabs {
+    display: none;
+  }
+
+  /* Modal Content */
+}
+
+@media (max-width: 425px) {
+  .mobileFollow {
+    padding: 0.4rem 0.4rem !important;
+    margin-left: 25px;
+    margin-top: 60px;
+    font-size: 0.8rem;
+  }
+
+  .userDetails {
+    width: 100%;
+  }
+
+  .content {
+    width: 95%;
+  }
+}
+
+@media (max-width: 375px) {
+  .content {
+    padding: 0;
+  }
+
+  .userInfo .profilePic {
+    left: 1rem;
+    width: 80px;
+  }
+
+  .userInfoInner {
+    left: 6.5rem;
+  }
+
+  .userDetails {
+    width: 100%;
+  }
+}

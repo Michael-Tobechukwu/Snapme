@@ -4,17 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
 
-    
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="create-pin.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
     />
-    <link
-      rel="shortcut icon"
-      href="Images/Snapme iccon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="Snapme logo.png" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -36,7 +37,7 @@
       <div class="main-card">
         <div class="box-left">
           <h4>
-            High quality video or image recommended: .jpg, .svg, .jpeg,
+            High quality mp4 video or image recommended: .jpg, .svg, .jpeg,
             .gif, .tiff, .png or mp4 not more than 20MB.
           </h4>
 
@@ -50,11 +51,21 @@
               type="file"
               class="form-control upload-input"
               id="inputGroupFile"
+              accept="image/jpeg,image/png,image/gif,image/svg,image/tiff,video/mp4"
+              maxlength="20000000"
             />
+
+            <input id="file-input" type="file" />
           </div>
         </div>
 
         <div class="box-right">
+          <div id="subscribe">
+            <button onclick="window.location='subscribe.html'">
+              Subscribe
+            </button>
+          </div>
+          <!--onclick="subscribe()-->
           <div class="caption">
             <input
               type="text"
@@ -83,24 +94,26 @@
             id="link"
             placeholder="Add a link, e.g. www.twitter.com/tiwasavage"
           />-->
+
           <div class="category" id="category">
             <select class="form-select" aria-label="Default select example">
               <option selected>Select a catalog</option>
               <option value="1">Music</option>
               <option value="2">Shows & Concerts</option>
-              <option value="4">Dance</option>
-              <option value="5">Afrobeats</option>
-              <option value="6">Comedy</option>
-              <option value="7">Photo</option>
-              <option value="8">Photography</option>
-              <option value="9">Art</option>
-              <option value="10">Museums</option>
-              <option value="11">Tourism</option>
-              <option value="12">Fashion</option>
-              <option value="13">Beauty & Kits</option>
-              <option value="14">Food</option>
-              <option value="15">Fitness</option>
-              <option value="16">Football</option>
+              <option value="3">Dance</option>
+              <option value="4">Afrobeats</option>
+              <option value="5">Comedy</option>
+              <option value="6">Tag Stories</option>
+              <option value="7">Photography</option>
+              <option value="8">Art</option>
+              <option value="9">Museums</option>
+              <option value="10">Tourism</option>
+              <option value="11">Fashion</option>
+              <option value="12">Beauty & Kits</option>
+              <option value="13">Food</option>
+              <option value="14">Fitness</option>
+              <option value="15">Football</option>
+              <option value="16">Basketball</option>
               <option value="17">Sports</option>
               <option value="18">News</option>
               <option value="19">Fashion TV</option>
@@ -112,17 +125,30 @@
               <option value="25">Others</option>
             </select>
           </div>
-          <button
-            onClick="window.location='https://snapme-ng.com/create-pin/:catalog'"
-            class="send-button"
-            type="submit"
-          >
-            <img src="Images/arrow-right.svg" width="" />
+          <button onclick="createPin()" class="send-button" type="submit">
+            <img src="Images/arrow-right.svg" />
           </button>
         </div>
       </div>
     </div>
-      <script src="main.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="create-pin.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(function (registration) {
+              console.log("Service worker registered:", registration);
+            })
+            .catch(function (error) {
+              console.log("Service worker registration failed:", error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

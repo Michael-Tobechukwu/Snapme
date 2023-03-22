@@ -1,0 +1,1150 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #021129 !important;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.dropdown button {
+  border: none !important;
+}
+
+.dropdown-menu {
+  margin-top: 2rem !important;
+  position: absolute;
+  background: #021129 !important;
+  padding: 1rem 1rem !important;
+  width: 300px;
+  box-shadow: 3px 3px 6px #000;
+  border-radius: 2rem;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  color: #fff !important;
+  font-size: 0.9rem !important;
+}
+
+.dropdown-menu hr {
+  border: 1px solid #fff;
+  width: 100px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #fff !important;
+  font-size: 0.9rem;
+  transition: 0.4s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: none;
+  transform: scale(105%);
+}
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons li a {
+  color: #fff;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+.social-icons li a img {
+  width: 2rem;
+}
+
+.social-icons .copy {
+  font-size: 0.8rem !important;
+}
+
+.navmenu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #021129;
+  padding: 1rem 0;
+}
+
+.navbuttonsMobile {
+  display: none;
+}
+
+.navmenu .main-logo {
+  width: 25%;
+}
+
+.navmenu .main-logo img {
+  width: 100%;
+  margin-left: -120px;
+}
+
+.navmenu .navbuttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+
+.navmenu .live-button {
+  border-radius: 0.9rem;
+  border: none;
+  padding: 0.2rem 2rem;
+  background: #bd74bd;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: ease 0.4s;
+  animation-name: blinking-button;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blinking-button {
+  from {
+    background: #ba00ba;
+  }
+  to {
+    background: #740374;
+  }
+}
+
+#searchBar {
+  padding: 0.4rem 0.5rem;
+  border: none;
+  border-bottom: solid 2px #fff;
+  background: none;
+  color: #fff;
+  width: 160px;
+  font-size: 12px;
+}
+
+.navbuttons img {
+  width: 3rem;
+  transition: 0.4s;
+}
+
+.navbuttons img:hover {
+  transform: scale(110%);
+}
+
+.navbuttons :nth-child(3) img {
+  width: 2rem;
+}
+
+.navbuttons .user-create {
+  display: flex !important;
+  gap: 0.4rem;
+}
+
+.search button img {
+  width: 20px !important;
+}
+
+.subscribe {
+  display: flex;
+  justify-content: right;
+}
+
+.subscribe button {
+  background: #ba00ba;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: ease 0.4s;
+}
+
+.subscribe button:hover {
+  background: #740374;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  justify-content: center;
+  margin: 3rem auto;
+}
+
+.tabs button {
+  border-radius: 2rem;
+  border: white solid 2px;
+  padding: 0.3rem 1.6rem !important;
+  transition: 0.3s ease;
+  color: #fff;
+  font-weight: 500;
+  margin: 0.4rem 0.7rem;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #fff !important;
+  margin: 0.2rem auto;
+  background: #cc1ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.tabs a:hover {
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background: #bd74bd;
+  border: #bd74bd solid 2px;
+  transform: scale(110%);
+  color: #fff;
+}
+
+.btn-close:hover {
+  background: #fff !important;
+  color: #000 !important;
+  border: none !important;
+}
+
+.mobileTabs,
+.discover,
+.mobileView,
+.mobileSearchBtn {
+  display: none;
+}
+
+.fa-solid,
+.fa-bookmark {
+  color: #fff;
+}
+
+.modal-content {
+  width: 70% !important;
+}
+
+.subscribe {
+  display: flex;
+  justify-content: right;
+  margin-top: 1rem;
+}
+
+.subscribe button {
+  background: #ba00ba;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: ease 0.4s;
+}
+
+.subscribe button:hover {
+  background: #740374;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  justify-content: center;
+  margin: 2.5rem auto;
+}
+
+.tabs p {
+  border-radius: 2rem;
+  border: white solid 2px;
+  padding: 0.2rem 1.6rem;
+  transition: 0.3s ease;
+  color: #fff;
+  font-weight: 500;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0.2rem 0.7rem;
+}
+
+.tabs p:hover {
+  background: #bd74bd;
+  border: #bd74bd solid 2px;
+  transform: scale(110%);
+}
+
+.post-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin: 0.5rem auto 2rem;
+  width: 90%;
+  border-radius: 2rem !important;
+  padding: 0.7rem;
+  box-shadow: 3px 3px 8px #000;
+  background: #031738;
+}
+
+.post-card .img {
+  width: 40%;
+}
+
+.post-card .img img {
+  border-radius: 2rem;
+  width: 100%;
+}
+
+.post-card .content {
+  margin-top: 0.4rem;
+  width: 52%;
+}
+
+.post-card .content-top {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.post-card .content-top p {
+  color: #fff;
+  margin: 0 auto;
+  font-size: 1.4rem;
+}
+
+.post-card .content-top button {
+  background: #ba00ba;
+  color: #fff;
+  padding: 0.3rem 1.6rem;
+  border-radius: 2rem;
+  margin-left: 2rem;
+}
+
+.post-card .content-top button:hover {
+  background: #910791;
+}
+
+.post-card .content-mid {
+  margin-top: 1.3rem;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.post-card .content-mid h3 {
+  font-weight: 600;
+  color: #fff;
+}
+
+.post-card .content-mid p {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+#video,
+.video {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+video::-webkit-media-controls-play-button {
+  background-color: #021129;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.mobileIcons {
+  display: none;
+}
+
+.show-more {
+  margin-top: 1rem;
+}
+
+#more-text {
+  display: none;
+  color: #fff;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.show-more ul {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.show-more ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.show-more ul li {
+  margin-right: 0.4rem;
+}
+
+.show-more ul li {
+  list-style: none;
+}
+
+.icons-list button i {
+  color: #fff;
+}
+
+.content-bottom p {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.marcdiss-box {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-end;
+  line-height: 0;
+}
+
+.marcdiss-box button {
+  width: 10%;
+}
+
+.marcdiss-box button img {
+  width: 95%;
+}
+
+.marcdiss-box p,
+.marcdiss-box small {
+  color: #fff;
+}
+
+.marcdiss ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.marcdiss ul li {
+  display: inline-block;
+  list-style: none;
+  font-size: 0.7rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.marcdiss .name {
+  font-size: 1.1rem;
+}
+
+.marcdiss .alias {
+  font-size: 0.7rem;
+}
+
+.content-bottom form {
+  margin-top: 1rem;
+}
+
+.form-input-button {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.content-bottom form input {
+  border-radius: 5rem;
+  padding: 0.4rem 1rem;
+  width: 40%;
+  font-size: 0.7rem;
+}
+
+.fa-paper-plane {
+  color: #fff;
+  background: #ba00ba;
+  border-radius: 50%;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+}
+
+/* The Modal (background) */
+.sharePinModal,
+#sharePinModal,
+#liveModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.liveModalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+/* The Close Button */
+.closeZ,
+#closeZ,
+#closeLive {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeZ:hover,
+#closeZ:hover,
+.closeZ:focus,
+#closeZ:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#goLive,
+#watchLive {
+  background: #ba00ba;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  margin: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+}
+
+#goLive:hover,
+#watchLive:hover {
+  background: #5a015a;
+}
+
+.close:hover,
+#closeLive:hover,
+.close:focus,
+#closeLive:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.modalContent p {
+  margin-bottom: 1rem;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+}
+
+.share_popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.share_popup a {
+  width: 25%;
+  color: #000;
+}
+
+.share_popup img {
+  width: 100%;
+}
+
+#mobileFollowModal {
+  display: none;
+}
+
+.timePinned {
+  font-size: 12px !important;
+  color: #fff;
+}
+
+#postDate {
+  color: #fff;
+  font-size: 12px;
+}
+
+.suggestedHeading {
+  margin: 2rem auto;
+  color: #fff;
+  text-align: center;
+}
+
+#suggestedCatalogs {
+  justify-content: space-between !important;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#suggestedCatalogs .card {
+  background: #ba00ba;
+  border-radius: 1rem !important;
+  margin-bottom: 2rem;
+  transition: ease 0.4s;
+}
+
+#suggestedCatalogs .card:hover {
+  cursor: pointer;
+  background: #5a015a;
+}
+
+#suggestedCatalogs .card .card-body {
+  padding-bottom: 0 !important;
+}
+
+#suggestedCatalogs .card .post-img {
+  position: relative !important;
+  text-align: left;
+}
+
+#suggestedCatalogs .card .post-img p {
+  position: absolute;
+  bottom: 5rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 0 !important;
+}
+
+#suggestedCatalogs .card .post-img h4 {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 0;
+}
+
+#suggestedCatalogs .card .post-img a {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  text-decoration: none;
+}
+
+#suggestedCatalogs .card img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+#suggestedCatalogs .icons-list {
+  display: flex;
+  justify-content: start;
+  align-items: center !important;
+  margin-left: -2rem !important;
+}
+
+#suggestedCatalogs .icons-list li {
+  list-style: none;
+  margin-left: 0 !important;
+}
+
+#suggestedCatalogs .icons-list li button:hover {
+  border: none !important;
+}
+
+.myrow .card-body {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.verified-badge img {
+  width: 20px !important;
+}
+
+.card-title li {
+  margin: 0 0.3rem;
+}
+
+#more-icons,
+#more-iconsII,
+#more-iconsIII,
+#more-iconsIV,
+#more-iconsV,
+#more-iconsVI {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: none;
+}
+
+#myBtn,
+#myBtnII,
+#myBtnIII,
+#myBtnIV,
+#myBtnV,
+#myBtnVI {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+#more-icons li,
+#more-iconsII li,
+#more-iconsIII li,
+#more-iconsIV li,
+#more-iconsV li,
+#more-iconsVI li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.6rem;
+}
+
+#more-icons li p,
+#more-iconsII li p,
+#more-iconsIII li p,
+#more-iconsIV li p,
+#more-iconsV li p,
+#more-iconsVI li p {
+  color: #fff;
+}
+
+/* The Modal (background) */
+.shareModal,
+#liveModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.liveModalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+/* The Close Button */
+.close,
+#closeLive {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+#closeLive:hover,
+.close:focus,
+#closeLive:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+#mobileFooter {
+  display: none;
+}
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 1024px) {
+  .navmenu .main-logo img {
+    margin-left: 0px;
+  }
+}
+
+/*MOBILE VIEWS*/
+
+@media (max-width: 768px) {
+  .tabs {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 70% !important;
+  }
+
+  #suggestedCatalogs .myrow {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  #suggestedCatalogs {
+    margin: 0 auto;
+    width: 99%;
+  }
+
+  #suggestedCatalogs .col,
+  #suggestedCatalogs .col-5 {
+    width: 95% !important;
+  }
+
+  .post-card {
+    width: 100%;
+  }
+
+  .post-card .content-top button {
+    padding: 0.5rem 1rem;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 568px) {
+  .navmenu .navbuttons,
+  .tabs {
+    display: none;
+  }
+
+  .navmenu {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    width: 100%;
+    padding: 0.3rem;
+  }
+
+  .navmenu .hamburger,
+  .navmenu .main-logo,
+  .navmenu .navbuttons {
+    width: 45%;
+  }
+
+  .navmenu .navbuttonsMobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0.5rem auto;
+  }
+
+  .navmenu .navbuttonsMobile img,
+  .navmenu .navbuttonsMobile button {
+    margin-right: 0.1rem;
+  }
+
+  .navmenu .live-button {
+    padding: 0.4rem 0.8rem;
+  }
+
+  .user-create .create-plus {
+    display: none;
+  }
+
+  .mobileSearchBtn {
+    display: block;
+    width: 95%;
+    margin: 0.5rem auto;
+  }
+
+  .mobileSearchBtn input {
+    padding: 0.4rem 0.5rem;
+    border: none;
+    border-bottom: solid 2px #fff;
+    background: none;
+    color: #fff;
+    width: 80%;
+    font-size: 12px;
+  }
+
+  .mobileSearchBtn img {
+    display: inline-block;
+  }
+
+  .mobileTabs {
+    display: block;
+    margin: 3rem auto;
+    text-align: center;
+  }
+
+  .mobileTabs a {
+    text-decoration: none;
+    border-radius: 2rem;
+    border: white solid 2px;
+    padding: 0.7rem 0.3rem 0.2rem 0.1rem;
+    transition: 0.3s ease;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .mobileTabs a:hover {
+    cursor: pointer;
+  }
+
+  .discover {
+    display: block;
+    margin: 1rem auto;
+    color: #fff;
+    text-align: center;
+  }
+
+  .discover h4 {
+    color: #ba00ba;
+    font-size: 1.5rem;
+  }
+
+  .discover p {
+    font-size: 0.8rem;
+  }
+
+  .user-create .create-plus {
+    display: none;
+  }
+
+  .mobileSearchBtn {
+    display: block;
+    width: 95%;
+    margin: 0.5rem auto;
+  }
+
+  .mobileSearchBtn input {
+    padding: 0.4rem 0.5rem;
+    border: none;
+    border-bottom: solid 2px #fff;
+    background: none;
+    color: #fff;
+    width: 80%;
+    font-size: 12px;
+  }
+
+  .mobileSearchBtn img {
+    display: inline-block;
+  }
+
+  .post-card {
+    position: relative;
+  }
+
+  .userDetails {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    top: 50px;
+    left: 30px;
+  }
+
+  .text p {
+    font-size: 14px !important;
+  }
+
+  .content {
+    width: 100% !important;
+    padding: 0;
+  }
+
+  .post-card {
+    gap: 0.3rem;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    padding: 0.5rem 0.5rem 1rem 0.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .post-card .img {
+    margin-bottom: 0;
+  }
+
+  .post-card .img {
+    width: 100%;
+  }
+  .content-mid {
+    width: 100%;
+  }
+
+  .content-mid h3 {
+    width: 100%;
+  }
+
+  .mobileIcons {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 1rem;
+    margin: 0.3rem auto !important;
+    padding: 0.1rem 1rem;
+  }
+
+  .mobileIcons a,
+  .mobileIcons img {
+    width: 8% !important;
+  }
+
+  .marcdiss-box {
+    align-items: flex-start;
+  }
+  /* The Modal background */
+  #mobileFollowModal,
+  .mobileFollowModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .mobileModalContent {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #888;
+    width: 65%;
+  }
+
+  /* The Close Button */
+  .mobileclose,
+  .close2,
+  .close3,
+  .close4,
+  .close5,
+  .close6,
+  .closeme {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .mobileclose:hover,
+  .mobileclose:focus,
+  .closeme:hover,
+  .closeme:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .mobileModalContent p {
+    margin-bottom: 1rem;
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .follow_popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 100%;
+  }
+
+  .follow_popup button {
+    color: #fff;
+    background: #ba00ba;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .mobileFollowModal {
+    display: none;
+  }
+
+  #suggestedCatalogs {
+    width: 99%;
+  }
+
+  #suggestedCatalogs .col {
+    width: 100% !important;
+  }
+
+  #suggestedCatalogs .col-5 {
+    width: 100% !important;
+  }
+
+  #mobileFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    background: #021129;
+    padding: 1rem;
+    margin: 0;
+    width: 100%;
+  }
+
+  #mobileFooter button {
+    width: 20%;
+    transition: ease 0.4s;
+  }
+
+  #mobileFooter button:hover {
+    transform: scale(105%);
+  }
+
+  #mobileFooter button i {
+    width: 100%;
+  }
+
+  .mobileLike {
+    border-radius: 50%;
+    background: #ba00ba;
+    color: #fff;
+    padding: 0.4rem 0;
+    font-size: 14px;
+    transition: ease 0.4s;
+    margin-bottom: 1rem;
+    width: 12% !important;
+  }
+
+  .mobileLike i {
+    width: 100% !important;
+  }
+
+  .mobileLike:hover {
+    background: #5a015a;
+  }
+}
+
+@media (max-width: 425px) {
+  .mobileLike {
+    border-radius: 50%;
+    background: #ba00ba;
+    padding: 0.8rem;
+    font-size: 14px;
+    margin-bottom: 1rem;
+    width: 20% !important;
+  }
+}

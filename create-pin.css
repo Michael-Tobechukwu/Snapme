@@ -37,6 +37,7 @@ body {
   padding: 0.4rem 0.5rem;
   border-radius: 0.5rem;
   font-size: 12px;
+  border: none;
 }
 
 .box-right label {
@@ -62,6 +63,25 @@ body {
 .box-left input {
   margin-top: 4rem;
 }
+
+#subscribe {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+#subscribe button {
+  background: #ba00ba;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: ease 0.4s;
+}
+
+#subscribe button:hover {
+  background: #740374;
+}
+
 .form-select {
   background: #021129;
   color: #fff;
@@ -72,10 +92,6 @@ body {
   margin: 2rem auto 0 auto;
   color: #fff;
   text-align: center;
-}
-
-.form-select option:hover {
-  background: #cc1ccc !important;
 }
 
 label {
@@ -89,6 +105,10 @@ label {
 
 .custom-file-button label {
   margin: 0.1rem auto;
+}
+
+.custom-file-button label:hover {
+  cursor: pointer;
 }
 
 .upload-input {
@@ -110,8 +130,8 @@ label {
   margin-bottom: 2rem;
 }
 
-textarea {
-  width: 90%;
+.textarea textarea {
+  width: 95%;
 }
 
 #category {
@@ -120,7 +140,7 @@ textarea {
 }
 
 .caption {
-  width: 90%;
+  width: 95%;
   margin-bottom: 2rem;
 }
 
@@ -147,6 +167,10 @@ textarea {
 .send-button img {
   float: right;
   width: 17% !important;
+}
+
+.form-select:hover {
+  cursor: pointer;
 }
 
 /*MOBILE VIEW*/

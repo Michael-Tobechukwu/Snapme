@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="wrapper container">
-      <nav class="navmenu">
+      <nav class="navmenu" id="myNavbar">
         <div class="hamburger">
           <div class="dropdown">
             <button
@@ -146,10 +146,7 @@
               <span id="closeLive">&times;</span>
 
               <div class="livePopup">
-                <button
-                  id="goLive"
-                  onclick="window.location='live-start.html'"
-                >
+                <button id="goLive" onclick="window.location='live-start.html'">
                   Go live
                 </button>
                 <button id="watchLive" onclick="window.location='live.html'">
@@ -175,7 +172,7 @@
             <a href="login.html"
               ><img class="user-image" src="Images/user image.svg"
             /></a>
-            <a href="create-pin.html"
+            <a href="create-pin.html" id="signedInContent"
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
           </div>
@@ -199,10 +196,7 @@
               <span id="closeLiveMobile">&times;</span>
 
               <div class="livePopup">
-                <button
-                  id="goLive"
-                  onclick="window.location='live-start.html'"
-                >
+                <button id="goLive" onclick="window.location='live-start.html'">
                   Go live
                 </button>
                 <button id="watchLive" onclick="window.location='live.html'">
@@ -1435,7 +1429,6 @@
       <div class="discover">
         <h4>Discover</h4>
         <p>Trending catalogs</p>
-        3
       </div>
       <div class="mobileTabs">
         <div
@@ -3206,6 +3199,15 @@
       </div>
       <!--grid-->
 
+      <!-- Add a div for the popup content -->
+      <div id="promotePopup" class="promotePopup">
+        <h5>Promote your catalog</h5>
+        <button id="promoteButton" onclick="window.location='promotions.html'">
+          Go premium
+        </button>
+        <button id="closePromote" onclick="closePromote">No, thanks</button>
+      </div>
+
       <!--Mobile footer-->
       <div class="mobileView">
         <button onclick="window.location='index.html'">
@@ -3214,6 +3216,7 @@
         <button><img src="Images/love white.svg" /></button>
         <button
           class="mobileCreate"
+          id="signedInContent"
           onclick="window.location='create-pin.html'"
         >
           <img src="Images/plus-svgrepo-com.svg" />

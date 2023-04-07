@@ -157,25 +157,30 @@
           </div>
 
           <div class="search">
-            <input
-              type="search"
-              name="searchBar"
-              id="searchBar"
-              placeholder="Search catalogs..."
-            />
-            <button type="submit" class="searchBtn" onclick="searchPosts()">
-              <img class="search-icon" src="Images/search icon.svg" />
+            <button id="search-toggle-btn">
+              <img src="Images/search icon.svg" alt="" />
             </button>
+            <div id="search-container">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="search-btn">
+                <img src="Images/search icon.svg" alt="" />
+              </button>
+              <ul id="search-results"></ul>
+            </div>
           </div>
+        </div>
 
-          <div class="user-create">
-            <a href="login.html"
-              ><img class="user-image" src="Images/user image.svg"
-            /></a>
-            <a href="create-pin.html" id="signedInContent"
-              ><img class="create-plus" src="Images/create plus.svg"
-            /></a>
-          </div>
+        <div class="user-create">
+          <a href="login.html"
+            ><img class="user-image" src="Images/user image.svg"
+          /></a>
+          <a href="create-pin.html" id="signedInContent"
+            ><img class="create-plus" src="Images/create plus.svg"
+          /></a>
         </div>
 
         <!--Mobile nav buttons-->
@@ -3231,9 +3236,9 @@
     <!--wrapper ends-->
 
     <!--scripts-->
+
     <script src="index.js"></script>
     <script src="fetchAPI.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <script src="js/bootstrap.min.js"></script>

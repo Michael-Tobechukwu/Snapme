@@ -251,7 +251,11 @@ input:checked + .slider:before {
   }
 }
 
-#searchBar {
+#search-container {
+  display: none;
+}
+
+#search-input {
   padding: 0.4rem 0.5rem;
   border: none;
   border-bottom: solid 2px #fff;

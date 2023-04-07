@@ -30,7 +30,7 @@
     <title>Snapme | Create new pin</title>
   </head>
   <body>
-    <div class="wrapper container">
+    <div class="wrapper container" id="signedInContent">
       <div class="lead">
         <h3>Create your catalog</h3>
       </div>
@@ -51,7 +51,7 @@
               type="file"
               class="form-control upload-input"
               id="inputGroupFile"
-              accept="image/jpeg, image/jpg, image/png, image/gif, image/svg, image/tiff, image/webp, audio/m4a, video/3gp, video/avi, video/mkv, video/wmv, video/flv, video/mov, video/mp4"
+              accept="image/jpeg, image/jpg, image/png, image/gif, image/svg, image/tiff, image/webp, audio/mp3, audio/m4a, video/3gp, video/avi, video/mkv, video/wmv, video/flv, video/mov, video/mp4"
               maxlength="20000000"
             />
 
@@ -72,6 +72,7 @@
               name="caption"
               id="caption"
               placeholder="Add caption"
+              required
             />
             <label for="caption">(50 characters maximum)</label>
           </div>
@@ -96,7 +97,11 @@
           />-->
 
           <div class="category" id="category">
-            <select class="form-select" aria-label="Default select example">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              required
+            >
               <option selected>Select a catalog</option>
               <option value="1">Music</option>
               <option value="2">Shows & Concerts</option>

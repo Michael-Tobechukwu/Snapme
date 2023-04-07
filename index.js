@@ -974,33 +974,56 @@ function moreIconsVIII() {
   }
 }
 //////
-// Search catalogs all pins
-const searchInput = document.getElementById("searchBar");
-const resultsList = document.getElementById("results");
 
-searchInput.addEventListener("input", function () {
-  const searchTerm = searchInput.value.toLowerCase();
+////
+// Search catalogs index
+const searchToggleBtn = document.getElementById("search-toggle-btn");
+const searchContainer = document.getElementById("search-container");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+const searchResults = document.getElementById("search-results");
 
-  // Clear previous results
-  resultsList.innerHTML = "";
+// Function to fetch search results from server
+const fetchSearchResults = async (searchQuery) => {
+  const response = await fetch(
+    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
+  );
+  const data = await response.json();
+  return data;
+};
 
-  // Fetch data from your website
-  fetch("https://api.snapme-ng.com/api/v1/search")
-    .then((response) => response.json())
-    .then((data) => {
-      // Filter the data based on the search term
-      const filteredData = data.filter((item) => {
-        return item.name.toLowerCase().includes(searchTerm);
-      });
+// Function to display search results
+const displaySearchResults = (results) => {
+  searchResults.innerHTML = "";
 
-      // Display the filtered results
-      filteredData.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = item.name;
-        resultsList.appendChild(li);
-      });
-    })
-    .catch((error) => console.error(error));
+  results.forEach((result) => {
+    const li = document.createElement("li");
+    li.textContent = result.title;
+    searchResults.appendChild(li);
+  });
+};
+
+// Event listener for search toggle button
+searchToggleBtn.addEventListener("click", () => {
+  searchContainer.style.display = "block";
+  searchToggleBtn.style.display = "none";
+  searchInput.focus();
+});
+
+// Event listener for search button
+searchBtn.addEventListener("click", async () => {
+  const searchQuery = searchInput.value;
+  const searchResultsData = await fetchSearchResults(searchQuery);
+  displaySearchResults(searchResultsData);
+});
+
+// Event listener for search input field
+searchInput.addEventListener("keydown", async (event) => {
+  if (event.key === "Enter") {
+    const searchQuery = searchInput.value;
+    const searchResultsData = await fetchSearchResults(searchQuery);
+    displaySearchResults(searchResultsData);
+  }
 });
 
 // Search catalogs all pins on mobile

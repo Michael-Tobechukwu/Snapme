@@ -352,6 +352,36 @@ input:checked + .slider:before {
   border-top-right-radius: 0.4rem;
 }
 
+#my-video-controls {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 60%;
+  z-index: 1;
+  width: 90%;
+}
+
+#my-video-controls button {
+  font-size: 25px;
+  background: none !important;
+  color: #021129 !important;
+  border: none !important;
+}
+
+#my-video-controls button,
+#my-video-controls select {
+  margin: 0 10px;
+}
+
+#my-video-controls input[type="range"] {
+  width: 50px;
+}
+
+#my-video-controls select {
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .btn-close:hover {
   background: #fff !important;
   color: #000 !important;

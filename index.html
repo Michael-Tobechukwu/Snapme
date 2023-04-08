@@ -131,6 +131,7 @@
         <div class="main-logo">
           <a href="index.html"><img src="Images/white logo.png" /></a>
         </div>
+        <br />
         <div class="navbuttons">
           <label onclick="window.location='index-light.html'" class="switch">
             <input type="checkbox" />
@@ -162,7 +163,7 @@
             </button>
             <div id="search-container">
               <input
-                type="text"
+                type="search"
                 id="search-input"
                 placeholder="Search catalogs..."
               />
@@ -172,15 +173,15 @@
               <ul id="search-results"></ul>
             </div>
           </div>
-        </div>
 
-        <div class="user-create">
-          <a href="login.html"
-            ><img class="user-image" src="Images/user image.svg"
-          /></a>
-          <a href="create-pin.html" id="signedInContent"
-            ><img class="create-plus" src="Images/create plus.svg"
-          /></a>
+          <div class="user-create">
+            <a href="login.html"
+              ><img class="user-image" src="Images/user image.svg"
+            /></a>
+            <a href="create-pin.html" id="signedInContent"
+              ><img class="create-plus" src="Images/create plus.svg"
+            /></a>
+          </div>
         </div>
 
         <!--Mobile nav buttons-->
@@ -219,16 +220,24 @@
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
           </div>
+
+          <div class="search">
+            <button id="search-toggle-btn">
+              <img src="Images/search icon.svg" />
+            </button>
+            <div id="search-container">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="search-btn">
+                <img src="Images/search icon.svg" alt="" />
+              </button>
+              <ul id="search-results"></ul>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="mobileSearchBtn" onclick="searchPosts()">
-          <input
-            type="search"
-            name="searchBar"
-            id="mobileSearchBar"
-            placeholder="Search catalogs..."
-          />
-          <img src="Images/search icon.svg" />
-        </button>
 
         <!--Mobile nav buttons-->
 

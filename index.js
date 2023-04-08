@@ -1057,7 +1057,6 @@ searchInput.addEventListener("keydown", async (event) => {
 
 ///
 
-
 //Show more suggested accounts button on mobile
 var showMoreBtn = document.getElementById("showMore");
 //var MoreAccounts = document.getElementById("suggestedMore")
@@ -1184,3 +1183,112 @@ window.addEventListener("scroll", () => {
     isPlaying2 = false;
   }
 });
+
+//Video controls
+//const video = document.getElementById("video");
+const playPauseBtn = document.getElementById("play-pause-btn");
+const volumeRange = document.getElementById("volume-range");
+const muteBtn = document.getElementById("mute-btn");
+const speedSelect = document.getElementById("speed-select");
+const skipBackBtn = document.getElementById("skip-back-btn");
+const skipAheadBtn = document.getElementById("skip-ahead-btn");
+
+// Play/pause button
+playPauseBtn.addEventListener("click", () => {
+  if (video.paused) {
+    video.play();
+    playPauseBtn.innerHTML = "&#9208;";
+  } else {
+    video.pause();
+    playPauseBtn.innerHTML = "&#9199;";
+  }
+});
+
+// Volume range
+volumeRange.addEventListener("input", () => {
+  video.volume = volumeRange.value;
+});
+
+// Mute/unmute button
+muteBtn.addEventListener("click", () => {
+  if (video.muted) {
+    video.muted = false;
+    muteBtn.innerHTML = "&#128266;";
+    volumeRange.value = video.volume;
+  } else {
+    video.muted = true;
+    muteBtn.innerHTML = "&#128264;";
+    volumeRange.value = 0;
+  }
+});
+
+// Skip back button
+skipBackBtn.addEventListener("click", () => {
+  video.currentTime -= 10;
+});
+
+// Skip ahead button
+skipAheadBtn.addEventListener("click", () => {
+  video.currentTime += 10;
+});
+
+// Playback speed select
+speedSelect.addEventListener("change", () => {
+  video.playbackRate = speedSelect.value;
+});
+//Video controls 1
+////
+//Video controls 2
+
+const playPauseBtn2 = document.getElementById("play-pause-btn2");
+const volumeRange2 = document.getElementById("volume-range2");
+const muteBtn2 = document.getElementById("mute-btn2");
+const speedSelect2 = document.getElementById("speed-select2");
+const skipBackBtn2 = document.getElementById("skip-back-btn2");
+const skipAheadBtn2 = document.getElementById("skip-ahead-btn2");
+
+// Play/pause button
+playPauseBtn2.addEventListener("click", () => {
+  if (video2.paused) {
+    video2.play();
+    playPauseBtn2.innerHTML = "&#9208;";
+  } else {
+    video2.pause();
+    playPauseBtn2.innerHTML = "&#9199;";
+  }
+});
+
+// Volume range
+volumeRange2.addEventListener("input", () => {
+  video2.volume = volumeRange2.value;
+});
+
+// Mute/unmute button
+muteBtn2.addEventListener("click", () => {
+  if (video2.muted) {
+    video2.muted = false;
+    muteBtn2.innerHTML = "&#128266;";
+    volumeRange2.value = video2.volume;
+  } else {
+    video2.muted = true;
+    muteBtn2.innerHTML = "&#128264;";
+    volumeRange2.value = 0;
+  }
+});
+
+// Skip back button
+skipBackBtn2.addEventListener("click", () => {
+  video2.currentTime -= 10;
+});
+
+// Skip ahead button
+skipAheadBtn2.addEventListener("click", () => {
+  video2.currentTime += 10;
+});
+
+// Playback speed select
+speedSelect2.addEventListener("change", () => {
+  video2.playbackRate = speedSelect2.value;
+});
+
+//Video controls 2

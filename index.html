@@ -2914,14 +2914,33 @@
               <div class="post-img">
                 <video
                   class="video"
-                  loop
-                  controls
                   muted
+                  loop
                   id="pinDetails7"
                   onclick="pinDetails()"
                 >
                   <source src="Pawpaw hype.mp4" type="video/mp4" />
                 </video>
+                <div id="my-video-controls">
+                  <button id="play-pause-btn">&#9199;</button>
+                  <input
+                    type="range"
+                    id="volume-range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="1"
+                  />
+                  <button id="mute-btn">&#128264;</button>
+                  <select id="speed-select">
+                    <option value="1">1x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                  </select>
+                  <button id="skip-back-btn">&#9198;</button>
+                  <button id="skip-ahead-btn">&#9197;</button>
+                </div>
                 <a
                   class="username text-white"
                   onclick="window.location='username.html'"
@@ -3065,13 +3084,32 @@
                 <video
                   class="video"
                   loop
-                  controls
                   muted
                   id="pinDetails8"
                   onclick="pinDetails()"
                 >
                   <source src="Obedience.mp4" type="video/mp4" />
                 </video>
+                <div id="my-video-controls">
+                  <button id="play-pause-btn2">&#9199;</button>
+                  <input
+                    type="range"
+                    id="volume-range2"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="1"
+                  />
+                  <button id="mute-btn2">&#128264;</button>
+                  <select id="speed-select2">
+                    <option value="1">1x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                  </select>
+                  <button id="skip-back-btn2">&#9198;</button>
+                  <button id="skip-ahead-btn2">&#9197;</button>
+                </div>
                 <a
                   class="username text-white"
                   onclick="window.location='username.html'"

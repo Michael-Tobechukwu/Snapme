@@ -974,11 +974,38 @@ function moreIconsVIII() {
   }
 }
 //////
+///
+//Time posted
+var timePinned = moment("20230129", "YYYYMMDD").fromNow();
+document.getElementById("timePosted").innerHTML = timePinned;
 
+var timePinned = moment("20220210", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
+
+var timePinned = moment("20221229", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
+
+var timePinned = moment("20230302", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
+
+var timePinned = moment("20211202", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[3].innerHTML = timePinned;
+
+var timePinned = moment("20220602", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[4].innerHTML = timePinned;
+
+var timePinned = moment("20210102", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[5].innerHTML = timePinned;
+
+var timePinned = moment("20211102", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
+//Actual time posted ends
+///
 ////
 // Search catalogs index
 const searchToggleBtn = document.getElementById("search-toggle-btn");
 const searchContainer = document.getElementById("search-container");
+const searchContainerMobile = document.getElementById("search-containerMobile");
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const searchResults = document.getElementById("search-results");
@@ -1026,61 +1053,10 @@ searchInput.addEventListener("keydown", async (event) => {
   }
 });
 
-// Search catalogs all pins on mobile
-const mobileSearchInput = document.getElementById("mobileSearchBar");
-const mobileResultsList = document.getElementById("results");
+// Search catalogs index on mobile
 
-mobileSearchInput.addEventListener("input", function () {
-  const searchTerm = mobileSearchInput.value.toLowerCase();
-
-  // Clear previous results
-  mobileResultsList.innerHTML = "";
-
-  // Fetch data from your website
-  fetch("https://api.snapme-ng.com/api/v1/search")
-    .then((response) => response.json())
-    .then((data) => {
-      // Filter the data based on the search term
-      const filteredData = data.filter((item) => {
-        return item.name.toLowerCase().includes(searchTerm);
-      });
-
-      // Display the filtered results
-      filteredData.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = item.name;
-        mobileResultsList.appendChild(li);
-      });
-    })
-    .catch((error) => console.error(error));
-});
 ///
-//Time posted
-var timePinned = moment("20230129", "YYYYMMDD").fromNow();
-document.getElementById("timePosted").innerHTML = timePinned;
 
-var timePinned = moment("20220210", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
-
-var timePinned = moment("20221229", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
-
-var timePinned = moment("20230302", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
-
-var timePinned = moment("20211202", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[3].innerHTML = timePinned;
-
-var timePinned = moment("20220602", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[4].innerHTML = timePinned;
-
-var timePinned = moment("20210102", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[5].innerHTML = timePinned;
-
-var timePinned = moment("20211102", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
-//Actual time posted ends
-///
 
 //Show more suggested accounts button on mobile
 var showMoreBtn = document.getElementById("showMore");

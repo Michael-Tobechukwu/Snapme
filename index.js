@@ -1197,10 +1197,10 @@ const skipAheadBtn = document.getElementById("skip-ahead-btn");
 playPauseBtn.addEventListener("click", () => {
   if (video.paused) {
     video.play();
-    playPauseBtn.innerHTML = "&#9208;";
+    playPauseBtn.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
   } else {
     video.pause();
-    playPauseBtn.innerHTML = "&#9199;";
+    playPauseBtn.innerHTML = `<img src="Images/play-button.svg" alt="Pause" />`;
   }
 });
 
@@ -1213,11 +1213,11 @@ volumeRange.addEventListener("input", () => {
 muteBtn.addEventListener("click", () => {
   if (video.muted) {
     video.muted = false;
-    muteBtn.innerHTML = "&#128266;";
+    muteBtn.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
     volumeRange.value = video.volume;
   } else {
     video.muted = true;
-    muteBtn.innerHTML = "&#128264;";
+    muteBtn.innerHTML = `<img src="Images/unmute button.svg" alt="Unmute" />`;
     volumeRange.value = 0;
   }
 });
@@ -1238,8 +1238,8 @@ speedSelect.addEventListener("change", () => {
 });
 //Video controls 1
 ////
-//Video controls 2
 
+//Video controls 2
 const playPauseBtn2 = document.getElementById("play-pause-btn2");
 const volumeRange2 = document.getElementById("volume-range2");
 const muteBtn2 = document.getElementById("mute-btn2");
@@ -1267,11 +1267,11 @@ volumeRange2.addEventListener("input", () => {
 muteBtn2.addEventListener("click", () => {
   if (video2.muted) {
     video2.muted = false;
-    muteBtn2.innerHTML = "&#128266;";
+    muteBtn2.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
     volumeRange2.value = video2.volume;
   } else {
     video2.muted = true;
-    muteBtn2.innerHTML = "&#128264;";
+    muteBtn2.innerHTML = `<img src="Images/unmute button.svg" alt="Mute" />`;
     volumeRange2.value = 0;
   }
 });

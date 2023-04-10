@@ -48,7 +48,11 @@
   <body>
     <div id="preloader">
       <div class="preloader">
-        <img src="Images/snapme.png" alt="Snapme logo" width="50px" />
+        <img
+          src="Images/Snapme icon white.png"
+          alt="Snapme logo"
+          width="50px"
+        />
         <p>Made from Ukraine and Africa</p>
         <div class="progress">
           <div class="color"></div>
@@ -1445,18 +1449,12 @@
         <p>Trending catalogs</p>
       </div>
       <div class="mobileTabs">
-        <div
-          id="carouselExampleAutoplaying"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <a id="followPopup" class="d-block w-50"><p>Music</p> </a>
+        <div id="swipe-container">
+          <div id="music">
+            <div class="swipe-item">
+              <button id="followPopup">Music</button>
             </div>
-
-            <!--Popup modal for mobile-->
-
+  
             <!-- The Modal -->
             <div id="mobileFollowModal" class="modal">
               <!-- Modal content -->
@@ -1470,111 +1468,140 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <!--Popup modal for mobile-->
+          <div id="showsConcerts">
+            <div class="swipe-item">
+            <button class="followPopup">Shows & Concerts</button>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Shows & Concerts</p></a>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followShowsMobile"
-                    onclick="followShowsConcerts()"
-                  >
-                    Follow +
-                  </button>
-                </div>
+          <!-- The Modal -->
+          <div class="mobileFollowModal" class="modal">
+            <!-- Modal content -->
+            <div class="mobileModalContent">
+              <span class="closeme">&times;</span>
+              <p>Follow catalog</p>
+              <div class="follow_popup">
+                <button id="followShowsMobile" onclick="followShowsConcerts()">
+                  Follow +
+                </button>
               </div>
             </div>
+          </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Dance</p></a>
-            </div>
+          <div id="dance">
+            <div class="swipe-item">
+            <button class="followPopup">Dance</button>
+          </div>
 
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followDanceMobile" onclick="followDance()">
-                    Follow +
-                  </button>
-                </div>
+          <!-- The Modal -->
+          <div class="mobileFollowModal" class="modal">
+            <!-- Modal content -->
+            <div class="mobileModalContent">
+              <span class="closeme">&times;</span>
+              <p>Follow catalog</p>
+              <div class="follow_popup">
+                <button id="followDanceMobile" onclick="followDance()">
+                  Follow +
+                </button>
               </div>
             </div>
+          </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Afrobeats</p></a>
-            </div>
+          <div id="Afrobeats">
+            <div class="swipe-item">
+            <button class="followPopup">Afrobeats</button>
+          </div>
 
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followAfrobeatsMobile"
-                    onclick="followAfrobeats()"
-                  >
-                    Follow +
-                  </button>
-                </div>
+          <!-- The Modal -->
+          <div class="mobileFollowModal" class="modal">
+            <!-- Modal content -->
+            <div class="mobileModalContent">
+              <span class="closeme">&times;</span>
+              <p>Follow catalog</p>
+              <div class="follow_popup">
+                <button
+                  id="followAfrobeatsMobile"
+                  onclick="followAfrobeats()"
+                >
+                  Follow +
+                </button>
               </div>
             </div>
+          </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Comedy</p></a>
-            </div>
+          <div id="Comedy">
+            <div class="swipe-item">
+            <button class="followPopup">Comedy</button>
+          </div>
 
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followComedyMobile" onclick="followComedy()">
-                    Follow +
-                  </button>
-                </div>
+          <!-- The Modal -->
+          <div class="mobileFollowModal" class="modal">
+            <!-- Modal content -->
+            <div class="mobileModalContent">
+              <span class="closeme">&times;</span>
+              <p>Follow catalog</p>
+              <div class="follow_popup">
+                <button id="followComedyMobile" onclick="followComedy()">
+                  Follow +
+                </button>
               </div>
             </div>
+          </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Tag Stories</p></a>
-            </div>
+          <div id="tagStories">
+            <div class="swipe-item">
+            <button class="followPopup">Tag Stories</button>
+          </div>
 
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followTagStoriesMobile"
-                    onclick="followTagStories()"
-                  >
-                    Follow +
-                  </button>
-                </div>
+           <!-- The Modal -->
+           <div class="mobileFollowModal" class="modal">
+            <!-- Modal content -->
+            <div class="mobileModalContent">
+              <span class="closeme">&times;</span>
+              <p>Follow catalog</p>
+              <div class="follow_popup">
+                <button
+                  id="followTagStoriesMobile"
+                  onclick="followTagStories()"
+                >
+                  Follow +
+                </button>
               </div>
             </div>
+          </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Photography</p></a>
+           <div id="Photography">
+            <div class="swipe-item">
+            <button class="followPopup">Photography</button>
+          </div>
+
+           <!-- The Modal -->
+           <div class="mobileFollowModal" class="modal">
+            <!-- Modal content -->
+            <div class="mobileModalContent">
+              <span class="closeme">&times;</span>
+              <p>Follow catalog</p>
+              <div class="follow_popup">
+                <button
+                  id="followMPhotographyMobile"
+                  onclick="followPhotography()"
+                >
+                  Follow +
+                </button>
+              </div>
             </div>
+          </div>
+          </div>
+
+          
+        </div> <!--swipe container ends-->   
+    
 
             <!-- The Modal -->
             <div class="mobileFollowModal" class="modal">
@@ -1934,25 +1961,7 @@
             </div>
           </div>
 
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+          
       </div>
 
       <!--Tabs for mobile-->
@@ -2922,7 +2931,9 @@
                   <source src="Pawpaw hype.mp4" type="video/mp4" />
                 </video>
                 <div id="my-video-controls">
-                  <button id="play-pause-btn">&#9199;</button>
+                  <button id="play-pause-btn">
+                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                  </button>
                   <input
                     type="range"
                     id="volume-range"
@@ -2931,15 +2942,21 @@
                     step="0.1"
                     value="1"
                   />
-                  <button id="mute-btn">&#128264;</button>
+                  <button id="mute-btn">
+                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                  </button>
                   <select id="speed-select">
                     <option value="1">1x</option>
                     <option value="0.5">0.5x</option>
                     <option value="1.5">1.5x</option>
                     <option value="2">2x</option>
                   </select>
-                  <button id="skip-back-btn">&#9198;</button>
-                  <button id="skip-ahead-btn">&#9197;</button>
+                  <button id="skip-back-btn">
+                    <img src="Images/skip-backward.svg" alt="<<" />
+                  </button>
+                  <button id="skip-ahead-btn">
+                    <img src="Images/skip-forward.svg" alt=">>" />
+                  </button>
                 </div>
                 <a
                   class="username text-white"
@@ -3091,7 +3108,9 @@
                   <source src="Obedience.mp4" type="video/mp4" />
                 </video>
                 <div id="my-video-controls">
-                  <button id="play-pause-btn2">&#9199;</button>
+                  <button id="play-pause-btn2">
+                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                  </button>
                   <input
                     type="range"
                     id="volume-range2"
@@ -3100,15 +3119,21 @@
                     step="0.1"
                     value="1"
                   />
-                  <button id="mute-btn2">&#128264;</button>
+                  <button id="mute-btn2">
+                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                  </button>
                   <select id="speed-select2">
                     <option value="1">1x</option>
                     <option value="0.5">0.5x</option>
                     <option value="1.5">1.5x</option>
                     <option value="2">2x</option>
                   </select>
-                  <button id="skip-back-btn2">&#9198;</button>
-                  <button id="skip-ahead-btn2">&#9197;</button>
+                  <button id="skip-back-btn2">
+                    <img src="Images/skip-backward.svg" alt="<<" />
+                  </button>
+                  <button id="skip-ahead-btn2">
+                    <img src="Images/skip-forward.svg" alt=">>" />
+                  </button>
                 </div>
                 <a
                   class="username text-white"
@@ -3246,6 +3271,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div id="pin-container">
+            <!-- New pins will be added here -->
           </div>
         </div>
       </div>

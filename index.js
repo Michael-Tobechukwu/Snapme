@@ -40,7 +40,6 @@ window.onclick = function (event) {
 };
 
 //Share 2
-
 var modal = document.getElementsByClassName("shareModal")[1];
 
 // Get the button that opens the modal
@@ -1292,3 +1291,24 @@ speedSelect2.addEventListener("change", () => {
 });
 
 //Video controls 2
+
+const swipeContainer = document.getElementById("swipe-container");
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+swipeContainer.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchmove", (event) => {
+  touchEndX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchend", () => {
+  if (touchEndX < touchStartX) {
+    swipeContainer.scrollBy({ left: 300, behavior: "smooth" });
+  } else if (touchEndX > touchStartX) {
+    swipeContainer.scrollBy({ left: -300, behavior: "smooth" });
+  }
+});

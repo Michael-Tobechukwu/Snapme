@@ -95,6 +95,34 @@ window.onclick = function (event) {
   }
 };
 ////
+//Signedin Users Content
+//Check signed in status on page
+window.addEventListener("load", () => {
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
+
+  if (token) {
+    try {
+      // Attempt to decode the JWT token to get the user information
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+
+      // Display the content for signed-in users
+      const signedInContent = document.getElementById("signedInContent");
+      signedInContent.style.display = "block";
+    } catch (err) {
+      // If there was an error decoding the token, assume the user is not signed in
+      console.error("Error decoding JWT token:", err);
+
+      // Don't display the content for signed-in users
+      signedInContent.style.display = "none";
+    }
+  } else {
+    // Don't display the content for signed-in users
+    signedInContent.style.display = "none";
+  }
+});
+////
 //Like button 1
 const likeButton = document.getElementsByClassName("like-button")[0];
 let isLiked = false;
@@ -400,6 +428,28 @@ function thisUser() {
 }
 thisUser();
 ////
+//Swipe
+const swipeContainer = document.getElementById("swipe-container");
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+swipeContainer.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchmove", (event) => {
+  touchEndX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchend", () => {
+  if (touchEndX < touchStartX) {
+    swipeContainer.scrollBy({ left: 300, behavior: "smooth" });
+  } else if (touchEndX > touchStartX) {
+    swipeContainer.scrollBy({ left: -300, behavior: "smooth" });
+  }
+});
+//
 
 /*
 function followUser() {

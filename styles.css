@@ -13,44 +13,47 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: #021129;
   z-index: 9999;
 }
 
 .preloader {
   text-align: center;
   margin: 20% auto 0 auto;
+  width: 250px;
+}
+
+.preloader p {
+  color: #fff;
 }
 
 .progress {
   margin: 0 auto;
-  height: 10px;
-  width: 200px;
-  border: 10px solid #021129;
-  border-radius: 15px;
-}
-
-.progress .color {
-  background-color: #ffffff;
+  height: 20px;
   width: 0px;
-  height: 10px;
+  border: 2px solid #fff;
+  color: #fff;
   border-radius: 15px;
-  animation: progres 4s infinite linear;
+  animation: progress 4s infinite linear;
 }
 
-@keyframes progres {
+@keyframes progress {
   0% {
     width: 0%;
   }
+
   25% {
+    width: 25%;
+  }
+
+  50% {
     width: 50%;
   }
-  50% {
+
+  75% {
     width: 75%;
   }
-  75% {
-    width: 85%;
-  }
+
   100% {
     width: 100%;
   }
@@ -355,17 +358,22 @@ input:checked + .slider:before {
 #my-video-controls {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: absolute;
   top: 60%;
   z-index: 1;
-  width: 90%;
+  width: 98%;
 }
 
 #my-video-controls button {
-  font-size: 25px;
+  width: 15%;
   background: none !important;
   color: #021129 !important;
   border: none !important;
+}
+
+#my-video-controls button img {
+  width: 100%;
 }
 
 #my-video-controls button,
@@ -374,12 +382,17 @@ input:checked + .slider:before {
 }
 
 #my-video-controls input[type="range"] {
-  width: 50px;
+  width: 20%;
+  color: #021129;
+  background: #021129;
 }
 
 #my-video-controls select {
   padding: 5px;
   border-radius: 5px;
+  color: #fff;
+  background: #021129;
+  width: 18%;
 }
 
 .btn-close:hover {
@@ -868,7 +881,7 @@ input:checked + .slider:before {
     margin: 0 auto;
   }
 
-  .mobileTabs a:hover {
+  .mobileTabs button:hover {
     cursor: pointer;
   }
 
@@ -890,6 +903,31 @@ input:checked + .slider:before {
 
   .discover p {
     font-size: 0.8rem;
+  }
+
+  #swipe-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+    position: relative;
+  }
+
+  .swipe-item {
+    flex: 0 0 auto;
+    background: #021129;
+    padding: 0.5rem 0.7rem;
+    border-radius: 2rem;
+    border: white solid 2px;
+    transition: 0.3s ease;
+    font-size: 13px;
+    color: #fff;
+    width: max-content;
+  }
+
+  .swipe-item button {
+    color: #fff;
   }
 
   /* The Modal background */
@@ -989,8 +1027,8 @@ input:checked + .slider:before {
 
   #timelineSuggested #timeCapsule {
     width: 33%;
-    background: #ba00ba;
-    padding: 0.5rem;
+    background: #021129;
+    padding: 0px;
     color: #fff;
     border-radius: 0.3rem;
     font-size: 13px;
@@ -1003,16 +1041,17 @@ input:checked + .slider:before {
   .suggested {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-wrap: wrap;
+    gap: 10px;
   }
 
   .suggested #SuggestedBtn {
-    background: #ba00ba;
-    padding: 0.4rem;
+    background: #021129;
+    padding: 0px;
     color: #fff;
     border-radius: 0.3rem;
-    width: 70%;
+    width: 65%;
     font-size: 13px;
   }
 

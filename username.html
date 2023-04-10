@@ -74,6 +74,7 @@
             <button id="follow-toggle">Follow +</button>
 
             <button
+              id="signedInContent"
               onclick="window.location='settings.html'"
               class="editButton"
             >
@@ -88,7 +89,7 @@
             <li>Following: 3.1k</li>
           </ul>
 
-          <div class="userTabs">
+          <div class="userTabs" id="">
             <button id="CataloguedBtn" onclick="myPosts()">Cataloged</button>
             <button onclick="likedPosts()">Liked</button>
             <button onclick="savedPosts()">Saved</button>
@@ -96,61 +97,24 @@
           </div>
 
           <div id="mobileUserTabs">
-            <div
-              id="carouselExampleAutoplaying"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <button
-                    class="d-block w-100"
-                    id="CataloguedBtn"
-                    onclick="myPosts()"
-                  >
-                    Cataloged
-                  </button>
-                </div>
-                <div class="carousel-item">
-                  <button class="d-block w-100" onclick="likedPosts()">
-                    Liked
-                  </button>
-                </div>
-                <div class="carousel-item">
-                  <button class="d-block w-100" onclick="savedPosts()">
-                    Saved
-                  </button>
-                </div>
-                <div class="carousel-item">
-                  <button class="d-block w-100" onclick="followedPosts()">
-                    Followed
-                  </button>
-                </div>
+            <div id="swipe-container">
+              <div class="swipe-item">
+                <button onclick="myPosts()" id="CataloguedBtn">
+                  Cataloged
+                </button>
               </div>
-              <button
-                class="carousel-control-prev visually-hidden"
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next visually-hidden"
-                type="button"
-                data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+
+              <div class="swipe-item">
+                <button onclick="likedPosts()" class="">Liked</button>
+              </div>
+
+              <div class="swipe-item">
+                <button onclick="savedPosts()" class="">Saved</button>
+              </div>
+
+              <div class="swipe-item">
+                <button onclick="followedPosts()" class="">Followed</button>
+              </div>
             </div>
           </div>
         </div>

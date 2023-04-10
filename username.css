@@ -184,13 +184,39 @@ body {
   cursor: pointer;
 }
 
+#swipe-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.swipe-item {
+  flex: 0 0 auto;
+  transition: 0.3s ease;
+  font-size: 13px;
+  color: #fff;
+  width: max-content;
+}
+
+.swipe-item button {
+  color: #fff;
+  background: #021129;
+  border: white solid 2px;
+  padding: 0.5rem 0.7rem;
+  border-radius: 2rem !important;
+}
+
 .card-body button {
   background: none;
   border: none;
 }
 
 .fa-solid,
-fa-bookmark {
+.fa-bookmark {
   color: #fff;
   background: none;
 }

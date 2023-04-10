@@ -190,8 +190,7 @@ body {
   gap: 15px;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
-  margin-left: 0.5rem;
-  margin-top: 0.5rem;
+  margin: 1rem;
 }
 
 .swipe-item {
@@ -208,6 +207,7 @@ body {
   border: white solid 2px;
   padding: 0.5rem 0.7rem;
   border-radius: 2rem !important;
+  font-size: 13px;
 }
 
 .card-body button {

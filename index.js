@@ -1312,3 +1312,26 @@ swipeContainer.addEventListener("touchend", () => {
     swipeContainer.scrollBy({ left: -300, behavior: "smooth" });
   }
 });
+//Show/hide top menu on scroll
+var pastScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var presentScrollPos = window.pageYOffset;
+  if (pastScrollpos < presentScrollPos) {
+    document.querySelector(".navmenu").classList.remove("hide");
+  } else {
+    document.querySelector(".navmenu").classList.add("hide");
+  }
+  pastScrollpos = presentScrollPos;
+};
+
+//Show/Hide footer menu on scroll
+var oldScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var newScrollPos = window.pageYOffset;
+  if (oldScrollpos < newScrollPos) {
+    document.querySelector(".mobileView").classList.remove("hide");
+  } else {
+    document.querySelector(".mobileView").classList.add("hide");
+  }
+  oldScrollpos = newScrollPos;
+};

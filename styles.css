@@ -837,7 +837,6 @@ input:checked + .slider:before {
     transition: bottom 0.5s ease;
   }
 
-
   .mobileView.hide {
     bottom: -100%;
   }
@@ -900,11 +899,11 @@ input:checked + .slider:before {
 
   .discover h4 {
     color: #ba00ba;
-    font-size: 1.5rem;
+    font-size: 16px;
   }
 
   .discover p {
-    font-size: 0.8rem;
+    font-size: 12px;
   }
 
   #swipe-container {
@@ -1021,10 +1020,8 @@ input:checked + .slider:before {
   #timelineSuggested {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem auto;
+    justify-content: flex-start;
     width: 95%;
-    gap: 20px;
   }
 
   #timelineSuggested #timeCapsule {
@@ -1033,19 +1030,15 @@ input:checked + .slider:before {
     padding: 0px;
     color: #fff;
     border-radius: 0.3rem;
-    font-size: 13px;
-  }
-
-  #timelineSuggested .suggested {
-    width: 63%;
+    font-size: 12px;
   }
 
   .suggested {
+    width: 67%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 10px;
   }
 
   .suggested #SuggestedBtn {
@@ -1054,7 +1047,7 @@ input:checked + .slider:before {
     color: #fff;
     border-radius: 0.3rem;
     width: 65%;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .suggestedPics {
@@ -1109,7 +1102,7 @@ input:checked + .slider:before {
 
   #suggestedPopup .username {
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   #suggestedPopup .followSuggested {
@@ -1177,5 +1170,12 @@ input:checked + .slider:before {
 @media (max-width: 320px) {
   .mobileView button {
     width: 40px;
+  }
+
+  .mobileCreate {
+    color: #ba00ba;
+    font-size: 40px;
+    transition: ease 0.4s;
+    margin-bottom: 1.5rem;
   }
 }

@@ -225,20 +225,20 @@
             /></a>
           </div>
 
-          <div class="search">
-            <button id="search-toggle-btn">
+          <div class="mobileSearch">
+            <button id="mobileSearchToggleBtn">
               <img src="Images/search icon.svg" />
             </button>
-            <div id="search-container">
+            <div id="mobile-search-container">
               <input
-                type="text"
-                id="search-input"
+                type="search"
+                id="mobile-search-input"
                 placeholder="Search catalogs..."
               />
-              <button id="search-btn">
+              <button id="mobile-search-btn">
                 <img src="Images/search icon.svg" alt="" />
               </button>
-              <ul id="search-results"></ul>
+              <ul id="mobile-search-results"></ul>
             </div>
           </div>
         </div>
@@ -1999,8 +1999,15 @@
           <button id="closeThis">&times;</button>
           <div class="suggested1">
             <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <p class="username" onclick="thisUser()">nkemimen</p>
-            <img id="subscribed-badge" src="Images/verified.svg" width="20px" />
+            <div class="usernameBox">
+              <p class="username" onclick="thisUser()">nkemimen</p>
+              <img
+                id="subscribed-badge"
+                src="Images/verified.svg"
+                width="20px"
+              />
+            </div>
+
             <button class="followSuggested" onclick="followThisUser()">
               Follow +
             </button>
@@ -2008,8 +2015,14 @@
 
           <div class="suggested2">
             <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <p class="username" onclick="thisUser()">thomasbarc</p>
-            <img id="subscribed-badge" src="Images/verified.svg" width="20px" />
+            <div class="usernameBox">
+              <p class="username" onclick="thisUser()">thomasbarc</p>
+              <img
+                id="subscribed-badge"
+                src="Images/verified.svg"
+                width="20px"
+              />
+            </div>
             <button class="followSuggested" onclick="followThisUser()">
               Follow +
             </button>
@@ -2017,8 +2030,14 @@
 
           <div class="suggested3">
             <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <p class="username" onclick="thisUser()">marcdiss</p>
-            <img id="subscribed-badge" src="Images/verified.svg" width="20px" />
+            <div class="usernameBox">
+              <p class="username" onclick="thisUser()">marcdiss</p>
+              <img
+                id="subscribed-badge"
+                src="Images/verified.svg"
+                width="20px"
+              />
+            </div>
             <button class="followSuggested" onclick="followThisUser()">
               Follow +
             </button>
@@ -2029,12 +2048,14 @@
           <div id="suggestedMore">
             <div class="suggested4">
               <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <p class="username" onclick="thisUser()">azizymakim</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
+              <div class="usernameBox">
+                <p class="username" onclick="thisUser()">azizymakim</p>
+                <img
+                  id="subscribed-badge"
+                  src="Images/verified.svg"
+                  width="20px"
+                />
+              </div>
               <button class="followSuggested" onclick="followThisUser()">
                 Follow +
               </button>
@@ -2042,8 +2063,14 @@
 
             <div class="suggested5">
               <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <p class="username" onclick="thisUser()">ayrastarr</p>
-              <img src="Images/verified.svg" width="20px" />
+              <div class="usernameBox">
+                <p class="username" onclick="thisUser()">ayrastarr</p>
+                <img
+                  id="subscribed-badge"
+                  src="Images/verified.svg"
+                  width="20px"
+                />
+              </div>
               <button class="followSuggested" onclick="followThisUser()">
                 Follow +
               </button>
@@ -2051,12 +2078,14 @@
 
             <div class="suggested6">
               <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <p class="username" onclick="thisUser()">asake</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
+              <div class="usernameBox">
+                <p class="username" onclick="thisUser()">asake</p>
+                <img
+                  id="subscribed-badge"
+                  src="Images/verified.svg"
+                  width="20px"
+                />
+              </div>
               <button class="followSuggested" onclick="followThisUser()">
                 Follow +
               </button>

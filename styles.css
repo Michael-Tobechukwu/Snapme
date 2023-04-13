@@ -1201,7 +1201,7 @@ input:checked + .slider:before {
 
 @media (max-width: 320px) {
   .mobileView button {
-    width: 45px;
+    width: 55px;
   }
 
   .mobileCreate {
@@ -1209,5 +1209,7 @@ input:checked + .slider:before {
     font-size: 40px;
     transition: ease 0.4s;
     margin-bottom: 1.5rem;
+    margin-right: 8px;
   }
+
 }

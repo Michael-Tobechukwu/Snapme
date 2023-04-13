@@ -1051,10 +1051,65 @@ searchInput.addEventListener("keydown", async (event) => {
     displaySearchResults(searchResultsData);
   }
 });
-
+//Search catalogs index ends
+////
 // Search catalogs index on mobile
+// Search catalogs index
+const mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
+const mobileSearchContainer = document.getElementById(
+  "mobile-search-container"
+);
+const mobileSearchInput = document.getElementById("mobile-search-input");
+const mobileSearchBtn = document.getElementById("mobile-search-btn");
+const mobileSearchResults = document.getElementById("mobile-search-results");
 
-///
+// Function to fetch search results from server
+const fetchSearchResultsMobile = async (searchQuery) => {
+  const response = await fetch(
+    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
+  );
+  const data = await response.json();
+  return data;
+};
+
+// Function to display search results
+const displaySearchResultsMobile = (mobileresults) => {
+  mobileSearchResults.innerHTML = "";
+
+  mobileresults.forEach((mobileresult) => {
+    const li = document.createElement("li");
+    li.textContent = mobileresult.title;
+    mobileSearchResults.appendChild(li);
+  });
+};
+
+// Event listener for search toggle button
+mobileSearchToggleBtn.addEventListener("click", () => {
+  mobileSearchContainer.style.display = "block";
+  mobileSearchToggleBtn.style.display = "none";
+  mobileSearchInput.focus();
+});
+
+// Event listener for search button
+mobileSearchBtn.addEventListener("click", async () => {
+  const mobilesearchQuery = mobileSearchInput.value;
+  const searchResultsDataMobile = await fetchSearchResultsMobile(
+    mobilesearchQuery
+  );
+  displaySearchResultsMobile(searchResultsDataMobile);
+});
+
+// Event listener for search input field
+mobileSearchInput.addEventListener("keydown", async (event) => {
+  if (event.key === "Enter") {
+    const mobilesearchQuery = mobileSearchInput.value;
+    const searchResultsDataMobile = await fetchSearchResultsMobile(
+      mobilesearchQuery
+    );
+    displaySearchResultsMobile(searchResultsDataMobile);
+  }
+});
+/// Search catalogs index on mobile ends
 
 //Show more suggested accounts button on mobile
 var showMoreBtn = document.getElementById("showMore");

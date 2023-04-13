@@ -167,7 +167,23 @@
               width="50px"
             />
           </a>
-          <button class="live-button">LIVE</button>
+          <button class="live-button" id="mobileLiveBtn">LIVE</button>
+          <!--Live pop up modal-->
+          <div id="liveModalMobile">
+            <!-- Modal content -->
+            <div class="liveContentMobile">
+              <span id="closeLiveMobile">&times;</span>
+
+              <div class="livePopup">
+                <button id="goLive" onclick="window.location='live-start.html'">
+                  Go live
+                </button>
+                <button id="watchLive" onclick="window.location='live.html'">
+                  Watch live
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div class="user-create">
             <a href="login.html"
@@ -1393,17 +1409,11 @@
         <p>Trending catalogs</p>
       </div>
       <div class="mobileTabs">
-        <div
-          id="carouselExampleAutoplaying"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <a id="followPopup" class="d-block w-50"><p>Music</p> </a>
+        <div id="swipe-container">
+          <div id="music">
+            <div class="swipe-item">
+              <button id="followPopup">Music</button>
             </div>
-
-            <!--Popup modal for mobile-->
 
             <!-- The Modal -->
             <div id="mobileFollowModal" class="modal">
@@ -1418,11 +1428,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <!--Popup modal for mobile-->
-
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Shows & Concerts</p></a>
+          <div id="showsConcerts">
+            <div class="swipe-item">
+              <button class="followPopup">Shows & Concerts</button>
             </div>
 
             <!-- The Modal -->
@@ -1441,9 +1451,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Dance</p></a>
+          <div id="dance">
+            <div class="swipe-item">
+              <button class="followPopup">Dance</button>
             </div>
 
             <!-- The Modal -->
@@ -1459,9 +1471,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Afrobeats</p></a>
+          <div id="Afrobeats">
+            <div class="swipe-item">
+              <button class="followPopup">Afrobeats</button>
             </div>
 
             <!-- The Modal -->
@@ -1480,9 +1494,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Comedy</p></a>
+          <div id="Comedy">
+            <div class="swipe-item">
+              <button class="followPopup">Comedy</button>
             </div>
 
             <!-- The Modal -->
@@ -1498,9 +1514,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Tag Stories</p></a>
+          <div id="tagStories">
+            <div class="swipe-item">
+              <button class="followPopup">Tag Stories</button>
             </div>
 
             <!-- The Modal -->
@@ -1519,9 +1537,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Photography</p></a>
+          <div id="Photography">
+            <div class="swipe-item">
+              <button class="followPopup">Photography</button>
             </div>
 
             <!-- The Modal -->
@@ -1540,9 +1560,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Art</p></a>
+          <div id="Art">
+            <div class="swipe-item">
+              <button class="followPopup">Art</button>
             </div>
 
             <!-- The Modal -->
@@ -1558,9 +1580,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Museums</p></a>
+          <div id="Museums">
+            <div class="swipe-item">
+              <button class="followPopup">Museum</button>
             </div>
 
             <!-- The Modal -->
@@ -1576,9 +1600,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Tourism</p></a>
+          <div id="Tourism">
+            <div class="swipe-item">
+              <button class="followPopup">Tourism</button>
             </div>
 
             <!-- The Modal -->
@@ -1594,9 +1620,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Fashion</p></a>
+          <div id="Fashion">
+            <div class="swipe-item">
+              <button class="followPopup">Fashion</button>
             </div>
 
             <!-- The Modal -->
@@ -1612,9 +1640,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Beauty & Kits</p></a>
+          <div id="BeautyKits">
+            <div class="swipe-item">
+              <button class="followPopup">Beauty & Kits</button>
             </div>
 
             <!-- The Modal -->
@@ -1633,9 +1663,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Food</p></a>
+          <div id="Food">
+            <div class="swipe-item">
+              <button class="followPopup">Food</button>
             </div>
 
             <!-- The Modal -->
@@ -1651,9 +1683,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Fitness</p></a>
+          <div id="Fitness">
+            <div class="swipe-item">
+              <button class="followPopup">Fitness</button>
             </div>
 
             <!-- The Modal -->
@@ -1669,9 +1703,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Football</p></a>
+          <div id="Football">
+            <div class="swipe-item">
+              <button class="followPopup">Football</button>
             </div>
 
             <!-- The Modal -->
@@ -1687,9 +1723,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Basketball</p></a>
+          <div id="Basketball">
+            <div class="swipe-item">
+              <button class="followPopup">Basketball</button>
             </div>
 
             <!-- The Modal -->
@@ -1708,9 +1746,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Sports</p></a>
+          <div id="Sports">
+            <div class="swipe-item">
+              <button class="followPopup">Sports</button>
             </div>
 
             <!-- The Modal -->
@@ -1726,9 +1766,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>News</p></a>
+          <div id="News">
+            <div class="swipe-item">
+              <button class="followPopup">News</button>
             </div>
 
             <!-- The Modal -->
@@ -1738,19 +1780,17 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button
-                    id="followNewsMobile"
-                    onclick="followNews
-                  ()"
-                  >
+                  <button id="followNewsMobile" onclick="followNews()">
                     Follow +
                   </button>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Fashion TV</p></a>
+          <div id="FashionTV">
+            <div class="swipe-item">
+              <button class="followPopup">Fashion TV</button>
             </div>
 
             <!-- The Modal -->
@@ -1769,9 +1809,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Cars</p></a>
+          <div id="Cars">
+            <div class="swipe-item">
+              <button class="followPopup">Cars</button>
             </div>
 
             <!-- The Modal -->
@@ -1787,9 +1829,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>House Decoration</p></a>
+          <div id="HouseDecoration">
+            <div class="swipe-item">
+              <button class="followPopup">House Decoration</button>
             </div>
 
             <!-- The Modal -->
@@ -1800,7 +1844,7 @@
                 <p>Follow catalog</p>
                 <div class="follow_popup">
                   <button
-                    id="followHouseMobile"
+                    id="followHouseDecorationMobile"
                     onclick="followHouseDecoration()"
                   >
                     Follow +
@@ -1808,9 +1852,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Nature</p></a>
+          <div id="Nature">
+            <div class="swipe-item">
+              <button class="followPopup">Nature</button>
             </div>
 
             <!-- The Modal -->
@@ -1820,15 +1866,17 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followMusicMobile" onclick="followNature()">
+                  <button id="followNatureMobile" onclick="followNature()">
                     Follow +
                   </button>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item text-center">
-              <a class="d-block w-50 followPopup"><p>Quotes</p></a>
+          <div id="Quotes">
+            <div class="swipe-item">
+              <button class="followPopup">Quotes</button>
             </div>
 
             <!-- The Modal -->
@@ -1844,9 +1892,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Pets</p></a>
+          <div id="Pets">
+            <div class="swipe-item">
+              <button class="followPopup">Pets</button>
             </div>
 
             <!-- The Modal -->
@@ -1856,15 +1906,17 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followPetMobile" onclick="followPets()">
+                  <button id="followPetsMobile" onclick="followPets()">
                     Follow +
                   </button>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Others</p></a>
+          <div id="Others">
+            <div class="swipe-item">
+              <button class="followPopup">Others</button>
             </div>
 
             <!-- The Modal -->
@@ -1881,29 +1933,10 @@
               </div>
             </div>
           </div>
-
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
+        <!--swipe container ends-->
       </div>
-
-      <!--Tabs for mobile-->
+      <!--mobile tabs ends-->
 
       <div class="post-card">
         <div class="img">
@@ -2077,7 +2110,7 @@
                 <p class="username">marcdiss</p>
                 <p class="alias">The show maker</p>
 
-                <ul>
+                <ul id="signedInContent">
                   <li onclick="likeComment()">Like</li>
                   <li onclick="replyComment()">Reply</li>
                   <li onclick="deleteReply()">Remove</li>

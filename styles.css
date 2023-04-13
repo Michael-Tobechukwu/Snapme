@@ -404,7 +404,7 @@ input:checked + .slider:before {
 .mobileTabs,
 .discover,
 .mobileView,
-.mobileSearchBtn {
+.mobileSearch {
   display: none;
 }
 
@@ -793,12 +793,31 @@ input:checked + .slider:before {
   }
 
   .user-create .create-plus,
-  #search-container {
+  #search-container,
+  .search {
     display: none;
   }
 
-  .mobileSearchBtn {
+  .mobileSearch {
     display: block;
+  }
+
+  #mobile-search-container {
+    display: none;
+    position: relative;
+  }
+
+  #mobile-search-input {
+    position: absolute;
+    z-index: 1;
+    left: -190px;
+    top: 25px;
+    background: #fff;
+    width: 200px;
+    color: #000;
+    padding: 0.4rem 0.5rem;
+    border: none;
+    font-size: 12px;
   }
 
   .wrapper,
@@ -1182,7 +1201,7 @@ input:checked + .slider:before {
 
 @media (max-width: 320px) {
   .mobileView button {
-    width: 40px;
+    width: 45px;
   }
 
   .mobileCreate {

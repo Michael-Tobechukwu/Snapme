@@ -824,17 +824,24 @@ input:checked + .slider:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    bottom: 0;
     background: #021129;
-    padding: 0.6rem 1.3rem 0 1.3rem;
+    padding: 0.4rem 1.3rem;
     margin: 0;
     width: 100%;
-    height: 11vh;
+    height: 6vh;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+    transition: bottom 0.5s ease;
+  }
+
+  .mobileView.hide {
+    bottom: -100%;
   }
 
   .mobileView button {
-    width: 60px;
+    width: 45px;
     transition: ease 0.4s;
   }
 
@@ -1161,7 +1168,7 @@ input:checked + .slider:before {
     color: #ba00ba;
     font-size: 40px;
     transition: ease 0.4s;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 }
 

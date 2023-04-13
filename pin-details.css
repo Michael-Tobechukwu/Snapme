@@ -903,6 +903,32 @@ button {
     cursor: pointer;
   }
 
+  #swipe-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+    position: relative;
+  }
+
+  .swipe-item {
+    flex: 0 0 auto;
+    background: #021129;
+    padding: 0.5rem 0.7rem;
+    border-radius: 2rem;
+    border: white solid 2px;
+    transition: 0.3s ease;
+    font-size: 13px;
+    color: #fff;
+    width: max-content;
+  }
+
+  .swipe-item button {
+    color: #fff;
+  }
+
+
   .discover {
     display: block;
     margin: 1rem auto;
@@ -922,6 +948,8 @@ button {
   .user-create .create-plus {
     display: none;
   }
+
+
 
   .mobileSearchBtn {
     display: block;
@@ -1009,7 +1037,8 @@ button {
   }
   /* The Modal background */
   #mobileFollowModal,
-  .mobileFollowModal {
+  .mobileFollowModal,
+  #liveModalMobile {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -1032,6 +1061,14 @@ button {
     width: 65%;
   }
 
+  .liveContentMobile {
+    background-color: #fff;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid #888;
+    width: 70%;
+  }
+
   /* The Close Button */
   .mobileclose,
   .close2,
@@ -1039,7 +1076,8 @@ button {
   .close4,
   .close5,
   .close6,
-  .closeme {
+  .closeme,
+  #closeLiveMobile {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -1049,7 +1087,8 @@ button {
   .mobileclose:hover,
   .mobileclose:focus,
   .closeme:hover,
-  .closeme:focus {
+  .closeme:focus,
+  #closeLiveMobile:hover {
     color: #000;
     text-decoration: none;
     cursor: pointer;

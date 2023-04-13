@@ -845,7 +845,7 @@ function moreIcons() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -862,7 +862,7 @@ function moreIconsII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons2.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -879,7 +879,7 @@ function moreIconsIII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons3.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -896,7 +896,7 @@ function moreIconsIV() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons4.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -913,7 +913,7 @@ function moreIconsV() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons5.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -930,7 +930,7 @@ function moreIconsVI() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons6.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -947,7 +947,7 @@ function moreIconsVII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons7.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -964,7 +964,7 @@ function moreIconsVIII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons8.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -1199,7 +1199,7 @@ playPauseBtn.addEventListener("click", () => {
     playPauseBtn.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
   } else {
     video.pause();
-    playPauseBtn.innerHTML = `<img src="Images/play-button.svg" alt="Pause" />`;
+    playPauseBtn.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
   }
 });
 
@@ -1250,10 +1250,10 @@ const skipAheadBtn2 = document.getElementById("skip-ahead-btn2");
 playPauseBtn2.addEventListener("click", () => {
   if (video2.paused) {
     video2.play();
-    playPauseBtn2.innerHTML = "&#9208;";
+    playPauseBtn2.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
   } else {
     video2.pause();
-    playPauseBtn2.innerHTML = "&#9199;";
+    playPauseBtn2.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
   }
 });
 
@@ -1289,9 +1289,9 @@ skipAheadBtn2.addEventListener("click", () => {
 speedSelect2.addEventListener("change", () => {
   video2.playbackRate = speedSelect2.value;
 });
+//Video controls 2 end
 
-//Video controls 2
-
+//Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
 
 let touchStartX = 0;

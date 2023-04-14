@@ -262,9 +262,10 @@ input:checked + .slider:before {
 #search-input {
   position: absolute;
   z-index: 1;
-  left: -200px;
+  left: -230px;
+  top: 40px;
   background: #fff;
-  width: 200px;
+  width: 250px;
   color: #000;
   padding: 0.4rem 0.5rem;
   border: none;
@@ -809,10 +810,10 @@ input:checked + .slider:before {
   #mobile-search-input {
     position: absolute;
     z-index: 1;
-    left: -190px;
-    top: 25px;
+    left: -230px;
+    top: 30px;
     background: #fff;
-    width: 200px;
+    width: 250px;
     color: #000;
     padding: 0.4rem 0.5rem;
     border: none;
@@ -1229,7 +1230,7 @@ input:checked + .slider:before {
     margin-bottom: 1.5rem;
   }
 }
-
+/*
 @media (max-width: 320px) {
   .mobileView button {
     width: 55px;
@@ -1243,3 +1244,4 @@ input:checked + .slider:before {
     margin-right: 8px;
   }
 }
+*/

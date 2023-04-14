@@ -530,7 +530,6 @@ input:checked + .slider:before {
   background: none;
   border: none;
   color: #fff;
-  font-size: 1.4rem;
 }
 
 #more-icons li,
@@ -567,19 +566,12 @@ input:checked + .slider:before {
   border-radius: 0.4rem !important;
   margin-bottom: 2rem;
   transition: ease 0.4s;
-  height: fit-content;
+  padding: 0;
 }
 
 #image-cards .card:hover {
   cursor: pointer;
   background: #5a015a;
-}
-
-#image-cards .card .card-body {
-  padding: 0.5rem 0 1px 0.5rem;
-  display: flex !important;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 #image-cards .card .post-img {
@@ -618,12 +610,24 @@ input:checked + .slider:before {
   border-top-right-radius: 0.4rem;
 }
 
+#image-cards .card .card-body {
+  padding: 5px 0 0 3px !important;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons-list li {
+  display: inline-block;
+}
+
 #image-cards .icons-list {
   display: flex;
   justify-content: start;
   align-items: center !important;
-  margin-left: -2rem !important;
+
   padding-bottom: 0 !important;
+  margin-left: -2rem;
 }
 
 #image-cards .icons-list li {
@@ -633,11 +637,6 @@ input:checked + .slider:before {
 
 #image-cards .icons-list li button:hover {
   border: none !important;
-}
-
-#image-cards .icons-list .more-icons {
-  margin-bottom: 0 !important;
-  padding: 0 !important;
 }
 
 .username span img {
@@ -1187,6 +1186,38 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 375px) {
+  #card1 {
+    height: 440px;
+  }
+
+  #card2 {
+    height: 298px;
+  }
+
+  #card3 {
+    height: 495px;
+  }
+
+  #card4 {
+    height: 310px;
+  }
+
+  #card5 {
+    height: 497px;
+  }
+
+  #card6 {
+    height: 297px;
+  }
+
+  #card7 {
+    height: 375px;
+  }
+
+  #card8 {
+    height: fit-content;
+  }
+
   .mobileView button {
     width: 45px;
   }
@@ -1211,5 +1242,4 @@ input:checked + .slider:before {
     margin-bottom: 1.5rem;
     margin-right: 8px;
   }
-
 }

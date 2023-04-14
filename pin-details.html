@@ -37,7 +37,7 @@
   </head>
   <body>
     <div class="wrapper container">
-      <nav class="navmenu">
+      <nav class="navmenu" id="myNavbar">
         <div class="hamburger">
           <div class="dropdown">
             <button
@@ -112,10 +112,13 @@
         <div class="main-logo">
           <a href="index.html"><img src="Images/white logo.png" /></a>
         </div>
+        <br />
         <div class="navbuttons">
-          <a href="pin-details-light.html" id="toggle">
-            <img class="toggle-button" src="Images/toggle dark.svg" />
-          </a>
+          <label onclick="window.location='index-light.html'" class="switch">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+
           <button class="live-button" id="liveButton">LIVE</button>
 
           <!--Live pop up modal-->
@@ -136,22 +139,27 @@
           </div>
 
           <div class="search">
-            <input
-              type="search"
-              name="searchBar"
-              id="searchBar"
-              placeholder="Search catalogs..."
-            />
-            <button type="submit" class="searchBtn" onclick="searchPosts()">
-              <img class="search-icon" src="Images/search icon.svg" />
+            <button id="search-toggle-btn">
+              <img src="Images/search icon.svg" alt="" />
             </button>
+            <div id="search-container">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="search-btn">
+                <img src="Images/search icon.svg" alt="" />
+              </button>
+              <ul id="search-results"></ul>
+            </div>
           </div>
 
           <div class="user-create">
             <a href="login.html"
               ><img class="user-image" src="Images/user image.svg"
             /></a>
-            <a href="create-pin.html"
+            <a href="create-pin.html" id="signedInContent"
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
           </div>
@@ -160,7 +168,7 @@
         <!--Mobile nav buttons-->
 
         <div class="navbuttonsMobile">
-          <a href="pin-details-light.html" id="toggle">
+          <a href="index-light.html" id="toggle">
             <img
               class="toggle-button"
               src="Images/toggle dark.svg"
@@ -193,24 +201,30 @@
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
           </div>
+
+          <div class="mobileSearch">
+            <button id="mobileSearchToggleBtn">
+              <img src="Images/search icon.svg" />
+            </button>
+            <div id="mobile-search-container">
+              <input
+                type="search"
+                id="mobile-search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="mobile-search-btn">
+                <img src="Images/search icon.svg" alt="" />
+              </button>
+              <ul id="mobile-search-results"></ul>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="mobileSearchBtn" onclick="searchPosts()">
-          <input
-            type="search"
-            name="searchBar"
-            id="mobileSearchBar"
-            placeholder="Search catalogs..."
-          />
-          <img src="Images/search icon.svg" />
-        </button>
 
         <!--Mobile nav buttons-->
 
         <!--nav-->
       </nav>
-      <!--<div class="subscribe">
-        <button onclick="window.location='/subscribe.html'">Subscribe</button>
-      </div>-->
+
       <div class="tabs">
         <!--Music with popup-->
         <button
@@ -2136,7 +2150,7 @@
       <h2 class="suggestedHeading">Catalogs for you</h2>
       <div id="suggestedCatalogs">
         <div class="row myrow">
-          <div class="col">
+          <div class="col-5">
             <div class="card mobileCard">
               <div class="post-img">
                 <img src="Images/buju 2.jpeg" class="card-img-top" />
@@ -2263,7 +2277,9 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIcons()" id="myBtn">&#9776;</button>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -2396,7 +2412,9 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsII()" id="myBtnII">&#9776;</button>
+                  <button onclick="moreIconsII()" id="myBtnII">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -2535,7 +2553,7 @@
                     </div>
                   </div>
                   <button onclick="moreIconsIII()" id="myBtnIII">
-                    &#9776;
+                    <img src="Images/more-icon.svg" width="20px" />
                   </button>
                 </div>
               </div>
@@ -2673,7 +2691,9 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsIV()" id="myBtnIV">&#9776;</button>
+                  <button onclick="moreIconsIV()" id="myBtnIV">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>

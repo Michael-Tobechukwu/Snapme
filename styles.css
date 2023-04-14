@@ -874,10 +874,12 @@ input:checked + .slider:before {
   }
 
   .mobileCreate {
-    color: #ba00ba;
-    font-size: 45px;
-    transition: ease 0.4s;
-    margin-bottom: 1rem;
+    border-radius: 50%;
+    background: #ba00ba;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 35px;
+    color: #fff;
   }
 
   .mobileCreate img {
@@ -1224,10 +1226,12 @@ input:checked + .slider:before {
   }
 
   .mobileCreate {
-    color: #ba00ba;
-    font-size: 40px;
-    transition: ease 0.4s;
-    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    background: #ba00ba;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 35px;
+    color: #fff;
   }
 }
 /*

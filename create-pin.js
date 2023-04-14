@@ -131,7 +131,7 @@ function createPin() {
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-iconsVIII">
+                    <div id="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -150,8 +150,8 @@ function createPin() {
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsVIII()" id="myBtnVIII">
-                    &#9776;
+                  <button onclick="moreIcons()" id="myBtn">
+                  <img src="Images/more-icon.svg" width="20px" />
                   </button>
                 </div>
               </div>

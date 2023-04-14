@@ -44,6 +44,36 @@ window.onclick = function (event) {
     pinModal.style.display = "none";
   }
 };
+////
+//Signedin Users Content
+//Check signed in status on page
+window.addEventListener("load", () => {
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
+
+  if (token) {
+    try {
+      // Attempt to decode the JWT token to get the user information
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+
+      // Display the content for signed-in users
+      const signedInContent = document.getElementById("signedInContent");
+      signedInContent.style.display = "block";
+    } catch (err) {
+      // If there was an error decoding the token, assume the user is not signed in
+      console.error("Error decoding JWT token:", err);
+
+      // Don't display the content for signed-in users
+      signedInContent.style.display = "none";
+    }
+  } else {
+    // Don't display the content for signed-in users
+    signedInContent.style.display = "none";
+  }
+});
+////
+////
 
 //Play video when scrolled into view
 //Video 1
@@ -90,11 +120,11 @@ let isLiked1 = false;
 
 likeButton1.addEventListener("click", () => {
   if (isLiked1) {
-    likeButton1.innerHTML = '<i class="far fa-heart"></i>';
+    likeButton1.innerHTML = `<i class="far fa-heart"></i>`;
     likeButton1.style.color = "#fff";
     isLiked1 = false;
   } else {
-    likeButton1.innerHTML = '<i class="fas fa-heart"></i>';
+    likeButton1.innerHTML = `<i class="fas fa-heart"></i>`;
     likeButton1.style.color = "#fff";
     isLiked1 = true;
   }
@@ -106,11 +136,11 @@ let isLiked2 = false;
 
 likeButton2.addEventListener("click", () => {
   if (isLiked2) {
-    likeButton2.innerHTML = '<i class="far fa-heart"></i>';
+    likeButton2.innerHTML = `<i class="far fa-heart"></i>`;
     likeButton2.style.color = "#fff";
     isLiked2 = false;
   } else {
-    likeButton2.innerHTML = '<i class="fas fa-heart"></i>';
+    likeButton2.innerHTML = `<i class="fas fa-heart"></i>`;
     likeButton2.style.color = "#fff";
     isLiked2 = true;
   }
@@ -564,7 +594,118 @@ closeLiveMobile.onclick = function () {
   liveModalMobile.style.display = "none";
 };
 //Live popup ends
+////
+// Search catalogs index
+const searchToggleBtn = document.getElementById("search-toggle-btn");
+const searchContainer = document.getElementById("search-container");
+const searchContainerMobile = document.getElementById("search-containerMobile");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+const searchResults = document.getElementById("search-results");
 
+// Function to fetch search results from server
+const fetchSearchResults = async (searchQuery) => {
+  const response = await fetch(
+    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
+  );
+  const data = await response.json();
+  return data;
+};
+
+// Function to display search results
+const displaySearchResults = (results) => {
+  searchResults.innerHTML = "";
+
+  results.forEach((result) => {
+    const li = document.createElement("li");
+    li.textContent = result.title;
+    searchResults.appendChild(li);
+  });
+};
+
+// Event listener for search toggle button
+searchToggleBtn.addEventListener("click", () => {
+  searchContainer.style.display = "block";
+  searchToggleBtn.style.display = "none";
+  searchInput.focus();
+});
+
+// Event listener for search button
+searchBtn.addEventListener("click", async () => {
+  const searchQuery = searchInput.value;
+  const searchResultsData = await fetchSearchResults(searchQuery);
+  displaySearchResults(searchResultsData);
+});
+
+// Event listener for search input field
+searchInput.addEventListener("keydown", async (event) => {
+  if (event.key === "Enter") {
+    const searchQuery = searchInput.value;
+    const searchResultsData = await fetchSearchResults(searchQuery);
+    displaySearchResults(searchResultsData);
+  }
+});
+//Search catalogs index ends
+////
+// Search catalogs index on mobile
+// Search catalogs index
+const mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
+const mobileSearchContainer = document.getElementById(
+  "mobile-search-container"
+);
+const mobileSearchInput = document.getElementById("mobile-search-input");
+const mobileSearchBtn = document.getElementById("mobile-search-btn");
+const mobileSearchResults = document.getElementById("mobile-search-results");
+
+// Function to fetch search results from server
+const fetchSearchResultsMobile = async (searchQuery) => {
+  const response = await fetch(
+    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
+  );
+  const data = await response.json();
+  return data;
+};
+
+// Function to display search results
+const displaySearchResultsMobile = (mobileresults) => {
+  mobileSearchResults.innerHTML = "";
+
+  mobileresults.forEach((mobileresult) => {
+    const li = document.createElement("li");
+    li.textContent = mobileresult.title;
+    mobileSearchResults.appendChild(li);
+  });
+};
+
+// Event listener for search toggle button
+mobileSearchToggleBtn.addEventListener("click", () => {
+  mobileSearchContainer.style.display = "block";
+  mobileSearchToggleBtn.style.display = "none";
+  mobileSearchInput.focus();
+});
+
+// Event listener for search button
+mobileSearchBtn.addEventListener("click", async () => {
+  const mobilesearchQuery = mobileSearchInput.value;
+  const searchResultsDataMobile = await fetchSearchResultsMobile(
+    mobilesearchQuery
+  );
+  displaySearchResultsMobile(searchResultsDataMobile);
+});
+
+// Event listener for search input field
+mobileSearchInput.addEventListener("keydown", async (event) => {
+  if (event.key === "Enter") {
+    const mobilesearchQuery = mobileSearchInput.value;
+    const searchResultsDataMobile = await fetchSearchResultsMobile(
+      mobilesearchQuery
+    );
+    displaySearchResultsMobile(searchResultsDataMobile);
+  }
+});
+/// Search catalogs index on mobile ends
+
+////
 //Show more button
 function readMore() {
   var dots = document.getElementById("dots");
@@ -650,64 +791,6 @@ function moreIconsIV() {
   }
 }
 ////
-// Search catalogs all pins
-const search = document.querySelector("#searchBar");
-const allCatalogs = document.querySelector(".container");
-const catalogs = document.querySelectorAll(".card");
-
-// search input event
-search.addEventListener("input", searchCatalog);
-
-// Filter list
-function searchCatalog(x) {
-  // convert input to lower case
-  const userQuery = x.target.value.toLowerCase();
-
-  //Get items in Array
-  const myCatalogs = allCatalogs.querySelectorAll(".card");
-  //Convert items to an iterable array
-  Array.from(myCatalogs).forEach(function (myCatalog) {
-    const catalogList = myCatalog.children[0].textContent;
-
-    if (catalogList.toLowerCase().indexOf(userQuery) != -1) {
-      myCatalog.style.display = "block";
-    } else {
-      myCatalog.style.display = "none";
-    }
-  });
-}
-
-// Mobile Search
-const mobileSearch = document.querySelector("#mobileSearchBar");
-const allMobileCatalogs = document.querySelector(".mobileContainer");
-const mobileCatalogs = document.querySelectorAll(".mobileCard");
-
-// Search input event
-mobileSearch.addEventListener("input", mobileSearchCatalog);
-
-// Filter list
-function mobileSearchCatalog(y) {
-  // Convert input to lower case
-  const mobileQuery = y.target.value.toLowerCase();
-
-  //Get items in Array
-  const myMobilecatalogs = allMobileCatalogs.querySelectorAll(".mobileCard");
-  //Convert items to an iterbale array
-  Array.from(myMobilecatalogs).forEach(function (myMobilecatalog) {
-    const mobileCatalogList = myMobilecatalogs.children[0].textContent;
-
-    if (mobileCatalogList.toLowerCase().indexOf(mobileQuery) != -1) {
-      myMobilecatalog.style.display = "block";
-    } else {
-      myMobilecatalog.style.display = "none";
-    }
-  });
-}
-//Search ends
-
-//Convert username input to lowercase
-var userNameInput = document.querySelector(".username");
-userNameInput = userNameInput.value.toLowerCase();
 
 //Commenter profile
 function commenterProfile() {

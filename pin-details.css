@@ -285,8 +285,7 @@ input:checked + .slider:before {
 
 .mobileTabs,
 .discover,
-.mobileView,
-.mobileSearchBtn {
+.mobileSearch {
   display: none;
 }
 
@@ -351,7 +350,7 @@ input:checked + .slider:before {
   flex-wrap: wrap;
   gap: 3rem;
   margin: 0.5rem auto 2rem;
-  width: 90%;
+  width: 95%;
   border-radius: 2rem !important;
   padding: 0.7rem;
   box-shadow: 3px 3px 8px #000;
@@ -660,7 +659,7 @@ button {
 
 #suggestedCatalogs {
   justify-content: space-between !important;
-  width: 98%;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -954,9 +953,10 @@ button {
     border: none;
     font-size: 12px;
   }
+
   .mobileTabs {
     display: block;
-    margin: 3rem auto;
+    margin: 1.4rem auto;
     text-align: center;
   }
 
@@ -1018,26 +1018,6 @@ button {
 
   .user-create .create-plus {
     display: none;
-  }
-
-  .mobileSearchBtn {
-    display: block;
-    width: 95%;
-    margin: 0.5rem auto;
-  }
-
-  .mobileSearchBtn input {
-    padding: 0.4rem 0.5rem;
-    border: none;
-    border-bottom: solid 2px #fff;
-    background: none;
-    color: #fff;
-    width: 80%;
-    font-size: 12px;
-  }
-
-  .mobileSearchBtn img {
-    display: inline-block;
   }
 
   .post-card {
@@ -1205,12 +1185,19 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    bottom: 0;
+    margin: 0 auto;
+    padding: 0.3rem;
     background: #021129;
-    padding: 1rem;
-    margin: 0;
     width: 100%;
+    height: 6vh;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    transition: bottom 0.5s ease;
+  }
+
+  #mobileFooter.hide {
+    bottom: -100%;
   }
 
   #mobileFooter button {
@@ -1227,14 +1214,14 @@ button {
   }
 
   .mobileLike {
+    margin-bottom: 1.5rem;
+    padding: 0;
     border-radius: 50%;
     background: #ba00ba;
+    padding: 0.8rem 0.2rem;
     color: #fff;
-    padding: 0.4rem 0;
-    font-size: 14px;
+    font-size: 13px;
     transition: ease 0.4s;
-    margin-bottom: 1rem;
-    width: 12% !important;
   }
 
   .mobileLike i {
@@ -1250,9 +1237,8 @@ button {
   .mobileLike {
     border-radius: 50%;
     background: #ba00ba;
-    padding: 0.8rem;
-    font-size: 14px;
-    margin-bottom: 1rem;
-    width: 20% !important;
+    padding: 25px 0;
+    font-size: 12px;
+    margin-bottom: 45px;
   }
 }

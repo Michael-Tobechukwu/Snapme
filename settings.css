@@ -122,18 +122,18 @@ form.deleteAccount {
   .bottom {
     width: 90%;
   }
+
   .content {
-    width: 80%;
+    padding: 0.3rem;
+    margin: 0.5rem auto;
+    width: 98%;
+    border: none;
   }
 }
 
 @media (max-width: 425px) {
   .delete,
   .bottom {
-    width: 95%;
-  }
-
-  .content {
     width: 95%;
   }
 }

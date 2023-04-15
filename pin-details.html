@@ -1954,7 +1954,7 @@
 
       <div class="post-card">
         <div class="img">
-          <img src="Images/ruger 7.jpg" alt="" />
+          <img src="Images/ruger 7.jpg" class="post-image" />
 
           <div class="mobileIcons">
             <img
@@ -1963,13 +1963,32 @@
             />
             <img src="Images/snapme icon white.png" alt="" />
           </div>
+          <div class="content-top-mobile">
+            <div class="userDetails">
+              <img
+                src="Images/azizy.png"
+                
+                onclick="window.location='username.html'"
+              />
+              <div class="text">
+                <p class="azizy_username">azizymakim</p>
+              </div>
+            </div>
+            <button
+              id="followUserBtn"
+              class="follow"
+              onclick="followThisUser()"
+            >
+              Follow +
+            </button>
+          </div>
         </div>
         <div class="content">
           <div class="content-top">
             <div class="userDetails">
               <img
                 src="Images/azizy.png"
-                width="50px"
+                
                 onclick="window.location='username.html'"
               />
               <div class="text">
@@ -1985,6 +2004,7 @@
               Follow +
             </button>
           </div>
+          
           <!--<div class="subscribe">
             <button onclick="window.location='subscribe.html'">
               Subscribe
@@ -1992,25 +2012,7 @@
           </div>-->
           <div class="content-mid">
             <h3>The Jonzing World Imprint</h3>
-            <p>
-              Nigeria's reggae-styled music sensation Ruger. His history,
-              lifestyle, and a stylishly covered left eye. Always a cool dude
-              and a fans favourite all the time. #ArtisteRuger
-              <span id="dots">...</span
-              ><span id="more-text"
-                >More info about Ruger....Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Phasellus imperdiet, nulla et
-                dictum interdum, nisi lorem egestas vitae scelerisque enim
-                ligula venenatis dolor.</span
-              >
-            </p>
-            <button
-              onclick="readMore()"
-              id="myBtn"
-              style="color: #fff; font-weight: bold"
-            >
-              Show more
-            </button>
+            <span id="postDate"></span>
 
             <div class="show-more">
               <ul class="card-title icons-list">
@@ -2113,6 +2115,25 @@
                 </li>
               </ul>
             </div>
+            <p>
+              Nigeria's reggae-styled music sensation Ruger. His history,
+              lifestyle, and a stylishly covered left eye. Always a cool dude
+              and a fans favourite all the time. #ArtisteRuger
+              <span id="dots">...</span
+              ><span id="more-text"
+                >More info about Ruger....Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Phasellus imperdiet, nulla et
+                dictum interdum, nisi lorem egestas vitae scelerisque enim
+                ligula venenatis dolor.</span
+              >
+            </p>
+            <button
+              onclick="readMore()"
+              id="myBtn"
+              style="color: #fff; font-weight: bold"
+            >
+              Show more
+            </button>
           </div>
           <div class="content-bottom">
             <p class="text-white">Comments</p>

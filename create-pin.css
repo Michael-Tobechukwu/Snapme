@@ -8,7 +8,7 @@ body {
 
 .wrapper {
   width: 100%;
-  padding: 0.5rem !important;
+  padding: 0.5rem;
 }
 
 .lead {
@@ -206,12 +206,17 @@ label {
 }
 
 @media (max-width: 568px) {
+  .wrapper {
+    padding: 5px;
+  }
+
   .main-card {
-    width: 95%;
+    width: 98%;
+    box-shadow: none;
   }
 
   .box-left {
-    width: 92%;
+    width: 98%;
   }
 
   .box-right {

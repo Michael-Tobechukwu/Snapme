@@ -11,7 +11,7 @@ body {
   color: #fff;
   width: 50%;
   margin: 1rem auto;
-  border: 2px solid #fff;
+  
   border-radius: 2rem;
   padding: 2rem;
 }
@@ -41,6 +41,6 @@ body {
 @media (max-width: 568px) {
   .content {
     width: 95%;
-    padding: 1.5rem;
+    padding: 0.5rem;
   }
 }

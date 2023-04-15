@@ -902,3 +902,155 @@ function deleteComment() {
 deleteComment();
 //Delete comment end
 /////
+//Video controls
+//const video = document.getElementById("video");
+const playPauseBtn = document.getElementById("play-pause-btn");
+const volumeRange = document.getElementById("volume-range");
+const muteBtn = document.getElementById("mute-btn");
+const speedSelect = document.getElementById("speed-select");
+const skipBackBtn = document.getElementById("skip-back-btn");
+const skipAheadBtn = document.getElementById("skip-ahead-btn");
+
+// Play/pause button
+playPauseBtn.addEventListener("click", () => {
+  if (video.paused) {
+    video.play();
+    playPauseBtn.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
+  } else {
+    video.pause();
+    playPauseBtn.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
+  }
+});
+
+// Volume range
+volumeRange.addEventListener("input", () => {
+  video.volume = volumeRange.value;
+});
+
+// Mute/unmute button
+muteBtn.addEventListener("click", () => {
+  if (video.muted) {
+    video.muted = false;
+    muteBtn.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
+    volumeRange.value = video.volume;
+  } else {
+    video.muted = true;
+    muteBtn.innerHTML = `<img src="Images/unmute button.svg" alt="Unmute" />`;
+    volumeRange.value = 0;
+  }
+});
+
+// Skip back button
+skipBackBtn.addEventListener("click", () => {
+  video.currentTime -= 10;
+});
+
+// Skip ahead button
+skipAheadBtn.addEventListener("click", () => {
+  video.currentTime += 10;
+});
+
+// Playback speed select
+speedSelect.addEventListener("change", () => {
+  video.playbackRate = speedSelect.value;
+});
+//Video controls 1
+////
+
+//Video controls 2
+const playPauseBtn2 = document.getElementById("play-pause-btn2");
+const volumeRange2 = document.getElementById("volume-range2");
+const muteBtn2 = document.getElementById("mute-btn2");
+const speedSelect2 = document.getElementById("speed-select2");
+const skipBackBtn2 = document.getElementById("skip-back-btn2");
+const skipAheadBtn2 = document.getElementById("skip-ahead-btn2");
+
+// Play/pause button
+playPauseBtn2.addEventListener("click", () => {
+  if (video2.paused) {
+    video2.play();
+    playPauseBtn2.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
+  } else {
+    video2.pause();
+    playPauseBtn2.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
+  }
+});
+
+// Volume range
+volumeRange2.addEventListener("input", () => {
+  video2.volume = volumeRange2.value;
+});
+
+// Mute/unmute button
+muteBtn2.addEventListener("click", () => {
+  if (video2.muted) {
+    video2.muted = false;
+    muteBtn2.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
+    volumeRange2.value = video2.volume;
+  } else {
+    video2.muted = true;
+    muteBtn2.innerHTML = `<img src="Images/unmute button.svg" alt="Mute" />`;
+    volumeRange2.value = 0;
+  }
+});
+
+// Skip back button
+skipBackBtn2.addEventListener("click", () => {
+  video2.currentTime -= 10;
+});
+
+// Skip ahead button
+skipAheadBtn2.addEventListener("click", () => {
+  video2.currentTime += 10;
+});
+
+// Playback speed select
+speedSelect2.addEventListener("change", () => {
+  video2.playbackRate = speedSelect2.value;
+});
+//Video controls 2 end
+
+//Mobile catalog tabs swipe control
+const swipeContainer = document.getElementById("swipe-container");
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+swipeContainer.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchmove", (event) => {
+  touchEndX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchend", () => {
+  if (touchEndX < touchStartX) {
+    swipeContainer.scrollBy({ left: 300, behavior: "smooth" });
+  } else if (touchEndX > touchStartX) {
+    swipeContainer.scrollBy({ left: -300, behavior: "smooth" });
+  }
+});
+//Show/hide top menu on scroll
+var pastScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var presentScrollPos = window.pageYOffset;
+  if (pastScrollpos < presentScrollPos) {
+    document.querySelector(".navmenu").classList.remove("hide");
+  } else {
+    document.querySelector(".navmenu").classList.add("hide");
+  }
+  pastScrollpos = presentScrollPos;
+};
+
+//Show/Hide footer menu on scroll
+var oldScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var newScrollPos = window.pageYOffset;
+  if (oldScrollpos < newScrollPos) {
+    document.querySelector(".mobileView").classList.remove("hide");
+  } else {
+    document.querySelector(".mobileView").classList.add("hide");
+  }
+  oldScrollpos = newScrollPos;
+};

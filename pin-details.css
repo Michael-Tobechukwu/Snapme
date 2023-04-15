@@ -5,11 +5,6 @@ body {
   background: #021129 !important;
 }
 
-/*.wrapper {
-  width: 100%;
-  margin: 0;
-}
-*/
 button {
   background: none;
   border: none;
@@ -20,10 +15,10 @@ button {
 }
 
 .dropdown-menu {
-  margin-top: 1rem !important;
+  margin-top: 0.5rem !important;
   position: absolute;
   background: #021129 !important;
-  padding: 1rem 1rem !important;
+  padding: 1rem !important;
   width: 300px;
   box-shadow: 3px 3px 6px #000;
   border-radius: 2rem;
@@ -356,7 +351,7 @@ input:checked + .slider:before {
   gap: 3rem;
   margin: 0.5rem auto 2rem;
   width: 95%;
-  border-radius: 2rem !important;
+  border-radius: 0.5rem !important;
   padding: 0.7rem;
   box-shadow: 3px 3px 8px #000;
   background: #031738;
@@ -367,7 +362,7 @@ input:checked + .slider:before {
 }
 
 .post-card .img img {
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   width: 100%;
 }
 
@@ -956,12 +951,6 @@ button {
 }
 
 @media (max-width: 568px) {
-  /*  .wrapper {
-    padding: 0 5px;
-    width: 100%;
-    margin: 0;
-  }
-*/
   .navmenu .navbuttons,
   .tabs {
     display: none;
@@ -1059,7 +1048,7 @@ button {
   .swipe-item {
     flex: 0 0 auto;
     background: #021129;
-    padding: 0.5rem 0.7rem;
+    padding: 0.5rem 0.85rem;
     border-radius: 2rem;
     border: white solid 2px;
     transition: 0.3s ease;
@@ -1090,10 +1079,6 @@ button {
 
   .user-create .create-plus {
     display: none;
-  }
-
-  .text p {
-    font-size: 14px !important;
   }
 
   .post-card {
@@ -1144,7 +1129,8 @@ button {
 
   .content-top-mobile .userDetails p {
     color: #fff;
-    font-size: 12px;
+    font-size: 16px;
+    margin-top: 5px;
   }
 
   #postDateMobile {
@@ -1176,19 +1162,20 @@ button {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 1rem;
+    top: 10px;
     margin: 0.3rem auto !important;
     padding: 0.1rem 1rem;
+    width: 98%;
   }
 
-  .mobileIcons a,
   .mobileIcons img {
-    width: 8% !important;
+    width: 30px !important;
   }
 
   .marcdiss-box {
     align-items: flex-start;
   }
+
   /* The Modal background */
   #mobileFollowModal,
   .mobileFollowModal,

@@ -618,15 +618,10 @@ input:checked + .slider:before {
   align-items: center;
 }
 
-.icons-list li {
-  display: inline-block;
-}
-
 #image-cards .icons-list {
   display: flex;
   justify-content: start;
   align-items: center !important;
-
   padding-bottom: 0 !important;
   margin-left: -2rem;
 }
@@ -920,7 +915,7 @@ input:checked + .slider:before {
 
   .discover h4 {
     color: #ba00ba;
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .discover p {
@@ -1041,41 +1036,32 @@ input:checked + .slider:before {
   #timelineSuggested {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 95%;
+    justify-content: space-between;
+    width: 98%;
   }
 
   #timelineSuggested #timeCapsule {
     width: 33%;
-    background: #021129;
+    background: none;
     padding: 0px;
+    margin: 0;
     color: #fff;
-    border-radius: 0.3rem;
     font-size: 12px;
   }
 
   .suggested {
-    width: 67%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     flex-wrap: wrap;
-  }
-
-  .suggested #SuggestedBtn {
-    background: #021129;
-    padding: 0px;
-    color: #fff;
-    border-radius: 0.3rem;
-    width: 65%;
-    font-size: 12px;
+    gap: 5%;
+    width: 35%;
   }
 
   .suggestedPics {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 21%;
+    justify-content: flex-start;
     position: relative;
   }
 
@@ -1092,6 +1078,14 @@ input:checked + .slider:before {
   .suggestedPics :nth-child(3) {
     position: absolute;
     left: 30px;
+  }
+
+  .suggested #SuggestedBtn {
+    background: #021129;
+    padding: 0px;
+    color: #fff;
+    border-radius: 0.3rem;
+    font-size: 12px;
   }
 
   #suggestedPopup {
@@ -1188,7 +1182,17 @@ input:checked + .slider:before {
   }
 }
 
+@media (max-width: 425px) {
+  .suggested {
+    width: 50%;
+  }
+}
+
 @media (max-width: 375px) {
+  .suggested {
+    width: 55%;
+  }
+
   #card1 {
     height: 440px;
   }
@@ -1234,6 +1238,41 @@ input:checked + .slider:before {
     color: #fff;
   }
 }
+
+@media (max-width: 350px) {
+  .suggested {
+    width: 65%;
+  }
+
+  #card1 {
+    height: 400px;
+  }
+
+  #card2 {
+    height: 275px;
+  }
+
+  #card3 {
+    height: 450px;
+  }
+
+  #card4 {
+    height: 290px;
+  }
+
+  #card5 {
+    height: 450px;
+  }
+
+  #card6 {
+    height: 270px;
+  }
+
+  #card7 {
+    height: 365px;
+  }
+}
+
 /*
 @media (max-width: 320px) {
   .mobileView button {

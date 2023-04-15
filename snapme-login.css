@@ -33,7 +33,7 @@ body {
 }
 
 .card1 img {
-  margin: 2rem auto;
+  margin: 1.5rem auto;
   width: 100%;
 }
 
@@ -46,11 +46,24 @@ body {
 }
 
 input {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding: 0.7rem 1rem;
-  border-radius: 1.5rem;
+  border-radius: 0.5rem;
   border: none;
   width: 100%;
+  font-size: 14px;
+}
+
+.password {
+  position: relative;
+}
+
+.password img {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  cursor: pointer;
 }
 
 .forgot {
@@ -95,12 +108,30 @@ button i {
 }
 
 @media (max-width: 568px) {
+  body {
+    background: #021129;
+  }
+
+  .container {
+    margin-top: 0.5rem;
+    padding: 0;
+  }
+
   .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
     width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 5px;
   }
 
   .card,
   .card1 {
-    width: 90%;
+    width: 95%;
+    border: none;
+    padding: 10px;
   }
 }

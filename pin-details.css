@@ -15,7 +15,7 @@ button {
 }
 
 .dropdown-menu {
-  margin-top: 2rem !important;
+  margin-top: 1rem !important;
   position: absolute;
   background: #021129 !important;
   padding: 1rem 1rem !important;
@@ -367,31 +367,43 @@ input:checked + .slider:before {
 }
 
 .post-card .content {
-  margin-top: 0.4rem;
+  margin-top: 5px;
   width: 52%;
 }
 
-.post-card .content-top {
+.content-top {
   display: flex;
-  gap: 0.8rem;
+  align-items: center;
+}
+
+.content-top .userDetails {
+  display: flex;
   align-items: flex-start;
+  gap: 3%;
 }
 
-.post-card .content-top p {
+.content-top .userDetails img {
+  width: 50px;
+}
+
+.content-top .userDetails p {
+  font-size: 20px;
   color: #fff;
-  margin: 0 auto;
-  font-size: 1.4rem;
+  margin-bottom: 0;
 }
 
-.post-card .content-top button {
+.content-top .userDetails span {
+  margin-top: 0;
+}
+
+#followUserBtn {
   background: #ba00ba;
   color: #fff;
-  padding: 0.3rem 1.6rem;
+  padding: 10px 20px;
   border-radius: 2rem;
-  margin-left: 2rem;
 }
 
-.post-card .content-top button:hover {
+.post-card .content-top #followUserBtn:hover {
   background: #910791;
 }
 
@@ -625,7 +637,7 @@ button {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .share_popup a {
@@ -889,6 +901,10 @@ button {
   }
 }
 
+.content-top-mobile {
+  display: none;
+}
+
 @media (max-width: 568px) {
   .navmenu .navbuttons,
   .tabs {
@@ -1020,20 +1036,6 @@ button {
     display: none;
   }
 
-  .post-card {
-    position: relative;
-  }
-
-  .userDetails {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-    position: absolute;
-    top: 50px;
-    left: 30px;
-  }
-
   .text p {
     font-size: 14px !important;
   }
@@ -1043,13 +1045,19 @@ button {
     padding: 0;
   }
 
+  .wrapper {
+    padding: 0 5px;
+  }
+
   .post-card {
-    gap: 0.3rem;
     width: 100%;
     margin: 0;
     box-shadow: none;
-    padding: 0.5rem 0.5rem 1rem 0.5rem !important;
     margin-bottom: 0 !important;
+    position: relative;
+    padding: 0;
+    background: #021129;
+    gap: 0.5rem;
   }
 
   .post-card .img {
@@ -1059,6 +1067,45 @@ button {
   .post-card .img {
     width: 100%;
   }
+
+  .content-top-mobile {
+    display: block;
+  }
+
+  .content-top {
+    display: none;
+  }
+
+  .img {
+    position: relative;
+  }
+
+  .content-top-mobile .userDetails {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 60px;
+    left: 15px;
+  }
+
+  .content-top-mobile .userDetails p {
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .content-top-mobile #followUserBtn {
+    position: absolute;
+    bottom: 25px;
+    left: 40px;
+    padding: 5px 20px !important;
+  }
+
+  .content-top-mobile .userDetails img {
+    width: 30px !important;
+  }
+
   .content-mid {
     width: 100%;
   }
@@ -1214,11 +1261,11 @@ button {
   }
 
   .mobileLike {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.9rem;
     padding: 0;
     border-radius: 50%;
     background: #ba00ba;
-    padding: 0.8rem 0.2rem;
+    padding: 25px 2px;
     color: #fff;
     font-size: 13px;
     transition: ease 0.4s;
@@ -1237,8 +1284,8 @@ button {
   .mobileLike {
     border-radius: 50%;
     background: #ba00ba;
-    padding: 25px 0;
+    padding: 20px 0;
     font-size: 12px;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
   }
 }

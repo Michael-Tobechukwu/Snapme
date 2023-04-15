@@ -2444,9 +2444,37 @@
           <div class="col-5">
             <div class="card mobileCard">
               <div class="post-img">
-                <video class="video" loop controls muted>
+                <video class="video" muted loop>
                   <source src="Spoken word 1.mp4" type="video/mp4" />
                 </video>
+                <div id="my-video-controls" class="my-video-controls">
+                  <button id="play-pause-btn">
+                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                  </button>
+                  <input
+                    type="range"
+                    id="volume-range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="1"
+                  />
+                  <button id="mute-btn">
+                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                  </button>
+                  <select id="speed-select">
+                    <option value="1">1x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                  </select>
+                  <button id="skip-back-btn">
+                    <img src="Images/skip-backward.svg" alt="<<" />
+                  </button>
+                  <button id="skip-ahead-btn">
+                    <img src="Images/skip-forward.svg" alt=">>" />
+                  </button>
+                </div>
                 <a
                   class="username text-white"
                   onclick="window.location='username.html'"
@@ -2583,9 +2611,37 @@
           <div class="col-5">
             <div class="card mobileCard">
               <div class="post-img">
-                <video class="video" loop controls muted>
+                <video class="video" loop muted>
                   <source src="Mom putting a word in.mp4" type="video/mp4" />
                 </video>
+                <div id="my-video-controls2" class="my-video-controls">
+                  <button id="play-pause-btn2">
+                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                  </button>
+                  <input
+                    type="range"
+                    id="volume-range2"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="1"
+                  />
+                  <button id="mute-btn2">
+                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                  </button>
+                  <select id="speed-select2">
+                    <option value="1">1x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                  </select>
+                  <button id="skip-back-btn2">
+                    <img src="Images/skip-backward.svg" alt="<<" />
+                  </button>
+                  <button id="skip-ahead-btn2">
+                    <img src="Images/skip-forward.svg" alt=">>" />
+                  </button>
+                </div>
                 <a
                   class="username text-white"
                   onclick="window.location='username.html'"

@@ -527,7 +527,7 @@ button {
 .marcdiss-box {
   display: flex;
   gap: 0.7rem;
-  align-items: flex-end;
+  align-items: flex-start;
   line-height: 0;
 }
 
@@ -555,6 +555,7 @@ button {
   font-size: 0.7rem;
   color: #fff;
   cursor: pointer;
+  margin-right: 5px;
 }
 
 .marcdiss .name {
@@ -574,6 +575,13 @@ button {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.3rem;
+  width: 98%;
+}
+
+.form-input-button input {
+  width: 65% !important;
+  border-radius: 0.5rem !important;
+  border: none;
 }
 
 .content-bottom form input {
@@ -1048,11 +1056,11 @@ button {
   .swipe-item {
     flex: 0 0 auto;
     background: #021129;
-    padding: 0.5rem 0.85rem;
+    padding: 0.5rem 0.9rem;
     border-radius: 2rem;
     border: white solid 2px;
     transition: 0.3s ease;
-    font-size: 13px;
+    font-size: 14px;
     color: #fff;
     width: max-content;
   }
@@ -1129,8 +1137,8 @@ button {
 
   .content-top-mobile .userDetails p {
     color: #fff;
-    font-size: 16px;
-    margin-top: 5px;
+    font-size: 21px;
+    margin-top: 10px;
   }
 
   #postDateMobile {

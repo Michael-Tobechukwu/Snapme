@@ -1362,9 +1362,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.scrollBy({ left: 300, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: 150, behavior: "smooth" });
   } else if (touchEndX > touchStartX) {
-    swipeContainer.scrollBy({ left: -300, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: -150, behavior: "smooth" });
   }
 });
 //Show/hide top menu on scroll

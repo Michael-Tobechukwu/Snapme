@@ -3,6 +3,11 @@ var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
 var postDate = postDate.toLocaleString();
 document.getElementById("postDate").innerHTML = postDate;
 
+//Post date and time on mobile
+var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
+var postDate = postDate.toLocaleString();
+document.getElementById("postDateMobile").innerHTML = postDate;
+
 //Pin details post like
 const likeButton = document.querySelector("#like-button");
 let isLiked = false;
@@ -791,7 +796,19 @@ function moreIconsIV() {
   }
 }
 ////
+//Show/Hide footer menu on scroll
+var oldScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var newScrollPos = window.pageYOffset;
+  if (oldScrollpos < newScrollPos) {
+    document.querySelector("#mobileFooter").classList.remove("hide");
+  } else {
+    document.querySelector("#mobileFooter").classList.add("hide");
+  }
+  oldScrollpos = newScrollPos;
+};
 
+////
 //Commenter profile
 function commenterProfile() {
   fetch("https://api.snapme-ng.com//api/v1/:username")

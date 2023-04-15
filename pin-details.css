@@ -5,6 +5,11 @@ body {
   background: #021129 !important;
 }
 
+/*.wrapper {
+  width: 100%;
+  margin: 0;
+}
+*/
 button {
   background: none;
   border: none;
@@ -951,6 +956,12 @@ button {
 }
 
 @media (max-width: 568px) {
+  /*  .wrapper {
+    padding: 0 5px;
+    width: 100%;
+    margin: 0;
+  }
+*/
   .navmenu .navbuttons,
   .tabs {
     display: none;
@@ -1085,17 +1096,8 @@ button {
     font-size: 14px !important;
   }
 
-  .content {
-    width: 100% !important;
-    padding: 0;
-  }
-
-  .wrapper {
-    padding: 0 5px;
-  }
-
   .post-card {
-    width: 100%;
+    width: 98%;
     margin: 0;
     box-shadow: none;
     margin-bottom: 0 !important;
@@ -1111,6 +1113,11 @@ button {
 
   .post-card .img {
     width: 100%;
+  }
+
+  .content {
+    width: 100% !important;
+    padding: 0;
   }
 
   .content-top-mobile {
@@ -1283,7 +1290,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    margin: 0;
     padding: 0.3rem;
     background: #021129;
     width: 100%;

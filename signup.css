@@ -180,7 +180,10 @@ button i {
 @media (max-width: 568px) {
   .container {
     width: 100%;
-    padding: 0.5rem;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .occupation,

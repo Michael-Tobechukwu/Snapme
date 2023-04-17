@@ -112,12 +112,12 @@ body {
 .userInfo .profilePic {
   position: absolute;
   left: 2rem;
-  top: 220px;
+  top: 210px;
   width: 100px;
 }
 
 .userInfoInner {
-  line-height: 1rem;
+  line-height: 0.7rem;
   position: absolute;
   left: 9rem;
   top: 250px;
@@ -131,8 +131,8 @@ body {
 .userNameBadge img {
   width: 20px !important;
   position: absolute;
-  top: 10px;
-  left: 205px;
+  top: 7px;
+  left: 160px;
 }
 
 .userInfoInner h3 {
@@ -474,9 +474,6 @@ body {
 /*MOBILE VIEWS*/
 
 @media (max-width: 768px) {
-  .wrapper {
-    padding: 0 !important;
-  }
   .content {
     width: 95%;
   }
@@ -554,13 +551,19 @@ body {
 }
 
 @media (max-width: 568px) {
-  .userDetails {
-    flex-wrap: wrap;
-    flex-direction: column;
+  .content {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
   }
 
-  .userInfoInner {
-    margin-top: 0;
+  .main-logo {
+    margin-bottom: 10px;
+  }
+
+  .top {
+    margin-top: 20px;
+    width: 97%;
   }
 
   #mobileUserTabs {
@@ -584,6 +587,68 @@ body {
     display: none;
   }
 
+  #profile-card {
+    box-shadow: none;
+    border-radius: 1rem;
+    border: none;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .banner {
+    height: 25vh;
+  }
+
+  .banner img {
+    height: 100%;
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 135px;
+    left: 10px;
+  }
+
+  .userInfo .profilePic {
+    width: 50px;
+    position: static;
+  }
+
+  .userInfoInner {
+    position: static;
+    line-height: 0.7rem;
+    margin-top: 33px;
+  }
+
+  .userDetails {
+    flex-wrap: wrap;
+    /*    flex-direction: column;*/
+  }
+
+  .userNameBadge {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .userNameBadge img {
+    left: 190px;
+    top: 35px;
+  }
+
+  .userButtons {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   /* Modal Content */
 }
 
@@ -598,10 +663,6 @@ body {
   .userDetails {
     width: 100%;
   }
-
-  .content {
-    width: 95%;
-  }
 }
 
 @media (max-width: 375px) {
@@ -609,16 +670,18 @@ body {
     padding: 0;
   }
 
-  .userInfo .profilePic {
-    left: 1rem;
-    width: 80px;
-  }
-
-  .userInfoInner {
-    left: 6.5rem;
-  }
-
   .userDetails {
     width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .userInfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 110px;
+    left: 10px;
   }
 }

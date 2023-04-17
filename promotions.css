@@ -3,18 +3,13 @@ input {
   font-family: "Poppins", sans-serif;
 }
 
-body {*,
-input {
-  font-family: "Poppins", sans-serif;
-}
-
 body {
   background: #021129 !important;
 }
 
 .content {
   color: #fff;
-  width: 45%;
+  width: 50%;
   margin: 2rem auto;
   padding: 0.5rem;
   line-height: 1.5rem;
@@ -121,128 +116,6 @@ body {
   .content {
     width: 95%;
     padding: 0.5rem;
-  }
-
-  .modalContent {
-    width: 85%;
-  }
-}
-
-  background: #021129 !important;
-}
-
-.content {
-  color: #fff;
-  width: 45%;
-  margin: 2rem auto;
-  border: 2px solid #fff;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  line-height: 1.5rem;
-  box-shadow: 5px 5px 8px #000;
-}
-
-.content h3 {
-  text-align: center;
-}
-
-.content p {
-  margin: 1rem auto;
-}
-
-.cardOptions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin: 0.3rem auto 1rem auto;
-}
-
-.cardOptions img {
-  width: 25%;
-}
-
-/* The Modal (background) */
-#promoteModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modalContent {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 1rem;
-  border: 1px solid #888;
-  width: 25%;
-  border-radius: 0.3rem;
-}
-
-/* The Close Button */
-#closePromote {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#closePromote:hover,
-#closePromote:focus {
-  color: #000;
-  text-decoration: none;
-}
-
-.promotePopup {
-  color: #000;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-#promoteButton {
-  margin-top: 0.4rem;
-  background: #021129;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 0.5rem 0.7rem;
-  border-radius: 0.3rem;
-}
-
-.buttons button {
-  background: #021129;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 0.3rem 0.4rem;
-}
-
-/*MEDIA VIEWS*/
-@media (max-width: 768px) {
-  .content {
-    width: 80%;
-  }
-
-  .modalContent {
-    width: 60%;
-  }
-}
-
-@media (max-width: 568px) {
-  .content {
-    width: 95%;
-    padding: 1.5rem;
   }
 
   .modalContent {

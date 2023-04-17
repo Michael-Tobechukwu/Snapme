@@ -321,7 +321,7 @@ function moreIcons() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -338,7 +338,7 @@ function moreIconsII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -355,7 +355,7 @@ function moreIconsIII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -371,7 +371,7 @@ function moreIconsIV() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -388,7 +388,7 @@ function moreIconsV() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -405,7 +405,7 @@ function moreIconsVI() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -444,9 +444,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.scrollBy({ left: 300, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: 150, behavior: "smooth" });
   } else if (touchEndX > touchStartX) {
-    swipeContainer.scrollBy({ left: -300, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: -150, behavior: "smooth" });
   }
 });
 //

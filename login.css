@@ -224,6 +224,10 @@ span.buttonText {
 }
 
 @media (max-width: 568px) {
+  body {
+    background: #021129;
+  }
+
   .container {
     margin-top: 0;
   }

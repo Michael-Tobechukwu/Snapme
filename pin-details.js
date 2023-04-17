@@ -8,6 +8,33 @@ var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
 var postDate = postDate.toLocaleString();
 document.getElementById("postDateMobile").innerHTML = postDate;
 
+//Pin details Share
+// Get the modal
+var pinModal = document.getElementById("sharePinModal");
+
+// Get the button that opens the modal
+var pinBtn = document.getElementById("sharePinBtn");
+
+// Get the <span> element that closes the modals
+var closeThis = document.getElementById("closeZ");
+
+// When the user clicks the button, open the modals
+pinBtn.onclick = function () {
+  pinModal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeThis.onclick = function () {
+  pinModal.style.display = "none";
+};
+
+// Close the modal by clicking outside the modal
+window.onclick = function (event) {
+  if (event.target == modal) {
+    pinModal.style.display = "none";
+  }
+};
+
 //Pin details post like
 const likeButton = document.querySelector("#like-button");
 let isLiked = false;
@@ -23,32 +50,97 @@ likeButton.addEventListener("click", () => {
 });
 
 ////
-//Pin details Share
-// Get the modal
-var pinModal = document.getElementById("sharePinModal");
 
-// Get the button that opens the modal
-var pinBtn = document.getElementById("sharePinBtn");
-
-// Get the <span> element that closes the modals
-var spanNew = document.getElementById("closeZ");
+//Catalogs for you pins share
+//Share 1
+var btn = document.getElementsByClassName("myPopupBtn")[0];
+var modal = document.getElementsByClassName("shareModal")[0];
+var closeThisNow = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modals
-pinBtn.onclick = function () {
-  pinModal.style.display = "block";
+btn.onclick = function () {
+  modal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modal
-spanNew.onclick = function () {
-  pinModal.style.display = "none";
+closeThisNow.onclick = function () {
+  modal.style.display = "none";
 };
 
-// Close the modal by clicking outside the modal
+// Close the modal
 window.onclick = function (event) {
   if (event.target == modal) {
-    pinModal.style.display = "none";
+    modal.style.display = "none";
   }
 };
+
+//Share 2
+var btn = document.getElementsByClassName("myPopupBtn")[1];
+var modal = document.getElementsByClassName("shareModal")[1];
+var closeThisNow = document.getElementsByClassName("close")[1];
+
+// When the user clicks the button, open the modals
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeThisNow.onclick = function () {
+  modal.style.display = "none";
+};
+
+// Close the modal
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+//Share 3
+var btn = document.getElementsByClassName("myPopupBtn")[2];
+var modal = document.getElementsByClassName("shareModal")[2];
+var closeThisNow = document.getElementsByClassName("close")[2];
+
+// When the user clicks the button, open the modals
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeThisNow.onclick = function () {
+  modal.style.display = "none";
+};
+
+// Close the modal
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+//Share 4
+var btn = document.getElementsByClassName("myPopupBtn")[3];
+var modal = document.getElementsByClassName("shareModal")[3];
+var closeThisNow = document.getElementsByClassName("close")[3];
+
+// When the user clicks the button, open the modals
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeThisNow.onclick = function () {
+  modal.style.display = "none";
+};
+
+// Close the modal
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+//Catalogs for you pins share
 ////
 //Signedin Users Content
 //Check signed in status on page
@@ -64,17 +156,21 @@ window.addEventListener("load", () => {
 
       // Display the content for signed-in users
       const signedInContent = document.getElementById("signedInContent");
+      const signedInContent2 = document.getElementById("signedInContent2");
       signedInContent.style.display = "block";
+      signedInContent2.style.display = "block";
     } catch (err) {
       // If there was an error decoding the token, assume the user is not signed in
       console.error("Error decoding JWT token:", err);
 
       // Don't display the content for signed-in users
       signedInContent.style.display = "none";
+      signedInContent2.style.display = "none";
     }
   } else {
     // Don't display the content for signed-in users
     signedInContent.style.display = "none";
+    signedInContent2.style.display = "none";
   }
 });
 ////
@@ -728,20 +824,19 @@ function readMore() {
   }
 }
 
-//More icons button
-function moreIcons() {
+function moreIcons5() {
   var dots = document.getElementById("dots");
-  var moreIcons = document.getElementById("more-icons");
-  var btnText = document.getElementById("myBtn");
+  var moreIcons5 = document.getElementById("more-iconsV");
+  var btnText = document.getElementById("myBtnV");
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
-    moreIcons.style.display = "none";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    moreIcons5.style.display = "none";
   } else {
     dots.style.display = "none";
     btnText.innerHTML = "";
-    moreIcons.style.display = "inline";
+    moreIcons5.style.display = "inline";
   }
 }
 
@@ -753,7 +848,7 @@ function moreIconsII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons2.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -770,7 +865,7 @@ function moreIconsIII() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons3.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -787,7 +882,7 @@ function moreIconsIV() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "&#9776;";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
     moreIcons4.style.display = "none";
   } else {
     dots.style.display = "none";

@@ -194,6 +194,15 @@ body {
     padding: 0.5rem 0.7rem;
   }
 
+  .wrapper {
+    width: 90%;
+    height: 100vh;
+  }
+
+  .content #go-live {
+    width: 45%;
+  }
+
   .caption {
     width: 100%;
   }
@@ -201,7 +210,6 @@ body {
   .caption-input {
     width: 70%;
   }
-
   .wrapper {
     width: 90%;
     height: 100vh;
@@ -213,8 +221,25 @@ body {
 }
 
 @media (max-width: 568px) {
+  body {
+    background: #021129;
+  }
+
   .wrapper {
-    width: 95%;
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .content {
+    border: none;
+    width: 98%;
+    padding: 0;
+    margin: 5px auto;
+  }
+
+  .caption {
+    width: 100%;  
   }
 
   .caption-input {

@@ -257,17 +257,21 @@ window.addEventListener("load", () => {
 
       // Display the content for signed-in users
       const signedInContent = document.getElementById("signedInContent");
+      const signedInContent2 = document.getElementById("signedInContent2");
       signedInContent.style.display = "block";
+      signedInContent2.style.display = "block";
     } catch (err) {
       // If there was an error decoding the token, assume the user is not signed in
       console.error("Error decoding JWT token:", err);
 
       // Don't display the content for signed-in users
       signedInContent.style.display = "none";
+      signedInContent2.style.display = "none";
     }
   } else {
     // Don't display the content for signed-in users
     signedInContent.style.display = "none";
+    signedInContent2.style.display = "none";
   }
 });
 ////

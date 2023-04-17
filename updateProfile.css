@@ -4,18 +4,9 @@ input {
 }
 
 body {
-  background-image: url("Images/wizkid2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.wrapper {
-  width: 50%;
-  margin: 1rem auto;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
   background: #021129;
-  box-shadow: 3px 3px 8px #000;
+  max-width: 100vw;
+  width: 100vw;
 }
 
 .top {
@@ -33,11 +24,14 @@ body {
 }
 
 .content {
+  background: #021129;
   margin: 1rem auto;
   border-radius: 0.5rem;
-  width: 85%;
+  width: 50%;
   padding: 1.5rem 0;
   border: solid 2px #fff;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
 }
 
 .banner {
@@ -139,22 +133,15 @@ label.uploadProfilePic input[type="file"] {
 
 /*MOBILE VIEW*/
 @media (max-width: 768px) {
-  .wrapper {
-    width: 80%;
+  .content {
+    width: 70%;
   }
 }
 
 @media (max-width: 568px) {
-  body {
-    background: #021129;
-  }
-
-  .wrapper {
-    width: 90%;
-    padding: 0.5rem;
-  }
-
   .content {
     width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
   }
 }

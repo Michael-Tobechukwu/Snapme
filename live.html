@@ -32,11 +32,14 @@
   <body>
     <div class="wrapper container">
       <h3 class="liveHeadline">Ongoing livestreams</h3>
-      <div id="liveBox">
+      <div class="liveBox">
         <div class="liveButton">
           <button>LIVE</button>
         </div>
         <div class="liveInfo">
+          <div id="live-content">
+            <p>Livestream content goes here...</p>
+          </div>
           <p id="liveTitle">Nana's daily broadcast episode 4</p>
           <div class="liveDetails">
             <div class="liveDetailsInner">
@@ -66,18 +69,29 @@
                 Follow +
               </button>
 
-              <button id="moreIcon">
-                <img src="Images/more icon.svg" />
+              <input
+                type="text"
+                name="userComment"
+                placeholder="Add your comment..."
+                id="userComment"
+              />
+              <button class="postComment" class="post-comment-btn">
+                <img src="Images/send.svg" alt="Send" />
               </button>
             </div>
           </div>
+          <ul id="comment-list"></ul>
+          <!--Comments display here-->
         </div>
       </div>
-      <div id="liveBox">
+      <div class="liveBox">
         <div class="liveButton">
           <button>LIVE</button>
         </div>
         <div class="liveInfo">
+          <div id="live-content">
+            
+          </div>
           <p id="liveTitle">BBNaija Titans episode 3</p>
           <div class="liveDetails">
             <div class="liveDetailsInner">
@@ -107,8 +121,14 @@
                 Follow +
               </button>
 
-              <button id="moreIcon">
-                <img src="Images/more icon.svg" />
+              <input
+                type="text"
+                name="userComment"
+                placeholder="Add your comment..."
+                id="userComment"
+              />
+              <button class="postComment" class="post-comment-btn">
+                <img src="Images/send.svg" alt="Send" />
               </button>
             </div>
           </div>

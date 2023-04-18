@@ -495,19 +495,6 @@ input:checked + .slider:before {
   width: 100%;
 }
 
-#more-icons,
-#more-iconsII,
-#more-iconsIII,
-#more-iconsIV,
-#more-iconsV,
-#more-iconsVI,
-#more-iconsVII,
-#more-iconsVIII {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  display: none;
-}
-
 #myBtn,
 #myBtnII,
 #myBtnIII,
@@ -520,28 +507,21 @@ input:checked + .slider:before {
   border: none;
   color: #fff;
 }
-/*
-#more-icons li,
-#more-iconsII li,
-#more-iconsIII li,
-#more-iconsIV li,
-#more-iconsV li,
-#more-iconsVI li,
-#more-iconsVII li,
-#more-iconsVIII li {
+
+.more-icons {
+  margin-top: 15px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: none;
+}
+
+.more-icons li {
   list-style: none;
   display: inline-block;
   margin-right: 0.6rem;
 }
-*/
-#more-icons li p,
-#more-iconsII li p,
-#more-iconsIII li p,
-#more-iconsIV li p,
-#more-iconsV li p,
-#more-iconsVI li p,
-#more-iconsVII li p,
-#more-iconsVIII li p {
+
+.more-icons li p {
   color: #fff;
 }
 
@@ -605,10 +585,13 @@ input:checked + .slider:before {
 }
 
 #image-cards .card .card-body {
-  padding: 5px 0 0 3px !important;
   display: flex !important;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  padding: 0;
+  margin-left: 0;
+  margin-top: 0;
+  height: 60px;
 }
 
 #image-cards .icons-list {
@@ -617,6 +600,7 @@ input:checked + .slider:before {
   align-items: center !important;
   padding-bottom: 0 !important;
   margin-left: -2rem;
+  margin-top: 5px;
 }
 
 #image-cards .icons-list li {
@@ -626,6 +610,10 @@ input:checked + .slider:before {
 
 #image-cards .icons-list li button:hover {
   border: none !important;
+}
+
+.commentBox {
+  display: none;
 }
 
 .username span img {
@@ -838,14 +826,10 @@ input:checked + .slider:before {
     font-size: 17px;
   }
 
-  .more-icons {
-    margin-right: 10px;
-  }
-
-  .more-icons ul li {
+  .more-icons li {
+    list-style: none;
     display: inline-block;
-    list-style-type: none;
-    margin-left: 5px;
+    margin-right: 0.6rem;
   }
 
   .mobileView {

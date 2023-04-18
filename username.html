@@ -1,552 +1,690 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snapme || @azizymakim</title>
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
-    <link rel="stylesheet" href="username.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    />
-    <script
-      type="text/JavaScript"
-      src=" https://MomentJS.com/downloads/moment.js"
-    ></script>
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #021129 !important;
+}
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-    />
-    <link rel="shortcut icon" href="Snapme logo.png" type="image/x-icon" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <div class="wrapper container">
-      <div class="content">
-        <div class="main-logo">
-          <a href="index.html"><img src="Images/white logo.png" /></a>
-        </div>
+.content {
+  width: 85%;
+  margin: 0.5rem auto;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
 
-        <div class="top">
-          <div class="backArrow" onclick="window.location='index.html'">
-            <i class="fa-solid fa-arrow-left-long"></i>
-          </div>
+.main-logo {
+  margin: 1rem auto;
+  width: 40%;
+}
 
-          <div class="logout">
-            <button onclick="logOut()" id="logOut">
-              <i class="fa-solid fa-power-off"></i>
-            </button>
-          </div>
-        </div>
+.main-logo img {
+  width: 100%;
+}
 
-        <div id="profile-card">
-          <div class="banner">
-            <img src="Images/cover photo.jpg" alt="" />
-          </div>
-          <div class="userDetails">
-            <div class="userInfo">
-              <img src="Images/azizy.png" class="profilePic" />
-              <div class="userInfoInner">
-                <div class="userNameBadge">
-                  <h3>azizymakim</h3>
-                  <img id="subscribed-badge" src="Images/verified.svg" />
-                </div>
-                <p>Azizy Makim</p>
-              </div>
-            </div>
+.backArrow i {
+  transition: ease 0.3s;
+}
 
-            <div class="userButtons">
-              <button id="follow-toggle">Follow +</button>
+.backArrow i:hover {
+  cursor: pointer;
+  color: #ba00ba;
+}
 
-              <button
-                id="signedInContent"
-                onclick="window.location='settings.html'"
-                class="editButton"
-              >
-                Account Settings
-              </button>
-            </div>
-          </div>
+.topMobile,
+.mobileFollow {
+  display: none;
+}
 
-          <ul class="user-List">
-            <li>Musician</li>
-            <li>United Kingdom</li>
-            <li>Followers: 7.5k</li>
-            <li>Following: 3.1k</li>
-          </ul>
+.fa-arrow-left-long {
+  color: #fff;
+  font-size: 2rem;
+}
 
-          <div class="userTabs" id="">
-            <button id="CataloguedBtn" onclick="myPosts()">Cataloged</button>
-            <button onclick="likedPosts()">Liked</button>
-            <button onclick="savedPosts()">Saved</button>
-            <button onclick="followedPosts()">Followed</button>
-          </div>
+#profile-card {
+  margin: 1rem auto;
+  width: 100%;
+  background: #031738;
+  box-shadow: 3px 3px 8px #031738;
+  border-radius: 1rem;
+  border: 2px solid #fff;
+  position: relative;
+}
 
-          <div id="mobileUserTabs">
-            <div id="swipe-container">
-              <div class="swipe-item">
-                <button onclick="myPosts()" id="CataloguedBtn">
-                  Cataloged
-                </button>
-              </div>
+.banner {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  height: 250px;
+  width: 100%;
+}
 
-              <div class="swipe-item">
-                <button onclick="likedPosts()" class="">Liked</button>
-              </div>
+.banner img {
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  width: 100%;
+  height: 250px;
+}
 
-              <div class="swipe-item">
-                <button onclick="savedPosts()" class="">Saved</button>
-              </div>
+.banner #bannerImage {
+  display: none;
+}
 
-              <div class="swipe-item">
-                <button onclick="followedPosts()" class="">Followed</button>
-              </div>
-            </div>
-          </div>
-        </div>
+.top {
+  margin: 3rem auto 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
 
-        <div id="image-cards" class="container-fluid text-center">
-          <div class="row myrow">
-            <div class="col">
-              <div class="card">
-                <div class="post-img">
-                  <img
-                    src="Images/ruger 7.jpg"
-                    class="card-img-top"
-                    onClick="window.location = 'pin-details.html'"
-                  />
-                  <a
-                    class="text-white"
-                    onclick="window.location='/username.html'"
-                  >
-                    <img src="Images/azizy.png" />
-                    azizymakim
-                  </a>
+.logout button {
+  border: none;
+  color: #fff;
+  background: #ba00ba;
+  border-radius: 50%;
+}
 
-                  <h4>The Jonzing World Imprint</h4>
-                  <p class="timePinned">
-                    Posted
-                    <span id="timePosted"></span>
-                  </p>
-                </div>
+.userDetails {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 95%;
+  margin-top: 1rem;
+  gap: 1rem;
+}
 
-                <div class="card-body">
-                  <ul class="card-title icons-list">
-                    <li>
-                      <button>
-                        <i class="fa-solid fa-eye"></i>
-                        <p class="text-white">2.4k</p>
-                      </button>
-                    </li>
-                    <li class="likeListItem">
-                      <button onclick="likePost()" class="like-button">
-                        <i class="far fa-heart" style="color: #fff"></i>
-                      </button>
-                      <p class="text-white">5k</p>
-                    </li>
-                    <li>
-                      <button onclick="commentOnPost()">
-                        <i class="fa-solid fa-comment"></i>
-                        <p class="text-white">396</p>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="sharePopupBtn">
-                        <i class="fa-solid fa-share"></i>
-                        <p class="text-white">123</p>
-                      </button>
-                    </li>
+.userDetails button {
+  background: #ba00ba;
+  color: #fff;
+  border: none;
+  border-radius: 3rem;
+  padding: 0.4rem 2rem;
+  font-weight: 500;
+}
 
-                    <!-- The Modal -->
-                    <div class="shareUserModal" class="modal">
-                      <!-- Modal content -->
-                      <div class="modalContent mobileModalContent">
-                        <span class="closeX">&times;</span>
-                        <p>Share this post</p>
-                        <div class="share_popup">
-                          <a
-                            class="facebookShare"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                            target="_blank"
-                            ><img src="Images/facebook new.svg"
-                          /></a>
-                          <a
-                            class=""
-                            href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                            data-size="large"
-                            target="_blank"
-                          >
-                            <img src="Images/twitter new.svg" alt="Twitter"
-                          /></a>
+.userDetails button:hover {
+  background: #770477;
+}
 
-                          <a
-                            class="whatsappShare"
-                            href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                            target="_blank"
-                          >
-                            <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                          </a>
+.userInfo {
+  display: flex;
+  gap: 0.5rem;
+}
 
-                          <a
-                            class="telegramShare"
-                            href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                            target="_blank"
-                          >
-                            <img
-                              src="Images/telegram new.svg"
-                              alt="Telegram share"
-                            />
-                          </a>
+.userInfo .profilePic {
+  position: absolute;
+  left: 2rem;
+  top: 210px;
+  width: 100px;
+}
 
-                          <a
-                            class="linkedinShare"
-                            href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                            target="_blank"
-                          >
-                            <img src="Images/linkedin.svg" alt="Linkedin" />
-                          </a>
+.userInfoInner {
+  line-height: 0.7rem;
+  position: absolute;
+  left: 9rem;
+  top: 250px;
+}
 
-                          <a
-                            class="linkedinShare"
-                            href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                            target="_blank"
-                          >
-                            <img src="Images/reddit.svg" alt="Reddit" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </ul>
-                  <div class="other-icons">
-                    <div>
-                      <span id="dots"></span>
-                      <div id="more-icons">
-                        <ul>
-                          <li onclick="savePost()">
-                            <i class="fa-solid fa-bookmark"></i>
-                            <p>197</p>
-                          </li>
-                          <li onclick="downloadPost()">
-                            <i class="fa-solid fa-download"></i>
-                            <p>29</p>
-                          </li>
-                          <li onclick="deletePost()">
-                            <i class="fa-solid fa-trash"></i>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <button onclick="moreIcons()" id="myBtn">
-                      <img src="Images/more-icon.svg" width="20px" />
-                    </button>
-                  </div>
-                </div>
-                <!--card end-->
-              </div>
-            </div>
-            <div class="col-5">
-              <div class="card">
-                <div class="post-img">
-                  <img src="Images/liquorose 4.jpg" class="card-img-top" />
-                  <a
-                    class="text-white"
-                    onclick="window.location='username.html'"
-                  >
-                    <img src="Images/azizy.png" /> nkemimen
-                  </a>
+.userNameBadge {
+  display: flex;
+  align-items: center;
+}
 
-                  <h4>Liquorose | Snapme Catalog</h4>
-                  <p class="timePinned">
-                    Posted
-                    <span class="timePosted"></span>
-                  </p>
-                </div>
+.userNameBadge img {
+  width: 20px !important;
+  position: absolute;
+  top: 7px;
+  left: 160px;
+}
 
-                <div class="card-body">
-                  <ul class="card-title icons-list">
-                    <li>
-                      <button>
-                        <i class="fa-solid fa-eye"></i>
-                        <p class="text-white">2.4k</p>
-                      </button>
-                    </li>
-                    <li class="likeListItem">
-                      <button onclick="likePost()" class="like-button">
-                        <i class="far fa-heart" style="color: #fff"></i>
-                      </button>
-                      <p class="text-white">5k</p>
-                    </li>
-                    <li>
-                      <button onclick="commentOnPost()">
-                        <i class="fa-solid fa-comment"></i>
-                        <p class="text-white">396</p>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="sharePopupBtn">
-                        <i class="fa-solid fa-share"></i>
-                        <p class="text-white">123</p>
-                      </button>
-                    </li>
-                    <!-- The Modal -->
-                    <div class="shareUserModal" class="modal">
-                      <!-- Modal content -->
-                      <div class="modalContent mobileModalContent">
-                        <span class="closeX">&times;</span>
-                        <p>Share this post</p>
-                        <div class="share_popup">
-                          <a
-                            class="facebookShare"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                            target="_blank"
-                            ><img src="Images/facebook new.svg"
-                          /></a>
-                          <a
-                            class=""
-                            href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                            data-size="large"
-                            target="_blank"
-                          >
-                            <img src="Images/twitter new.svg" alt="Twitter"
-                          /></a>
+.userInfoInner h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fff;
+}
 
-                          <a
-                            class="whatsappShare"
-                            href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                            target="_blank"
-                          >
-                            <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                          </a>
+.userInfoInner p {
+  color: #fff;
+  font-size: 16px;
+}
 
-                          <a
-                            class="telegramShare"
-                            href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                            target="_blank"
-                          >
-                            <img
-                              src="Images/telegram new.svg"
-                              alt="Telegram share"
-                            />
-                          </a>
+.follow-button {
+  margin-right: 20px;
+}
 
-                          <a
-                            class="linkedinShare"
-                            href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                            target="_blank"
-                          >
-                            <img src="Images/linkedin.svg" alt="Linkedin" />
-                          </a>
+.user-List {
+  margin-left: 3.4rem;
+  margin-top: 2rem;
+}
 
-                          <a
-                            class="linkedinShare"
-                            href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                            target="_blank"
-                          >
-                            <img src="Images/reddit.svg" alt="Reddit" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </ul>
-                  <div class="other-icons">
-                    <div>
-                      <span id="dots"></span>
-                      <div id="more-iconsII">
-                        <ul>
-                          <li onclick="savePost()">
-                            <i class="fa-solid fa-bookmark"></i>
-                            <p>197</p>
-                          </li>
-                          <li onclick="downloadPost()">
-                            <i class="fa-solid fa-download"></i>
-                            <p>29</p>
-                          </li>
-                          <li onclick="deletePost()">
-                            <i class="fa-solid fa-trash"></i>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <button onClick="moreIconsII()" id="myBtnII">
-                      <img src="Images/more-icon.svg" width="20px" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <div class="post-img">
-                  <img src="Images/asake 4.jpeg" class="card-img-top" />
-                  <a
-                    class="text-white"
-                    onclick="window.location='username.html'"
-                  >
-                    <img src="Images/azizy.png" alt="profile pic" /> thomasbarc
-                  </a>
+.user-List li {
+  list-style: none;
+  color: #fff;
+  font-size: 1rem;
+}
 
-                  <h4>Asake | Snapme Catalog</h4>
+.userTabs {
+  margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 
-                  <p class="timePinned">
-                    Posted
-                    <span class="timePosted"></span>
-                  </p>
-                </div>
+.userTabs button {
+  color: #000;
+  background: #fff;
+  border-radius: 3rem;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.4s;
+  font-weight: 500;
+  border: none;
+}
+/*
+.userTabs button:hover {
+  background: #ba00ba;
+  color: #fff;
+  cursor: pointer;
+}
+*/
 
-                <div class="card-body">
-                  <ul class="card-title icons-list">
-                    <li>
-                      <button>
-                        <i class="fa-solid fa-eye"></i>
-                        <p class="text-white">2.4k</p>
-                      </button>
-                    </li>
-                    <li class="likeListItem">
-                      <button onclick="likePost()" class="like-button">
-                        <i class="far fa-heart" style="color: #fff"></i>
-                      </button>
-                      <p class="text-white">5k</p>
-                    </li>
-                    <li>
-                      <button onclick="commentOnPost()">
-                        <i class="fa-solid fa-comment"></i>
-                        <p class="text-white">396</p>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="sharePopupBtn">
-                        <i class="fa-solid fa-share"></i>
-                        <p class="text-white">123</p>
-                      </button>
-                    </li>
+.userTabs button:focus {
+  background: #ba00ba;
+}
 
-                    <!-- The Modal -->
-                    <div class="shareUserModal" class="modal">
-                      <!-- Modal content -->
-                      <div class="modalContent mobileModalContent">
-                        <span class="closeX">&times;</span>
-                        <p>Share this post</p>
-                        <div class="share_popup">
-                          <a
-                            class="facebookShare"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                            target="_blank"
-                            ><img src="Images/facebook new.svg"
-                          /></a>
-                          <a
-                            class="myTwitterShare"
-                            href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                            data-size="large"
-                            target="_blank"
-                          >
-                            <img src="Images/twitter new.svg" alt="Twitter"
-                          /></a>
+#swipe-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+  margin: 1rem;
+}
 
-                          <a
-                            class="whatsappShare"
-                            href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                            target="_blank"
-                          >
-                            <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                          </a>
+.swipe-item {
+  flex: 0 0 auto;
+  transition: 0.3s ease;
+  font-size: 13px;
+  color: #fff;
+  width: max-content;
+}
 
-                          <a
-                            class="telegramShare"
-                            href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                            target="_blank"
-                          >
-                            <img
-                              src="Images/telegram new.svg"
-                              alt="Telegram share"
-                            />
-                          </a>
+.swipe-item button {
+  color: #fff;
+  background: #021129;
+  border: white solid 2px;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem !important;
+  font-size: 14px;
+}
 
-                          <a
-                            class="linkedinShare"
-                            href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                            target="_blank"
-                          >
-                            <img src="Images/linkedin.svg" alt="Linkedin" />
-                          </a>
+.card-body button {
+  background: none;
+  border: none;
+}
 
-                          <a
-                            class="linkedinShare"
-                            href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                            target="_blank"
-                          >
-                            <img src="Images/reddit.svg" alt="Reddit" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </ul>
-                  <div class="other-icons">
-                    <div>
-                      <span id="dots"></span>
-                      <div id="more-iconsIII">
-                        <ul>
-                          <li onclick="savePost()">
-                            <i class="fa-solid fa-bookmark"></i>
-                            <p>197</p>
-                          </li>
-                          <li onclick="downloadPost()">
-                            <i class="fa-solid fa-download"></i>
-                            <p>29</p>
-                          </li>
-                          <li onclick="deletePost()">
-                            <i class="fa-solid fa-trash"></i>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <button onclick="moreIconsIII()" id="myBtnIII">
-                      <img src="Images/more-icon.svg" width="20px" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+.fa-solid,
+.fa-bookmark {
+  color: #fff;
+  background: none;
+}
 
-      <!--wrapper end-->
-    </div>
+#myBtn,
+#myBtnII,
+#myBtnIII,
+#myBtnIV,
+#myBtnV,
+#myBtnVI {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+}
 
-    <script src="user.js"></script>
-    <script src="fetchAPI.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker
-            .register("/service-worker.js")
-            .then(function (registration) {
-              console.log("Service worker registered:", registration);
-            })
-            .catch(function (error) {
-              console.log("Service worker registration failed:", error);
-            });
-        });
-      }
-    </script>
-  </body>
-</html>
+#more-icons li,
+#more-iconsII li,
+#more-iconsIII li,
+#more-iconsIV li,
+#more-iconsV li,
+#more-iconsVI li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.6rem;
+}
+
+#more-icons li p,
+#more-iconsII li p,
+#more-iconsIII li p,
+#more-iconsIV li p,
+#more-iconsV li p,
+#more-iconsVI li p {
+  color: #fff;
+}
+
+.other-icons {
+  display: block;
+}
+
+#image-cards {
+  justify-content: space-between !important;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+#image-cards .card {
+  background: #ba00ba;
+  border-radius: 0.5rem !important;
+  margin-bottom: 2rem;
+  transition: ease 0.4s;
+  position: relative;
+}
+
+#image-cards .card:hover {
+  cursor: pointer;
+  background: #5a015a;
+}
+
+#image-cards .card .post-img {
+  position: relative !important;
+  text-align: left;
+}
+
+#image-cards .card .post-img .userDetails a {
+  text-decoration: none;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  color: #fff;
+}
+
+#image-cards .card .post-img p {
+  position: absolute;
+  bottom: 5rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 0 !important;
+}
+
+#image-cards .card .post-img h4 {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+}
+
+#image-cards .card img {
+  /*Pin image or video*/
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+#image-cards .card .card-body {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  margin-left: -25px;
+  margin-top: -10px;
+  height: 50px;
+}
+
+#image-cards .icons-list {
+  display: flex;
+  justify-content: start;
+  margin-left: 0 !important;
+}
+
+#image-cards .icons-list li {
+  list-style: none;
+}
+
+#image-cards .other-icons {
+  padding: 0;
+}
+
+#image-cards .more-icons {
+  padding: 0;
+  margin-left: 0 !important;
+  display: none;
+}
+
+/* The Modal (background) */
+.shareUserModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+/* The Close Button */
+.closeX {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeX:hover,
+.closeX:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalContent p {
+  margin-bottom: 1rem;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+}
+
+.share_popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.share_popup a {
+  width: 25%;
+  color: #000;
+}
+
+.share_popup img {
+  width: 100%;
+}
+
+.timePinned {
+  font-size: 13px;
+  color: #fff;
+  padding: 0.2rem 0.3rem;
+  background: #021129;
+}
+
+.likeListItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#mobileUserTabs {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .modalContent {
+    width: 50%;
+  }
+}
+
+/*MOBILE VIEWS*/
+
+@media (max-width: 768px) {
+  .content {
+    width: 95%;
+  }
+
+  .userDetails {
+    width: 100%;
+    margin-top: 2.5rem;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+
+  .userInfo .profilePic {
+    width: 100px;
+  }
+
+  .userInfoInner h3 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .userInfoInner p {
+    font-size: 13px;
+  }
+
+  .mobileFollow {
+    padding: 0.5rem 1.2rem !important;
+    display: block;
+  }
+
+  .topMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .user-List {
+    margin-left: 1rem;
+  }
+
+  .userTabs {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .userTabs p {
+    padding: 0.5rem 1.3rem;
+  }
+
+  #image-cards,
+  .myrow {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .col,
+  .col-5,
+  .card {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .post-img {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .userNameBadge img {
+    left: 130px;
+  }
+
+  .modalContent {
+    width: 70%;
+  }
+}
+
+@media (max-width: 568px) {
+  .container {
+    padding: 0 !important;
+  }
+
+  .content {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .main-logo {
+    margin-bottom: 10px;
+  }
+
+  .top {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  #mobileUserTabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem auto 1rem auto;
+  }
+
+  #mobileUserTabs button {
+    border: 2px solid #fff;
+    background: #031738;
+    padding: 0.4rem 0.8rem;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0.5rem;
+  }
+
+  #mobileUserTabs button:focus {
+    background: #fff;
+    color: #021129;
+    font-weight: 600;
+  }
+
+  .userTabs {
+    display: none;
+  }
+
+  #profile-card {
+    box-shadow: none;
+    border-radius: 1rem;
+    border: none;
+    position: relative;
+    width: 100%;
+  }
+
+  .banner {
+    height: 25vh;
+  }
+
+  .banner img {
+    height: 100%;
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 135px;
+    left: 10px;
+  }
+
+  .userInfo .profilePic {
+    width: 50px;
+    position: static;
+  }
+
+  .userInfoInner {
+    position: static;
+    line-height: 0.7rem;
+    margin-top: 33px;
+  }
+
+  .userDetails {
+    flex-wrap: wrap;
+    /*    flex-direction: column;*/
+  }
+
+  .userNameBadge {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .userNameBadge img {
+    left: 190px;
+    top: 35px;
+  }
+
+  .userButtons {
+    /*follow and account settings buttons*/
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .user-List {
+    /*details about user*/
+    margin-top: 10px !important;
+  }
+
+  #swipe-container {
+    width: 98%;
+  }
+
+  .swipe-item button {
+    color: #fff;
+    background: #021129;
+    border: white solid 2px;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem !important;
+    font-size: 14px;
+  }
+
+  #image-cards .card .post-img h4 {
+    bottom: 35px;
+  }
+
+  #image-cards .card .card-body {
+    margin-left: -25px;
+    margin-top: -15px;
+    height: 50px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .mobileFollow {
+    padding: 0.4rem 0.4rem !important;
+    margin-left: 25px;
+    margin-top: 60px;
+    font-size: 0.8rem;
+  }
+
+  .userDetails {
+    width: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .content {
+    padding: 0;
+  }
+
+  .userDetails {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .userInfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 108px;
+    left: 10px;
+  }
+}

@@ -1,8 +1,8 @@
+//Follow/unfollow user
 let isFollowing = false;
 
 function toggleFollow() {
   const followBtn = document.getElementById("followBtn");
-  const followBtn2 = document.getElementById("followBtn2");
 
   if (isFollowing) {
     // unfollow logic
@@ -88,60 +88,66 @@ function thisUser() {
 }
 thisUser();
 
-/*
-//Follow/unfollow this User
-const followButton = document.getElementById("followButton");
-let isFollowing = false;
+//Comment on livestream
+function postLivestreamComment(commentText, authToken) {
+  const endpointUrl = "https://api.example.com/livestreams/comments";
 
-followButton.addEventListener("click", () => {
-  if (isFollowing) {
-    unfollowUser();
-  } else {
-    followUser();
-  }
-});
-
-//Follow user
-function followUser() {
-  fetch("https://api.snapme-ng.com/api/v1/:username/follow", {
+  // Retrieve the livestream ID from the server
+  fetch("https://api.example.com/livestreams/generateId", {
     method: "POST",
-    body: JSON.stringify({ userId: "123" }),
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + authToken,
     },
   })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      followButton.innerHTML = "Unfollow";
-      followButton.classList.add("Following");
-      isFollowing = true;
+      return response.json();
     })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+    .then((livestream) => {
+      // Use the retrieved livestream ID to create a new comment
+      const commentData = {
+        text: commentText,
+        livestreamId: livestream.id,
+        authToken: authToken,
+      };
 
-//Unfollow user
-function unfollowUser() {
-  fetch("https://api.snapme-ng.com/api/v1/:username/unfollow", {
-    method: "DELETE",
-    body: JSON.stringify({ userId: "123" }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+      // Make the POST request to create a new comment
+      return fetch(endpointUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + commentData.authToken,
+        },
+        body: JSON.stringify({
+          text: commentData.text,
+          livestream_id: commentData.livestreamId,
+        }),
+      });
+    })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      followButton.innerHTML = "Follow";
-      followButton.classList.remove("following");
-      isFollowing = false;
+      return response.json(); // Parse the response body as JSON
+    })
+    .then((comment) => {
+      // Add the new comment to the UI
+      const commentList = document.querySelector("#comment-list");
+      const commentItem = document.createElement("li");
+      commentItem.textContent = comment.text;
+      commentList.appendChild(commentItem);
     })
     .catch((error) => {
-      console.error(error);
+      console.error("Error creating comment:", error);
     });
 }
-*/
+const postCommentButton = document.querySelector(".post-comment-btn");
+postCommentButton.addEventListener("click", function () {
+  const commentInput = document.querySelector("#comment-input");
+  const commentText = commentInput.value;
+  const authToken = "my-auth-token";
+  postLivestreamComment(commentText, authToken);
+});

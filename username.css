@@ -152,7 +152,7 @@ body {
 
 .user-List {
   margin-left: 3.4rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .user-List li {
@@ -205,9 +205,9 @@ body {
   color: #fff;
   background: #021129;
   border: white solid 2px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 1rem;
   border-radius: 2rem !important;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .card-body button {
@@ -551,10 +551,15 @@ body {
 }
 
 @media (max-width: 568px) {
+  .container {
+    padding: 0 !important;
+  }
+
   .content {
     margin: 0 auto;
     padding: 0;
     width: 100%;
+    overflow: hidden;
   }
 
   .main-logo {
@@ -563,7 +568,7 @@ body {
 
   .top {
     margin-top: 20px;
-    width: 97%;
+    width: 100%;
   }
 
   #mobileUserTabs {
@@ -591,8 +596,8 @@ body {
     box-shadow: none;
     border-radius: 1rem;
     border: none;
-    margin: 0 auto;
     position: relative;
+    width: 100%;
   }
 
   .banner {
@@ -649,6 +654,23 @@ body {
     justify-content: center;
   }
 
+  .user-List {
+    margin-top: 10px !important;
+  }
+
+  #swipe-container {
+    width: 98%;
+  }
+
+  .swipe-item button {
+    color: #fff;
+    background: #021129;
+    border: white solid 2px;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem !important;
+    font-size: 14px;
+  }
+
   /* Modal Content */
 }
 
@@ -681,7 +703,7 @@ body {
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 110px;
+    top: 108px;
     left: 10px;
   }
 }

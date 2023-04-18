@@ -35,16 +35,17 @@ body {
 .content {
   width: 100%;
   margin: 1rem auto;
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-radius: 1rem;
   background: #021129;
   border: 2px solid #fff;
 }
 
-.content .live {
+.live {
   display: flex;
   justify-content: right;
 }
+
 .live button {
   border-radius: 0.5rem;
   background: #ba00ba;
@@ -99,42 +100,43 @@ body {
   display: block;
   padding: 0.5rem;
   border-radius: 0.3rem;
-  border: none;
+  border: 2px solid #fff;
   margin: 0.3rem 0;
   width: 100%;
   font-size: 12px;
+  background: #021129;
+  color: #fff;
 }
 
 .caption-input textarea {
   padding: 0.5rem;
   border-radius: 0.3rem;
-  border: none;
+  border: 2px solid #fff;
   margin: 0.3rem 0;
   width: 100%;
   font-size: 12px;
+  background: #021129;
+  color: #fff;
 }
 
 .content #go-live {
   margin: 0.5rem 0;
-  background: #021129;
-  border: 2px solid #fff;
+  background: #fff;
+  border: none;
   width: 35%;
   border-radius: 0.3rem;
-  color: #fff;
+  color: #021129;
   transition: 0.4s ease;
+  font-weight: 600;
+  padding: 5px;
 }
 
 .content #go-live:hover {
   background: #ba00ba;
-  border: 2px solid #ba00ba;
 }
 
 .content button img {
-  transition: 0.4s ease;
-}
-
-.content button img:hover {
-  transform: rotateY(45deg);
+  transform: rotate(45deg);
 }
 
 .user {
@@ -189,18 +191,14 @@ body {
 }
 
 @media (max-width: 768px) {
-  .content {
-    width: 100%;
-    padding: 0.5rem 0.7rem;
-  }
-
   .wrapper {
     width: 90%;
     height: 100vh;
   }
 
-  .content #go-live {
-    width: 45%;
+  .content {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
   }
 
   .caption {
@@ -209,14 +207,6 @@ body {
 
   .caption-input {
     width: 70%;
-  }
-  .wrapper {
-    width: 90%;
-    height: 100vh;
-  }
-
-  .content #go-live {
-    width: 45%;
   }
 }
 
@@ -239,7 +229,7 @@ body {
   }
 
   .caption {
-    width: 100%;  
+    width: 100%;
   }
 
   .caption-input {

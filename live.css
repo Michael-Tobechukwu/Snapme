@@ -102,7 +102,7 @@ body {
   width: 98%;
 }
 
-.liveDetailsInner #userComment {
+.liveDetailsInner .userComment {
   /*input*/
   padding: 10px;
   color: #000;
@@ -201,7 +201,7 @@ body {
     width: 100%;
   }
 
-  .liveDetailsInner #userComment {
+  .liveDetailsInner .userComment {
     /*input*/
     padding: 5px 10px;
     color: #000;

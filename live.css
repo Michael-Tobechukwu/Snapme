@@ -8,21 +8,21 @@ body {
 }
 
 .liveHeadline {
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   color: #fff;
   text-align: center;
 }
 
 .wrapper {
   box-shadow: 3px 3px 8px #000;
-  padding: 1rem 1rem;
+  padding: 0.5rem;
   background: #021129;
   width: 45%;
   border-radius: 0.5rem;
 }
 
-#liveBox {
-  margin: 3rem auto 1rem auto;
+.liveBox {
+  margin: 1rem auto;
   padding: 0.7rem 2rem;
   border: 2px solid #fff;
   border-radius: 0.5rem;
@@ -59,8 +59,12 @@ body {
 }
 
 .liveInfo {
-  margin-top: 8rem;
+  margin-top: 0;
   color: #fff;
+}
+
+#live-content {
+  height: 55vh;
 }
 
 .liveInfo p {
@@ -95,12 +99,32 @@ body {
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.3rem;
-  width: 95%;
+  width: 98%;
 }
 
-.liveDetailsInner img,
+.liveDetailsInner #userComment {
+  padding: 10px;
+  color: #000;
+  font-size: 13px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 2rem;
+}
+
+.liveDetailsInner button,
 .liveDetailsInner p {
   cursor: pointer;
+}
+
+.liveDetailsInner .postComment {
+  width: 30px;
+  background: #021129;
+  border: none;
+}
+
+.liveDetailsInner .postComment img {
+  width: 30px;
+  transform: rotate(47deg);
 }
 
 .liveText {
@@ -155,6 +179,30 @@ body {
 
 @media (max-width: 568px) {
   .wrapper {
-    width: 95%;
+    width: 100%;
+    box-shadow: none;
+    padding: 5px;
+  }
+
+  .liveHeadline {
+    margin: 0.1rem auto;
+  }
+
+  .liveBox {
+    margin: 0.5rem auto 2rem auto;
+    padding: 5px;
+    border: none;
+    border-radius: 0.5rem;
+    width: 100%;
+  }
+
+  .liveDetailsInner #userComment {
+    padding: 5px 10px;
+    color: #000;
+    font-size: 12px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 2rem;
+    width: 80%;
   }
 }

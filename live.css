@@ -170,11 +170,12 @@ body {
 
 @media (max-width: 768px) {
   .wrapper {
-    width: 80%;
+    width: 90%;
   }
 
   #liveBox {
     padding: 0.7rem 1rem;
+    width: 100%;
   }
 
   .liveDetailsInner {

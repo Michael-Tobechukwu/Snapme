@@ -1349,7 +1349,7 @@ speedSelect2.addEventListener("change", () => {
   video2.playbackRate = speedSelect2.value;
 });
 //Video controls 2 end
-
+////
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
 
@@ -1371,6 +1371,50 @@ swipeContainer.addEventListener("touchend", () => {
     swipeContainer.scrollBy({ left: -150, behavior: "smooth" });
   }
 });
+////
+
+var previousButton;
+
+var buttons = document.querySelectorAll(".swipe-item button");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    changeButtonColor(this);
+  });
+}
+
+function changeButtonColor(clickedButton) {
+  if (previousButton) {
+    previousButton.style.backgroundColor = "#021129";
+
+  }
+  clickedButton.style.backgroundColor = "#bd74bd";
+
+  previousButton = clickedButton;
+}
+
+/*const musicBtn = document.getElementById("followPopup");
+
+const followButton1 = document.getElementsByClassName("followPopup")[0];
+const followButton2 = document.getElementsByClassName("followPopup")[1];
+const followButton3 = document.getElementsByClassName("followPopup")[2];
+const followButton4 = document.getElementsByClassName("followPopup")[3];
+const followButton5 = document.getElementsByClassName("followPopup")[4];
+const followButton6 = document.getElementsByClassName("followPopup")[5];
+const followButton7 = document.getElementsByClassName("followPopup")[6];
+
+musicBtn.addEventListener("click", () =>
+  (musicBtn.style.backgroundColor = "#bd74bd")(
+    (musicBtn.style.border = "#bd74bd")
+  )
+);
+
+followButton1.addEventListener("click", () =>
+  (followButton1.style.backgroundColor = "#bd74bd")(
+    (followButton1.style.border = "#bd74bd")
+  )
+);*/
+
+////
 //Show/hide top menu on scroll
 var pastScrollpos = window.pageYOffset;
 window.onscroll = function () {

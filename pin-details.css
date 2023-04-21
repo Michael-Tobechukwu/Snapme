@@ -384,12 +384,14 @@ input:checked + .slider:before {
 
 .content-top .userDetails img {
   width: 50px;
+  cursor: pointer;
 }
 
 .content-top .userDetails p {
   font-size: 20px;
   color: #fff;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 .content-top .userDetails span {
@@ -400,14 +402,15 @@ input:checked + .slider:before {
   display: none;
 }
 
-#followUserBtn {
+#followUserButton {
+  /*follow button on desktop*/
   background: #ba00ba;
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border-radius: 2rem;
 }
 
-.post-card .content-top #followUserBtn:hover {
+#followUserBtn:hover {
   background: #910791;
 }
 
@@ -580,7 +583,7 @@ button {
 
 .form-input-button input {
   width: 65% !important;
-  border-radius: 0.5rem !important;
+  border-radius: 2rem !important;
   border: none;
 }
 
@@ -709,7 +712,7 @@ button {
 
 #postDate {
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .suggestedHeading {
@@ -738,7 +741,11 @@ button {
 }
 
 #suggestedCatalogs .card .card-body {
-  padding-bottom: 0 !important;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 60px;
+  padding: 5px 0 0 10px !important;
 }
 
 #suggestedCatalogs .card .post-img {
@@ -784,7 +791,8 @@ button {
   display: flex;
   justify-content: start;
   align-items: center !important;
-  margin-left: -2rem !important;
+  margin-left: 0 !important;
+  padding: 0;
 }
 
 #suggestedCatalogs .icons-list li {
@@ -796,12 +804,6 @@ button {
   border: none !important;
 }
 
-.myrow .card-body {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
 .verified-badge img {
   width: 20px !important;
 }
@@ -810,12 +812,7 @@ button {
   margin: 0 0.3rem;
 }
 
-#more-icons,
-#more-iconsII,
-#more-iconsIII,
-#more-iconsIV,
-#more-iconsV,
-#more-iconsVI {
+.more-icons {
   margin-bottom: 0;
   padding-bottom: 0;
   display: none;
@@ -833,23 +830,13 @@ button {
   font-size: 1.4rem;
 }
 
-#more-icons li,
-#more-iconsII li,
-#more-iconsIII li,
-#more-iconsIV li,
-#more-iconsV li,
-#more-iconsVI li {
+.more-icons li {
   list-style: none;
   display: inline-block;
   margin-right: 0.6rem;
 }
 
-#more-icons li p,
-#more-iconsII li p,
-#more-iconsIII li p,
-#more-iconsIV li p,
-#more-iconsV li p,
-#more-iconsVI li p {
+.more-icons li p {
   color: #fff;
 }
 
@@ -959,6 +946,12 @@ button {
 }
 
 @media (max-width: 568px) {
+  .wrapper {
+    padding: 5px !important;
+    width: 100%;
+    overflow: hidden;
+  }
+
   .navmenu .navbuttons,
   .tabs {
     display: none;
@@ -1090,7 +1083,7 @@ button {
   }
 
   .post-card {
-    width: 98%;
+    width: 100%;
     margin: 0;
     box-shadow: none;
     margin-bottom: 0 !important;
@@ -1137,8 +1130,9 @@ button {
 
   .content-top-mobile .userDetails p {
     color: #fff;
-    font-size: 21px;
+    font-size: 16px;
     margin-top: 10px;
+    cursor: pointer;
   }
 
   #postDateMobile {
@@ -1149,13 +1143,18 @@ button {
 
   .content-top-mobile #followUserBtn {
     position: absolute;
-    bottom: 25px;
+    bottom: 35px;
     left: 40px;
     padding: 5px 20px !important;
+    font-size: 14px;
+    background: #ba00ba;
+    color: #fff;
+    border-radius: 2rem;
   }
 
   .content-top-mobile .userDetails img {
     width: 30px !important;
+    cursor: pointer;
   }
 
   .content-mid {
@@ -1270,13 +1269,10 @@ button {
   }
 
   #suggestedCatalogs {
-    width: 99%;
+    width: 100%;
   }
 
-  #suggestedCatalogs .col {
-    width: 100% !important;
-  }
-
+  #suggestedCatalogs .col,
   #suggestedCatalogs .col-5 {
     width: 100% !important;
   }
@@ -1318,7 +1314,7 @@ button {
     padding: 0;
     border-radius: 50%;
     background: #ba00ba;
-    padding: 25px 2px;
+    padding: 25px 0;
     color: #fff;
     font-size: 13px;
     transition: ease 0.4s;

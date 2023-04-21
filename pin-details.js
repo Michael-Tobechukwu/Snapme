@@ -48,9 +48,21 @@ likeButton.addEventListener("click", () => {
     isLiked = true;
   }
 });
-
 ////
+//Like for mobile
+const likeButtonMobile = document.querySelector(".mobileLike");
+let isLikedMobile = false;
 
+likeButtonMobile.addEventListener("click", () => {
+  if (isLikedMobile) {
+    likeButtonMobile.innerHTML = '<i class="far fa-heart"></i>';
+    isLiked = false;
+  } else {
+    likeButtonMobile.innerHTML = '<i class="fas fa-heart"></i>';
+    isLikedMobile = true;
+  }
+});
+////
 //Catalogs for you pins share
 //Share 1
 var btn = document.getElementsByClassName("myPopupBtn")[0];
@@ -696,6 +708,42 @@ closeLiveMobile.onclick = function () {
 };
 //Live popup ends
 ////
+//Follow/unfollow user on desktop
+let isFollowingDesktop = false;
+
+const thisFollowButton = document.getElementById("followUserButton");
+function toggleFollowUser() {
+  if (isFollowingDesktop) {
+    // unfollow logic
+    thisFollowButton.textContent = "Follow +";
+  } else {
+    // follow logic
+    thisFollowButton.textContent = "Unfollow";
+  }
+
+  isFollowingDesktop = !isFollowingDesktop;
+}
+
+thisFollowButton.addEventListener("click", toggleFollowUser);
+
+//Follow/unfollow user on mobile
+let isFollowing = false;
+const followBtn = document.getElementById("followUserBtn");
+function toggleFollowUser() {
+  if (isFollowing) {
+    // unfollow logic
+    followBtn.textContent = "Follow +";
+  } else {
+    // follow logic
+    followBtn.textContent = "Unfollow";
+  }
+
+  isFollowing = !isFollowing;
+}
+
+followBtn.addEventListener("click", toggleFollowUser);
+
+////
 // Search catalogs index
 const searchToggleBtn = document.getElementById("search-toggle-btn");
 const searchContainer = document.getElementById("search-container");
@@ -823,7 +871,7 @@ function readMore() {
     moreText.style.display = "inline";
   }
 }
-
+//More icons for first pin
 function moreIcons5() {
   var dots = document.getElementById("dots");
   var moreIcons5 = document.getElementById("more-iconsV");

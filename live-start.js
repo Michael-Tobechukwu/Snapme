@@ -38,7 +38,6 @@ let currentDate =
   ":" +
   minutes;
 document.getElementById("currentDateTime").innerHTML = currentDate;
-
 document.getElementById("currentDateTime2").innerHTML = currentDate;
 
 //Start livestream
@@ -60,9 +59,12 @@ function goLive() {
     })
     .then((data) => {
       console.log(data);
+      // Redirect to "my-livestream.html" after API call is successful
+      window.location.href = "my-livestream.html";
     })
     .catch((error) => {
       console.error("There was an error:", error);
     });
 }
+
 goLive();

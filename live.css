@@ -217,9 +217,8 @@ body {
   }
 
   .liveDetailsInner .userComment {
-    /*input*/
-    padding: 5px 10px;
-    color: #000;
+    /*user comment input*/
+    padding: 10px;
     font-size: 12px;
     margin-top: 5px;
     border: 2px solid #fff;

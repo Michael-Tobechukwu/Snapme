@@ -299,58 +299,23 @@ function toggleFollow(username, buttonElement) {
 
 ////
 
-//Follow/unfollow user toggle button
-//let isFollowing = false;
-
 //Follow/unfollow user
 let isFollowing = false;
+const followUserBtn = document.getElementById("followUserBtn");
 
 function toggleFollowUser() {
-  const followBtn = document.getElementById("followBtn");
-
   if (isFollowing) {
     // unfollow logic
-    followBtn.textContent = "Follow +";
+    followUserBtn.textContent = "Follow +";
   } else {
     // follow logic
-    followBtn.textContent = "Unfollow";
+    followUserBtn.textContent = "Unfollow";
   }
 
   isFollowing = !isFollowing;
 }
 
-//followBtn.addEventListener("click", toggleFollow);
-
-/*Follow user fetch API
-var followUser = document.getElementById("follow-toggle");
-followUser.addEventListener("click", toggleFollow);
-
-function toggleFollow() {
-  fetch("https://api.snapme-ng.com/api/v1/:username/follow", {
-    method: "POST",
-    body: JSON.stringify({ follow: true }),
-    headers: { "Content-Type": "application/json" },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to follow/unfollow user.");
-      }
-    })
-    .then((data) => {
-      if (data.following) {
-        document.getElementById("follow-toggle").textContent = "Unfollow";
-      } else {
-        document.getElementById("follow-toggle").textContent = "Follow";
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-toggleFollow();
-*/
+followUserBtn.addEventListener("click", toggleFollowUser);
 //////
 
 //More icons button

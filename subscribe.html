@@ -1,6 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head><!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snapme || Subscribe</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="subscribe.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
+    <link rel="shortcut icon" href="Snapme logo.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="wrapper container">
+      <div class="content">
+        <button onclick="window.location='index.html'" class="backArrow">
+          <img src="Images/back arrow.svg" alt="" />
+        </button>
+        <div class="userDetails">
+          <img src="Images/azizy.png" alt="" />
+          <div class="userName">
+            <p>azizymakim</p>
+            <h3>Azizy Makim</h3>
+          </div>
+        </div>
+        <div class="userInfo">
+          <ul>
+            <li>Musician</li>
+            <li>United Kingdom</li>
+          </ul>
+        </div>
+        <p class="body-text">
+          You are about to join elite users with unique privileges to create
+          posts on all catalogs and get verified on Snapme.
+        </p>
+
+        <p>Your subscription will be:</p>
+        <h6>NGN 5,520 equivalent USD12</h6>
+        <p class="acceptHeading">We accept:</p>
+        <div class="cardOptions">
+          <img src="Images/visa.svg" alt="Visa" />
+          <img src="Images/mastercard.svg" alt="Mastercard" />
+          <img src="Images/american-express.svg" alt="American Express" />
+        </div>
+        <div class="payment">
+          <input
+            type="button"
+            value="Auto-Renew Premium Plan"
+            onclick="subscribe()"
+          />
+          <input
+            type="button"
+            value="One-Time Premium Plan"
+            onclick="subscribe()"
+          />
+        </div>
+        <!--<form id="paymentForm" action="">
+          <input type="radio" name="card" id="visa" />
+          <label for="visa"><img src="Images/visa.svg" alt="" /></label>
+          <input type="radio" name="card" id="mastercard" />
+          <label for="mastercard"
+            ><img src="Images/mastercard.svg"
+          /></label>
+          <div class="yourCard">
+            <input
+              class="yourCardInput"
+              type="radio"
+              name="card"
+              id="your-card"
+            />
+            <label for="your-card" class="payWith">Pay with your card</label>
+            <input
+              class="cardNumber"
+              type="number"
+              name="card"
+              id="your-card"
+              placeholder="Card number, ex: 012345678902345"
+            />
+            <input
+              type="text"
+              class="expire"
+              name="card"
+              id="your-card"
+              placeholder="Exp. date: MM/YY"
+            />
+            <input
+              type="number"
+              class="CVV"
+              name="card"
+              id="your-card"
+              placeholder="CVV"
+            />
+            <div class="saveCard">
+              <input
+                class="saveCardInput"
+                type="checkbox"
+                name="your-card"
+                id="your-card"
+              />
+              <label for="your-card" class="saveCardLabel"
+                >Securely save this card</label
+              >
+            </div>
+          </div>
+          <button type="submit" id="proceed">Proceed to payment</button>
+        </form>-->
+      </div>
+    </div>
+
+    <script src="subscribe.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(function (registration) {
+              console.log("Service worker registered:", registration);
+            })
+            .catch(function (error) {
+              console.log("Service worker registration failed:", error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

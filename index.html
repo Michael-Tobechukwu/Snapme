@@ -1452,7 +1452,7 @@
         <div id="swipe-container">
           <div id="music">
             <div class="swipe-item">
-              <button id="followPopup">Music</button>
+              <button id="followPopup" class="followPopup">Music</button>
             </div>
 
             <!-- The Modal -->
@@ -2144,11 +2144,24 @@
                   </li>
 
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button onclick="commentPopup()">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">396</p>
                     </button>
                   </li>
+                  <div class="commentBox">
+                    <form class="commentBoxForm">
+                      <span class="closeComment"> &times;</span>
+                      <textarea
+                        name=""
+                        id="Comment"
+                        cols="30"
+                        rows="10"
+                        placeholder="Enter your comment here..."
+                      ></textarea>
+                      <button onclick="commentOnPost()">Comment</button>
+                    </form>
+                  </div>
                   <li>
                     <button class="myPopupBtn">
                       <i class="fa-solid fa-share"></i>

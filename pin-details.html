@@ -1965,11 +1965,13 @@
           </div>
           <div class="content-top-mobile">
             <div class="userDetails">
-              <img
-                src="Images/azizy.png"
+              <img src="Images/azizy.png" />
+              <p
+                class="azizy_username"
                 onclick="window.location='username.html'"
-              />
-              <p class="azizy_username">azizymakim</p>
+              >
+                azizymakim
+              </p>
             </div>
             <button
               id="followUserBtn"
@@ -1988,14 +1990,19 @@
                 onclick="window.location='username.html'"
               />
               <div class="text">
-                <p class="azizy_username">azizymakim</p>
+                <p
+                  class="azizy_username"
+                  onclick="window.location='username.html'"
+                >
+                  azizymakim
+                </p>
                 <span id="postDate"></span>
               </div>
             </div>
             <button
-              id="followUserBtn"
+              id="followUserButton"
               class="follow"
-              onclick="followThisUser()"
+              onclick=""
             >
               Follow +
             </button>
@@ -2177,11 +2184,9 @@
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span id="timePosted"></span>
-                </p>
+                </a>
+
                 <h4>BNXN (formerly Buju) | Snapme Catalog</h4>
               </div>
 
@@ -2275,7 +2280,7 @@
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-iconsV">
+                    <div id="more-iconsV" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2410,7 +2415,7 @@
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-iconsII">
+                    <div id="more-iconsII" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2578,7 +2583,7 @@
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-iconsIII">
+                    <div id="more-iconsIII" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2647,6 +2652,7 @@
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
+                  <span id="timePosted"></span>
                 </a>
                 <p class="timePinned">
                   Posted
@@ -2745,7 +2751,7 @@
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-iconsIV">
+                    <div id="more-iconsIV" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>

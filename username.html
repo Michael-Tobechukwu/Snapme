@@ -72,7 +72,18 @@
             </div>
 
             <div class="userButtons">
-              <button id="follow-toggle">Follow +</button>
+              <button
+                id="follow-button"
+                class="follow-button"
+                data-action="follow"
+                onclick="toggleFollow('myusername', this)"
+              >
+                Follow +
+              </button>
+
+              <!--<button id="followBtn" onclick="toggleFollowUser()">
+                Follow +
+              </button>-->
 
               <button
                 id="signedInContent"

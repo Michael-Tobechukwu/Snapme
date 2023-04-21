@@ -175,6 +175,10 @@ body {
   margin-left: 3rem;
 }
 
+hr {
+  display: none;
+}
+
 /*MEDIA VIEWS*/
 
 @media (max-width: 768px) {
@@ -217,12 +221,22 @@ body {
   }
 
   .liveDetailsInner .userComment {
-    /*user comment input*/
+    /*input*/
     padding: 10px;
     font-size: 12px;
     margin-top: 5px;
     border: 2px solid #fff;
     border-radius: 2rem;
     width: 80%;
+  }
+
+  .liveDetailsInner .postComment img {
+    margin-top: 10px;
+  }
+
+  hr {
+    display: block;
+    color: #fff;
+    border: 1px solid #fff;
   }
 }

@@ -276,42 +276,44 @@ window.addEventListener("load", () => {
 });
 ////
 //Add to home screen/install prompt
-let deferredPrompt;
+setTimeout(function () {
+  let deferredPrompt;
 
-window.addEventListener("beforeinstallprompt", (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
+  window.addEventListener("beforeinstallprompt", (e) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
 
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
 
-  // Update UI to notify the user that they can add the app to the home screen
-  showInstallButton();
-});
-
-function showInstallButton() {
-  // Show the "Add to Home Screen" button
-  const installButton = document.querySelector(".install-button");
-  installButton.classList.add("show");
-  installButton.addEventListener("click", installApp);
-}
-
-function installApp() {
-  // Show the prompt
-  deferredPrompt.prompt();
-
-  // Wait for the user to respond to the prompt
-  deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === "accepted") {
-      console.log("User accepted the install prompt");
-    } else {
-      console.log("User dismissed the install prompt");
-    }
-
-    // Reset the deferred prompt variable
-    deferredPrompt = null;
+    // Update UI to notify the user that they can add the app to the home screen
+    showInstallButton();
   });
-}
+
+  function showInstallButton() {
+    // Show the "Add to Home Screen" button
+    const installButton = document.querySelector(".install-button");
+    installButton.classList.add("show");
+    installButton.addEventListener("click", installApp);
+  }
+
+  function installApp() {
+    // Show the prompt
+    deferredPrompt.prompt();
+
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the install prompt");
+      } else {
+        console.log("User dismissed the install prompt");
+      }
+
+      // Reset the deferred prompt variable
+      deferredPrompt = null;
+    });
+  }
+}, 60000);
 ///Add to home screen/install prompt end
 ////
 //Like button 1
@@ -1385,7 +1387,6 @@ for (var i = 0; i < buttons.length; i++) {
 function changeButtonColor(clickedButton) {
   if (previousButton) {
     previousButton.style.backgroundColor = "#021129";
-
   }
   clickedButton.style.backgroundColor = "#bd74bd";
 

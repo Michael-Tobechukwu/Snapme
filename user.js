@@ -263,12 +263,49 @@ function followedPosts() {
     .catch((error) => console.error(error));
 }
 followedPosts();
+////
+//Follow/unfollow user
+function toggleFollow(username, buttonElement) {
+  const action = buttonElement.getAttribute("data-action");
+  const method = action === "follow" ? "POST" : "DELETE";
+
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      action: action,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        if (action === "follow") {
+          buttonElement.innerText = "Unfollow";
+          buttonElement.setAttribute("data-action", "unfollow");
+        } else {
+          buttonElement.innerText = "Follow";
+          buttonElement.setAttribute("data-action", "follow");
+        }
+      } else {
+        console.error("Failed to toggle follow status");
+      }
+    })
+    .catch((error) => {
+      console.error("Error toggling follow status:", error);
+    });
+}
 
 ////
-//Follow/unfollow toggle button
+
+//Follow/unfollow user toggle button
+//let isFollowing = false;
+
+//Follow/unfollow user
 let isFollowing = false;
 
-function toggleFollow() {
+function toggleFollowUser() {
   const followBtn = document.getElementById("followBtn");
 
   if (isFollowing) {
@@ -282,7 +319,9 @@ function toggleFollow() {
   isFollowing = !isFollowing;
 }
 
-//Follow user fetch API
+//followBtn.addEventListener("click", toggleFollow);
+
+/*Follow user fetch API
 var followUser = document.getElementById("follow-toggle");
 followUser.addEventListener("click", toggleFollow);
 
@@ -311,6 +350,7 @@ function toggleFollow() {
     });
 }
 toggleFollow();
+*/
 //////
 
 //More icons button
@@ -413,7 +453,7 @@ function moreIconsVI() {
     moreIcons.style.display = "inline";
   }
 }
-
+////
 //Get user profile
 function thisUser() {
   fetch("https://api.snapme-ng.com/api/v1/:username")
@@ -428,7 +468,7 @@ function thisUser() {
 }
 thisUser();
 ////
-//Swipe
+//Swipe tabs on mobile
 const swipeContainer = document.getElementById("swipe-container");
 
 let touchStartX = 0;
@@ -444,51 +484,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.scrollBy({ left: 150, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: 50, behavior: "smooth" });
   } else if (touchEndX > touchStartX) {
-    swipeContainer.scrollBy({ left: -150, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: -50, behavior: "smooth" });
   }
 });
 //
-
-/*
-function followUser() {
-  fetch("https://api.snapme-ng.com/api/v1/:username/follow", {
-    method: "POST",
-    body: JSON.stringify({ userId: "123" }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      isFollowing = true;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-//Unfollow user
-function unfollowUser() {
-  fetch("https://api.snapme-ng.com/api/v1/:username/unfollow", {
-    method: "DELETE",
-    body: JSON.stringify({ userId: "123" }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      isFollowing = false;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}*/

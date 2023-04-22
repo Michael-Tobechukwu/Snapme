@@ -183,7 +183,7 @@ input:checked + .slider:before {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -737,31 +737,24 @@ input:checked + .slider:before {
     padding: 0.5rem 5px !important;
   }
 
-  .navmenu .navbuttons {
-    display: none;
+  .navmenu,
+  .navbuttonsMobile {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .navmenu {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    width: 100%;
-    padding: 0.3rem;
-    margin-top: 0;
-  }
-
+  .navmenu .navbuttons,
   .navmenu .hamburger,
-  .navmenu .main-logo,
-  .navmenu .navbuttons {
-    width: 45%;
+  .navmenu .main-logo {
+    display: none;
   }
 
   .navmenu .navbuttonsMobile {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    margin: 0.5rem auto;
+    margin-top: 0;
   }
 
   .navmenu .navbuttonsMobile img,
@@ -769,8 +762,18 @@ input:checked + .slider:before {
     margin-right: 0.1rem;
   }
 
-  .navmenu .live-button {
-    padding: 0.4rem 0.8rem;
+  .navbuttonsMobile .hamburger,
+  .navbuttonsMobile .main-logo {
+    display: flex;
+  }
+
+  .navbuttonsMobile .main-logo {
+    width: 45%;
+  }
+
+  .navbuttonsMobile .live-button {
+    padding: 5px 8px;
+    font-size: 12px;
   }
 
   .user-create .create-plus,
@@ -792,7 +795,7 @@ input:checked + .slider:before {
     position: absolute;
     z-index: 1;
     left: -230px;
-    top: 30px;
+    top: 40px;
     background: #fff;
     width: 250px;
     color: #000;

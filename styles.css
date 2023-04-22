@@ -735,6 +735,7 @@ input:checked + .slider:before {
   .wrapper,
   .container {
     padding: 0.5rem 5px !important;
+    overflow: hidden;
   }
 
   .navmenu,
@@ -767,8 +768,10 @@ input:checked + .slider:before {
     display: flex;
   }
 
-  .navbuttonsMobile .main-logo {
-    width: 45%;
+
+  .navbuttonsMobile .main-logo img {
+    width: 55px;
+    margin-left: -10px;
   }
 
   .navbuttonsMobile .live-button {

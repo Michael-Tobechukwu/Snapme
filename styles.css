@@ -248,12 +248,13 @@ input:checked + .slider:before {
   z-index: 1;
   left: -230px;
   top: 40px;
-  background: #fff;
+  background: #021129;
   width: 250px;
-  color: #000;
+  color: #fff;
   padding: 0.4rem 0.5rem;
-  border: none;
+  border: 2px solid #fff;
   font-size: 12px;
+  border-radius: 0.5rem;
 }
 
 .navbuttons img {
@@ -821,12 +822,13 @@ input:checked + .slider:before {
     z-index: 1;
     left: -230px;
     top: 40px;
-    background: #fff;
+    background: #021129;
     width: 250px;
-    color: #000;
+    color: #fff;
     padding: 0.4rem 0.5rem;
-    border: none;
+    border: 2px solid #fff;
     font-size: 12px;
+    border-radius: 0.5rem;
   }
   /*All things search for mobile*/
 

@@ -746,7 +746,10 @@ input:checked + .slider:before {
 
   .navmenu .navbuttons,
   .navmenu .hamburger,
-  .navmenu .main-logo {
+  .navmenu .main-logo,
+  .user-create .create-plus,
+  #search-container,
+  .search {
     display: none;
   }
 
@@ -758,31 +761,50 @@ input:checked + .slider:before {
     margin-top: 0;
   }
 
-  .navmenu .navbuttonsMobile img,
-  .navmenu .navbuttonsMobile button {
-    margin-right: 0.1rem;
-  }
-
   .navbuttonsMobile .hamburger,
   .navbuttonsMobile .main-logo {
     display: flex;
   }
 
+  .navbuttonsMobile .hamburger {
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile .hamburger img {
+    width: 60px;
+    margin-right: -5px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 15px;
+    margin-left: -5px;
+  }
 
   .navbuttonsMobile .main-logo img {
-    width: 55px;
-    margin-left: -10px;
+    width: 140px;
   }
 
   .navbuttonsMobile .live-button {
-    padding: 5px 8px;
-    font-size: 12px;
+    padding: 7px 12px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 60px;
   }
 
-  .user-create .create-plus,
-  #search-container,
-  .search {
-    display: none;
+  .navbuttonsMobile .toggle-button {
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  /*All things search for mobile*/
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 50px;
+    margin-right: 0;
   }
 
   .mobileSearch {
@@ -806,6 +828,7 @@ input:checked + .slider:before {
     border: none;
     font-size: 12px;
   }
+  /*All things search for mobile*/
 
   .col,
   .col-5 {
@@ -1182,9 +1205,64 @@ input:checked + .slider:before {
   .suggested {
     width: 50%;
   }
+
+  .navbuttonsMobile .hamburger img {
+    width: 35px;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 20px;
+    margin-left: -10px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 110px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 35px;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 35px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 30px;
+  }
 }
 
 @media (max-width: 375px) {
+  .navbuttonsMobile .main-logo img {
+    width: 90px;
+    margin-left: -5px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 30px;
+    margin-right: 0;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 25px;
+  }
+
   .suggested {
     width: 55%;
   }

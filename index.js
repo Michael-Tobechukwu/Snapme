@@ -222,25 +222,40 @@ window.onclick = function (event) {
 };
 //Share popup modals end
 /////
+//Catalog buttons fixed position on scroll
+const catalogsContainer = document.querySelector("#swipe-container");
+const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
 
-// JavaScript
-let prevScrollpos = window.pageYOffset;
+window.addEventListener("scroll", () => {
+  const scrollPosition = window.scrollY;
 
-window.onscroll = function () {
-  const currentScrollPos = window.pageYOffset;
-
-  if (prevScrollpos > currentScrollPos) {
-    // Scrolling Up
-    document.getElementById("navbar").classList.remove("hide");
-    document.getElementById("navbar").classList.add("show");
+  if (scrollPosition >= catalogsContainerOffsetTop) {
+    catalogsContainer.classList.add("fixed");
+    catalogsContainer.style.top = "60px"; /* the sticky position of the div */
   } else {
-    // Scrolling Down
-    document.getElementById("navbar").classList.remove("show");
-    document.getElementById("navbar").classList.add("hide");
+    catalogsContainer.classList.remove("fixed");
+    catalogsContainer.style.top =
+      ""; /* reset the top position to its original state */
   }
+});
+//Catalogs buttons fixed position on scroll
+////
+//Timecapsule fixed position on scroll
+const timelineContainer = document.querySelector("#timelineSuggested");
+const timelineContainerOffsetTop = timelineContainer.offsetTop;
 
-  prevScrollpos = currentScrollPos;
-};
+window.addEventListener("scroll", () => {
+  const scrollPosition = window.scrollY;
+
+  if (scrollPosition >= timelineContainerOffsetTop) {
+    timelineContainer.classList.add("fixed");
+    timelineContainer.style.top = "120px"; /* the sticky position of the div */
+  } else {
+    timelineContainer.classList.remove("fixed");
+    timelineContainer.style.top =
+      ""; /* reset the top position to its original state */
+  }
+});
 
 ////
 //Signedin Users Content
@@ -1060,7 +1075,6 @@ searchInput.addEventListener("keydown", async (event) => {
 //Search catalogs index ends
 ////
 // Search catalogs index on mobile
-// Search catalogs index
 const mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
 const mobileSearchContainer = document.getElementById(
   "mobile-search-container"

@@ -717,8 +717,7 @@ input:checked + .slider:before {
   }
 
   .subscribe {
-    justify-content: center;
-    margin: 1rem auto;
+    display: none;
   }
 
   .promotePopup {
@@ -773,7 +772,9 @@ input:checked + .slider:before {
 
   .navbuttonsMobile .hamburger img {
     width: 60px;
+    margin-left: -15px;
     margin-right: -5px;
+    margin-top: -5px;
   }
 
   .navbuttonsMobile .user-create img {
@@ -935,19 +936,39 @@ input:checked + .slider:before {
   }
 
   .discover {
-    display: block;
-    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto 0 auto;
     color: #fff;
-    text-align: center;
   }
 
   .discover h4 {
+    /*Discover*/
     color: #ba00ba;
-    font-size: 20px;
+    font-size: 23px;
+    margin: 0;
   }
 
   .discover p {
-    font-size: 12px;
+    /*Trending catalogs*/
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .discover button {
+    /*Subscribe button*/
+    display: block;
+    background: #ba00ba;
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: ease 0.4s;
+    font-size: 20px;
+  }
+
+  .discover button:hover {
+    background: #740374;
   }
 
   #swipe-container {
@@ -957,6 +978,7 @@ input:checked + .slider:before {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
     position: relative;
+    margin-top: 0;
   }
 
   .swipe-item {
@@ -1210,6 +1232,7 @@ input:checked + .slider:before {
 
   .navbuttonsMobile .hamburger img {
     width: 35px;
+    margin-left: -12px;
   }
 
   .navbuttonsMobile .main-logo {
@@ -1238,9 +1261,38 @@ input:checked + .slider:before {
   .navbuttonsMobile #mobileSearchToggleBtn img {
     width: 30px;
   }
+
+  .discover h4 {
+    /*Discover*/
+    color: #ba00ba;
+    font-size: 21px;
+    margin: 0;
+  }
+
+  .discover p {
+    /*Trending catalogs*/
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .discover button {
+    /*Subscribe button*/
+    display: block;
+    background: #ba00ba;
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: ease 0.4s;
+    font-size: 16px;
+  }
+
 }
 
 @media (max-width: 375px) {
+  .navbuttonsMobile .hamburger img {
+    margin-left: -12px;
+  }
+
   .navbuttonsMobile .main-logo img {
     width: 90px;
     margin-left: -5px;
@@ -1264,6 +1316,31 @@ input:checked + .slider:before {
   .navbuttonsMobile #mobileSearchToggleBtn img {
     width: 25px;
   }
+
+  .discover h4 {
+    /*Discover*/
+    color: #ba00ba;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .discover p {
+    /*Trending catalogs*/
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  .discover button {
+    /*Subscribe button*/
+    display: block;
+    background: #ba00ba;
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: ease 0.4s;
+    font-size: 0.7rem;
+  }
+
 
   .suggested {
     width: 55%;
@@ -1346,5 +1423,11 @@ input:checked + .slider:before {
 
   #card7 {
     height: 365px;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbuttonsMobile .hamburger img {
+    margin-left: 0;
   }
 }

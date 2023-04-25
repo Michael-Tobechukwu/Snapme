@@ -243,11 +243,24 @@ input:checked + .slider:before {
   position: relative;
 }
 
+.search {
+  position: relative;
+}
+
+#search-btn,
+#search-toggle-btn {
+  background: #021129;
+  border: none;
+  color: #fff;
+  padding: 5px;
+  border-radius: 0.5rem;
+}
+
 #search-input {
   position: absolute;
   z-index: 1;
-  left: -230px;
-  top: 40px;
+  left: -250px;
+  top: 0;
   background: #021129;
   width: 250px;
   color: #fff;
@@ -760,7 +773,7 @@ input:checked + .slider:before {
     background: #021129;
     width: 100%;
     margin-top: 0;
-    position: fixed;
+
     top: 0;
     z-index: 1;
   }
@@ -809,8 +822,13 @@ input:checked + .slider:before {
 
   /*All things search for mobile*/
   .navbuttonsMobile #mobileSearchToggleBtn img {
-    width: 50px;
+    width: 40px;
     margin-right: 0;
+  }
+
+  #mobileSearchToggleBtn {
+    border: none;
+    color: #fff;
   }
 
   .mobileSearch {
@@ -823,9 +841,9 @@ input:checked + .slider:before {
   }
 
   #mobile-search-input {
-    position: absolute;
-    z-index: 1;
-    left: -230px;
+    position: fixed;
+    z-index: 9999;
+    left: 30px;
     top: 40px;
     background: #021129;
     width: 250px;
@@ -943,7 +961,7 @@ input:checked + .slider:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px auto 0 auto;
+    margin: 25px auto 0 auto;
     color: #fff;
   }
 
@@ -981,10 +999,11 @@ input:checked + .slider:before {
     gap: 15px;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
-    position: relative;
-    margin-top: -25px;
+    /* position: relative;*/
+    margin-top: -30px;
     margin-bottom: 0;
     position: sticky;
+
     z-index: 1;
     background: #021129;
     padding: 10px 0;
@@ -1017,7 +1036,7 @@ input:checked + .slider:before {
   #liveModalMobile {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 9999; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -1035,7 +1054,10 @@ input:checked + .slider:before {
     margin: auto;
     padding: 1rem;
     border: none;
-    width: 85%;
+    width: 90%;
+    margin: 30% auto 0 auto;
+    
+    
   }
 
   /* The Close Button */
@@ -1113,6 +1135,11 @@ input:checked + .slider:before {
     margin: 0;
     color: #fff;
     font-size: 12px;
+  }
+
+  .dropdown {
+    position: static;
+    z-index: 999;
   }
 
   .suggested {

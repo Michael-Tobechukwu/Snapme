@@ -1095,11 +1095,11 @@ mobileSearchToggleBtn.addEventListener("click", function () {
     mobileSearchContainer.style.display = "block";
     mobileSearchToggleBtn.innerHTML = "&times;";
     mobileSearchToggleBtn.style.position = "absolute";
-    mobileSearchToggleBtn.style.top = "37px";
+    mobileSearchToggleBtn.style.top = "40px";
     mobileSearchToggleBtn.style.left = "5px";
     mobileSearchToggleBtn.style.fontSize = "15px";
     mobileSearchBtn.style.position = "absolute";
-    mobileSearchBtn.style.top = "5px";
+    mobileSearchBtn.style.top = "7px";
   } else {
     mobileSearchContainer.style.display = "none";
     mobileSearchToggleBtn.innerHTML =

@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="google-signin-client_id"
-      content="406252614079-bj2ak1t8cl9vr5dp1q26mr36sm1r5njm.apps.googleusercontent.com"
+      content="406252614079-1qs3hukdpphr7bse43ef9d6nebr314ns.apps.googleusercontent.com"
     />
+    <!--<meta
+      name="google-signin-client_id"
+      content="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
+    />-->
+
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -38,10 +44,19 @@
       async
       defer
       crossorigin="anonymous"
+      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0&appId=3430331423885973&autoLogAppEvents=1"
+      nonce="BwcR4GDq"
+    ></script>
+
+    <!--    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
       src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0&appId=1237048957228430&autoLogAppEvents=1"
       nonce="bE9NZBvL"
     ></script>
-
+-->
     <div class="container">
       <a href="index.html"
         ><img src="Images/Snapme logo main.png" class="main-logo"
@@ -66,12 +81,29 @@
         >
           Login with Twitter <i class="fa-brands fa-twitter"></i>
         </button>-->
+
         <!--<button onclick="loginInstagram()">
           <i class="fa-brands fa-instagram"></i>
           Login with Instagram
         </button>-->
 
+        <fb:login-button
+          scope="public_profile,email"
+          onlogin="checkLoginState();"
+        >
+        </fb:login-button>
+
         <div
+          class="fb-login-button"
+          data-width="250px"
+          data-size=""
+          data-button-type=""
+          data-layout=""
+          data-auto-logout-link="true"
+          data-use-continue-as="true"
+        ></div>
+
+        <!--        <div
           class="fb-login-button"
           data-width="250px"
           data-size="large"
@@ -79,7 +111,7 @@
           data-layout=""
           data-auto-logout-link="true"
           data-use-continue-as="true"
-        ></div>
+        ></div>-->
 
         <div id="googleBtn">Login with Google</div>
         <!--<div

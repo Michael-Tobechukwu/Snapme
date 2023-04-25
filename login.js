@@ -5,7 +5,7 @@ function handleCredentialResponse(response) {
 window.onload = function () {
   google.accounts.id.initialize({
     client_id:
-      "406252614079-bj2ak1t8cl9vr5dp1q26mr36sm1r5njm.apps.googleusercontent.com",
+      "821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com",
     callback: handleCredentialResponse,
   });
   google.accounts.id.renderButton(
@@ -187,7 +187,32 @@ window.onload = function () {
   google.accounts.id.prompt(); // also display the One Tap dialog
 };
 ////
-//Facebook sign in
+/*/Facebook sign in
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: "{your-app-id}",
+    cookie: true,
+    xfbml: true,
+    version: "{api-version}",
+  });
+
+  FB.AppEvents.logPageView();
+};
+
+(function (d, s, id) {
+    fjs = d.getElementsByTagName(s)[0];
+  var js,
+  if (d.getElementById(id)) {
+    return;
+  }
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");
+*/ ////
+
+///Facebook signin for testing
 window.fbAsyncInit = function () {
   FB.init({
     appId: "{your-app-id}",
@@ -210,9 +235,31 @@ window.fbAsyncInit = function () {
   js.src = "https://connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
 })(document, "script", "facebook-jssdk");
-/////
 
 const facebookBtn = document.getElementById("fb-login-button");
+
+//Check facebook login status
+FB.getLoginStatus(function (response) {
+  statusChangeCallback(response);
+});
+
+/*{
+  status: 'connected',
+  authResponse: {
+      accessToken: '...',
+      expiresIn:'...',
+      signedRequest:'...',
+      userID:'...'
+  }
+}*/
+
+function checkLoginState() {
+  FB.getLoginStatus(function (response) {
+    statusChangeCallback(response);
+  });
+}
+
+//Facebook login
 /////
 //Show password on button click
 var passwordInput = document.getElementById("password");

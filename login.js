@@ -123,52 +123,7 @@ async function login() {
     console.log("There was an error!", error); // Show an error
   }
 }*/
-////
-//Social login
-//Instagram login
-function loginInstagram() {
-  // Redirect the user to the Instagram authorization page
-  const clientId = "1237048957228430";
-  const redirectUri = "https://snapme-ng.com/redirect";
-  const authorizationUrl = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
-  window.location.href = authorizationUrl;
-}
 
-async function handleRedirect() {
-  // Extract the authorization code from the URL
-  const code = new URLSearchParams(window.location.search).get("code");
-
-  // Exchange the code for an access token
-  const clientId = "1237048957228430";
-  const clientSecret = "78d1833580b8440c37874072e2e5d8a5";
-  const redirectUri = "https://snapme-ng.com/redirect";
-  const tokenUrl = "https://api.instagram.com/oauth/access_token";
-  const params = new URLSearchParams({
-    client_id: clientId,
-    client_secret: clientSecret,
-    grant_type: "authorization_code",
-    redirect_uri: redirectUri,
-    code: code,
-  });
-  const response = await fetch(tokenUrl, {
-    method: "POST",
-    body: params,
-  });
-  const data = await response.json();
-  const accessToken = data.access_token;
-
-  // Store the access token securely on the server
-
-  // Use the access token to make requests to the Instagram API
-  const profileUrl = `https://graph.instagram.com/me?fields=id,username&access_token=${accessToken}`;
-  const profileResponse = await fetch(profileUrl);
-  const profileData = await profileResponse.json();
-  const username = profileData.username;
-  console.log(`Welcome, ${username}!`);
-}
-
-// Call the handleRedirect function when the page is loaded
-window.addEventListener("load", handleRedirect);
 ////
 //Google sign in
 function handleCredentialResponse(response) {
@@ -243,22 +198,11 @@ FB.getLoginStatus(function (response) {
   statusChangeCallback(response);
 });
 
-/*{
-  status: 'connected',
-  authResponse: {
-      accessToken: '...',
-      expiresIn:'...',
-      signedRequest:'...',
-      userID:'...'
-  }
-}*/
-
 function checkLoginState() {
   FB.getLoginStatus(function (response) {
     statusChangeCallback(response);
   });
 }
-
 //Facebook login
 /////
 //Show password on button click

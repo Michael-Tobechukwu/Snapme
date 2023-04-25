@@ -208,6 +208,10 @@ body {
   .caption-input {
     width: 70%;
   }
+
+  .live-content {
+    height: 50vh;
+  }
 }
 
 @media (max-width: 568px) {
@@ -233,6 +237,7 @@ body {
   }
 
   .caption-input {
-    width: 95%;
+    width: 100%;
+    padding: 5px;
   }
 }

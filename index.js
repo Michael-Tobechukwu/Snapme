@@ -231,7 +231,8 @@ window.addEventListener("scroll", () => {
 
   if (scrollPosition >= catalogsContainerOffsetTop) {
     catalogsContainer.classList.add("fixed");
-    catalogsContainer.style.top = "60px"; /* the sticky position of the div */
+    catalogsContainer.style.top =
+      "20px"; /* the sticky position of the tabs swipe container */
   } else {
     catalogsContainer.classList.remove("fixed");
     catalogsContainer.style.top =
@@ -249,7 +250,8 @@ window.addEventListener("scroll", () => {
 
   if (scrollPosition >= timelineContainerOffsetTop) {
     timelineContainer.classList.add("fixed");
-    timelineContainer.style.top = "120px"; /* the sticky position of the div */
+    timelineContainer.style.top =
+      "80px"; /* the sticky position of the timelineSuggested container */
   } else {
     timelineContainer.classList.remove("fixed");
     timelineContainer.style.top =
@@ -836,6 +838,7 @@ var closeLive = document.getElementById("closeLive");
 
 liveBtn.onclick = function () {
   liveModal.style.display = "block";
+  liveModal.style.zIndex = "9999";
 };
 
 // When the user clicks on <span> (x), close the modals
@@ -1022,101 +1025,122 @@ document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
 //Actual time posted ends
 ///
 ////
-// Search catalogs index
-const searchToggleBtn = document.getElementById("search-toggle-btn");
-const searchContainer = document.getElementById("search-container");
-const searchContainerMobile = document.getElementById("search-containerMobile");
-const searchInput = document.getElementById("search-input");
-const searchBtn = document.getElementById("search-btn");
-const searchResults = document.getElementById("search-results");
+// Get the search toggle button, search container, search input, search button, and search results list
+var searchToggleBtn = document.getElementById("search-toggle-btn");
+var searchContainer = document.getElementById("search-container");
+searchContainer.style.display = "none";
+var searchInput = document.getElementById("search-input");
+var searchBtn = document.getElementById("search-btn");
+var searchResults = document.getElementById("search-results");
 
-// Function to fetch search results from server
-const fetchSearchResults = async (searchQuery) => {
-  const response = await fetch(
-    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
-  );
-  const data = await response.json();
-  return data;
-};
+// Add an event listener to the search toggle button
+searchToggleBtn.addEventListener("click", function () {
+  // Toggle the visibility of the search container
+  if (searchContainer.style.display === "none") {
+    searchContainer.style.display = "block";
+    searchToggleBtn.innerHTML = "&times;";
 
-// Function to display search results
-const displaySearchResults = (results) => {
-  searchResults.innerHTML = "";
-
-  results.forEach((result) => {
-    const li = document.createElement("li");
-    li.textContent = result.title;
-    searchResults.appendChild(li);
-  });
-};
-
-// Event listener for search toggle button
-searchToggleBtn.addEventListener("click", () => {
-  searchContainer.style.display = "block";
-  searchToggleBtn.style.display = "none";
-  searchInput.focus();
-});
-
-// Event listener for search button
-searchBtn.addEventListener("click", async () => {
-  const searchQuery = searchInput.value;
-  const searchResultsData = await fetchSearchResults(searchQuery);
-  displaySearchResults(searchResultsData);
-});
-
-// Event listener for search input field
-searchInput.addEventListener("keydown", async (event) => {
-  if (event.key === "Enter") {
-    const searchQuery = searchInput.value;
-    const searchResultsData = await fetchSearchResults(searchQuery);
-    displaySearchResults(searchResultsData);
+    searchToggleBtn.style.zIndex = "1";
+    searchToggleBtn.style.top = "0";
+    searchToggleBtn.style.left = "0";
+  } else {
+    searchContainer.style.display = "none";
+    searchToggleBtn.innerHTML = '<img src="Images/search icon.svg" alt="" />';
+    searchInput.value = "";
+    searchResults.innerHTML = "";
   }
 });
-//Search catalogs index ends
-////
-// Search catalogs index on mobile
-const mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
-const mobileSearchContainer = document.getElementById(
-  "mobile-search-container"
-);
-const mobileSearchInput = document.getElementById("mobile-search-input");
-const mobileSearchBtn = document.getElementById("mobile-search-btn");
-const mobileSearchResults = document.getElementById("mobile-search-results");
 
-// Function to fetch search results from server
-const fetchSearchResultsMobile = async (searchQuery) => {
-  const response = await fetch(
-    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
-  );
-  const data = await response.json();
-  return data;
-};
+// Add an event listener to the search button
+searchBtn.addEventListener("click", function () {
+  // Get the search query from the search input
+  var query = searchInput.value;
 
-// Function to display search results
-const displaySearchResultsMobile = (mobileresults) => {
-  mobileSearchResults.innerHTML = "";
+  // Make an API call to the search endpoint with the search query
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Clear the search results list
+      searchResults.innerHTML = "";
 
-  mobileresults.forEach((mobileresult) => {
-    const li = document.createElement("li");
-    li.textContent = mobileresult.title;
-    mobileSearchResults.appendChild(li);
-  });
-};
-
-// Event listener for search toggle button
-mobileSearchToggleBtn.addEventListener("click", () => {
-  mobileSearchContainer.style.display = "block";
-  mobileSearchToggleBtn.style.display = "none";
-  mobileSearchInput.focus();
+      // Loop through the search results and add them to the list
+      data.results.forEach(function (result) {
+        var li = document.createElement("li");
+        li.textContent = result.title;
+        searchResults.appendChild(li);
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 });
 
-// Event listener for search button
-mobileSearchBtn.addEventListener("click", async () => {
-  const mobilesearchQuery = mobileSearchInput.value;
-  const searchResultsDataMobile = await fetchSearchResultsMobile(
-    mobilesearchQuery
-  );
-  displaySearchResultsMobile(searchResultsDataMobile);
+//Search on mobile
+// Get the search toggle button, search container, search input, search button, and search results list
+var mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
+var mobileSearchContainer = document.getElementById("mobile-search-container");
+mobileSearchContainer.style.display = "none";
+var mobileSearchInput = document.getElementById("mobile-search-input");
+var mobileSearchBtn = document.getElementById("mobile-search-btn");
+var mobileSearchResults = document.getElementById("mobile-search-results");
+
+// Add an event listener to the search toggle button
+mobileSearchToggleBtn.addEventListener("click", function () {
+  // Toggle the visibility of the search container
+  if (mobileSearchContainer.style.display === "none") {
+    mobileSearchContainer.style.display = "block";
+    mobileSearchToggleBtn.innerHTML = "&times;";
+    mobileSearchToggleBtn.style.position = "absolute";
+    mobileSearchToggleBtn.style.top = "37px";
+    mobileSearchToggleBtn.style.left = "5px";
+    mobileSearchToggleBtn.style.fontSize = "15px";
+    mobileSearchBtn.style.position = "absolute";
+    mobileSearchBtn.style.top = "5px";
+  } else {
+    mobileSearchContainer.style.display = "none";
+    mobileSearchToggleBtn.innerHTML =
+      '<img src="Images/search icon.svg" alt="" />';
+    mobileSearchInput.value = "";
+    mobileSearchResults.innerHTML = "";
+    mobileSearchToggleBtn.style.position = "";
+    mobileSearchToggleBtn.style.top = "";
+    mobileSearchToggleBtn.style.left = "";
+    mobileSearchBtn.style.top = "";
+    mobileSearchToggleBtn.style.fontSize = "";
+  }
+});
+
+// Add an event listener to the search button
+mobileSearchBtn.addEventListener("click", function () {
+  // Get the search query from the search input
+  var mobileQuery = mobileSearchInput.value;
+
+  // Make an API call to the search endpoint with the search query
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Clear the search results list
+      mobileSearchResults.innerHTML = "";
+
+      // Loop through the search results and add them to the list
+      data.mobileResults.forEach(function (mobileResult) {
+        var li = document.createElement("li");
+        li.textContent = mobileResult.title;
+        mobileSearchResults.appendChild(li);
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 });
 
 // Event listener for search input field
@@ -1129,8 +1153,8 @@ mobileSearchInput.addEventListener("keydown", async (event) => {
     displaySearchResultsMobile(searchResultsDataMobile);
   }
 });
-/// Search catalogs index on mobile ends
-
+// Search catalogs index on mobile ends
+////
 //Show more suggested accounts button on mobile
 var showMoreBtn = document.getElementById("showMore");
 //var MoreAccounts = document.getElementById("suggestedMore")

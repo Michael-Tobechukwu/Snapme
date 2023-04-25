@@ -170,12 +170,12 @@
           </div>
 
           <div class="user-create">
-            <a href="login.html"
-              ><img class="user-image" src="Images/user image.svg"
-            /></a>
-            <a href="create-pin.html"
-              ><img class="create-plus" src="Images/create plus.svg"
-            /></a>
+            <button onclick="checkJwt('profile')">
+              <img class="user-image" src="Images/user image.svg" />
+            </button>
+            <button onclick="checkJwt('post')">
+              <img class="create-plus" src="Images/create plus.svg" />
+            </button>
           </div>
         </div>
 
@@ -211,12 +211,12 @@
           </div>
 
           <div class="user-create">
-            <a href="login.html"
-              ><img class="user-image" src="Images/user image.svg"
-            /></a>
-            <a href="create-pin.html"
-              ><img class="create-plus" src="Images/create plus.svg"
-            /></a>
+            <button onclick="checkJwt('profile')">
+              <img class="user-image" src="Images/user image.svg" />
+            </button>
+            <button onclick="checkJwt('post')">
+              <img class="create-plus" src="Images/create plus.svg" />
+            </button>
           </div>
         </div>
         <button type="submit" class="mobileSearchBtn" onclick="searchPosts()">
@@ -269,7 +269,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followMusicBtn" onclick="followMusic()">Follow +</a>
+                <a id="followMusicBtn" onclick="followCatalog('music')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -319,7 +321,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followShowsBtn" onclick="followShowsConcerts()"
+                <a
+                  id="followShowsBtn"
+                  onclick="followCatalog('shows-&-concerts')"
                   >Follow +</a
                 >
               </div>
@@ -367,7 +371,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followDanceBtn" onclick="followDance()">Follow +</a>
+                <a id="followDanceBtn" onclick="followCatalog('dance')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -413,7 +419,7 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followAfrobeatsBtn" onclick="followAfrobeats()"
+                <a id="followAfrobeatsBtn" onclick="followCatalog('afrobeats')"
                   >Follow +</a
                 >
               </div>
@@ -461,7 +467,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followComedyBtn" onclick="followComedy()">Follow +</a>
+                <a id="followComedyBtn" onclick="followCatalog('comedy')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -508,7 +516,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followTagStoriesBtn" onclick="followTagStories()"
+                <a
+                  id="followTagStoriesBtn"
+                  onclick="followCatalog('tag-stories')"
                   >Follow +</a
                 >
               </div>
@@ -556,7 +566,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followPhotographyBtn" onclick="followPhotography()"
+                <a
+                  id="followPhotographyBtn"
+                  onclick="followCatalog('photography')"
                   >Follow +</a
                 >
               </div>
@@ -604,7 +616,7 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followArtBtn" onclick="followArt()">Follow +</a>
+                <a id="followArtBtn" onclick="followCatalog('art')">Follow +</a>
               </div>
               <div class="modal-footer">
                 <button
@@ -650,7 +662,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followMuseumsBtn" onclick="followMuseums()">Follow +</a>
+                <a id="followMuseumsBtn" onclick="followCatalog('museums')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -696,7 +710,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followTourismBtn" onclick="followTourism()">Follow +</a>
+                <a id="followTourismBtn" onclick="followCatalog('museums')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -742,7 +758,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followFashionBtn" onclick="followFashion()">Follow +</a>
+                <a id="followFashionBtn" onclick="followCatalog('fashion')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -789,7 +807,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followBeautyKitsBtn" onclick="followBeautyKits()"
+                <a
+                  id="followBeautyKitsBtn"
+                  onclick="followCatalog('beauty-&-kits')"
                   >Follow +</a
                 >
               </div>
@@ -838,7 +858,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followFoodBtn" onclick="followFood()">Follow +</a>
+                <a id="followFoodBtn" onclick="followCatalog('food')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -885,7 +907,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followFitnessBtn" onclick="followFitness()">Follow +</a>
+                <a id="followFitnessBtn" onclick="followCatalog('fitness')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -932,7 +956,7 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followFootballBtn" onclick="followFootball()"
+                <a id="followFootballBtn" onclick="followCatalog('football')"
                   >Follow +</a
                 >
               </div>
@@ -980,7 +1004,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followBasketballBtn" onclick="followBasketball()"
+                <a
+                  id="followBasketballBtn"
+                  onclick="followCatalog('basketball')"
                   >Follow +</a
                 >
               </div>
@@ -1027,7 +1053,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followSportsBtn" onclick="followSports()">Follow +</a>
+                <a id="followSportsBtn" onclick="followCatalog('sports')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1074,7 +1102,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followNewsBtn" onclick="followNews()">Follow +</a>
+                <a id="followNewsBtn" onclick="followCatalog('news')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1121,7 +1151,7 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followFashionTVBtn" onclick="followFashionTV()"
+                <a id="followFashionTVBtn" onclick="followCatalog('fashion-tv')"
                   >Follow +</a
                 >
               </div>
@@ -1172,7 +1202,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followCarsBtn" onclick="followCars()">Follow +</a>
+                <a id="followCarsBtn" onclick="followCatalog('cars')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1221,7 +1253,7 @@
               <div class="modal-body tabs-follow">
                 <a
                   id="followHouseDecorationBtn"
-                  onclick="followHouseDecoration()"
+                  onclick="followCatalog('house-decoration')"
                   >Follow +</a
                 >
               </div>
@@ -1270,7 +1302,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followNatureBtn" onclick="followNature()">Follow +</a>
+                <a id="followNatureBtn" onclick="followCatalog('nature')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1317,7 +1351,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followQuotesBtn" onclick="followQuotes()">Follow +</a>
+                <a id="followQuotesBtn" onclick="followCatalog('quotes')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1364,7 +1400,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followPetsBtn" onclick="followPets()">Follow +</a>
+                <a id="followPetsBtn" onclick="followCatalog('pets')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1411,7 +1449,9 @@
                 ></button>
               </div>
               <div class="modal-body tabs-follow">
-                <a id="followOthersBtn" onclick="followOthers()">Follow +</a>
+                <a id="followOthersBtn" onclick="followCatalog('others')"
+                  >Follow +</a
+                >
               </div>
               <div class="modal-footer">
                 <button
@@ -1454,7 +1494,10 @@
                 <span class="mobileclose">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followMusicMobile" onclick="followMusic()">
+                  <button
+                    id="followMusicMobile"
+                    onclick="followCatalog('music')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1476,7 +1519,7 @@
                 <div class="follow_popup">
                   <button
                     id="followShowsMobile"
-                    onclick="followShowsConcerts()"
+                    onclick="followCatalog('shows-&-concerts')"
                   >
                     Follow +
                   </button>
@@ -1495,7 +1538,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followDanceMobile" onclick="followDance()">
+                  <button
+                    id="followDanceMobile"
+                    onclick="followCatalog('dance')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1515,7 +1561,7 @@
                 <div class="follow_popup">
                   <button
                     id="followAfrobeatsMobile"
-                    onclick="followAfrobeats()"
+                    onclick="followCatalog('afrobeats')"
                   >
                     Follow +
                   </button>
@@ -1534,7 +1580,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followComedyMobile" onclick="followComedy()">
+                  <button
+                    id="followComedyMobile"
+                    onclick="followCatalog('comedy')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1554,7 +1603,7 @@
                 <div class="follow_popup">
                   <button
                     id="followTagStoriesMobile"
-                    onclick="followTagStories()"
+                    onclick="followCatalog('tag-stories')"
                   >
                     Follow +
                   </button>
@@ -1575,7 +1624,7 @@
                 <div class="follow_popup">
                   <button
                     id="followMPhotographyMobile"
-                    onclick="followPhotography()"
+                    onclick="followCatalog('photography')"
                   >
                     Follow +
                   </button>
@@ -1594,7 +1643,7 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followArtMobile" onclick="followArt()">
+                  <button id="followArtMobile" onclick="followCatalog('art')">
                     Follow +
                   </button>
                 </div>
@@ -1612,7 +1661,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followMuseumsMobile" onclick="followMuseums()">
+                  <button
+                    id="followMuseumsMobile"
+                    onclick="followCatalog('museums')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1630,7 +1682,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followTourismcMobile" onclick="followTourism()">
+                  <button
+                    id="followTourismcMobile"
+                    onclick="followCatalog('tourism')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1648,7 +1703,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followMFashionMobile" onclick="followFashion()">
+                  <button
+                    id="followMFashionMobile"
+                    onclick="followCatalog('fashion')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1668,7 +1726,7 @@
                 <div class="follow_popup">
                   <button
                     id="followBeautyKitsMobile"
-                    onclick="followBeautyKits()"
+                    onclick="followCatalog('beauty-&-kits')"
                   >
                     Follow +
                   </button>
@@ -1687,7 +1745,7 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followFoodMobile" onclick="followFood()">
+                  <button id="followFoodMobile" onclick="followCatalog('food')">
                     Follow +
                   </button>
                 </div>
@@ -1705,7 +1763,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followFitnessMobile" onclick="followFitness()">
+                  <button
+                    id="followFitnessMobile"
+                    onclick="followCatalog('cars')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1723,7 +1784,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followFootballMobile" onclick="followFootball()">
+                  <button
+                    id="followFootballMobile"
+                    onclick="followCatalog('football')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1743,7 +1807,7 @@
                 <div class="follow_popup">
                   <button
                     id="followBasketballMobile"
-                    onclick="followBasketball()"
+                    onclick="followCatalog('basketball')"
                   >
                     Follow +
                   </button>
@@ -1762,7 +1826,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followSportsMobile" onclick="followSports()">
+                  <button
+                    id="followSportsMobile"
+                    onclick="followCatalog('sports')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1780,11 +1847,7 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button
-                    id="followNewsMobile"
-                    onclick="followNews
-                  ()"
-                  >
+                  <button id="followNewsMobile" onclick="followCatalog('news')">
                     Follow +
                   </button>
                 </div>
@@ -1804,7 +1867,7 @@
                 <div class="follow_popup">
                   <button
                     id="followFashionTVMobile"
-                    onclick="followFashionTV()"
+                    onclick="followCatalog('fashion-tv')"
                   >
                     Follow +
                   </button>
@@ -1823,7 +1886,7 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followCarsMobile" onclick="followCars()">
+                  <button id="followCarsMobile" onclick="followCatalog('cars')">
                     Follow +
                   </button>
                 </div>
@@ -1843,7 +1906,7 @@
                 <div class="follow_popup">
                   <button
                     id="followHouseMobile"
-                    onclick="followHouseDecoration()"
+                    onclick="followCatalog('house-decoration')"
                   >
                     Follow +
                   </button>
@@ -1862,7 +1925,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followMusicMobile" onclick="followNature()">
+                  <button
+                    id="followMusicMobile"
+                    onclick="followCatalog('nature')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1880,7 +1946,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followQuotesMobile" onclick="followQuotes()">
+                  <button
+                    id="followQuotesMobile"
+                    onclick="followCatalog('quotes')"
+                  >
                     Follow +
                   </button>
                 </div>
@@ -1898,7 +1967,7 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followPetMobile" onclick="followPets()">
+                  <button id="followPetMobile" onclick="followCatalog('pet')">
                     Follow +
                   </button>
                 </div>
@@ -1916,7 +1985,10 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followOthersMobile" onclick="followOthers()">
+                  <button
+                    id="followOthersMobile"
+                    onclick="followCatalog('others')"
+                  >
                     Follow +
                   </button>
                 </div>

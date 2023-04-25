@@ -3,6 +3,8 @@ var yourPassword = document.getElementById("password");
 var confPassword = document.getElementById("confirm-password");
 var submitBtn = document.getElementById("submitBtn");
 
+let api = "https://api.snapme-ng.com/api/v1";
+
 function checkPassword() {
   if (yourPassword.value === confPassword.value) {
     alert("\nPasswords match. Click OK to continue.");
@@ -14,27 +16,59 @@ submitBtn.addEventListener("click", checkPassword);
 
 //Signup API
 function signup() {
-  fetch("https://api.snapme-ng.com/api/v1/signup", {
+  const username = document.getElementById("username").value;
+  const fullname = document.getElementById("fullname").value;
+  const gender = document.querySelector('input[name="gender"]:checked').value;
+  const dob = document.getElementById("dob").value;
+  const occupation = document.getElementById("occupation").value;
+  const country = document.getElementById("countryList").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  const payload = {
+    username,
+    fullname,
+    gender,
+    dob,
+    occupation,
+    country,
+    email,
+    password,
+    confirmPassword,
+  };
+  fetch(`${api}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   })
     .then((response) => {
-      if (!response.ok) {
-        console.log("Problem");
-        return;
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 400) {
+        throw new Error(
+          `There are some errors in your signup form, check it and try again: ${response.status} ${response.statusText}`
+        );
       }
-
-      return response.json();
     })
-
     .then((data) => {
-      console.log(data);
+      document.cookie = `jwtToken=${data.token}; path=/;`;
+      window.location.href = "/timeline.html";
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      alert(error.message);
+      console.error(error);
+    });
 }
+
+document
+  .getElementById("signupForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    signup();
+  });
 
 //Show password on eye button click
 var passwordInput = document.getElementById("password");

@@ -4,12 +4,193 @@ window.addEventListener("load", function () {
   }, 2000);
 });
 
+let api1 = `http://localhost:5000/api/v1`;
+
 //Preloader
 window.onload = function () {
   var preloader = document.getElementById("preloader");
   preloader.style.display = "none";
 };
 
+function checkJwt(location) {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  console.log(jwtToken);
+  if (jwtToken && location === "profile") {
+    window.location.href = "/username.html";
+    return;
+  } else if (!jwtToken && location === "profile") {
+    // redirect to the login page if jwtToken doesn't exist
+    // alert("You need to login first!");
+    window.location.href = "/login.html";
+    return;
+  } else if (!jwtToken && location === "post") {
+    // redirect to the login page
+    // alert("You need to login first!");
+    window.location.href = "/login.html";
+    return;
+  } else if (jwtToken && location === "post") {
+    window.location.href = "/create-pin.html";
+    return;
+  }
+}
+
+function getJwt() {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    window.location.href = "/login.html";
+    return;
+  }
+  return jwtToken;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Make an HTTP request to the timeline API endpoint
+  fetch(`${api1}/pins/timeline`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Network Response Error");
+      }
+    })
+    .then((posts) => {
+      if (posts.length === 0) {
+        const timelineElement = document.querySelector(".row");
+
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("col-12");
+        messageElement.innerHTML = `
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Nothing to see here...</h5>
+              <p class="card-text">There are no pins to display in your timeline.</p>
+              <button type="button" class="btn btn-primary" onclick="location.href='create-pin.html'">Create new pin</button>
+              <button type="button" class="btn btn-secondary" onclick="location.href='friends.html'">Make friends</button>
+            </div>
+          </div>`;
+        timelineElement.appendChild(messageElement);
+      } else {
+        // Render the posts in the timeline element
+        const timelineElement = document.querySelector(".row");
+
+        console.log(posts);
+
+        posts.forEach((post) => {
+          console.log(post.user.username);
+
+          const postElement = document.createElement("div");
+          postElement.classList.add("col");
+
+          postElement.innerHTML = `
+        <div class="card mobileCard">
+            <div class="post-img">
+              <img src="${
+                post?.media[0]
+              }" class="card-img-top" onclick="window.location = 'pin-details.html'" />
+              <a class="username text-white" href="username.html">
+                <img src="${post.user.picture}" width="50px" />
+                ${post.user.username}
+                ${
+                  post.user.role === "subscribed"
+                    ? '<span id="subscribed-badge" class="verified-badge"><img src="Images/verified.svg" alt="Profile pic" /></span>'
+                    : ""
+                }
+              </a>
+              <p class="timePinned">
+                Posted <span id="timePosted">${moment(
+                  post.date
+                ).fromNow()}</span>
+              </p>
+              <h4>${post.caption}</h4>
+            </div>
+            <div class="card-body">
+              <ul class="card-title icons-list">
+                <li>
+                  <button>
+                    <i class="fa-solid fa-eye"></i>
+                    <p class="text-white">${post?.views}</p>
+                  </button>
+                </li>
+
+                <li class="likeListItem">
+                  <button onclick="likePost()" class="like-button">
+                    <i class="far fa-heart" style="color: #fff"></i>
+                  </button>
+                  <p class="text-white">${post?.likes?.length}</p>
+                </li>
+
+                <li>
+                  <button onclick="commentOnPost()">
+                    <i class="fa-solid fa-comment"></i>
+                    <p class="text-white">${post?.comment?.length}</p>
+                  </button>
+                </li>
+                <li>
+                  <button class="myPopupBtn">
+                    <i class="fa-solid fa-share"></i>
+                    <p class="text-white">123</p>
+                  </button>
+                </li>
+
+                <!-- The Modal -->
+                <div class="shareModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modalContent mobileModalContent">
+                    <span class="close">&times;</span>
+                    <p>Share this post</p>
+                    <div class="share_popup">
+                      <a
+                        class="facebookShare"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                        target="_blank"
+                        ><img src="Images/facebook new.svg"
+                      /></a>
+                      <a
+                        class=""
+                        href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                        data-size="large"
+                        target="_blank"
+                      >
+                        <img src="Images/twitter new.svg" alt="Twitter"
+                      /></a>
+
+                      <a
+                        class="whatsappShare"
+                        href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                        target="_blank"
+                      >
+                        <img src="Images/whatsapp new.svg" alt="WhatsApp"/></a>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+
+                  <p class="card-text">${post.description}</p>
+                  <a href="#" class="btn btn-primary">Read more</a>
+                </div>
+          </div>`;
+          timelineElement.appendChild(postElement);
+        });
+      }
+    })
+    .catch((error) => {
+      alert(`error fetching timeline: ${error}`);
+      console.error("Error fetching timeline:", error);
+    });
+});
 // Social media share modal
 //Share popup modal 1
 

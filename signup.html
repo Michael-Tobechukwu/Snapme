@@ -31,13 +31,18 @@
   <body>
     <div class="container">
       <div class="inner">
-        <img src="Images/back arrow.svg" width="25px" class="backArrow" onclick="goBack()">
+        <img
+          src="Images/back arrow.svg"
+          width="25px"
+          class="backArrow"
+          onclick="goBack()"
+        />
         <div class="logo">
           <a href="index.html"><img src="Images/Snapme logo main.png" /></a>
         </div>
-        <form>
+        <form id="signupForm">
           <input type="text" id="username" placeholder="Username" required />
-          <input type="text" placeholder="Full name" required />
+          <input type="text" id="fullname" placeholder="Full Name" required />
 
           <div class="gender-birthday">
             <div class="gender-input">
@@ -47,21 +52,39 @@
                 style="display: flex; align-items: center; gap: 10px"
               >
                 <label for="male">Male</label>
-                <input type="radio" name="gender" id="male" required />
+                <input
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  value="Male"
+                  required
+                />
               </span>
               <span
                 class="female"
                 style="display: flex; align-items: center; gap: 10px"
               >
                 <label for="female">Female</label>
-                <input type="radio" name="gender" id="female" required />
+                <input
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  value="Female"
+                  required
+                />
               </span>
               <span
                 class="custom"
                 style="display: flex; align-items: center; gap: 10px"
               >
                 <label for="custom">Custom</label>
-                <input type="radio" name="gender" id="custom" required />
+                <input
+                  type="radio"
+                  name="gender"
+                  id="custom"
+                  value="Custom"
+                  required
+                />
               </span>
             </div>
             <div class="birthday">
@@ -414,7 +437,7 @@
               onclick="showConfPwd()"
             />
           </div>
-          <button id="submitBtn" onclick="signup()">
+          <button type="submit" id="submitBtn">
             <i class="fa-solid fa-paper-plane"></i>
           </button>
         </form>

@@ -61,12 +61,15 @@
         ><img src="Images/Snapme logo main.png" class="main-logo"
       /></a>
       <div class="card bg-transparent">
-        
         <div class="logo">
-          <img src="Images/back arrow.svg" class="backArrow" onclick="goBack()" />
+          <img
+            src="Images/back arrow.svg"
+            class="backArrow"
+            onclick="goBack()"
+          />
           <div class="logoLock">
             <a href="index.html"><img src="Images/Snapme icon main.png" /></a>
-          <i class="fa-solid fa-lock"></i>
+            <i class="fa-solid fa-lock"></i>
           </div>
         </div>
 
@@ -84,29 +87,21 @@
         >
           Login with Twitter <i class="fa-brands fa-twitter"></i>
         </button>-->
-
-        <button onclick="loginInstagram()">
-          <i class="fa-brands fa-instagram"></i>
-          Login with Instagram
+        <button class="instagram">
+          <a href="http://localhost:5000/api/v1/auth/instagram">
+            <i class="fa-brands fa-instagram"></i>
+            Login with Instagram
+          </a>
         </button>
 
-        <!--        <fb:login-button
-          scope="public_profile,email"
-          onlogin="checkLoginState();"
-        >
-        </fb:login-button>-->
+        <button class="facebook">
+          <a href="http://localhost:5000/api/v1/auth/facebook">
+            <i class="fa-brands fa-facebook"></i>
+            Login with Facebook
+          </a>
+        </button>
 
-        <!--<div
-          class="fb-login-button"
-          data-width="250px"
-          data-size="medium"
-          data-button-type=""
-          data-layout=""
-          data-auto-logout-link="true"
-          data-use-continue-as="true"
-        ></div>-->
-
-        <div
+        <!-- <div
           class="fb-login-button"
           data-width="250px"
           data-size="large"
@@ -114,9 +109,14 @@
           data-layout=""
           data-auto-logout-link="true"
           data-use-continue-as="true"
-        ></div>
+        ></div> -->
 
-        <div id="googleBtn">Login with Google</div>
+        <button id="googleBtn">
+          <a href="http://localhost:5000/api/v1/auth/google">
+            <i class="fa-brands fa-google"></i>
+            Login with Google
+          </a>
+        </button>
         <!--<div
           id="g_id_onload"
           data-client_id="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
@@ -151,7 +151,6 @@
       <!--wrapper ends-->
     </div>
     <!--scripts-->
-    <script src="login.js"></script>
     <script src="https://apis.google.com/js/api:client.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="js/bootstrap.min.js"></script>

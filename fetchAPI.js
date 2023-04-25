@@ -1,6 +1,8 @@
+const api = `http://localhost:5000/api/v1`;
+
 //Search fetch API
 function searchPosts() {
-  fetch("https://api.snapme-ng.com/api/v1/search", {
+  fetch(`${api}/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,481 +22,42 @@ function searchPosts() {
     .catch((error) => console.error(error));
 }
 
-/////FOLLOW CATALOGS
-//Put request to follow music catalog
-function followMusic() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/music/follow", {
+//FOLLOW CATALOGS
+function followCatalog(catalogName) {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    window.location.href = "/login";
+    return;
+  }
+  fetch(`${api}/catalog/${catalogName}/follow`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
     },
     body: JSON.stringify({
-      userId: 456,
+      catalogName: catalogName,
     }),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to follow catalog");
+      }
+      return response.json();
     })
-    .catch((error) => console.error(error));
-}
-followMusic();
-
-//Put request to follow shows and concerts catalog
-function followShowsConcerts() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/showsConcerts/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
     .then((data) => {
-      console.log("Catalog followed successfully");
+      alert(`Successfully followed catalog: ${data.catalog}`);
+      console.log("Successfully followed catalog:", data.catalog);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      alert(`Error following catalog: ${error}`);
+      console.error("Error following catalog:", error);
+    });
 }
-followShowsConcerts();
-
-//Put request to follow dance catalog
-function followDance() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/dance/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followDance();
-
-//Put request to follow afrobeats catalog
-function followAfrobeats() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/afrobeats/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followAfrobeats();
-
-//Put request to follow comedy catalog
-function followComedy() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/comedy/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followComedy();
-
-//Put request to follow tag stories catalog
-function followTagStories() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/tagStories/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followTagStories();
-
-//Put request to follow Photography catalog
-function followPhotography() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/photography/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followPhotography();
-
-//Put request to follow art catalog
-function followArt() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/art/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followArt();
-
-//Put request to follow museums catalog
-function followMuseums() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/museums/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followMuseums();
-
-//Put request to follow tourism catalog
-function followTourism() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/tourism/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followTourism();
-
-//Put request to follow fashion catalog
-function followFashion() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/fashion/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followFashion();
-
-//Put request to follow Beauty & Kits catalog
-function followBeautyKits() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/beautyKits/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followBeautyKits();
-
-//Put request to follow food catalog
-function followFood() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/food/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followFood();
-
-//Put request to follow fitness catalog
-function followFitness() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/fitness/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followFitness();
-
-//Put request to follow football catalog
-function followFootball() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/football/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followFootball();
-
-//Put request to follow basketball catalog
-function followBasketball() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/basketball/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followBasketball();
-
-//Put request to follow sports catalog
-function followSports() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/sports/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followSports();
-
-//Put request to follow news catalog
-function followNews() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/news/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followNews();
-
-//Put request to follow fashion TV catalog
-function followFashionTV() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/fashionTV/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followFashionTV();
-
-//Put request to follow cars catalog
-function followCars() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/cars/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followCars();
-
-//Put request to follow house decoration catalog
-function followHouseDecoration() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/houseDecoration/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followHouseDecoration();
-
-//Put request to follow nature catalog
-function followNature() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/nature/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followNature();
-
-//Put request to follow quotes catalog
-function followQuotes() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/quotes/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followQuotes();
-
-//Put request to follow pets catalog
-function followPets() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/pets/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followPets();
-
-//Put request to follow others catalog
-function followOthers() {
-  fetch("https://api.snapme-ng.com/api/v1/catalog/others/follow", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Catalog followed successfully");
-    })
-    .catch((error) => console.error(error));
-}
-followOthers();
 
 //Like post
 //Add click event listener to like buttons
@@ -509,7 +72,7 @@ document.getElementById("likeBtn8").addEventListener("click", likePost);
 
 //Put request to like a post
 function likePost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like", {
+  fetch(`${api}/pins/:id/like`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -528,7 +91,7 @@ likePost();
 
 //Post request to comment on post
 function commentOnPost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/comment/:id", {
+  fetch(`${api}/pins/comment/:id`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -548,7 +111,7 @@ commentOnPost();
 
 //Get request to download post
 function downloadPost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/download/:id")
+  fetch(`${api}/pins/download/:id`)
     .then((response) => response.blob())
     .then((blob) => {
       const url = URL.createObjectURL(blob);
@@ -563,7 +126,7 @@ downloadPost();
 
 //Post request to save post
 function savePost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/save/:id", {
+  fetch(`${api}/pins/save/:id`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -581,7 +144,7 @@ savePost();
 
 //Delete post
 function deletePost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/delete/:postId/:deleteId", {
+  fetch(`${api}/pins/delete/:postId/:deleteId`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -599,7 +162,7 @@ deletePost();
 
 //Fetch timeline post
 function timeline() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/timeline")
+  fetch(`${api}/pins/timeline`)
     .then((response) => response.json())
     .then((posts) => {
       posts.forEach((post) => {
@@ -613,7 +176,7 @@ timeline();
 
 //Get suggested Accounts of users to follow
 function suggestedAccounts() {
-  fetch("https://api.snapme-ng.com/api/v1/user/suggested")
+  fetch(`${api}/user/suggested`)
     .then((response) => response.json())
     .then((suggestions) => {
       suggestions.forEach((suggestion) => {
@@ -628,7 +191,7 @@ suggestedAccounts();
 
 //Subscribe
 function subscribe() {
-  fetch("https://api.snapme-ng.com/api/v1/subscribe/:index", {
+  fetch(`${api}/subscribe/:index`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

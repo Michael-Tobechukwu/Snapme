@@ -773,7 +773,6 @@ input:checked + .slider:before {
     background: #021129;
     width: 100%;
     margin-top: 0;
-
     top: 0;
     z-index: 1;
   }
@@ -1003,9 +1002,10 @@ input:checked + .slider:before {
     margin-top: -30px;
     margin-bottom: 0;
     position: sticky;
+
     z-index: 1;
     background: #021129;
-    padding: 15px 0 10px 0;
+    padding: 10px 0;
   }
 
   #swipe-container.fixed {
@@ -1055,8 +1055,6 @@ input:checked + .slider:before {
     border: none;
     width: 90%;
     margin: 30% auto 0 auto;
-    
-    
   }
 
   /* The Close Button */

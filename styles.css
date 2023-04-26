@@ -960,7 +960,7 @@ input:checked + .slider:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 25px auto 0 auto;
+    margin: 20px auto 0 auto;
     color: #fff;
   }
 
@@ -999,10 +999,9 @@ input:checked + .slider:before {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
     /* position: relative;*/
-    margin-top: -30px;
+    margin-top: -35px;
     margin-bottom: 0;
     position: sticky;
-
     z-index: 1;
     background: #021129;
     padding: 10px 0;

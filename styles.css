@@ -1003,10 +1003,9 @@ input:checked + .slider:before {
     margin-top: -30px;
     margin-bottom: 0;
     position: sticky;
-
     z-index: 1;
     background: #021129;
-    padding: 10px 0;
+    padding: 15px 0 10px 0;
   }
 
   #swipe-container.fixed {

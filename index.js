@@ -232,7 +232,7 @@ window.addEventListener("scroll", () => {
   if (scrollPosition >= catalogsContainerOffsetTop) {
     catalogsContainer.classList.add("fixed");
     catalogsContainer.style.top =
-      "20px"; /* the sticky position of the tabs swipe container */
+      "30px"; /* the sticky position of the tabs swipe container */
   } else {
     catalogsContainer.classList.remove("fixed");
     catalogsContainer.style.top =

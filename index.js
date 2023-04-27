@@ -1400,6 +1400,7 @@ const swipeContainer = document.getElementById("swipe-container");
 
 let touchStartX = 0;
 let touchEndX = 0;
+let isFixed = false;
 
 swipeContainer.addEventListener("touchstart", (event) => {
   touchStartX = event.touches[0].clientX;
@@ -1407,13 +1408,28 @@ swipeContainer.addEventListener("touchstart", (event) => {
 
 swipeContainer.addEventListener("touchmove", (event) => {
   touchEndX = event.touches[0].clientX;
+
+  // If the user has scrolled past the top of the swipe container, fix it to the top
+  if (swipeContainer.getBoundingClientRect().top <= 0 && !isFixed) {
+    swipeContainer.classList.add("fixed");
+    isFixed = true;
+  }
 });
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.scrollBy({ left: 50, behavior: "smooth" });
+    swipeContainer.style.transform = `translateX(-50px)`;
   } else if (touchEndX > touchStartX) {
-    swipeContainer.scrollBy({ left: -50, behavior: "smooth" });
+    swipeContainer.style.transform = `translateX(50px)`;
+  }
+});
+
+window.addEventListener("scroll", () => {
+  // If the user scrolls back to the top of the page, unfix the swipe container
+  if (window.scrollY <= 0 && isFixed) {
+    swipeContainer.classList.remove("fixed");
+    swipeContainer.style.transform = "";
+    isFixed = false;
   }
 });
 ////

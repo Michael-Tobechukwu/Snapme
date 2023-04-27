@@ -1310,6 +1310,10 @@ input:checked + .slider:before {
   .navbuttonsMobile #mobileSearchToggleBtn img {
     width: 30px;
   }
+
+  .suggested {
+    width: 45%;
+  }
 }
 
 @media (max-width: 425px) {

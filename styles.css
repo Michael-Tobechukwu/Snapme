@@ -1,3479 +1,1586 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta
-      name="google-signin-client_id"
-      content="406252614079-1qs3hukdpphr7bse43ef9d6nebr314ns.apps.googleusercontent.com"
-    />
-    <!--<meta
-      name="google-signin-client_id"
-      content="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
-    />-->
-    <link rel="icon" href="icon.png" />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="apple-touch-icon" href="icon.png" />
-
-    <title>Snapme</title>
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    />
-
-    <script
-      type="text/JavaScript"
-      src=" https://MomentJS.com/downloads/moment.js"
-    ></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-    />
-
-    <link rel="shortcut icon" href="Snapme logo.png" type="image/x-icon" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <div id="preloader">
-      <div class="preloader">
-        <img
-          src="Images/Snapme icon white.png"
-          alt="Snapme logo"
-          width="50px"
-        />
-        <p>Made from Ukraine and Africa</p>
-        <div class="progress">
-          <div class="color"></div>
-        </div>
-      </div>
-    </div>
-    <div class="wrapper container">
-      <nav class="navmenu" id="myNavbar">
-        <div class="hamburger">
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary bg-transparent dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img src="Images/hamburger.svg" />
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="about.html">About</a></li>
-              <li><a class="dropdown-item" href="terms.html">Terms</a></li>
-              <li>
-                <a class="dropdown-item" href="privacy.html">Privacy Policy</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="promotions.html">Promotions</a>
-              </li>
-              <li><a class="dropdown-item" href="support.html">Support</a></li>
-              <li>
-                <a class="dropdown-item" href="settings.html">Settings</a>
-              </li>
-
-              <div class="social-icons">
-                <hr />
-                <li class="copy">&copy; 2023 Snapme, Ekoverse Technologies</li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="http://twitter.com/snapmeng"
-                    target="_blank"
-                    ><img src="Images/twitter.svg"
-                  /></a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="http://instagram.com/snapmeng/"
-                    target="_blank"
-                    ><img src="Images/instagram.svg"
-                  /></a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://m.facebook.com/groups/1661995654256478?group_view_referrer=search&_rdc=1&_rdr&paipv=0&eav=AfYEFfq9LrYXwGrD4O8UFGJQab45Hoqhj5noDv2hvMXRxbpiptRvWkL8Sx3NRkuaB28"
-                    target="_blank"
-                    ><img src="Images/facebook.svg"
-                  /></a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://t.me/snapmeng"
-                    target="_blank"
-                    ><img src="Images/telegram.svg"
-                  /></a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="http://snapme-ng.com/snapmeng"
-                    target="_blank"
-                    ><img src="Images/snapme.png"
-                  /></a>
-                </li>
-              </div>
-            </ul>
-          </div>
-        </div>
-        <div class="main-logo">
-          <a href="index.html"><img src="Images/white logo.png" /></a>
-        </div>
-        <br />
-        <div class="navbuttons">
-          <label onclick="window.location='index-light.html'" class="switch">
-            <input type="checkbox" />
-            <span class="slider"></span>
-          </label>
-
-          <button class="live-button" id="liveButton">LIVE</button>
-
-          <!--Live pop up modal-->
-          <div id="liveModal">
-            <!-- Modal content -->
-            <div class="liveModalContent">
-              <span id="closeLive">&times;</span>
-
-              <div class="livePopup">
-                <button id="goLive" onclick="window.location='live-start.html'">
-                  Go live
-                </button>
-                <button id="watchLive" onclick="window.location='live.html'">
-                  Watch live
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="search">
-            <button id="search-toggle-btn">
-              <img src="Images/search icon.svg" alt="" />
-            </button>
-            <div id="search-container">
-              <input
-                type="search"
-                id="search-input"
-                placeholder="Search catalogs..."
-              />
-              <button id="search-btn">Go</button>
-              <ul id="search-results"></ul>
-            </div>
-          </div>
-
-          <div class="user-create">
-            <a href="login.html"
-              ><img class="user-image" src="Images/user image.svg"
-            /></a>
-            <a href="create-pin.html" id="signedInContent2"
-              ><img class="create-plus" src="Images/create plus.svg"
-            /></a>
-          </div>
-        </div>
-
-        <!--Mobile nav buttons-->
-
-        <div class="navbuttonsMobile">
-          <div class="hamburger">
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary bg-transparent dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img src="Images/hamburger.svg" />
-              </button>
-              <ul class="dropdown-menu" id="mobileDropdown">
-                <li><a class="dropdown-item" href="about.html">About</a></li>
-                <li><a class="dropdown-item" href="terms.html">Terms</a></li>
-                <li>
-                  <a class="dropdown-item" href="privacy.html"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="promotions.html">Promotions</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="support.html">Support</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="settings.html">Settings</a>
-                </li>
-
-                <div class="social-icons">
-                  <hr />
-                  <li class="copy">
-                    &copy; 2023 Snapme, Ekoverse Technologies
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="http://twitter.com/snapmeng"
-                      target="_blank"
-                      ><img src="Images/twitter.svg"
-                    /></a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="http://instagram.com/snapmeng/"
-                      target="_blank"
-                      ><img src="Images/instagram.svg"
-                    /></a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://m.facebook.com/groups/1661995654256478?group_view_referrer=search&_rdc=1&_rdr&paipv=0&eav=AfYEFfq9LrYXwGrD4O8UFGJQab45Hoqhj5noDv2hvMXRxbpiptRvWkL8Sx3NRkuaB28"
-                      target="_blank"
-                      ><img src="Images/facebook.svg"
-                    /></a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="https://t.me/snapmeng"
-                      target="_blank"
-                      ><img src="Images/telegram.svg"
-                    /></a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="http://snapme-ng.com/snapmeng"
-                      target="_blank"
-                      ><img src="Images/snapme.png"
-                    /></a>
-                  </li>
-                </div>
-              </ul>
-            </div>
-          </div>
-          <div class="main-logo">
-            <a href="index.html"><img src="Images/white logo.png" /></a>
-          </div>
-          <a href="index-light.html" id="toggle">
-            <img
-              class="toggle-button"
-              src="Images/toggle dark.svg"
-              width="40px"
-            />
-          </a>
-          <button class="live-button" id="mobileLiveBtn">LIVE</button>
-          <!--Live pop up modal-->
-          <div id="liveModalMobile">
-            <!-- Modal content -->
-            <div class="liveContentMobile">
-              <span id="closeLiveMobile">&times;</span>
-
-              <div class="livePopup">
-                <button id="goLive" onclick="window.location='live-start.html'">
-                  Go live
-                </button>
-                <button id="watchLive" onclick="window.location='live.html'">
-                  Watch live
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="user-create">
-            <a href="login.html"
-              ><img class="user-image" src="Images/user image.svg"
-            /></a>
-            <a href="create-pin.html"
-              ><img class="create-plus" src="Images/create plus.svg"
-            /></a>
-          </div>
-
-          <div class="mobileSearch">
-            <button id="mobileSearchToggleBtn">
-              <img src="Images/search icon.svg" />
-            </button>
-            <div id="mobile-search-container">
-              <input
-                type="search"
-                id="mobile-search-input"
-                placeholder="Search catalogs..."
-              />
-              <button id="mobile-search-btn">
-                <img src="Images/search icon.svg" alt="" />
-              </button>
-              <ul id="mobile-search-results"></ul>
-            </div>
-          </div>
-        </div>
-
-        <!--Mobile nav buttons-->
-
-        <!--nav-->
-      </nav>
-
-      <div class="subscribe">
-        <button onclick="window.location='subscribe.html'">Subscribe</button>
-      </div>
-      <div class="tabs">
-        <!--Music with popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Music
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog w-100">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followMusicBtn" onclick="followMusic()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button
-                  type="button"
-                  class="btn btn-success visually-hidden"
-                ></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Music with popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Shows & Concerts
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followShowsBtn" onclick="followShowsConcerts()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Dance
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followDanceBtn" onclick="followDance()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Afrobeats
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followAfrobeatsBtn" onclick="followAfrobeats()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Comedy
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followComedyBtn" onclick="followComedy()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Tag Stories
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followTagStoriesBtn" onclick="followTagStories()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Photography
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followPhotographyBtn" onclick="followPhotography()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Art
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followArtBtn" onclick="followArt()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Museums
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followMuseumsBtn" onclick="followMuseums()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Tourism
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followTourismBtn" onclick="followTourism()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Fashion
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followFashionBtn" onclick="followFashion()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Beauty & Kits
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followBeautyKitsBtn" onclick="followBeautyKits()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Food
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followFoodBtn" onclick="followFood()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Tabs Popup-->
-
-        <!--Tabs Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Fitness
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followFitnessBtn" onclick="followFitness()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Football
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followFootballBtn" onclick="followFootball()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Basketball
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followBasketballBtn" onclick="followBasketball()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Sports
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followSportsBtn" onclick="followSports()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          News
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followNewsBtn" onclick="followNews()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Fashion TV
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followFashionTVBtn" onclick="followFashionTV()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Cars
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followCarsBtn" onclick="followCars()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          House Decoration
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a
-                  id="followHouseDecorationBtn"
-                  onclick="followHouseDecoration()"
-                  >Follow +</a
-                >
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Nature
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followNatureBtn" onclick="followNature()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Quotes
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followQuotesBtn" onclick="followQuotes()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Popup-->
-
-        <!--Popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Pets
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followPetsBtn" onclick="followPets()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Tabs popup-->
-
-        <!--Others with popup-->
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Others
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content bg-white">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Follow catalog
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body tabs-follow">
-                <a id="followOthersBtn" onclick="followOthers()">Follow +</a>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary visually-hidden"
-                  data-bs-dismiss="modal"
-                ></button>
-                <button type="button" class="btn visually-hidden"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Others with popup-->
-      </div>
-      <!--catalog tabs end-->
-
-      <!--Tabs for mobile-->
-      <div class="discover">
-        <h4>Discover</h4>
-        <p>#Trending catalogs</p>
-        <button onclick="window.location='subscribe.html'">Subscribe</button>
-      </div>
-      <div class="mobileTabs">
-        <div id="swipe-container">
-          <div id="music">
-            <div class="swipe-item">
-              <button id="followPopup" class="followPopup">Music</button>
-            </div>
-
-            <!-- The Modal -->
-            <div id="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="mobileclose">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followMusicMobile" onclick="followMusic()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="showsConcerts">
-            <div class="swipe-item">
-              <button class="followPopup">Shows & Concerts</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followShowsMobile"
-                    onclick="followShowsConcerts()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="dance">
-            <div class="swipe-item">
-              <button class="followPopup">Dance</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followDanceMobile" onclick="followDance()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Afrobeats">
-            <div class="swipe-item">
-              <button class="followPopup">Afrobeats</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followAfrobeatsMobile"
-                    onclick="followAfrobeats()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Comedy">
-            <div class="swipe-item">
-              <button class="followPopup">Comedy</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followComedyMobile" onclick="followComedy()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="tagStories">
-            <div class="swipe-item">
-              <button class="followPopup">Tag Stories</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followTagStoriesMobile"
-                    onclick="followTagStories()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Photography">
-            <div class="swipe-item">
-              <button class="followPopup">Photography</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followMPhotographyMobile"
-                    onclick="followPhotography()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Art">
-            <div class="swipe-item">
-              <button class="followPopup">Art</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followArtMobile" onclick="followArt()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Museums">
-            <div class="swipe-item">
-              <button class="followPopup">Museum</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followMuseumsMobile" onclick="followMuseums()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Tourism">
-            <div class="swipe-item">
-              <button class="followPopup">Tourism</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followTourismcMobile" onclick="followTourism()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Fashion">
-            <div class="swipe-item">
-              <button class="followPopup">Fashion</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followMFashionMobile" onclick="followFashion()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="BeautyKits">
-            <div class="swipe-item">
-              <button class="followPopup">Beauty & Kits</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followBeautyKitsMobile"
-                    onclick="followBeautyKits()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Food">
-            <div class="swipe-item">
-              <button class="followPopup">Food</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followFoodMobile" onclick="followFood()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Fitness">
-            <div class="swipe-item">
-              <button class="followPopup">Fitness</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followFitnessMobile" onclick="followFitness()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Football">
-            <div class="swipe-item">
-              <button class="followPopup">Football</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followFootballMobile" onclick="followFootball()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Basketball">
-            <div class="swipe-item">
-              <button class="followPopup">Basketball</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followBasketballMobile"
-                    onclick="followBasketball()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Sports">
-            <div class="swipe-item">
-              <button class="followPopup">Sports</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followSportsMobile" onclick="followSports()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="News">
-            <div class="swipe-item">
-              <button class="followPopup">News</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followNewsMobile" onclick="followNews()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="FashionTV">
-            <div class="swipe-item">
-              <button class="followPopup">Fashion TV</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followFashionTVMobile"
-                    onclick="followFashionTV()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Cars">
-            <div class="swipe-item">
-              <button class="followPopup">Cars</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followCarsMobile" onclick="followCars()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="HouseDecoration">
-            <div class="swipe-item">
-              <button class="followPopup">House Decoration</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button
-                    id="followHouseDecorationMobile"
-                    onclick="followHouseDecoration()"
-                  >
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Nature">
-            <div class="swipe-item">
-              <button class="followPopup">Nature</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followNatureMobile" onclick="followNature()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Quotes">
-            <div class="swipe-item">
-              <button class="followPopup">Quotes</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followQuotesMobile" onclick="followQuotes()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Pets">
-            <div class="swipe-item">
-              <button class="followPopup">Pets</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followPetsMobile" onclick="followPets()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Others">
-            <div class="swipe-item">
-              <button class="followPopup">Others</button>
-            </div>
-
-            <!-- The Modal -->
-            <div class="mobileFollowModal" class="modal">
-              <!-- Modal content -->
-              <div class="mobileModalContent">
-                <span class="closeme">&times;</span>
-                <p>Follow catalog</p>
-                <div class="follow_popup">
-                  <button id="followOthersMobile" onclick="followOthers()">
-                    Follow +
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--swipe container ends-->
-      </div>
-      <!--mobile tabs ends-->
-
-      <!--Tabs for mobile-->
-      <div id="timelineSuggested">
-        <button id="timeCapsule" onclick="window.location='timeline.html'">
-          Timecapsule
-        </button>
-        <div class="suggested">
-          <div class="suggestedPics preview">
-            <img src="Images/azizy.png" width="25px" />
-            <img src="Images/azizy.png" width="25px" />
-            <img src="Images/azizy.png" width="25px" />
-          </div>
-          <button id="SuggestedBtn" onclick="suggestedAccounts()">
-            Suggested Accounts
-          </button>
-        </div>
-      </div>
-
-      <div id="suggestedBackground">
-        <div id="suggestedPopup">
-          <h4 class="heading">Suggested Accounts</h4>
-          <button id="closeThis">&times;</button>
-          <div class="suggested1">
-            <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <div class="usernameBox">
-              <p class="username" onclick="thisUser()">nkemimen</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
-            </div>
-
-            <button class="followSuggested" onclick="followThisUser()">
-              Follow +
-            </button>
-          </div>
-
-          <div class="suggested2">
-            <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <div class="usernameBox">
-              <p class="username" onclick="thisUser()">thomasbarc</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
-            </div>
-            <button class="followSuggested" onclick="followThisUser()">
-              Follow +
-            </button>
-          </div>
-
-          <div class="suggested3">
-            <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <div class="usernameBox">
-              <p class="username" onclick="thisUser()">marcdiss</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
-            </div>
-            <button class="followSuggested" onclick="followThisUser()">
-              Follow +
-            </button>
-          </div>
-
-          <button id="showMore" onclick="showMoreAccounts()">Show more</button>
-
-          <div id="suggestedMore">
-            <div class="suggested4">
-              <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <div class="usernameBox">
-                <p class="username" onclick="thisUser()">azizymakim</p>
-                <img
-                  id="subscribed-badge"
-                  src="Images/verified.svg"
-                  width="20px"
-                />
-              </div>
-              <button class="followSuggested" onclick="followThisUser()">
-                Follow +
-              </button>
-            </div>
-
-            <div class="suggested5">
-              <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <div class="usernameBox">
-                <p class="username" onclick="thisUser()">ayrastarr</p>
-                <img
-                  id="subscribed-badge"
-                  src="Images/verified.svg"
-                  width="20px"
-                />
-              </div>
-              <button class="followSuggested" onclick="followThisUser()">
-                Follow +
-              </button>
-            </div>
-
-            <div class="suggested6">
-              <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <div class="usernameBox">
-                <p class="username" onclick="thisUser()">asake</p>
-                <img
-                  id="subscribed-badge"
-                  src="Images/verified.svg"
-                  width="20px"
-                />
-              </div>
-              <button class="followSuggested" onclick="followThisUser()">
-                Follow +
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="image-cards" class="container mobileContainer">
-        <ul id="results"></ul>
-        <!--grid row one-->
-        <div class="row myrow">
-          <div class="col">
-            <div class="card mobileCard" id="card1">
-              <div
-                class="post-img"
-                onclick="window.location='pin-details.html'"
-              >
-                <img
-                  src="Images/ruger 7.jpg"
-                  class="card-img-top"
-                  id="pinDetails"
-                  onclick="pinDetails()"
-                />
-                <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="35px" />
-                  azizymakim
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg" alt="Profile pic"
-                  /></span>
-                  <span id="timePosted"></span>
-                </a>
-
-                <h4>The Jonzing World Imprint</h4>
-              </div>
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">2.4k</p>
-                    </button>
-                  </li>
-
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-
-                  <li>
-                    <button onclick="commentPopup()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">396</p>
-                    </button>
-                  </li>
-                  <div class="commentBox">
-                    <form class="commentBoxForm">
-                      <span class="closeComment"> &times;</span>
-                      <textarea
-                        name=""
-                        id="Comment"
-                        cols="30"
-                        rows="10"
-                        placeholder="Enter your comment here..."
-                      ></textarea>
-                      <button onclick="commentOnPost()">Comment</button>
-                    </form>
-                  </div>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">123</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-icons" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>197</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>29</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIcons()" id="myBtn">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-              <!--card end-->
-            </div>
-          </div>
-          <div class="col-5">
-            <div class="card mobileCard" id="card2">
-              <div class="post-img liquorose-card">
-                <img
-                  src="Images/liquorose 4.jpg"
-                  class="card-img-top"
-                  id="pinDetails2"
-                  onclick="pinDetails()"
-                />
-                <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="35px" alt="Profile pic" />
-                  nkemimen
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg"
-                  /></span>
-                  <span class="timePosted"></span>
-                </a>
-
-                <h4>Liquorose | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">1.4k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn2"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">401</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">123</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsII" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>197</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>29</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsII()" id="myBtnII">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card mobileCard" id="card3">
-              <div class="post-img">
-                <img
-                  src="Images/asake 4.jpeg"
-                  class="card-img-top"
-                  id="pinDetails3"
-                  onclick="pinDetails()"
-                />
-                <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="35px" alt="Profile pic" />
-                  thomasbarc
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg"
-                  /></span>
-                  <span class="timePosted"></span>
-                </a>
-
-                <h4>Asake | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">3.4k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn3"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">489</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">274</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsIII" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>177</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>229</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsIII()" id="myBtnIII">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--grid row one ends-->
-
-        <div class="row myrow">
-          <div class="col">
-            <div class="card mobileCard" id="card4">
-              <div class="post-img">
-                <img
-                  src="Images/buju 2.jpeg"
-                  class="card-img-top"
-                  id="pinDetails4"
-                  onclick="pinDetails()"
-                />
-                <a class="username text-white" href="username.html"
-                  ><img src="Images/azizy.png" width="35px" alt="Profile pic" />
-                  bryantcave
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg"
-                  /></span>
-                  <span style="font-size: 12px" class="timePosted"></span>
-                </a>
-
-                <h4>BNXN (formerly Buju) | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">2.8k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn4"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">527</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">704</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsIV" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>114</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>29</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsIV()" id="myBtnIV">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card mobileCard" id="card5">
-              <div class="post-img">
-                <img
-                  src="Images/Ayra-starr 20.jpeg"
-                  class="card-img-top"
-                  id="pinDetails5"
-                  onclick="pinDetails()"
-                />
-                <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="35px" alt="Profile pic" />
-                  marcdiss
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg"
-                  /></span>
-                  <span class="timePosted"></span>
-                </a>
-
-                <h4>Ayra Starr | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">2.4k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn5"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">387</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">127</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsV" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>197</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>28</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsV()" id="myBtnV">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-5">
-            <div class="card mobileCard" id="card6">
-              <div class="post-img wizkid-card">
-                <img
-                  src="Images/wizkid2.jpg"
-                  class="card-img-top"
-                  id="pinDetails6"
-                  onclick="pinDetails()"
-                />
-                <a
-                  class="username text-white"
-                  onclick="window.location='username.html'"
-                >
-                  <img src="Images/azizy.png" width="35px" alt="profile pic" />
-                  marcdiss
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg" alt=""
-                  /></span>
-                  <span class="timePosted"></span>
-                </a>
-
-                <h4>Wizkid | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">7.9k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn6"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">307</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">188</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsVI" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>117</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>32</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsVI()" id="myBtnVI">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--grid row two-->
-        </div>
-        <div class="row myrow">
-          <div class="col-5">
-            <div class="card mobileCard" id="card7">
-              <div class="post-img video-post">
-                <video
-                  class="video"
-                  muted
-                  loop
-                  id="pinDetails7"
-                  onclick="pinDetails()"
-                >
-                  <source src="Pawpaw hype.mp4" type="video/mp4" />
-                </video>
-                <div id="my-video-controls" class="my-video-controls">
-                  <button id="play-pause-btn">
-                    <img src="Images/pause-button.svg" alt="Pause/Play" />
-                  </button>
-                  <input
-                    type="range"
-                    id="volume-range"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value="1"
-                  />
-                  <button id="mute-btn">
-                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
-                  </button>
-                  <select id="speed-select">
-                    <option value="1">1x</option>
-                    <option value="0.5">0.5x</option>
-                    <option value="1.5">1.5x</option>
-                    <option value="2">2x</option>
-                  </select>
-                  <button id="skip-back-btn">
-                    <img src="Images/skip-backward.svg" alt="<<" />
-                  </button>
-                  <button id="skip-ahead-btn">
-                    <img src="Images/skip-forward.svg" alt=">>" />
-                  </button>
-                </div>
-                <a
-                  class="username text-white"
-                  onclick="window.location='username.html'"
-                >
-                  <img src="Images/azizy.png" width="35px" alt="profile pic" />
-                  estatecomedy
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg" alt=""
-                  /></span>
-                  <span class="timePosted"></span>
-                </a>
-
-                <h4>Naija Movies | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">7.9k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn7"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">307</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">188</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsVII" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>117</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>32</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsVII()" id="myBtnVII">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-5">
-            <div class="card mobileCard" id="card8">
-              <div class="post-img video-post">
-                <video
-                  class="video"
-                  loop
-                  muted
-                  id="pinDetails8"
-                  onclick="pinDetails()"
-                >
-                  <source src="Obedience.mp4" type="video/mp4" />
-                </video>
-                <div id="my-video-controls2" class="my-video-controls">
-                  <button id="play-pause-btn2">
-                    <img src="Images/pause-button.svg" alt="Pause/Play" />
-                  </button>
-                  <input
-                    type="range"
-                    id="volume-range2"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value="1"
-                  />
-                  <button id="mute-btn2">
-                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
-                  </button>
-                  <select id="speed-select2">
-                    <option value="1">1x</option>
-                    <option value="0.5">0.5x</option>
-                    <option value="1.5">1.5x</option>
-                    <option value="2">2x</option>
-                  </select>
-                  <button id="skip-back-btn2">
-                    <img src="Images/skip-backward.svg" alt="<<" />
-                  </button>
-                  <button id="skip-ahead-btn2">
-                    <img src="Images/skip-forward.svg" alt=">>" />
-                  </button>
-                </div>
-                <a
-                  class="username text-white"
-                  onclick="window.location='username.html'"
-                >
-                  <img src="Images/azizy.png" width="35px" alt="profile pic" />
-                  derek
-                  <span id="subscribed-badge" class="verified-badge"
-                    ><img src="Images/verified.svg" alt=""
-                  /></span>
-                  <span class="timePosted"></span>
-                </a>
-
-                <h4>God's Will | Snapme Catalog</h4>
-              </div>
-
-              <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">7.9k</p>
-                    </button>
-                  </li>
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn8"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-                  <li>
-                    <button onclick="commentOnPost()">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">307</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">188</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsVIII" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>117</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>32</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIconsVIII()" id="myBtnVIII">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="pin-container">
-            <!-- New pins will be added here -->
-          </div>
-        </div>
-      </div>
-      <!--grid-->
-
-      <!-- Add a div for the popup content -->
-      <div id="promotePopup" class="promotePopup">
-        <h5>Promote your catalog</h5>
-        <button id="promoteButton" onclick="window.location='promotions.html'">
-          Go premium
-        </button>
-        <button id="closePromote" onclick="closePromote">No, thanks</button>
-      </div>
-
-      <!--Mobile footer-->
-      <div class="mobileView">
-        <button onclick="window.location='index.html'">
-          <img src="Images/white house.svg" alt="" />
-        </button>
-        <button><img src="Images/microphone.svg" alt="" /></button>
-        <button
-          class="mobileCreate"
-          id="signedInContent"
-          onclick="window.location='create-pin.html'"
-        >
-          <i class="fa-regular fa-plus"></i>
-        </button>
-        <button><img src="Images/bell white.svg" /></button>
-        <button><img src="Images/sliders white.svg" /></button>
-      </div>
-
-      <!--Mobile footer-->
-      <div class="install-button">Install</div>
-    </div>
-    <!--wrapper ends-->
-
-    <!--scripts-->
-    <script src="index.js"></script>
-    <script src="fetchAPI.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-    ></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker
-            .register("/service-worker.js")
-            .then(function (registration) {
-              console.log("Service worker registered:", registration);
-            })
-            .catch(function (error) {
-              console.log("Service worker registration failed:", error);
-            });
-        });
-      }
-    </script>
-  </body>
-</html>
+*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #021129 !important;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #021129;
+  z-index: 9999;
+}
+
+.preloader {
+  text-align: center;
+  margin: 20% auto 0 auto;
+  width: 250px;
+}
+
+.preloader p {
+  color: #fff;
+}
+
+.progress {
+  margin: 0 auto;
+  height: 20px;
+  width: 0px;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 15px;
+  animation: progress 4s infinite linear;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+
+  25% {
+    width: 25%;
+  }
+
+  50% {
+    width: 50%;
+  }
+
+  75% {
+    width: 75%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.dropdown button {
+  border: none !important;
+}
+
+.dropdown-menu {
+  margin-top: 2rem !important;
+  position: absolute;
+  background: #021129 !important;
+  padding: 1rem 1rem !important;
+  width: 300px;
+  box-shadow: 3px 3px 6px #000;
+  border-radius: 2rem;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  color: #fff !important;
+  font-size: 0.9rem !important;
+}
+
+.dropdown-menu hr {
+  border: 1px solid #fff;
+  width: 100px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #fff !important;
+  font-size: 0.9rem;
+  transition: 0.4s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: none;
+  transform: scale(105%);
+}
+
+/*Toggle Switch*/
+.switch {
+  --secondary-container: #3a4b39;
+  --primary: #84da89;
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.7em;
+  height: 1.8em;
+}
+
+.switch input {
+  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: 0.2s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.2em;
+  bottom: 0.2em;
+  background-color: #021129;
+  transition: 0.4s;
+}
+
+input:checked + .slider::before {
+  background-color: var(--primary);
+}
+
+input:checked + .slider {
+  background-color: var(--secondary-container);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--secondary-container);
+}
+
+input:checked + .slider:before {
+  transform: translateX(1.9em);
+}
+/*Toggle switch*/
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons li a {
+  color: #fff;
+  margin-right: 0 !important;
+  padding: 0 !important;
+}
+
+.social-icons li a img {
+  width: 2rem;
+}
+
+.social-icons .copy {
+  font-size: 0.8rem !important;
+}
+
+.navmenu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #021129;
+  padding: 1rem 0;
+}
+
+.navbuttonsMobile,
+#timelineSuggested,
+#suggestedBackground {
+  display: none;
+}
+
+.navmenu .main-logo {
+  width: 25%;
+}
+
+.navmenu .main-logo img {
+  width: 100%;
+  margin-left: -120px;
+}
+
+.navmenu .navbuttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+
+.navmenu .live-button {
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.2rem 2rem;
+  background: #bd74bd;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: ease 0.4s;
+  animation-name: blinking-button;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blinking-button {
+  from {
+    background: #ba00ba;
+  }
+  to {
+    background: #740374;
+  }
+}
+
+#search-container {
+  display: none;
+  position: relative;
+}
+
+.search {
+  position: relative;
+}
+
+#search-btn,
+#search-toggle-btn {
+  background: #021129;
+  border: none;
+  color: #fff;
+  padding: 5px;
+  border-radius: 0.5rem;
+}
+
+#search-input {
+  position: absolute;
+  z-index: 1;
+  left: -250px;
+  top: 0;
+  background: #021129;
+  width: 250px;
+  color: #fff;
+  padding: 0.4rem 0.5rem;
+  border: 2px solid #fff;
+  font-size: 12px;
+  border-radius: 0.5rem;
+}
+
+.navbuttons img {
+  width: 3rem;
+  transition: 0.4s;
+}
+
+.navbuttons img:hover {
+  transform: scale(110%);
+}
+
+.navbuttons :nth-child(3) img {
+  width: 2rem;
+}
+
+.navbuttons .user-create {
+  display: flex !important;
+  gap: 0.4rem;
+}
+
+.search button img {
+  width: 20px !important;
+}
+
+.subscribe {
+  display: flex;
+  justify-content: right;
+}
+
+.subscribe button {
+  background: #ba00ba;
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: ease 0.4s;
+}
+
+.subscribe button:hover {
+  background: #740374;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: center;
+  margin: 3rem auto;
+}
+
+.tabs button {
+  border-radius: 2rem;
+  border: white solid 2px;
+  padding: 0.3rem 1.6rem !important;
+  transition: 0.3s ease;
+  color: #fff;
+  font-weight: 500;
+  margin: 0.4rem 0.7rem;
+  cursor: pointer;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: #fff !important;
+  margin: 0.2rem auto;
+  background: #cc1ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.tabs button:hover {
+  transform: scale(110%);
+  color: #fff;
+}
+
+.tabs button:focus {
+  background: #bd74bd;
+  border: #bd74bd solid 2px;
+}
+
+#video,
+.video {
+  width: 100%;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+.my-video-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60%;
+  z-index: 1;
+  width: 98%;
+}
+
+.my-video-controls button {
+  width: 15%;
+  background: none !important;
+  color: #021129 !important;
+  border: none !important;
+}
+
+.my-video-controls button img {
+  width: 100%;
+}
+
+.my-video-controls button,
+.my-video-controls select {
+  margin: 0 10px;
+}
+
+.my-video-controls input[type="range"] {
+  width: 20%;
+  color: #021129;
+  background: #021129;
+}
+
+.my-video-controls select {
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+  background: #021129;
+  width: 18%;
+}
+
+.my-video-controls {
+  display: none;
+}
+
+.btn-close:hover {
+  background: #fff !important;
+  color: #000 !important;
+  border: none !important;
+}
+
+.mobileTabs,
+.discover,
+.mobileView,
+.mobileSearch {
+  display: none;
+}
+
+.fa-solid,
+.fa-bookmark {
+  color: #fff;
+}
+
+.modal-content {
+  width: 70% !important;
+}
+
+/* The Modal (background) */
+.shareModal,
+#liveModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.liveModalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+/* The Close Button */
+.close,
+#closeLive {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+#closeLive:hover,
+.close:focus,
+#closeLive:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+#goLive,
+#watchLive {
+  background: #ba00ba;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  margin: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+}
+
+#goLive:hover,
+#watchLive:hover {
+  background: #5a015a;
+}
+
+.modalContent p {
+  margin-bottom: 1rem;
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+}
+
+.share_popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.share_popup a {
+  width: 25%;
+  color: #000;
+}
+
+.share_popup img {
+  width: 100%;
+}
+
+#myBtn,
+#myBtnII,
+#myBtnIII,
+#myBtnIV,
+#myBtnV,
+#myBtnVI,
+#myBtnVII,
+#myBtnVIII {
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+.more-icons {
+  margin-top: 15px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: none;
+}
+
+.more-icons li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0.6rem;
+}
+
+.more-icons li p {
+  color: #fff;
+}
+
+#image-cards {
+  justify-content: space-between !important;
+  width: 90%;
+}
+
+#image-cards .card {
+  background: #ba00ba;
+  border-radius: 0.4rem !important;
+  margin-bottom: 2rem;
+  transition: ease 0.4s;
+  padding: 0;
+}
+
+#image-cards .card:hover {
+  cursor: pointer;
+  background: #5a015a;
+}
+
+#image-cards .card .post-img {
+  position: relative !important;
+}
+
+.post-img:hover .my-video-controls {
+  display: flex;
+}
+
+#image-cards .card .post-img p {
+  position: absolute;
+  bottom: 5rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 0 !important;
+}
+
+#image-cards .card .post-img h4 {
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 0;
+  font-size: 18px;
+}
+
+#image-cards .card .post-img a {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+#image-cards .card img {
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+#image-cards .card .card-body {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  margin-left: 0;
+  margin-top: 0;
+  height: 60px;
+}
+
+#image-cards .icons-list {
+  display: flex;
+  justify-content: start;
+  align-items: center !important;
+  padding-bottom: 0 !important;
+  margin-left: -2rem;
+  margin-top: 5px;
+}
+
+#image-cards .icons-list li {
+  list-style: none;
+  margin-left: 0 !important;
+}
+
+#image-cards .icons-list li button:hover {
+  border: none !important;
+}
+
+.commentBox {
+  display: none;
+}
+
+.username span img {
+  width: 20px;
+}
+
+#mobileFollowModal {
+  display: none;
+}
+
+.timePinned {
+  font-size: 12px;
+  color: #000 !important;
+  padding: 0.2rem 0.3rem;
+  background: #9d9e9e;
+  margin-bottom: 0.2rem;
+}
+
+.likeListItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.promotePopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#promoteButton {
+  margin-top: 0.4rem;
+  background: #021129;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.3rem;
+}
+
+#closePromote {
+  font-weight: 600;
+}
+
+.install-button {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.install-button.show {
+  display: block;
+}
+
+/*Media queries*/
+/*Tablet view*/
+@media (max-width: 1024px) {
+  .navmenu .main-logo img {
+    margin-left: 0px;
+  }
+}
+
+.profile-name p {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .tabs {
+    width: 100%;
+  }
+
+  #image-cards .myrow {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  #image-cards .col,
+  #image-cards .col-5 {
+    width: 95% !important;
+  }
+
+  .modal-content {
+    width: 70% !important;
+  }
+
+  .subscribe {
+    display: none;
+  }
+
+  .promotePopup {
+    width: 60%;
+  }
+}
+
+/*Mobile view*/
+@media (max-width: 568px) {
+  .preloader {
+    text-align: center;
+    margin: 50% auto 0 auto;
+  }
+
+  .wrapper,
+  .container {
+    padding: 0.5rem 5px !important;
+    overflow: hidden;
+  }
+
+  .navmenu,
+  .navbuttonsMobile {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .navmenu .navbuttons,
+  .navmenu .hamburger,
+  .navmenu .main-logo,
+  .user-create .create-plus,
+  #search-container,
+  .search {
+    display: none;
+  }
+
+  .navbuttonsMobile {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #021129;
+    width: 100%;
+    margin-top: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .navbuttonsMobile .hamburger,
+  .navbuttonsMobile .main-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbuttonsMobile .hamburger {
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile .hamburger img {
+    width: 60px;
+    margin-left: -11px;
+    margin-right: -5px;
+    margin-top: -5px;
+  }
+
+  .navbuttonsMobile #mobileDropdown {
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+
+  .navbuttonsMobile .social-icons li a {
+    color: #fff;
+    margin-right: 7px !important;
+    padding: 0 !important;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 60px;
+    margin-left: -5px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 180px;
+  }
+
+  .navbuttonsMobile .live-button {
+    padding: 7px 12px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 60px;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  /*All things search for mobile*/
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 40px;
+    margin-right: 0;
+  }
+
+  #mobileSearchToggleBtn {
+    border: none;
+    color: #fff;
+  }
+
+  .mobileSearch {
+    display: block;
+    width: 100%;
+  }
+
+  #mobile-search-container {
+    display: none;
+    position: relative;
+  }
+
+  #mobile-search-input {
+    position: fixed;
+    z-index: 9999;
+    left: 30px;
+    top: 40px;
+    background: #021129;
+    width: 75%;
+    color: #fff;
+    padding: 0.4rem 0.5rem;
+    border: 2px solid #fff;
+    font-size: 12px;
+    border-radius: 0.5rem;
+  }
+  /*All things search for mobile*/
+
+  .col,
+  .col-5 {
+    padding: 0.4rem 5px;
+  }
+
+  #image-cards {
+    width: 98%;
+  }
+
+  #image-cards .col,
+  #image-cards .col-5
+   {
+    width: 98% !important;
+    padding: 5px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .post-img {
+    /*post image on mobile*/
+    width: 99%;
+    margin: 0 auto;
+    padding: 0;
+/*    padding-top: 0.5px;
+    padding-left: 0.5px;*/
+  }
+
+  .post-img .card-img-top {
+    width: 100%;
+  }
+
+ .liquorose-card, .wizkid-card, .video-post {
+    padding-left: 0;
+    width: 100%;
+  }
+
+  #image-cards .card .post-img h4 {
+    position: absolute;
+    bottom: -3px;
+    left: 5px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 0;
+    font-size: 17px;
+  }
+
+  .more-icons li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 0.6rem;
+  }
+
+  .mobileView {
+    display: flex;
+    margin: 0 auto;
+    padding: 0.5rem 0.4rem 0.5rem 0;
+    justify-content: space-between;
+    align-items: center;
+    background: #021129;
+    width: 100%;
+    height: 6vh;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+    transition: bottom 0.5s ease;
+  }
+
+  .mobileView.hide {
+    bottom: -100%;
+  }
+
+  .mobileView button {
+    width: 45px;
+    transition: ease 0.4s;
+  }
+
+  .mobileView button:hover {
+    transform: scale(105%);
+  }
+
+  .mobileView button img {
+    width: 100%;
+  }
+
+  .mobileCreate {
+    border-radius: 50%;
+    background: #ba00ba;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 35px;
+    color: #fff;
+  }
+
+  .mobileCreate img {
+    width: 80% !important;
+  }
+
+  .mobileTabs {
+    display: block;
+    margin: 3rem auto;
+    text-align: center;
+  }
+
+  .mobileTabs a {
+    text-decoration: none;
+    border-radius: 2rem;
+    border: white solid 2px;
+    padding: 0.7rem 0.3rem 0.2rem 0.1rem;
+    transition: 0.3s ease;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+
+  .mobileTabs button:hover {
+    cursor: pointer;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .discover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto 0 auto;
+    color: #fff;
+  }
+
+  .discover h4 {
+    /*Discover*/
+    color: #ba00ba;
+    font-size: 23px;
+    margin: 0;
+  }
+
+  .discover p {
+    /*Trending catalogs*/
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .discover button {
+    /*Subscribe button*/
+    display: block;
+    background: #ba00ba;
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: ease 0.4s;
+    font-size: 20px;
+  }
+
+  .discover button:hover {
+    background: #740374;
+  }
+
+  #swipe-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+    margin-top: -35px;
+    margin-bottom: 0;
+    position: relative;
+    background: #021129;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  #swipe-container.fixed {
+    position: fixed;
+    top: 60px; /* the sticky position of the div */
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .swipe-item {
+    flex: 0 0 auto;
+    width: max-content;
+  }
+
+  .swipe-item button {
+    color: #fff;
+    background: #021129;
+    padding: 0.5rem 0.7rem;
+    border-radius: 2rem;
+    border: white solid 2px;
+    transition: 0.3s ease;
+    font-size: 13px;
+    color: #fff;
+  }
+
+  /* The Modal background */
+  #mobileFollowModal,
+  .mobileFollowModal,
+  #liveModalMobile {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .mobileModalContent,
+  .liveContentMobile {
+    background-color: #fff;
+    margin: auto;
+    padding: 1rem;
+    border: none;
+    width: 90%;
+  }
+
+  /* The Close Button */
+  .mobileclose,
+  .close2,
+  .close3,
+  .close4,
+  .close5,
+  .close6,
+  .closeme,
+  #closeLiveMobile {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .mobileclose:hover,
+  .mobileclose:focus,
+  .closeme:hover,
+  .closeme:focus,
+  #closeLiveMobile:hover {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .mobileModalContent p {
+    margin-bottom: 1rem;
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .follow_popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 100%;
+  }
+
+  .follow_popup button {
+    color: #fff;
+    background: #ba00ba;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+  }
+
+  .mobileFollowModal {
+    display: none;
+  }
+
+  #timelineSuggested {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+    margin-top: -30px;
+    z-index: 1;
+    background: #021129;
+    padding: 10px 5px;
+  }
+
+  #timelineSuggested.fixed {
+    position: fixed;
+    top: 120px; /* the sticky position of the div */
+  }
+
+  #timelineSuggested #timeCapsule {
+    width: 33%;
+    background: none;
+    padding: 0px;
+    margin: 0;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .suggested {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5%;
+    width: 35%;
+  }
+
+  .suggestedPics {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  .suggestedPics :nth-child(1) {
+    position: absolute;
+    left: 0;
+  }
+
+  .suggestedPics :nth-child(2) {
+    position: absolute;
+    left: 17px;
+  }
+
+  .suggestedPics :nth-child(3) {
+    position: absolute;
+    left: 30px;
+  }
+
+  .suggested #SuggestedBtn {
+    background: #021129;
+    padding: 0px;
+    color: #fff;
+    border-radius: 0.3rem;
+    font-size: 12px;
+  }
+
+  #suggestedPopup {
+    background: #fff;
+    width: 95%;
+    margin: 0.2rem auto;
+    border-radius: 0.3rem;
+    position: relative;
+    padding: 0.3rem 0.7rem;
+  }
+
+  #suggestedPopup .heading {
+    text-align: center;
+    margin: 1.3rem auto;
+  }
+
+  .suggested1,
+  .suggested2,
+  .suggested3,
+  .suggested4,
+  .suggested5,
+  .suggested6 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #suggestedPopup .usernameBox {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .usernameBox .username,
+  .usernameBox img {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #suggestedPopup .username {
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  #suggestedPopup .followSuggested {
+    background: #ba00ba;
+    padding: 0.3rem 0.4rem;
+    color: #fff;
+    border-radius: 0.3rem;
+    font-size: 12px;
+  }
+
+  #closeThis {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  #suggestedBackground {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  #showMore {
+    margin-bottom: 1rem;
+    font-weight: 500;
+    transition: 0.4s ease;
+  }
+
+  #showMore:hover {
+    text-decoration: underline;
+  }
+
+  #suggestedMore {
+    display: none;
+  }
+
+  .promotePopup {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbuttonsMobile .hamburger img {
+    width: 40px;
+    margin-left: -0.5rem;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 4rem;
+    margin-left: -10px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 130px;
+  }
+
+  .navButtonsMobile .toggle-button {
+    width: 35px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 35px;
+    margin-right: 5px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 30px;
+  }
+
+  .suggested {
+    width: 45%;
+  }
+}
+
+@media (max-width: 425px) {
+  .suggested {
+    width: 50%;
+  }
+
+  .navbuttonsMobile {
+    width: 100%;
+  }
+
+  .navbuttonsMobile .hamburger img {
+    width: 35px;
+    margin-left: -0.5rem;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 50px;
+    margin-left: -10px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 130px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 35px;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 35px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 30px;
+  }
+
+  .discover h4 {
+    /*Discover*/
+    color: #ba00ba;
+    font-size: 21px;
+    margin: 0;
+  }
+
+  .discover p {
+    /*Trending catalogs*/
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .discover button {
+    /*Subscribe button*/
+    display: block;
+    background: #ba00ba;
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: ease 0.4s;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .navbuttonsMobile .hamburger img {
+    margin-left: -0.7rem;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 50px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 120px;
+    margin-left: 0;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 30px;
+    margin-right: 0;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 25px;
+  }
+
+  .discover h4 {
+    /*Discover*/
+    color: #ba00ba;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .discover p {
+    /*Trending catalogs*/
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  .discover button {
+    /*Subscribe button*/
+    display: block;
+    background: #ba00ba;
+    padding: 7px 15px;
+    color: #fff;
+    border-radius: 0.5rem;
+    transition: ease 0.4s;
+    font-size: 0.7rem;
+  }
+
+  .suggested {
+    width: 60%;
+  }
+
+  #card1 {
+    height: 442px;
+  }
+
+  #card2 {
+    height: 300px;
+  }
+
+  #card3 {
+    height: 495px;
+  }
+
+  #card4 {
+    height: 310px;
+  }
+
+  #card5 {
+    height: 495px;
+  }
+
+  #card6 {
+    height: 295px;
+  }
+
+  #card7 {
+    height: 375px;
+  }
+
+  #card8 {
+    height: fit-content;
+  }
+
+  .mobileView button {
+    width: 45px;
+  }
+
+  .mobileCreate {
+    border-radius: 50%;
+    background: #ba00ba;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 35px;
+    color: #fff;
+  }
+}
+
+@media (max-width: 350px) {
+  .navbuttonsMobile .main-logo {
+    margin-right: 20px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 90px;
+    margin-left: -5px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 30px;
+    margin-right: 0;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 25px;
+  }
+
+  .suggested {
+    width: 65%;
+  }
+
+  #card1 {
+    height: 400px;
+  }
+
+  #card2 {
+    height: 275px;
+  }
+
+  #card3 {
+    height: 450px;
+  }
+
+  #card4 {
+    height: 290px;
+  }
+
+  #card5 {
+    height: 450px;
+  }
+
+  #card6 {
+    height: 270px;
+  }
+
+  #card7 {
+    height: 365px;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbuttonsMobile .hamburger img {
+    margin-left: -5px;
+  }
+
+  .mobileSearch {
+    margin-left: -3px;
+  }
+}

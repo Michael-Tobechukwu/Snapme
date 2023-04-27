@@ -1395,6 +1395,26 @@ speedSelect2.addEventListener("change", () => {
 });
 //Video controls 2 end
 ////
+//Change catalog buttons colour on click
+var previousButton;
+
+var buttons = document.querySelectorAll(".swipe-item button");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    changeButtonColor(this);
+  });
+}
+
+function changeButtonColor(clickedButton) {
+  if (previousButton) {
+    previousButton.style.backgroundColor = "#021129";
+  }
+  clickedButton.style.backgroundColor = "#bd74bd";
+
+  previousButton = clickedButton;
+}
+
+////
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
 const swipeContent = document.getElementbyId("swipe-item");
@@ -1435,25 +1455,7 @@ window.addEventListener("scroll", () => {
 });
 ////
 
-var previousButton;
 
-var buttons = document.querySelectorAll(".swipe-item button");
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", function () {
-    changeButtonColor(this);
-  });
-}
-
-function changeButtonColor(clickedButton) {
-  if (previousButton) {
-    previousButton.style.backgroundColor = "#021129";
-  }
-  clickedButton.style.backgroundColor = "#bd74bd";
-
-  previousButton = clickedButton;
-}
-
-////
 //Show/hide top menu on scroll
 var pastScrollpos = window.pageYOffset;
 window.onscroll = function () {

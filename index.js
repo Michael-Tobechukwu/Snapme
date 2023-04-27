@@ -1397,6 +1397,7 @@ speedSelect2.addEventListener("change", () => {
 ////
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
+const swipeContent = document.getElementbyId("swipe-item");
 
 let touchStartX = 0;
 let touchEndX = 0;
@@ -1418,9 +1419,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.style.transform = `translateX(-50px)`;
+    swipeContainer.style.transform = `translateX(0)`;
   } else if (touchEndX > touchStartX) {
-    swipeContainer.style.transform = `translateX(50px)`;
+    swipeContainer.style.transform = `translateX(0)`;
   }
 });
 

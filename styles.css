@@ -883,10 +883,11 @@ input:checked + .slider:before {
   }
 
   .post-img {
+    /*post image on mobile*/
     width: 99%;
     margin: 0 auto;
     padding-top: 1px;
-    padding-left: 1px;
+    padding-left: 0.5px;
   }
 
   #image-cards .card .post-img h4 {

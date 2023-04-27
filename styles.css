@@ -1018,13 +1018,12 @@ input:checked + .slider:before {
     gap: 15px;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
-    /* position: relative;*/
     margin-top: -35px;
     margin-bottom: 0;
     position: relative;
-
     background: #021129;
     padding: 10px 0;
+    width: 100%;
   }
 
   #swipe-container.fixed {
@@ -1391,12 +1390,6 @@ input:checked + .slider:before {
     font-size: 16px;
   }
 }
-
-/*@media only screen and (min-width: 390px) and (max-width: 480px) {
-  .suggested {
-    width: 70%;
-  }
-}*/
 
 @media (max-width: 375px) {
   .navbuttonsMobile .hamburger img {

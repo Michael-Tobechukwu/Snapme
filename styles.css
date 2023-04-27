@@ -739,7 +739,7 @@ input:checked + .slider:before {
 }
 
 /*Mobile view*/
-@media (max-width: 568px) {
+@media /*screen and (min-width: 480px) and*/ (max-width: 568px) {
   .preloader {
     text-align: center;
     margin: 50% auto 0 auto;
@@ -788,9 +788,20 @@ input:checked + .slider:before {
 
   .navbuttonsMobile .hamburger img {
     width: 60px;
-    margin-left: -15px;
+    margin-left: -11px;
     margin-right: -5px;
     margin-top: -5px;
+  }
+
+  .navbuttonsMobile #mobileDropdown {
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+
+  .navbuttonsMobile .social-icons li a {
+    color: #fff;
+    margin-right: 7px !important;
+    padding: 0 !important;
   }
 
   .navbuttonsMobile .user-create img {
@@ -799,12 +810,12 @@ input:checked + .slider:before {
   }
 
   .navbuttonsMobile .main-logo {
-    margin-right: 15px;
+    margin-right: 60px;
     margin-left: -5px;
   }
 
   .navbuttonsMobile .main-logo img {
-    width: 140px;
+    width: 180px;
   }
 
   .navbuttonsMobile .live-button {
@@ -832,6 +843,7 @@ input:checked + .slider:before {
 
   .mobileSearch {
     display: block;
+    width: 100%;
   }
 
   #mobile-search-container {
@@ -845,7 +857,7 @@ input:checked + .slider:before {
     left: 30px;
     top: 40px;
     background: #021129;
-    width: 250px;
+    width: 75%;
     color: #fff;
     padding: 0.4rem 0.5rem;
     border: 2px solid #fff;
@@ -1001,7 +1013,7 @@ input:checked + .slider:before {
     /* position: relative;*/
     margin-top: -35px;
     margin-bottom: 0;
-    position: sticky;
+
     z-index: 1;
     background: #021129;
     padding: 10px 0;
@@ -1053,7 +1065,6 @@ input:checked + .slider:before {
     padding: 1rem;
     border: none;
     width: 90%;
-    margin: 30% auto 0 auto;
   }
 
   /* The Close Button */
@@ -1131,11 +1142,6 @@ input:checked + .slider:before {
     margin: 0;
     color: #fff;
     font-size: 12px;
-  }
-
-  .dropdown {
-    position: static;
-    z-index: 999;
   }
 
   .suggested {
@@ -1282,12 +1288,12 @@ input:checked + .slider:before {
   }
 
   .navbuttonsMobile .main-logo {
-    margin-right: 20px;
+    margin-right: 50px;
     margin-left: -10px;
   }
 
   .navbuttonsMobile .main-logo img {
-    width: 110px;
+    width: 130px;
   }
 
   .navbuttonsMobile .live-button {
@@ -1338,9 +1344,13 @@ input:checked + .slider:before {
     margin-left: -12px;
   }
 
+  .navbuttonsMobile .main-logo {
+    margin-right: 50px;
+  }
+
   .navbuttonsMobile .main-logo img {
-    width: 90px;
-    margin-left: -5px;
+    width: 120px;
+    margin-left: 0;
   }
 
   .navbuttonsMobile .live-button {
@@ -1437,6 +1447,34 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 350px) {
+  .navbuttonsMobile .main-logo {
+    margin-right: 20px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 90px;
+    margin-left: -5px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 30px;
+    margin-right: 0;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 30px;
+    margin-right: 5px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 25px;
+  }
+
   .suggested {
     width: 65%;
   }
@@ -1472,6 +1510,10 @@ input:checked + .slider:before {
 
 @media (max-width: 320px) {
   .navbuttonsMobile .hamburger img {
-    margin-left: 0;
+    margin-left: -5px;
+  }
+
+  .mobileSearch {
+    margin-left: -3px;
   }
 }

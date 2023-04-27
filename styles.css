@@ -559,7 +559,6 @@ input:checked + .slider:before {
 
 #image-cards .card .post-img {
   position: relative !important;
-  text-align: left;
 }
 
 .post-img:hover .my-video-controls {
@@ -879,7 +878,15 @@ input:checked + .slider:before {
   #image-cards .col,
   #image-cards .col-5,
   .card {
-    width: 100% !important;
+    width: 98% !important;
+    padding: 5px;
+  }
+
+  .post-img {
+    width: 99%;
+    margin: 0 auto;
+    padding-top: 1px;
+    padding-left: 1px;
   }
 
   #image-cards .card .post-img h4 {

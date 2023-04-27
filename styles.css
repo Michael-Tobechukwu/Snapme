@@ -739,7 +739,7 @@ input:checked + .slider:before {
 }
 
 /*Mobile view*/
-@media /*screen and (min-width: 480px) and*/ (max-width: 568px) {
+@media (max-width: 568px) {
   .preloader {
     text-align: center;
     margin: 50% auto 0 auto;
@@ -780,6 +780,7 @@ input:checked + .slider:before {
   .navbuttonsMobile .hamburger,
   .navbuttonsMobile .main-logo {
     display: flex;
+    align-items: center;
   }
 
   .navbuttonsMobile .hamburger {
@@ -1277,14 +1278,52 @@ input:checked + .slider:before {
   }
 }
 
+@media (max-width: 480px) {
+  .navbuttonsMobile .hamburger img {
+    width: 40px;
+    margin-left: -0.5rem;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 4rem;
+    margin-left: -10px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 130px;
+  }
+
+  .navButtonsMobile .toggle-button {
+    width: 35px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 35px;
+    margin-right: 5px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 30px;
+  }
+}
+
 @media (max-width: 425px) {
   .suggested {
     width: 50%;
   }
 
+  .navbuttonsMobile {
+    width: 100%;
+  }
+
   .navbuttonsMobile .hamburger img {
     width: 35px;
-    margin-left: -12px;
+    margin-left: -0.5rem;
   }
 
   .navbuttonsMobile .main-logo {
@@ -1339,9 +1378,15 @@ input:checked + .slider:before {
   }
 }
 
+/*@media only screen and (min-width: 390px) and (max-width: 480px) {
+  .suggested {
+    width: 70%;
+  }
+}*/
+
 @media (max-width: 375px) {
   .navbuttonsMobile .hamburger img {
-    margin-left: -12px;
+    margin-left: -0.7rem;
   }
 
   .navbuttonsMobile .main-logo {
@@ -1397,7 +1442,7 @@ input:checked + .slider:before {
   }
 
   .suggested {
-    width: 55%;
+    width: 60%;
   }
 
   #card1 {

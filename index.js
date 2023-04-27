@@ -222,6 +222,11 @@ window.onclick = function (event) {
 };
 //Share popup modals end
 /////
+//Make dropdown stack on top
+const mobileDropdown = document.getElementById("mobileDropdown");
+mobileDropdown.style.zIndex = "9999";
+
+////
 //Catalog buttons fixed position on scroll
 const catalogsContainer = document.querySelector("#swipe-container");
 const catalogsContainerOffsetTop = catalogsContainer.offsetTop;

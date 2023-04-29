@@ -892,7 +892,7 @@ input:checked + .slider:before {
   .post-img {
     width: 99%;
     margin: 0 auto;
-    padding: 1px;
+    padding: 0.5px;
     border-radius: 3rem !important;
   }
 

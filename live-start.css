@@ -18,10 +18,7 @@ body {
   height: 700px;
 }
 
-.wrapper .main-logo {
-  margin: 1rem auto;
-  text-align: center;
-}
+
 
 .wrapper .main-logo img {
   width: 40%;
@@ -43,7 +40,7 @@ body {
 
 .live {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .live button {
@@ -70,8 +67,8 @@ body {
   }
 }
 
-.caption {
-  margin-top: 6rem;
+.live-content {
+  height: 40vh;
 }
 
 .caption-input {

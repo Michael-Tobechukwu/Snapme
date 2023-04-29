@@ -546,7 +546,7 @@ input:checked + .slider:before {
 
 #image-cards .card {
   background: #ba00ba;
-  border-radius: 0.4rem !important;
+  border-radius: 8px;
   margin-bottom: 2rem;
   transition: ease 0.4s;
   padding: 0;
@@ -592,7 +592,7 @@ input:checked + .slider:before {
   font-size: 13px;
 }
 
-#image-cards .card img {
+#image-cards .card .card-img-top {
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 }
@@ -605,6 +605,8 @@ input:checked + .slider:before {
   margin-left: 0;
   margin-top: 0;
   height: 60px;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
 }
 
 #image-cards .icons-list {
@@ -872,36 +874,38 @@ input:checked + .slider:before {
   }
 
   #image-cards {
-    width: 98%;
+    width: 99%;
   }
 
   #image-cards .col,
-  #image-cards .col-5
-   {
-    width: 98% !important;
+  #image-cards .col-5 {
+    width: 100% !important;
     padding: 5px;
   }
 
-  .card {
-    width: 100%;
+  .mobileCard {
+    width: 100% !important;
+    padding: 1px;
+    border-radius: 8px !important;
   }
 
   .post-img {
-    /*post image on mobile*/
     width: 99%;
     margin: 0 auto;
-    padding: 0;
-/*    padding-top: 0.5px;
-    padding-left: 0.5px;*/
+    padding: 1px;
+    border-radius: 3rem !important;
   }
 
-  .post-img .card-img-top {
+  .card-img-top {
+    border-top-left-radius: 0.4rem !important;
+    border-top-right-radius: 0.4rem !important;
     width: 100%;
   }
 
- .liquorose-card, .wizkid-card, .video-post {
-    padding-left: 0;
-    width: 100%;
+  .card-body {
+    border-radius: 3rem !important;
+    width: 98%;
+    margin-left: 5px !important;
   }
 
   #image-cards .card .post-img h4 {
@@ -1033,12 +1037,13 @@ input:checked + .slider:before {
     gap: 15px;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+    /* position: relative;*/
     margin-top: -35px;
     margin-bottom: 0;
     position: relative;
+
     background: #021129;
     padding: 10px 0;
-    width: 100%;
   }
 
   #swipe-container.fixed {
@@ -1175,7 +1180,7 @@ input:checked + .slider:before {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 5%;
-    width: 35%;
+    width: 40%;
   }
 
   .suggestedPics {
@@ -1405,6 +1410,12 @@ input:checked + .slider:before {
     font-size: 16px;
   }
 }
+
+/*@media only screen and (min-width: 390px) and (max-width: 480px) {
+  .suggested {
+    width: 70%;
+  }
+}*/
 
 @media (max-width: 375px) {
   .navbuttonsMobile .hamburger img {

@@ -263,8 +263,8 @@ window.addEventListener("scroll", () => {
       ""; /* reset the top position to its original state */
   }
 });
-
-////
+/////
+//Check signed in status of user when create button is clicked
 // Get the button element
 const createBtn = document.getElementById("createBtn");
 
@@ -294,7 +294,8 @@ createBtn.addEventListener("click", () => {
     window.location.href = "login.html";
   }
 });
-/////
+
+//Check signed in status of user on create button clicked - mobile
 // Get the button element
 const mobileCreateBtn = document.getElementById("createBtnMobile");
 
@@ -1446,9 +1447,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.style.transform = `translateX(-50px)`;
+    swipeContainer.style.transform = `translateX(0px)`;
   } else if (touchEndX > touchStartX) {
-    swipeContainer.style.transform = `translateX(50px)`;
+    swipeContainer.style.transform = `translateX(0px)`;
   }
 });
 
@@ -1504,3 +1505,40 @@ window.onscroll = function () {
   }
   oldScrollpos = newScrollPos;
 };
+
+//Follow user
+const followUserButton = document.getElementById("followButton");
+
+followUserButton.addEventListener("click", async () => {
+  const apiUrl = `https://api.snapme-ng.com/api/v1/:username/follow`;
+
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
+
+  if (token) {
+    // Send a PUT request to follow the user
+    const response = await fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // Check if the request was successful
+    if (response.ok) {
+      // Update the button text
+      followUserButton.textContent = "Following";
+    } else {
+      // Log an error message
+      console.error(
+        "Failed to follow user:",
+        response.status,
+        response.statusText
+      );
+    }
+  } else {
+    // Redirect the user to the login page
+    window.location.href = "login.html";
+  }
+});

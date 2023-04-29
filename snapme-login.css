@@ -26,13 +26,13 @@ body {
   padding: 2rem 1rem;
 }
 
-.card1 {
+.logo {
   background: #021129;
   margin: 0 auto;
   width: 40%;
 }
 
-.card1 img {
+.logo img {
   margin: 1.5rem auto;
   width: 100%;
 }
@@ -128,10 +128,13 @@ button i {
     padding: 5px;
   }
 
-  .card,
-  .card1 {
+  .card {
     width: 95%;
     border: none;
     padding: 10px;
+  }
+
+  .logo {
+    width: 50%;
   }
 }

@@ -265,35 +265,63 @@ window.addEventListener("scroll", () => {
 });
 
 ////
-//Signedin Users Content
-//Check signed in status on page
-window.addEventListener("load", () => {
+// Get the button element
+const createBtn = document.getElementById("createBtn");
+
+// Add an event listener to the button
+createBtn.addEventListener("click", () => {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
 
+  // Check if the user is logged in
   if (token) {
     try {
       // Attempt to decode the JWT token to get the user information
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
 
-      // Display the content for signed-in users
-      const signedInContent = document.getElementById("signedInContent");
-      const signedInContent2 = document.getElementById("signedInContent2");
-      signedInContent.style.display = "block";
-      signedInContent2.style.display = "block";
+      // Redirect the user to the create pin page
+      window.location.href = "create-pin.html";
     } catch (err) {
-      // If there was an error decoding the token, assume the user is not signed in
+      // If there was an error decoding the token, assume the user is not logged in
       console.error("Error decoding JWT token:", err);
 
-      // Don't display the content for signed-in users
-      signedInContent.style.display = "none";
-      signedInContent2.style.display = "none";
+      // Redirect the user to the login page
+      window.location.href = "login.html";
     }
   } else {
-    // Don't display the content for signed-in users
-    signedInContent.style.display = "none";
-    signedInContent2.style.display = "none";
+    // Redirect the user to the login page
+    window.location.href = "login.html";
+  }
+});
+/////
+// Get the button element
+const mobileCreateBtn = document.getElementById("createBtnMobile");
+
+// Add an event listener to the button
+mobileCreateBtn.addEventListener("click", () => {
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
+
+  // Check if the user is logged in
+  if (token) {
+    try {
+      // Attempt to decode the JWT token to get the user information
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+
+      // Redirect the user to the create pin page
+      window.location.href = "create-pin.html";
+    } catch (err) {
+      // If there was an error decoding the token, assume the user is not logged in
+      console.error("Error decoding JWT token:", err);
+
+      // Redirect the user to the login page
+      window.location.href = "login.html";
+    }
+  } else {
+    // Redirect the user to the login page
+    window.location.href = "login.html";
   }
 });
 ////
@@ -1395,29 +1423,8 @@ speedSelect2.addEventListener("change", () => {
 });
 //Video controls 2 end
 ////
-//Change catalog buttons colour on click
-var previousButton;
-
-var buttons = document.querySelectorAll(".swipe-item button");
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", function () {
-    changeButtonColor(this);
-  });
-}
-
-function changeButtonColor(clickedButton) {
-  if (previousButton) {
-    previousButton.style.backgroundColor = "#021129";
-  }
-  clickedButton.style.backgroundColor = "#bd74bd";
-
-  previousButton = clickedButton;
-}
-
-////
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
-const swipeContent = document.getElementbyId("swipe-item");
 
 let touchStartX = 0;
 let touchEndX = 0;
@@ -1439,9 +1446,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.style.transform = `translateX(0)`;
+    swipeContainer.style.transform = `translateX(-50px)`;
   } else if (touchEndX > touchStartX) {
-    swipeContainer.style.transform = `translateX(0)`;
+    swipeContainer.style.transform = `translateX(50px)`;
   }
 });
 
@@ -1454,8 +1461,26 @@ window.addEventListener("scroll", () => {
   }
 });
 ////
+//Active catalog button on click on mobile
+var previousButton;
 
+var buttons = document.querySelectorAll(".swipe-item button");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    changeButtonColor(this);
+  });
+}
 
+function changeButtonColor(clickedButton) {
+  if (previousButton) {
+    previousButton.style.backgroundColor = "#021129";
+  }
+  clickedButton.style.backgroundColor = "#bd74bd";
+
+  previousButton = clickedButton;
+}
+//Active catalog button on click on mobile
+////
 //Show/hide top menu on scroll
 var pastScrollpos = window.pageYOffset;
 window.onscroll = function () {

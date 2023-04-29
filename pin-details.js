@@ -154,38 +154,38 @@ window.onclick = function (event) {
 
 //Catalogs for you pins share
 ////
-//Signedin Users Content
-//Check signed in status on page
-window.addEventListener("load", () => {
+/////
+//Check signed in status of user when create button is clicked
+// Get the button element
+const createBtn = document.getElementById("createBtn");
+
+// Add an event listener to the button
+createBtn.addEventListener("click", () => {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
 
+  // Check if the user is logged in
   if (token) {
     try {
       // Attempt to decode the JWT token to get the user information
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
 
-      // Display the content for signed-in users
-      const signedInContent = document.getElementById("signedInContent");
-      const signedInContent2 = document.getElementById("signedInContent2");
-      signedInContent.style.display = "block";
-      signedInContent2.style.display = "block";
+      // Redirect the user to the create pin page
+      window.location.href = "create-pin.html";
     } catch (err) {
-      // If there was an error decoding the token, assume the user is not signed in
+      // If there was an error decoding the token, assume the user is not logged in
       console.error("Error decoding JWT token:", err);
 
-      // Don't display the content for signed-in users
-      signedInContent.style.display = "none";
-      signedInContent2.style.display = "none";
+      // Redirect the user to the login page
+      window.location.href = "login.html";
     }
   } else {
-    // Don't display the content for signed-in users
-    signedInContent.style.display = "none";
-    signedInContent2.style.display = "none";
+    // Redirect the user to the login page
+    window.location.href = "login.html";
   }
 });
-////
+
 ////
 
 //Play video when scrolled into view
@@ -718,7 +718,7 @@ function toggleFollowUser() {
     thisFollowButton.textContent = "Follow +";
   } else {
     // follow logic
-    thisFollowButton.textContent = "Unfollow";
+    thisFollowButton.textContent = "Following";
   }
 
   isFollowingDesktop = !isFollowingDesktop;
@@ -735,7 +735,7 @@ function toggleFollowUser() {
     followBtn.textContent = "Follow +";
   } else {
     // follow logic
-    followBtn.textContent = "Unfollow";
+    followBtn.textContent = "Following";
   }
 
   isFollowing = !isFollowing;
@@ -744,102 +744,122 @@ function toggleFollowUser() {
 followBtn.addEventListener("click", toggleFollowUser);
 
 ////
-// Search catalogs index
-const searchToggleBtn = document.getElementById("search-toggle-btn");
-const searchContainer = document.getElementById("search-container");
-const searchContainerMobile = document.getElementById("search-containerMobile");
-const searchInput = document.getElementById("search-input");
-const searchBtn = document.getElementById("search-btn");
-const searchResults = document.getElementById("search-results");
+// Get the search toggle button, search container, search input, search button, and search results list
+var searchToggleBtn = document.getElementById("search-toggle-btn");
+var searchContainer = document.getElementById("search-container");
+searchContainer.style.display = "none";
+var searchInput = document.getElementById("search-input");
+var searchBtn = document.getElementById("search-btn");
+var searchResults = document.getElementById("search-results");
 
-// Function to fetch search results from server
-const fetchSearchResults = async (searchQuery) => {
-  const response = await fetch(
-    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
-  );
-  const data = await response.json();
-  return data;
-};
+// Add an event listener to the search toggle button
+searchToggleBtn.addEventListener("click", function () {
+  // Toggle the visibility of the search container
+  if (searchContainer.style.display === "none") {
+    searchContainer.style.display = "block";
+    searchToggleBtn.innerHTML = "&times;";
 
-// Function to display search results
-const displaySearchResults = (results) => {
-  searchResults.innerHTML = "";
-
-  results.forEach((result) => {
-    const li = document.createElement("li");
-    li.textContent = result.title;
-    searchResults.appendChild(li);
-  });
-};
-
-// Event listener for search toggle button
-searchToggleBtn.addEventListener("click", () => {
-  searchContainer.style.display = "block";
-  searchToggleBtn.style.display = "none";
-  searchInput.focus();
-});
-
-// Event listener for search button
-searchBtn.addEventListener("click", async () => {
-  const searchQuery = searchInput.value;
-  const searchResultsData = await fetchSearchResults(searchQuery);
-  displaySearchResults(searchResultsData);
-});
-
-// Event listener for search input field
-searchInput.addEventListener("keydown", async (event) => {
-  if (event.key === "Enter") {
-    const searchQuery = searchInput.value;
-    const searchResultsData = await fetchSearchResults(searchQuery);
-    displaySearchResults(searchResultsData);
+    searchToggleBtn.style.zIndex = "1";
+    searchToggleBtn.style.top = "0";
+    searchToggleBtn.style.left = "0";
+  } else {
+    searchContainer.style.display = "none";
+    searchToggleBtn.innerHTML = '<img src="Images/search icon.svg" alt="" />';
+    searchInput.value = "";
+    searchResults.innerHTML = "";
   }
 });
-//Search catalogs index ends
-////
-// Search catalogs index on mobile
-// Search catalogs index
-const mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
-const mobileSearchContainer = document.getElementById(
-  "mobile-search-container"
-);
-const mobileSearchInput = document.getElementById("mobile-search-input");
-const mobileSearchBtn = document.getElementById("mobile-search-btn");
-const mobileSearchResults = document.getElementById("mobile-search-results");
 
-// Function to fetch search results from server
-const fetchSearchResultsMobile = async (searchQuery) => {
-  const response = await fetch(
-    `https://api.snapme-ng.com/api/v1/search?q=${searchQuery}`
-  );
-  const data = await response.json();
-  return data;
-};
+// Add an event listener to the search button
+searchBtn.addEventListener("click", function () {
+  // Get the search query from the search input
+  var query = searchInput.value;
 
-// Function to display search results
-const displaySearchResultsMobile = (mobileresults) => {
-  mobileSearchResults.innerHTML = "";
+  // Make an API call to the search endpoint with the search query
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Clear the search results list
+      searchResults.innerHTML = "";
 
-  mobileresults.forEach((mobileresult) => {
-    const li = document.createElement("li");
-    li.textContent = mobileresult.title;
-    mobileSearchResults.appendChild(li);
-  });
-};
-
-// Event listener for search toggle button
-mobileSearchToggleBtn.addEventListener("click", () => {
-  mobileSearchContainer.style.display = "block";
-  mobileSearchToggleBtn.style.display = "none";
-  mobileSearchInput.focus();
+      // Loop through the search results and add them to the list
+      data.results.forEach(function (result) {
+        var li = document.createElement("li");
+        li.textContent = result.title;
+        searchResults.appendChild(li);
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 });
 
-// Event listener for search button
-mobileSearchBtn.addEventListener("click", async () => {
-  const mobilesearchQuery = mobileSearchInput.value;
-  const searchResultsDataMobile = await fetchSearchResultsMobile(
-    mobilesearchQuery
-  );
-  displaySearchResultsMobile(searchResultsDataMobile);
+//Search on mobile
+// Get the search toggle button, search container, search input, search button, and search results list
+var mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
+var mobileSearchContainer = document.getElementById("mobile-search-container");
+mobileSearchContainer.style.display = "none";
+var mobileSearchInput = document.getElementById("mobile-search-input");
+var mobileSearchBtn = document.getElementById("mobile-search-btn");
+var mobileSearchResults = document.getElementById("mobile-search-results");
+
+// Add an event listener to the search toggle button
+mobileSearchToggleBtn.addEventListener("click", function () {
+  // Toggle the visibility of the search container
+  if (mobileSearchContainer.style.display === "none") {
+    mobileSearchContainer.style.display = "block";
+    mobileSearchToggleBtn.innerHTML = "&times;";
+    mobileSearchToggleBtn.style.position = "absolute";
+    mobileSearchToggleBtn.style.top = "40px";
+    mobileSearchToggleBtn.style.left = "5px";
+    mobileSearchToggleBtn.style.fontSize = "15px";
+    mobileSearchBtn.style.position = "absolute";
+    mobileSearchBtn.style.top = "7px";
+  } else {
+    mobileSearchContainer.style.display = "none";
+    mobileSearchToggleBtn.innerHTML =
+      '<img src="Images/search icon.svg" alt="" />';
+    mobileSearchInput.value = "";
+    mobileSearchResults.innerHTML = "";
+    mobileSearchToggleBtn.style.position = "";
+    mobileSearchToggleBtn.style.top = "";
+    mobileSearchToggleBtn.style.left = "";
+    mobileSearchBtn.style.top = "";
+    mobileSearchToggleBtn.style.fontSize = "";
+  }
+});
+
+// Add an event listener to the search button
+mobileSearchBtn.addEventListener("click", function () {
+  // Get the search query from the search input
+  var mobileQuery = mobileSearchInput.value;
+
+  // Make an API call to the search endpoint with the search query
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // Clear the search results list
+      mobileSearchResults.innerHTML = "";
+
+      // Loop through the search results and add them to the list
+      data.mobileResults.forEach(function (mobileResult) {
+        var li = document.createElement("li");
+        li.textContent = mobileResult.title;
+        mobileSearchResults.appendChild(li);
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 });
 
 // Event listener for search input field
@@ -852,7 +872,8 @@ mobileSearchInput.addEventListener("keydown", async (event) => {
     displaySearchResultsMobile(searchResultsDataMobile);
   }
 });
-/// Search catalogs index on mobile ends
+// Search catalogs index on mobile ends
+////
 
 ////
 //Show more button
@@ -1197,3 +1218,23 @@ window.onscroll = function () {
   }
   oldScrollpos = newScrollPos;
 };
+////
+//Active catalog button on click on mobile
+var previousButton;
+
+var buttons = document.querySelectorAll(".swipe-item button");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    changeButtonColor(this);
+  });
+}
+
+function changeButtonColor(clickedButton) {
+  if (previousButton) {
+    previousButton.style.backgroundColor = "#021129";
+  }
+  clickedButton.style.backgroundColor = "#bd74bd";
+
+  previousButton = clickedButton;
+}
+//Active catalog button on click on mobile

@@ -885,7 +885,7 @@ input:checked + .slider:before {
 
   .mobileCard {
     width: 100% !important;
-    padding: 1px;
+    padding: 0 !important;
     border-radius: 8px !important;
   }
 

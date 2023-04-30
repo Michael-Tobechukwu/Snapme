@@ -1447,9 +1447,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.style.transform = `translateX(0px)`;
+    swipeContainer.style.transform = `translateX(0)`;
   } else if (touchEndX > touchStartX) {
-    swipeContainer.style.transform = `translateX(0px)`;
+    swipeContainer.style.transform = `translateX(0)`;
   }
 });
 

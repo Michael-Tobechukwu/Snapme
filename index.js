@@ -1,3 +1,4 @@
+Thursday update:
 window.addEventListener("load", function () {
   setTimeout(function () {
     navigator.splashscreen.hide();
@@ -265,35 +266,65 @@ window.addEventListener("scroll", () => {
 });
 
 ////
-//Signedin Users Content
-//Check signed in status on page
-window.addEventListener("load", () => {
+//Check signed in status of user when create button is clicked
+// Get the button element
+const createBtn = document.getElementById("createBtn");
+
+// Add an event listener to the button
+createBtn.addEventListener("click", () => {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
 
+  // Check if the user is logged in
   if (token) {
     try {
       // Attempt to decode the JWT token to get the user information
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
 
-      // Display the content for signed-in users
-      const signedInContent = document.getElementById("signedInContent");
-      const signedInContent2 = document.getElementById("signedInContent2");
-      signedInContent.style.display = "block";
-      signedInContent2.style.display = "block";
+      // Redirect the user to the create pin page
+      window.location.href = "create-pin.html";
     } catch (err) {
-      // If there was an error decoding the token, assume the user is not signed in
+      // If there was an error decoding the token, assume the user is not logged in
       console.error("Error decoding JWT token:", err);
 
-      // Don't display the content for signed-in users
-      signedInContent.style.display = "none";
-      signedInContent2.style.display = "none";
+      // Redirect the user to the login page
+      window.location.href = "login.html";
     }
   } else {
-    // Don't display the content for signed-in users
-    signedInContent.style.display = "none";
-    signedInContent2.style.display = "none";
+    // Redirect the user to the login page
+    window.location.href = "login.html";
+  }
+});
+
+//Check signed in status of user on create button clicked - mobile
+// Get the button element
+const mobileCreateBtn = document.getElementById("createBtnMobile");
+
+// Add an event listener to the button
+mobileCreateBtn.addEventListener("click", () => {
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
+
+  // Check if the user is logged in
+  if (token) {
+    try {
+      // Attempt to decode the JWT token to get the user information
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+
+      // Redirect the user to the create pin page
+      window.location.href = "create-pin.html";
+    } catch (err) {
+      // If there was an error decoding the token, assume the user is not logged in
+      console.error("Error decoding JWT token:", err);
+
+      // Redirect the user to the login page
+      window.location.href = "login.html";
+    }
+  } else {
+    // Redirect the user to the login page
+    window.location.href = "login.html";
   }
 });
 ////

@@ -1,4 +1,4 @@
-Thursday update:
+
 window.addEventListener("load", function () {
   setTimeout(function () {
     navigator.splashscreen.hide();

@@ -295,21 +295,6 @@ likeButton4.addEventListener("click", () => {
   }
 });
 ////
-//Like button for mobile footer
-const footerLike = document.querySelector(".mobileLike");
-const img = footerLike.querySelector("img");
-let isLikedFooter = false;
-
-footerLike.addEventListener("click", () => {
-  if (isLikedFooter) {
-    img.setAttribute("src", "Images/like empty.svg");
-    isLikedFooter = false;
-  } else {
-    img.setAttribute("src", "Images/liked filled.svg");
-    isLikedFooter = true;
-  }
-});
-////
 //Follow catalog popup on mobile
 // Music
 var followModal = document.getElementById("mobileFollowModal");
@@ -1186,11 +1171,12 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.scrollBy({ left: 150, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: 50, behavior: "smooth" });
   } else if (touchEndX > touchStartX) {
-    swipeContainer.scrollBy({ left: -150, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: -50, behavior: "smooth" });
   }
 });
+////
 //Show/hide top menu on scroll
 var pastScrollpos = window.pageYOffset;
 window.onscroll = function () {
@@ -1218,7 +1204,7 @@ window.onscroll = function () {
 //Active catalog button on click on mobile
 var previousButton;
 
-var buttons = document.querySelectorAll(".swipe-item button");
+var buttons = document.querySelectorAll(".swipe-item");
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function () {
     changeButtonColor(this);
@@ -1234,6 +1220,22 @@ function changeButtonColor(clickedButton) {
   previousButton = clickedButton;
 }
 //Active catalog button on click on mobile
+////
+
+//Like button for mobile footer
+const footerLike = document.querySelector(".mobileLike");
+const img = footerLike.querySelector("img");
+let isLikedFooter = false;
+
+footerLike.addEventListener("click", () => {
+  if (isLikedFooter) {
+    img.setAttribute("src", "Images/like empty.svg");
+    isLikedFooter = false;
+  } else {
+    img.setAttribute("src", "Images/liked filled.svg");
+    isLikedFooter = true;
+  }
+});
 ////
 //Go back to previous page
 function goBack() {

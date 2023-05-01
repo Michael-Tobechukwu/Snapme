@@ -228,10 +228,10 @@ window.addEventListener("scroll", () => {
     isPlaying2 = false;
   }
 });
-//Video played when scrolled into view
+//Video played when scrolled into view end
 ////
-//Suggested catalogs post like button
-//Like for suggested catalog 1
+//Suggested catalogs like buttons
+//Like button for suggested catalog 1
 const likeButton1 = document.getElementsByClassName("like-button")[0];
 let isLiked1 = false;
 
@@ -247,7 +247,7 @@ likeButton1.addEventListener("click", () => {
   }
 });
 
-//Like for suggested catalog 2
+//Like button for suggested catalog 2
 const likeButton2 = document.getElementsByClassName("like-button")[1];
 let isLiked2 = false;
 
@@ -263,7 +263,7 @@ likeButton2.addEventListener("click", () => {
   }
 });
 
-//Like for suggested 3
+//Like button for suggested 3
 const likeButton3 = document.getElementsByClassName("like-button")[2];
 let isLiked3 = false;
 
@@ -279,7 +279,7 @@ likeButton3.addEventListener("click", () => {
   }
 });
 
-//Like for suggested 4
+//Like button for suggested 4
 const likeButton4 = document.getElementsByClassName("like-button")[3];
 let isLiked4 = false;
 
@@ -294,7 +294,6 @@ likeButton4.addEventListener("click", () => {
     isLiked4 = true;
   }
 });
-
 ////
 //Like button for mobile footer
 const footerLike = document.querySelector(".mobileLike");
@@ -310,9 +309,7 @@ footerLike.addEventListener("click", () => {
     isLikedFooter = true;
   }
 });
-
 ////
-
 //Follow catalog popup on mobile
 // Music
 var followModal = document.getElementById("mobileFollowModal");

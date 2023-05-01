@@ -35,7 +35,7 @@ window.onclick = function (event) {
   }
 };
 
-//Pin details post like
+//Like button for pin
 const likeButton = document.querySelector("#like-button");
 let isLiked = false;
 
@@ -49,21 +49,28 @@ likeButton.addEventListener("click", () => {
   }
 });
 ////
-//Like for mobile at the footer
+//Like post fetch API
+const likeBtn = document.getElementById("like-button");
+//Add fetch API to button
+likeBtn.addEventListener("click", likePost);
 
-const footerLike = document.querySelector(".mobileLike");
-let isLikedFooter = false;
-
-footerLike.addEventListener("click", () => {
-  if (isLikedFooter) {
-    footerLike.innerHTML = `<img src="Images/like empty.svg"/>`;
-    isLikedFooter = false;
-  } else {
-    footerLike.innerHTML = `<img src="Images/liked filled.svg"/>`;
-    isLikedFooter = true;
-  }
-});
-////
+//Put request to like a post
+function likePost() {
+  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: 456,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Post liked successfully");
+    })
+    .catch((error) => console.error(error));
+}
 
 //Catalogs for you pins share
 //Share 1
@@ -153,15 +160,10 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
-
-//Catalogs for you pins share
-////
+//Catalogs for you pins share end
 /////
 //Check signed in status of user when create button is clicked
-// Get the button element
 const createBtn = document.getElementById("createBtn");
-
-// Add an event listener to the button
 createBtn.addEventListener("click", () => {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
@@ -228,7 +230,7 @@ window.addEventListener("scroll", () => {
 });
 //Video played when scrolled into view
 ////
-//Suggested catalogs post like
+//Suggested catalogs post like button
 //Like for suggested catalog 1
 const likeButton1 = document.getElementsByClassName("like-button")[0];
 let isLiked1 = false;
@@ -293,28 +295,23 @@ likeButton4.addEventListener("click", () => {
   }
 });
 
-//Like post
-const likeBtn = document.getElementById("like-button");
-//Add fetch API to button
-likeBtn.addEventListener("click", likePost);
+////
+//Like button for mobile footer
+const footerLike = document.querySelector(".mobileLike");
+const img = footerLike.querySelector("img");
+let isLikedFooter = false;
 
-//Put request to like a post
-function likePost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userId: 456,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Post liked successfully");
-    })
-    .catch((error) => console.error(error));
-}
+footerLike.addEventListener("click", () => {
+  if (isLikedFooter) {
+    img.setAttribute("src", "Images/like empty.svg");
+    isLikedFooter = false;
+  } else {
+    img.setAttribute("src", "Images/liked filled.svg");
+    isLikedFooter = true;
+  }
+});
+
+////
 
 //Follow catalog popup on mobile
 // Music

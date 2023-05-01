@@ -2039,7 +2039,7 @@
           <div class="mobileIcons">
             <img
               src="Images/back arrow.svg"
-              onclick="window.location='index.html'"
+              onclick="goBack()"
             />
             <img src="Images/Snapme icon white.png" alt="logo" />
           </div>
@@ -2108,7 +2108,7 @@
                   <p class="text-white">5k</p>
                 </li>
                 <li>
-                  <button onclick="commentOnPost()">
+                  <button id="commentCount">
                     <i class="fa-solid fa-comment"></i>
                     <p class="text-white">396</p>
                   </button>
@@ -2232,13 +2232,13 @@
                 </ul>
               </div>
             </div>
-            <form method="POST">
+            <form>
               <div class="form-input-button">
                 <button onclick="commenterProfile()">
                   <img src="Images/user image.svg" alt="Profile pic" />
                 </button>
                 <input type="text" placeholder="Add your comment..." />
-                <button type="submit" onclick="commentOnPost()">
+                <button onclick="commentOnPost()" id="commentButton">
                   <i class="fas fa-paper-plane"></i>
                 </button>
               </div>
@@ -2281,7 +2281,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button onclick="commentModal()">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">527</p>
                     </button>
@@ -2416,7 +2416,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button onclick="commentModal()">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">387</p>
                     </button>
@@ -2584,7 +2584,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button onclick="commentModal()">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">307</p>
                     </button>
@@ -2752,7 +2752,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button onclick="commentModal">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">307</p>
                     </button>

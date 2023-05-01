@@ -647,6 +647,15 @@ input:checked + .slider:before {
   margin-bottom: 0.2rem;
 }
 
+#followBtn,
+.followBtn {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  color: #fff;
+  font-size: 14px;
+}
+
 .likeListItem {
   display: flex;
   flex-direction: column;
@@ -958,16 +967,8 @@ input:checked + .slider:before {
   }
 
   .mobileCreate {
-    border-radius: 50%;
-    background: #ba00ba;
-    padding: 10px;
-    font-size: 13px;
     margin-bottom: 35px;
-    color: #fff;
-  }
-
-  .mobileCreate img {
-    width: 80% !important;
+    width: 60px !important;
   }
 
   .mobileTabs {
@@ -1180,7 +1181,7 @@ input:checked + .slider:before {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 5%;
-    width: 40%;
+    width: 45%;
   }
 
   .suggestedPics {
@@ -1341,13 +1342,21 @@ input:checked + .slider:before {
   }
 
   .suggested {
-    width: 45%;
+    width: 50%;
+  }
+
+  #followBtn {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    color: #fff;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 425px) {
   .suggested {
-    width: 50%;
+    width: 55%;
   }
 
   .navbuttonsMobile {
@@ -1410,12 +1419,6 @@ input:checked + .slider:before {
     font-size: 16px;
   }
 }
-
-/*@media only screen and (min-width: 390px) and (max-width: 480px) {
-  .suggested {
-    width: 70%;
-  }
-}*/
 
 @media (max-width: 375px) {
   .navbuttonsMobile .hamburger img {
@@ -1512,15 +1515,6 @@ input:checked + .slider:before {
 
   .mobileView button {
     width: 45px;
-  }
-
-  .mobileCreate {
-    border-radius: 50%;
-    background: #ba00ba;
-    padding: 10px;
-    font-size: 13px;
-    margin-bottom: 35px;
-    color: #fff;
   }
 }
 

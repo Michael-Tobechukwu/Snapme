@@ -1,26 +1,82 @@
-window.addEventListener("load", function () {
-  setTimeout(function () {
-    navigator.splashscreen.hide();
-  }, 2000);
-});
+//Post date and time
+var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
+var postDate = postDate.toLocaleString();
+document.getElementById("postDate").innerHTML = postDate;
 
-//Preloader
-window.onload = function () {
-  var preloader = document.getElementById("preloader");
-  preloader.style.display = "none";
-};
+//Post date and time on mobile
+var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
+var postDate = postDate.toLocaleString();
+document.getElementById("postDateMobile").innerHTML = postDate;
 
-// Social media share modal
-//Share popup modal 1
-
+//Pin details Share
 // Get the modal
-var modal = document.getElementsByClassName("shareModal")[0];
+var pinModal = document.getElementById("sharePinModal");
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[0];
+var pinBtn = document.getElementById("sharePinBtn");
 
 // Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[0];
+var closeThis = document.getElementById("closeZ");
+
+// When the user clicks the button, open the modals
+pinBtn.onclick = function () {
+  pinModal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+closeThis.onclick = function () {
+  pinModal.style.display = "none";
+};
+
+// Close the modal by clicking outside the modal
+window.onclick = function (event) {
+  if (event.target == modal) {
+    pinModal.style.display = "none";
+  }
+};
+
+//Like button for pin
+const likeButton = document.querySelector("#like-button");
+let isLiked = false;
+
+likeButton.addEventListener("click", () => {
+  if (isLiked) {
+    likeButton.innerHTML = '<i class="far fa-heart"></i>';
+    isLiked = false;
+  } else {
+    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+    isLiked = true;
+  }
+});
+////
+//Like post fetch API
+const likeBtn = document.getElementById("like-button");
+//Add fetch API to button
+likeBtn.addEventListener("click", likePost);
+
+//Put request to like a post
+function likePost() {
+  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: 456,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Post liked successfully");
+    })
+    .catch((error) => console.error(error));
+}
+
+//Catalogs for you pins share
+//Share 1
+var btn = document.getElementsByClassName("myPopupBtn")[0];
+var modal = document.getElementsByClassName("shareModal")[0];
+var closeThisNow = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modals
 btn.onclick = function () {
@@ -28,7 +84,7 @@ btn.onclick = function () {
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+closeThisNow.onclick = function () {
   modal.style.display = "none";
 };
 
@@ -40,13 +96,9 @@ window.onclick = function (event) {
 };
 
 //Share 2
-var modal = document.getElementsByClassName("shareModal")[1];
-
-// Get the button that opens the modal
 var btn = document.getElementsByClassName("myPopupBtn")[1];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[1];
+var modal = document.getElementsByClassName("shareModal")[1];
+var closeThisNow = document.getElementsByClassName("close")[1];
 
 // When the user clicks the button, open the modals
 btn.onclick = function () {
@@ -54,7 +106,7 @@ btn.onclick = function () {
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+closeThisNow.onclick = function () {
   modal.style.display = "none";
 };
 
@@ -66,14 +118,9 @@ window.onclick = function (event) {
 };
 
 //Share 3
-
-var modal = document.getElementsByClassName("shareModal")[2];
-
-// Get the button that opens the modal
 var btn = document.getElementsByClassName("myPopupBtn")[2];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[2];
+var modal = document.getElementsByClassName("shareModal")[2];
+var closeThisNow = document.getElementsByClassName("close")[2];
 
 // When the user clicks the button, open the modals
 btn.onclick = function () {
@@ -81,7 +128,7 @@ btn.onclick = function () {
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+closeThisNow.onclick = function () {
   modal.style.display = "none";
 };
 
@@ -93,14 +140,9 @@ window.onclick = function (event) {
 };
 
 //Share 4
-
-var modal = document.getElementsByClassName("shareModal")[3];
-
-// Get the button that opens the modal
 var btn = document.getElementsByClassName("myPopupBtn")[3];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[3];
+var modal = document.getElementsByClassName("shareModal")[3];
+var closeThisNow = document.getElementsByClassName("close")[3];
 
 // When the user clicks the button, open the modals
 btn.onclick = function () {
@@ -108,7 +150,7 @@ btn.onclick = function () {
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
+closeThisNow.onclick = function () {
   modal.style.display = "none";
 };
 
@@ -118,158 +160,10 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
-
-//Share 5
-
-var modal = document.getElementsByClassName("shareModal")[4];
-
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[4];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[4];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 6
-var modal = document.getElementsByClassName("shareModal")[5];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[5];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[5];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 7
-var modal = document.getElementsByClassName("shareModal")[6];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[6];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[6];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 8
-var modal = document.getElementsByClassName("shareModal")[7];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[7];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[7];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-//Share popup modals end
+//Catalogs for you pins share end
 /////
-//Make dropdown stack on top
-const mobileDropdown = document.getElementById("mobileDropdown");
-mobileDropdown.style.zIndex = "9999";
-
-////
-//Catalog buttons fixed position on scroll
-const catalogsContainer = document.querySelector("#swipe-container");
-const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
-
-window.addEventListener("scroll", () => {
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition >= catalogsContainerOffsetTop) {
-    catalogsContainer.classList.add("fixed");
-    catalogsContainer.style.top =
-      "30px"; /* the sticky position of the tabs swipe container */
-  } else {
-    catalogsContainer.classList.remove("fixed");
-    catalogsContainer.style.top =
-      ""; /* reset the top position to its original state */
-  }
-});
-//Catalogs buttons fixed position on scroll
-////
-//Timecapsule fixed position on scroll
-const timelineContainer = document.querySelector("#timelineSuggested");
-const timelineContainerOffsetTop = timelineContainer.offsetTop;
-
-window.addEventListener("scroll", () => {
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition >= timelineContainerOffsetTop) {
-    timelineContainer.classList.add("fixed");
-    timelineContainer.style.top =
-      "80px"; /* the sticky position of the timelineSuggested container */
-  } else {
-    timelineContainer.classList.remove("fixed");
-    timelineContainer.style.top =
-      ""; /* reset the top position to its original state */
-  }
-});
-
-////
 //Check signed in status of user when create button is clicked
-// Get the button element
 const createBtn = document.getElementById("createBtn");
-
-// Add an event listener to the button
 createBtn.addEventListener("click", () => {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
@@ -296,111 +190,80 @@ createBtn.addEventListener("click", () => {
   }
 });
 
-//Check signed in status of user on create button clicked - mobile
-// Get the button element
-const mobileCreateBtn = document.getElementById("createBtnMobile");
-
-// Add an event listener to the button
-mobileCreateBtn.addEventListener("click", () => {
-  // Get the JWT token from local storage
-  const token = localStorage.getItem("jwtToken");
-
-  // Check if the user is logged in
-  if (token) {
-    try {
-      // Attempt to decode the JWT token to get the user information
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
-
-      // Redirect the user to the create pin page
-      window.location.href = "create-pin.html";
-    } catch (err) {
-      // If there was an error decoding the token, assume the user is not logged in
-      console.error("Error decoding JWT token:", err);
-
-      // Redirect the user to the login page
-      window.location.href = "login.html";
-    }
-  } else {
-    // Redirect the user to the login page
-    window.location.href = "login.html";
-  }
-});
 ////
-//Add to home screen/install prompt
-setTimeout(function () {
-  let deferredPrompt;
 
-  window.addEventListener("beforeinstallprompt", (e) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
+//Play video when scrolled into view
+//Video 1
+const video = document.getElementsByClassName("video")[0];
+let isPlaying = false;
 
-    // Stash the event so it can be triggered later.
-    deferredPrompt = e;
+window.addEventListener("scroll", () => {
+  const videoTop = video.getBoundingClientRect().top;
+  const videoBottom = video.getBoundingClientRect().bottom;
+  const viewportHeight = window.innerHeight;
 
-    // Update UI to notify the user that they can add the app to the home screen
-    showInstallButton();
-  });
-
-  function showInstallButton() {
-    // Show the "Add to Home Screen" button
-    const installButton = document.querySelector(".install-button");
-    installButton.classList.add("show");
-    installButton.addEventListener("click", installApp);
-  }
-
-  function installApp() {
-    // Show the prompt
-    deferredPrompt.prompt();
-
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the install prompt");
-      } else {
-        console.log("User dismissed the install prompt");
-      }
-
-      // Reset the deferred prompt variable
-      deferredPrompt = null;
-    });
-  }
-}, 60000);
-///Add to home screen/install prompt end
-////
-//Like button 1
-const likeButton = document.getElementsByClassName("like-button")[0];
-let isLiked = false;
-
-likeButton.addEventListener("click", () => {
-  if (isLiked) {
-    likeButton.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton.style.color = "#fff";
-    isLiked = false;
-  } else {
-    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton.style.color = "#fff";
-    isLiked = true;
+  if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
+    video.play();
+    isPlaying = true;
+  } else if (videoTop >= viewportHeight || videoBottom < 0) {
+    video.pause();
+    isPlaying = false;
   }
 });
 
-//Like button 2
+//Video 2
+const video2 = document.getElementsByClassName("video")[1];
+let isPlaying2 = false;
+
+window.addEventListener("scroll", () => {
+  const video2Top = video2.getBoundingClientRect().top;
+  const video2Bottom = video2.getBoundingClientRect().bottom;
+  const viewportHeight = window.innerHeight;
+
+  if (video2Top < viewportHeight && video2Bottom >= 0 && !isPlaying2) {
+    video2.play();
+    isPlaying2 = true;
+  } else if (video2Top >= viewportHeight || video2Bottom < 0) {
+    video2.pause();
+    isPlaying2 = false;
+  }
+});
+//Video played when scrolled into view
+////
+//Suggested catalogs post like button
+//Like for suggested catalog 1
+const likeButton1 = document.getElementsByClassName("like-button")[0];
+let isLiked1 = false;
+
+likeButton1.addEventListener("click", () => {
+  if (isLiked1) {
+    likeButton1.innerHTML = `<i class="far fa-heart"></i>`;
+    likeButton1.style.color = "#fff";
+    isLiked1 = false;
+  } else {
+    likeButton1.innerHTML = `<i class="fas fa-heart"></i>`;
+    likeButton1.style.color = "#fff";
+    isLiked1 = true;
+  }
+});
+
+//Like for suggested catalog 2
 const likeButton2 = document.getElementsByClassName("like-button")[1];
 let isLiked2 = false;
 
 likeButton2.addEventListener("click", () => {
   if (isLiked2) {
-    likeButton2.innerHTML = '<i class="far fa-heart"></i>';
+    likeButton2.innerHTML = `<i class="far fa-heart"></i>`;
     likeButton2.style.color = "#fff";
     isLiked2 = false;
   } else {
-    likeButton2.innerHTML = '<i class="fas fa-heart"></i>';
+    likeButton2.innerHTML = `<i class="fas fa-heart"></i>`;
     likeButton2.style.color = "#fff";
     isLiked2 = true;
   }
 });
 
-//Like button 3
+//Like for suggested 3
 const likeButton3 = document.getElementsByClassName("like-button")[2];
 let isLiked3 = false;
 
@@ -416,7 +279,7 @@ likeButton3.addEventListener("click", () => {
   }
 });
 
-//Like button 4
+//Like for suggested 4
 const likeButton4 = document.getElementsByClassName("like-button")[3];
 let isLiked4 = false;
 
@@ -432,88 +295,25 @@ likeButton4.addEventListener("click", () => {
   }
 });
 
-//Like button 5
-const likeButton5 = document.getElementsByClassName("like-button")[4];
-let isLiked5 = false;
-
-likeButton5.addEventListener("click", () => {
-  if (isLiked5) {
-    likeButton5.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton5.style.color = "#fff";
-    isLiked5 = false;
-  } else {
-    likeButton5.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton5.style.color = "#fff";
-    isLiked5 = true;
-  }
-});
-
-//Like button 6
-const likeButton6 = document.getElementsByClassName("like-button")[5];
-let isLiked6 = false;
-
-likeButton6.addEventListener("click", () => {
-  if (isLiked6) {
-    likeButton6.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton6.style.color = "#fff";
-    isLiked6 = false;
-  } else {
-    likeButton6.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton6.style.color = "#fff";
-    isLiked6 = true;
-  }
-});
-
-//Like button 7
-const likeButton7 = document.getElementsByClassName("like-button")[6];
-let isLiked7 = false;
-
-likeButton7.addEventListener("click", () => {
-  if (isLiked7) {
-    likeButton7.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton7.style.color = "#fff";
-    isLiked7 = false;
-  } else {
-    likeButton7.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton7.style.color = "#fff";
-    isLiked7 = true;
-  }
-});
-
-//Like button 8
-const likeButton8 = document.getElementsByClassName("like-button")[7];
-let isLiked8 = false;
-
-likeButton8.addEventListener("click", () => {
-  if (isLiked8) {
-    likeButton8.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton8.style.color = "#fff";
-    isLiked8 = false;
-  } else {
-    likeButton8.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton8.style.color = "#fff";
-    isLiked8 = true;
-  }
-});
-//Like buttons end
 ////
-//Suggested Popup on mobile
-var suggestedButton = document.getElementById("SuggestedBtn");
-var suggestedModal = document.getElementById("suggestedBackground");
-var closeSuggestedBtn = document.getElementById("closeThis");
+//Like button for mobile footer
+const footerLike = document.querySelector(".mobileLike");
+const img = footerLike.querySelector("img");
+let isLikedFooter = false;
 
-function suggestedPopupModal() {
-  suggestedModal.style.display = "block";
-}
+footerLike.addEventListener("click", () => {
+  if (isLikedFooter) {
+    img.setAttribute("src", "Images/like empty.svg");
+    isLikedFooter = false;
+  } else {
+    img.setAttribute("src", "Images/liked filled.svg");
+    isLikedFooter = true;
+  }
+});
 
-function closeSuggestedPopup() {
-  suggestedModal.style.display = "none";
-}
+////
 
-suggestedButton.addEventListener("click", suggestedPopupModal);
-closeSuggestedBtn.addEventListener("click", closeSuggestedPopup);
-
-//Follow popup on mobile
+//Follow catalog popup on mobile
 // Music
 var followModal = document.getElementById("mobileFollowModal");
 var mobileFollowBtn = document.getElementById("followPopup");
@@ -527,6 +327,19 @@ mobileFollowBtn.onclick = function () {
 close.onclick = function () {
   followModal.style.display = "none";
 };
+////
+//Time posted
+var timePinned = moment("20230129", "YYYYMMDD").fromNow();
+document.getElementById("timePosted").innerHTML = timePinned;
+
+var timePinned = moment("20220210", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
+
+var timePinned = moment("20221229", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
+
+var timePinned = moment("20230228", "YYYYMMDD").fromNow();
+document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
 
 // Shows and concerts
 var followMeBtn = document.getElementsByClassName("followPopup")[0];
@@ -863,8 +676,7 @@ followMeBtn.onclick = function () {
 closeMe.onclick = function () {
   followMeModal.style.display = "none";
 };
-//Follow popup on mobile
-/////
+//Follow catalog popup on mobile
 
 // Live popup
 var liveModal = document.getElementById("liveModal");
@@ -873,7 +685,6 @@ var closeLive = document.getElementById("closeLive");
 
 liveBtn.onclick = function () {
   liveModal.style.display = "block";
-  liveModal.style.zIndex = "9999";
 };
 
 // When the user clicks on <span> (x), close the modals
@@ -895,170 +706,42 @@ closeLiveMobile.onclick = function () {
   liveModalMobile.style.display = "none";
 };
 //Live popup ends
+////
+//Follow/unfollow user on desktop
+let isFollowingDesktop = false;
 
-//More icons button
-function moreIcons() {
-  var dots = document.getElementById("dots");
-  var moreIcons = document.getElementById("more-icons");
-  var btnText = document.getElementById("myBtn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons.style.display = "none";
+const thisFollowButton = document.getElementById("followUserButton");
+function toggleFollowUser() {
+  if (isFollowingDesktop) {
+    // unfollow logic
+    thisFollowButton.textContent = "Follow +";
   } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons.style.display = "inline";
+    // follow logic
+    thisFollowButton.textContent = "Following";
   }
+
+  isFollowingDesktop = !isFollowingDesktop;
 }
 
-//More icons II button
-function moreIconsII() {
-  var dots = document.getElementById("dots");
-  var moreIcons2 = document.getElementById("more-iconsII");
-  var btnText = document.getElementById("myBtnII");
+thisFollowButton.addEventListener("click", toggleFollowUser);
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons2.style.display = "none";
+//Follow/unfollow user on mobile
+let isFollowing = false;
+const followBtn = document.getElementById("followUserBtn");
+function toggleFollowUser() {
+  if (isFollowing) {
+    // unfollow logic
+    followBtn.textContent = "Follow +";
   } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons2.style.display = "inline";
+    // follow logic
+    followBtn.textContent = "Following";
   }
+
+  isFollowing = !isFollowing;
 }
 
-//More icons III button
-function moreIconsIII() {
-  var dots = document.getElementById("dots");
-  var moreIcons3 = document.getElementById("more-iconsIII");
-  var btnText = document.getElementById("myBtnIII");
+followBtn.addEventListener("click", toggleFollowUser);
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons3.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons3.style.display = "inline";
-  }
-}
-
-//More icons IV button
-function moreIconsIV() {
-  var dots = document.getElementById("dots");
-  var moreIcons4 = document.getElementById("more-iconsIV");
-  var btnText = document.getElementById("myBtnIV");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons4.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons4.style.display = "inline";
-  }
-}
-
-//More icons V button
-function moreIconsV() {
-  var dots = document.getElementById("dots");
-  var moreIcons5 = document.getElementById("more-iconsV");
-  var btnText = document.getElementById("myBtnV");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons5.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons5.style.display = "inline";
-  }
-}
-
-//More icons VI button
-function moreIconsVI() {
-  var dots = document.getElementById("dots");
-  var moreIcons6 = document.getElementById("more-iconsVI");
-  var btnText = document.getElementById("myBtnVI");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons6.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons6.style.display = "inline";
-  }
-}
-
-//More icons VII button
-function moreIconsVII() {
-  var dots = document.getElementById("dots");
-  var moreIcons7 = document.getElementById("more-iconsVII");
-  var btnText = document.getElementById("myBtnVII");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons7.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons7.style.display = "inline";
-  }
-}
-
-//More icons VIII button
-function moreIconsVIII() {
-  var dots = document.getElementById("dots");
-  var moreIcons8 = document.getElementById("more-iconsVIII");
-  var btnText = document.getElementById("myBtnVIII");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons8.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons8.style.display = "inline";
-  }
-}
-//////
-///
-//Time posted
-var timePinned = moment("20230129", "YYYYMMDD").fromNow();
-document.getElementById("timePosted").innerHTML = timePinned;
-
-var timePinned = moment("20220210", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
-
-var timePinned = moment("20221229", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
-
-var timePinned = moment("20230302", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
-
-var timePinned = moment("20211202", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[3].innerHTML = timePinned;
-
-var timePinned = moment("20220602", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[4].innerHTML = timePinned;
-
-var timePinned = moment("20210102", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[5].innerHTML = timePinned;
-
-var timePinned = moment("20211102", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
-//Actual time posted ends
-///
 ////
 // Get the search toggle button, search container, search input, search button, and search results list
 var searchToggleBtn = document.getElementById("search-toggle-btn");
@@ -1190,133 +873,198 @@ mobileSearchInput.addEventListener("keydown", async (event) => {
 });
 // Search catalogs index on mobile ends
 ////
-//Show more suggested accounts button on mobile
-var showMoreBtn = document.getElementById("showMore");
-//var MoreAccounts = document.getElementById("suggestedMore")
 
-function showMoreAccounts() {
-  var click = document.getElementById("suggestedMore");
-  if (click.style.display === "none") {
-    click.style.display = "block";
-    showMoreBtn.innerHTML = "Show less";
+////
+//Show more button
+function readMore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more-text");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Show more";
+    moreText.style.display = "none";
   } else {
-    click.style.display = "none";
-    showMoreBtn.innerHTML = "Show more";
+    dots.style.display = "none";
+    btnText.innerHTML = "Show less";
+    moreText.style.display = "inline";
   }
 }
-//More suggested accounts end
-////
-//Subscriber's badge
-document.addEventListener("DOMContentLoaded", function () {
-  // Send an AJAX request to get the subscription status
-  fetch("https://api.snapme-ng.com/api/v1/user/status")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Error getting subscription status");
-      }
-    })
-    .then((data) => {
-      // Check if the user is subscribed
-      const isSubscribed = data.isSubscribed;
+//More icons for first pin
+function moreIcons5() {
+  var dots = document.getElementById("dots");
+  var moreIcons5 = document.getElementById("more-iconsV");
+  var btnText = document.getElementById("myBtnV");
 
-      // Show the badge if the user is subscribed
-      if (isSubscribed) {
-        const badgeElement = document.getElementById("subscribed-badge");
-        badgeElement.style.display = "inline-block";
-      } else {
-        badgeElement.style.display = "none";
-      }
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    moreIcons5.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "";
+    moreIcons5.style.display = "inline";
+  }
+}
+
+//More icons II button
+function moreIconsII() {
+  var dots = document.getElementById("dots");
+  var moreIcons2 = document.getElementById("more-iconsII");
+  var btnText = document.getElementById("myBtnII");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    moreIcons2.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "";
+    moreIcons2.style.display = "inline";
+  }
+}
+
+//More icons III button
+function moreIconsIII() {
+  var dots = document.getElementById("dots");
+  var moreIcons3 = document.getElementById("more-iconsIII");
+  var btnText = document.getElementById("myBtnIII");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    moreIcons3.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "";
+    moreIcons3.style.display = "inline";
+  }
+}
+
+//More icons IV button
+function moreIconsIV() {
+  var dots = document.getElementById("dots");
+  var moreIcons4 = document.getElementById("more-iconsIV");
+  var btnText = document.getElementById("myBtnIV");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    moreIcons4.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "";
+    moreIcons4.style.display = "inline";
+  }
+}
+////
+//Show/Hide footer menu on scroll
+var oldScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var newScrollPos = window.pageYOffset;
+  if (oldScrollpos < newScrollPos) {
+    document.querySelector("#mobileFooter").classList.remove("hide");
+  } else {
+    document.querySelector("#mobileFooter").classList.add("hide");
+  }
+  oldScrollpos = newScrollPos;
+};
+
+////
+//Commenter profile
+function commenterProfile() {
+  fetch("https://api.snapme-ng.com//api/v1/:username")
+    .then((response) => response.json())
+    .then((data) => {
+      // Display the user profile data on the page
+      const profileContainer = document.querySelector("#profile-container");
+      profileContainer.innerHTML = `
+      <h2>${data.name}</h2>
+      <p>Email: ${data.email}</p>
+      <p>Age: ${data.age}</p>
+      <p>Location: ${data.location}</p>
+    `;
     })
     .catch((error) => {
-      console.error(error);
+      // Handle any errors that occurred during the request
+      console.error("Error fetching user profile:", error);
     });
-});
-//Subscriber's badge ends
-
-//Promote popup after 10 minutes
-function openPromotePopup() {
-  document.getElementById("promotePopup").style.display = "block";
 }
+commenterProfile();
 
-function closePromote() {
-  document.getElementById("promotePopup").style.display = "none";
-}
-
-// Delay the opening of the popup by 10 minutes
-setTimeout(openPromotePopup, 600000); // 10 minutes = 10 * 60 * 1000 milliseconds
-
-document.getElementById("closePromote").addEventListener("click", closePromote);
-//Notification popup
-
-//Pin details
-//
-document.getElementById("pinDetails").addEventListener("click", pinDetails);
-document.getElementById("pinDetails2").addEventListener("click", pinDetails);
-document.getElementById("pinDetails3").addEventListener("click", pinDetails);
-document.getElementById("pinDetails4").addEventListener("click", pinDetails);
-document.getElementById("pinDetails5").addEventListener("click", pinDetails);
-document.getElementById("pinDetails6").addEventListener("click", pinDetails);
-document.getElementById("pinDetails7").addEventListener("click", pinDetails);
-document.getElementById("pinDetails8").addEventListener("click", pinDetails);
-
-function pinDetails() {
-  fetch("https://api.snapme-ng.com/api/v1/pin-details/:id")
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+//Like comment
+function likeComment() {
+  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like/:commentId", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: "abc123",
+      timestamp: new Date().toISOString(),
+    }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Successfully liked the comment!");
+      } else {
+        console.log("Failed to like the comment.");
       }
-      return response.json();
     })
-    .then(function (data) {
-      console.log(data);
-    })
-    .catch(function (error) {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+    .catch((error) => console.error("Error:", error));
 }
-pinDetails();
 
-//Pin details ends
-////
-//Play video when scrolled into view
-//Video 1
-const video = document.getElementsByClassName("video")[0];
-let isPlaying = false;
+//Reply Comment
+function replyComment() {
+  fetch("https://api.snapme-ng.com/api/v1/pins/:postId/comment/:id/reply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer <token>",
+    },
+    body: JSON.stringify({
+      userId: 123,
+      postId: 456,
+      comment: "This is a great post!",
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+}
+replyComment();
 
-window.addEventListener("scroll", () => {
-  const videoTop = video.getBoundingClientRect().top;
-  const videoBottom = video.getBoundingClientRect().bottom;
-  const viewportHeight = window.innerHeight;
+//Remove/delete reply
+function deleteReply() {
+  fetch(
+    "https://api.snapme-ng.com//api/v1/pins/:postId/:commentId/delete/:replyId",
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer <token>",
+      },
+    }
+  )
+    .then((response) => console.log("Data deleted successfully"))
+    .catch((error) => console.error(error));
+}
+deleteReply();
 
-  if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
-    video.play();
-    isPlaying = true;
-  } else if (videoTop >= viewportHeight || videoBottom < 0) {
-    video.pause();
-    isPlaying = false;
-  }
-});
-
-//Video 2
-const video2 = document.getElementsByClassName("video")[1];
-let isPlaying2 = false;
-
-window.addEventListener("scroll", () => {
-  const video2Top = video2.getBoundingClientRect().top;
-  const video2Bottom = video2.getBoundingClientRect().bottom;
-  const viewportHeight2 = window.innerHeight;
-
-  if (video2Top < viewportHeight2 && video2Bottom >= 0 && !isPlaying2) {
-    video2.play();
-    isPlaying2 = true;
-  } else if (video2Top >= viewportHeight2 || video2Bottom < 0) {
-    video2.pause();
-    isPlaying2 = false;
-  }
-});
-
+//Delete Comment
+function deleteComment() {
+  fetch("https://api.snapme-ng.com/api/v1/pins/:id/delete/:commentId", {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer <token>",
+    },
+  })
+    .then((response) => console.log("Data deleted successfully"))
+    .catch((error) => console.error(error));
+}
+deleteComment();
+//Delete comment end
+/////
 //Video controls
 //const video = document.getElementById("video");
 const playPauseBtn = document.getElementById("play-pause-btn");
@@ -1424,8 +1172,53 @@ speedSelect2.addEventListener("change", () => {
   video2.playbackRate = speedSelect2.value;
 });
 //Video controls 2 end
+
+//Mobile catalog tabs swipe control
+const swipeContainer = document.getElementById("swipe-container");
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+swipeContainer.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchmove", (event) => {
+  touchEndX = event.touches[0].clientX;
+});
+
+swipeContainer.addEventListener("touchend", () => {
+  if (touchEndX < touchStartX) {
+    swipeContainer.scrollBy({ left: 150, behavior: "smooth" });
+  } else if (touchEndX > touchStartX) {
+    swipeContainer.scrollBy({ left: -150, behavior: "smooth" });
+  }
+});
+//Show/hide top menu on scroll
+var pastScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var presentScrollPos = window.pageYOffset;
+  if (pastScrollpos < presentScrollPos) {
+    document.querySelector(".navmenu").classList.remove("hide");
+  } else {
+    document.querySelector(".navmenu").classList.add("hide");
+  }
+  pastScrollpos = presentScrollPos;
+};
+
+//Show/Hide footer menu on scroll
+var oldScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var newScrollPos = window.pageYOffset;
+  if (oldScrollpos < newScrollPos) {
+    document.querySelector(".mobileView").classList.remove("hide");
+  } else {
+    document.querySelector(".mobileView").classList.add("hide");
+  }
+  oldScrollpos = newScrollPos;
+};
 ////
-//Change catalog buttons colour on click
+//Active catalog button on click on mobile
 var previousButton;
 
 var buttons = document.querySelectorAll(".swipe-item button");
@@ -1443,123 +1236,4 @@ function changeButtonColor(clickedButton) {
 
   previousButton = clickedButton;
 }
-////
-
-//Show/Hide footer menu on scroll
-var oldScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  var newScrollPos = window.pageYOffset;
-  if (oldScrollpos < newScrollPos) {
-    document.querySelector(".mobileView").classList.remove("hide");
-  } else {
-    document.querySelector(".mobileView").classList.add("hide");
-  }
-  oldScrollpos = newScrollPos;
-};
-
-////
-//Mobile catalog tabs swipe control
-const swipeContainer = document.getElementById("swipe-container");
-const swipeContent = document.getElementbyId("swipe-item");
-
-let touchStartX = 0;
-let touchEndX = 0;
-let isFixed = false;
-
-swipeContainer.addEventListener("touchstart", (event) => {
-  touchStartX = event.touches[0].clientX;
-});
-
-swipeContainer.addEventListener("touchmove", (event) => {
-  touchEndX = event.touches[0].clientX;
-
-  // If the user has scrolled past the top of the swipe container, fix it to the top
-  if (swipeContainer.getBoundingClientRect().top <= 0 && !isFixed) {
-    swipeContainer.classList.add("fixed");
-    isFixed = true;
-  }
-});
-
-swipeContainer.addEventListener("touchend", () => {
-  if (touchEndX < touchStartX) {
-    swipeContainer.style.transform = `translateX(0)`;
-  } else if (touchEndX > touchStartX) {
-    swipeContainer.style.transform = `translateX(0)`;
-  }
-});
-
-window.addEventListener("scroll", () => {
-  // If the user scrolls back to the top of the page, unfix the swipe container
-  if (window.scrollY <= 0 && isFixed) {
-    swipeContainer.classList.remove("fixed");
-    swipeContainer.style.transform = "";
-    isFixed = false;
-  }
-});
-////
-
-//Show/hide top menu on scroll
-var pastScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  var presentScrollPos = window.pageYOffset;
-  if (pastScrollpos < presentScrollPos) {
-    document.querySelector(".navmenu").classList.remove("hide");
-  } else {
-    document.querySelector(".navmenu").classList.add("hide");
-  }
-  pastScrollpos = presentScrollPos;
-};
-
-////
-//Follow user for first post
-const followUserBtn = document.querySelector("#followBtn");
-
-followUserBtn.addEventListener("click", () => {
-  const username = document.querySelector(".username").textContent;
-
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Replace with the actual name of your JWT token in localStorage
-    },
-    credentials: "include",
-    mode: "cors",
-    // Add any other necessary options here
-  })
-    .then((response) => {
-      if (response.ok) {
-        followUserBtn.textContent = "Following";
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
-
-////
-// Follow user other posts
-const followBtn = document.querySelector(".followBtn");
-
-followBtn.addEventListener("click", () => {
-  const username = document.querySelector(".username").textContent;
-
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt_token")}`, // Replace with the actual name of your JWT token in localStorage
-    },
-    credentials: "include",
-    mode: "cors",
-    // Add any other necessary options here
-  })
-    .then((response) => {
-      if (response.ok) {
-        followBtn.textContent = "Following";
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+//Active catalog button on click on mobile

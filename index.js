@@ -1234,7 +1234,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 //Subscriber's badge ends
+////
+//Comment box popup
+const commentBtn = document.getElementById("commentBtn");
+const commentBox = document.getElementById("commentBox");
+const closeComment = document.getElementById("closeComment");
 
+commentBtn.addEventListener("click", function () {
+  commentBox.style.display = "block";
+});
+
+closeComment.addEventListener("click", function () {
+  commentBox.style.display = "none";
+});
+//Comment box popup end
+////
+
+//Submit comment fetch API
+const submitCommentBtn = document.getElementById('submitComment');
+
+submitCommentBtn.addEventListener('click', function() {
+  const commentInput = document.getElementById('commentInput').value;
+  if (!commentInput) {
+    // Handle empty comment input error
+    return;
+  }
+
+  const comment = {
+    text: commentInput
+  };
+
+  fetch(`https://api.snapme-ng.com/api/v1/pins/:post.id/:commentId`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('accessToken') // Replace with your own authentication method
+    },
+    body: JSON.stringify(comment)
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json(); // Return the response as JSON
+    } else {
+      throw new Error('Network response was not ok');
+    }
+  })
+  .then(data => {
+    console.log(data); // Handle successful response data here
+  })
+  .catch(error => {
+    console.error('Error:', error); // Handle errors here
+  });
+});
+//Fetech API to submit comment
+////
 //Promote popup after 10 minutes
 function openPromotePopup() {
   document.getElementById("promotePopup").style.display = "block";
@@ -1248,10 +1301,9 @@ function closePromote() {
 setTimeout(openPromotePopup, 600000); // 10 minutes = 10 * 60 * 1000 milliseconds
 
 document.getElementById("closePromote").addEventListener("click", closePromote);
-//Notification popup
-
-//Pin details
-//
+//Promote notification popup
+////
+//Get pin details
 document.getElementById("pinDetails").addEventListener("click", pinDetails);
 document.getElementById("pinDetails2").addEventListener("click", pinDetails);
 document.getElementById("pinDetails3").addEventListener("click", pinDetails);
@@ -1277,8 +1329,7 @@ function pinDetails() {
     });
 }
 pinDetails();
-
-//Pin details ends
+//Get pin details end
 ////
 //Play video when scrolled into view
 //Video 1
@@ -1563,3 +1614,5 @@ followBtn.addEventListener("click", () => {
       console.error("Error:", error);
     });
 });
+
+/////

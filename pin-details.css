@@ -1227,6 +1227,7 @@ button {
 
   .mobileIcons img {
     width: 30px !important;
+    cursor: pointer;
   }
 
   .marcdiss-box {

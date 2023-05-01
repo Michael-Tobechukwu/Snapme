@@ -1234,3 +1234,8 @@ function changeButtonColor(clickedButton) {
   previousButton = clickedButton;
 }
 //Active catalog button on click on mobile
+////
+//Go back to previous page
+function goBack() {
+  window.history.back();
+}

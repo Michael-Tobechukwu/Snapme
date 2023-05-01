@@ -100,7 +100,7 @@ button {
 }
 
 .navmenu .live-button {
-  border-radius: 0.9rem;
+  border-radius: 0.5rem;
   border: none;
   padding: 0.2rem 2rem;
   background: #bd74bd;
@@ -192,11 +192,11 @@ input:checked + .slider:before {
   z-index: 1;
   left: -255px;
   top: 35px;
-  background: #fff;
+  background: #021129;
   width: 250px;
-  color: #000;
+  color: #fff;
   padding: 0.4rem 0.5rem;
-  border: none;
+  border: 2px solid #fff;
   font-size: 12px;
 }
 
@@ -270,7 +270,8 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
-.tabs button:hover {
+.tabs button:hover,
+.tabs button:focus {
   background: #bd74bd;
   border: #bd74bd solid 2px;
   transform: scale(110%);
@@ -953,39 +954,63 @@ button {
   }
 
   .navmenu .navbuttons,
-  .tabs {
+  .tabs,
+  .navmenu .hamburger,
+  .navmenu .main-logo {
     display: none;
   }
 
   .navmenu {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    width: 100%;
-    padding: 0.3rem;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .navmenu .hamburger,
-  .navmenu .main-logo,
-  .navmenu .navbuttons {
-    width: 45%;
-  }
-
-  .navmenu .navbuttonsMobile {
+  .navbuttonsMobile {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    width: 90%;
-    margin: 0.5rem auto;
+    background: #021129;
+    width: 100%;
+    margin-top: 0;
+    top: 0;
+    z-index: 1;
   }
 
-  .navmenu .navbuttonsMobile img,
-  .navmenu .navbuttonsMobile button {
-    margin-right: 0.1rem;
+  .navbuttonsMobile .hamburger,
+  .navbuttonsMobile .main-logo {
+    display: flex;
   }
 
-  .navmenu .live-button {
-    padding: 0.4rem 0.8rem;
+  .navbuttonsMobile .hamburger img {
+    width: 35px;
+    margin-left: -0.5rem;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 50px;
+    margin-left: -10px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 130px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 35px;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 35px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 30px;
   }
 
   .user-create .create-plus,
@@ -998,23 +1023,30 @@ button {
     display: block;
   }
 
+  #mobileSearchToggleBtn {
+    border: none;
+    color: #fff;
+  }
+
   #mobile-search-container {
     display: none;
     position: relative;
   }
 
   #mobile-search-input {
-    position: absolute;
-    z-index: 1;
-    left: -230px;
-    top: 45px;
-    background: #fff;
-    width: 250px;
-    color: #000;
+    position: fixed;
+    z-index: 9999;
+    left: 30px;
+    top: 40px;
+    background: #021129;
+    width: 75%;
+    color: #fff;
     padding: 0.4rem 0.5rem;
-    border: none;
+    border: 2px solid #fff;
     font-size: 12px;
+    border-radius: 0.5rem;
   }
+  /*All things search for mobile*/
 
   .mobileTabs {
     display: block;
@@ -1297,7 +1329,7 @@ button {
   }
 
   #mobileFooter button {
-    width: 20%;
+    width: 45px;
     transition: ease 0.4s;
   }
 
@@ -1305,36 +1337,75 @@ button {
     transform: scale(105%);
   }
 
-  #mobileFooter button i {
+  .mobileLike {
+    margin-bottom: 35px;
+
+  }
+
+  #mobileFooter button i,
+  .mobileLike img {
     width: 100%;
   }
 
-  .mobileLike {
-    margin-bottom: 0.9rem;
-    padding: 0;
-    border-radius: 50%;
-    background: #ba00ba;
-    padding: 25px 0;
-    color: #fff;
-    font-size: 13px;
-    transition: ease 0.4s;
-  }
 
-  .mobileLike i {
-    width: 100% !important;
-  }
-
-  .mobileLike:hover {
-    background: #5a015a;
-  }
 }
 
 @media (max-width: 425px) {
   .mobileLike {
-    border-radius: 50%;
-    background: #ba00ba;
-    padding: 20px 0;
-    font-size: 12px;
     margin-bottom: 40px;
+  }
+
+  .navbuttonsMobile .hamburger img {
+    width: 50px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 120px;
+  }
+
+  .navbuttonsMobile .live-button {
+    padding: 7px 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .navbuttonsMobile .hamburger img {
+    width: 30px;
+    margin-left: -10px;
+    margin-right: -5px;
+  }
+
+  .navbuttonsMobile .main-logo {
+    margin-right: 60px;
+  }
+
+  .navbuttonsMobile .main-logo img {
+    width: 90px;
+  }
+
+  .navbuttonsMobile .live-button {
+    font-size: 12px;
+    padding: 5px 8px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile .user-create img {
+    width: 30px;
+    margin-right: 7px;
+  }
+
+  .navbuttonsMobile .toggle-button {
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 25px;
+  }
+}
+
+@media (max-width: 350px) {
+  .navbuttonsMobile .main-logo {
+    margin-right: 20px;
   }
 }

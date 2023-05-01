@@ -1,4 +1,3 @@
-
 window.addEventListener("load", function () {
   setTimeout(function () {
     navigator.splashscreen.hide();
@@ -1444,6 +1443,19 @@ function changeButtonColor(clickedButton) {
 
   previousButton = clickedButton;
 }
+////
+
+//Show/Hide footer menu on scroll
+var oldScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  var newScrollPos = window.pageYOffset;
+  if (oldScrollpos < newScrollPos) {
+    document.querySelector(".mobileView").classList.remove("hide");
+  } else {
+    document.querySelector(".mobileView").classList.add("hide");
+  }
+  oldScrollpos = newScrollPos;
+};
 
 ////
 //Mobile catalog tabs swipe control
@@ -1486,7 +1498,6 @@ window.addEventListener("scroll", () => {
 });
 ////
 
-
 //Show/hide top menu on scroll
 var pastScrollpos = window.pageYOffset;
 window.onscroll = function () {
@@ -1499,14 +1510,56 @@ window.onscroll = function () {
   pastScrollpos = presentScrollPos;
 };
 
-//Show/Hide footer menu on scroll
-var oldScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  var newScrollPos = window.pageYOffset;
-  if (oldScrollpos < newScrollPos) {
-    document.querySelector(".mobileView").classList.remove("hide");
-  } else {
-    document.querySelector(".mobileView").classList.add("hide");
-  }
-  oldScrollpos = newScrollPos;
-};
+////
+//Follow user for first post
+const followUserBtn = document.querySelector("#followBtn");
+
+followUserBtn.addEventListener("click", () => {
+  const username = document.querySelector(".username").textContent;
+
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Replace with the actual name of your JWT token in localStorage
+    },
+    credentials: "include",
+    mode: "cors",
+    // Add any other necessary options here
+  })
+    .then((response) => {
+      if (response.ok) {
+        followUserBtn.textContent = "Following";
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
+////
+// Follow user other posts
+const followBtn = document.querySelector(".followBtn");
+
+followBtn.addEventListener("click", () => {
+  const username = document.querySelector(".username").textContent;
+
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt_token")}`, // Replace with the actual name of your JWT token in localStorage
+    },
+    credentials: "include",
+    mode: "cors",
+    // Add any other necessary options here
+  })
+    .then((response) => {
+      if (response.ok) {
+        followBtn.textContent = "Following";
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});

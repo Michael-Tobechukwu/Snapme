@@ -49,20 +49,22 @@ likeButton.addEventListener("click", () => {
   }
 });
 ////
-//Like for mobile
-const likeButtonMobile = document.querySelector(".mobileLike");
-let isLikedMobile = false;
+//Like for mobile at the footer
 
-likeButtonMobile.addEventListener("click", () => {
-  if (isLikedMobile) {
-    likeButtonMobile.innerHTML = '<i class="far fa-heart"></i>';
-    isLiked = false;
+const footerLike = document.querySelector(".mobileLike");
+let isLikedFooter = false;
+
+footerLike.addEventListener("click", () => {
+  if (isLikedFooter) {
+    footerLike.innerHTML = `<img src="Images/like empty.svg"/>`;
+    isLikedFooter = false;
   } else {
-    likeButtonMobile.innerHTML = '<i class="fas fa-heart"></i>';
-    isLikedMobile = true;
+    footerLike.innerHTML = `<img src="Images/liked filled.svg"/>`;
+    isLikedFooter = true;
   }
 });
 ////
+
 //Catalogs for you pins share
 //Share 1
 var btn = document.getElementsByClassName("myPopupBtn")[0];
@@ -227,7 +229,7 @@ window.addEventListener("scroll", () => {
 //Video played when scrolled into view
 ////
 //Suggested catalogs post like
-//Like for suggested 1
+//Like for suggested catalog 1
 const likeButton1 = document.getElementsByClassName("like-button")[0];
 let isLiked1 = false;
 
@@ -243,7 +245,7 @@ likeButton1.addEventListener("click", () => {
   }
 });
 
-//Like for suggested 2
+//Like for suggested catalog 2
 const likeButton2 = document.getElementsByClassName("like-button")[1];
 let isLiked2 = false;
 

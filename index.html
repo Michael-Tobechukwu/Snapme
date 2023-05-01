@@ -2203,7 +2203,7 @@
                 </a>
                 <button id="followBtn">Follow +</button>
 
-                <h4>The Jonzing World Imprint</h4>
+                <h4 id="postTitle">The Jonzing World Imprint</h4>
               </div>
               <div class="card-body">
                 <ul class="card-title icons-list">
@@ -2226,22 +2226,22 @@
                   </li>
 
                   <li>
-                    <button onclick="commentPopup()">
+                    <button id="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">396</p>
                     </button>
                   </li>
-                  <div class="commentBox">
+                  <div class="commentBox" id="commentBox">
                     <form class="commentBoxForm">
-                      <span class="closeComment"> &times;</span>
+                      <span class="closeComment" id="closeComment"> &times;</span>
                       <textarea
-                        name=""
-                        id="Comment"
-                        cols="30"
-                        rows="10"
+                        name="comment"
+                        id="commentInput"
                         placeholder="Enter your comment here..."
                       ></textarea>
-                      <button onclick="commentOnPost()">Comment</button>
+                      <button id="submitComment">
+                        <img src="Images/send.svg" alt="Comment" width="20px" />
+                      </button>
                     </form>
                   </div>
                   <li>

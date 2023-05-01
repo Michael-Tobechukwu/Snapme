@@ -590,17 +590,22 @@ button {
 
 .content-bottom form input {
   border-radius: 5rem;
-  padding: 0.4rem 1rem;
+  padding: 15px 0.7rem;
   width: 40%;
-  font-size: 0.7rem;
+  height: 35px;
+  font-size: 16px;
+  color: #000;
 }
 
-.fa-paper-plane {
-  color: #fff;
-  background: #ba00ba;
+#commentButton {
   border-radius: 50%;
-  padding: 0.6rem;
-  font-size: 1.2rem;
+  color: #fff;
+  padding-left: 5px;
+}
+
+#commentButton .fa-paper-plane {
+  font-size: 20px;
+  transform: rotate(47deg);
 }
 
 /* The Modal (background) */
@@ -1197,6 +1202,19 @@ button {
     width: 100%;
   }
 
+  #commentButton .fa-paper-plane {
+    font-size: 20px;
+  }
+
+  .content-bottom form input {
+    border-radius: 5rem;
+    padding: 15px 0.7rem;
+    width: 50%;
+    height: 35px;
+    font-size: 13px;
+    color: #000;
+  }
+
   .mobileIcons {
     display: flex;
     justify-content: space-between;
@@ -1238,7 +1256,7 @@ button {
     margin: auto;
     padding: 1rem;
     border: 1px solid #888;
-    width: 65%;
+    width: 80%;
   }
 
   .liveContentMobile {
@@ -1339,15 +1357,12 @@ button {
 
   .mobileLike {
     margin-bottom: 35px;
-
   }
 
   #mobileFooter button i,
   .mobileLike img {
     width: 100%;
   }
-
-
 }
 
 @media (max-width: 425px) {

@@ -328,6 +328,7 @@ mobileCreateBtn.addEventListener("click", () => {
 });
 ////
 //Add to home screen/install prompt
+// Wait for 1 minute (60,000 milliseconds) after the first visit
 setTimeout(function () {
   let deferredPrompt;
 
@@ -365,7 +366,8 @@ setTimeout(function () {
       deferredPrompt = null;
     });
   }
-}, 60000);
+}, 60000); // 60,000 milliseconds = 1 minute
+
 ///Add to home screen/install prompt end
 ////
 //Like button 1
@@ -1195,15 +1197,16 @@ var showMoreBtn = document.getElementById("showMore");
 //var MoreAccounts = document.getElementById("suggestedMore")
 
 function showMoreAccounts() {
-  var click = document.getElementById("suggestedMore");
-  if (click.style.display === "none") {
-    click.style.display = "block";
+  var suggestedMore = document.getElementById("suggestedMore");
+  if (showMoreBtn.innerHTML === "Show more") {
+    suggestedMore.style.display = "block";
     showMoreBtn.innerHTML = "Show less";
   } else {
-    click.style.display = "none";
+    suggestedMore.style.display = "none";
     showMoreBtn.innerHTML = "Show more";
   }
 }
+
 //More suggested accounts end
 ////
 //Subscriber's badge
@@ -1251,40 +1254,40 @@ closeComment.addEventListener("click", function () {
 ////
 
 //Submit comment fetch API
-const submitCommentBtn = document.getElementById('submitComment');
+const submitCommentBtn = document.getElementById("submitComment");
 
-submitCommentBtn.addEventListener('click', function() {
-  const commentInput = document.getElementById('commentInput').value;
+submitCommentBtn.addEventListener("click", function () {
+  const commentInput = document.getElementById("commentInput").value;
   if (!commentInput) {
     // Handle empty comment input error
     return;
   }
 
   const comment = {
-    text: commentInput
+    text: commentInput,
   };
 
   fetch(`https://api.snapme-ng.com/api/v1/pins/:post.id/:commentId`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('accessToken') // Replace with your own authentication method
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("accessToken"), // Replace with your own authentication method
     },
-    body: JSON.stringify(comment)
+    body: JSON.stringify(comment),
   })
-  .then(response => {
-    if (response.ok) {
-      return response.json(); // Return the response as JSON
-    } else {
-      throw new Error('Network response was not ok');
-    }
-  })
-  .then(data => {
-    console.log(data); // Handle successful response data here
-  })
-  .catch(error => {
-    console.error('Error:', error); // Handle errors here
-  });
+    .then((response) => {
+      if (response.ok) {
+        return response.json(); // Return the response as JSON
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    })
+    .then((data) => {
+      console.log(data); // Handle successful response data here
+    })
+    .catch((error) => {
+      console.error("Error:", error); // Handle errors here
+    });
 });
 //Fetech API to submit comment
 ////

@@ -66,7 +66,6 @@ window.onclick = function (event) {
 };
 
 //Share 3
-
 var modal = document.getElementsByClassName("shareModal")[2];
 
 // Get the button that opens the modal
@@ -1238,7 +1237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 //Subscriber's badge ends
 ////
-//Comment box popup
+//Comment box popup for first pin
 const commentBtn = document.getElementById("commentBtn");
 const commentBox = document.getElementById("commentBox");
 const closeComment = document.getElementById("closeComment");
@@ -1250,8 +1249,105 @@ commentBtn.addEventListener("click", function () {
 closeComment.addEventListener("click", function () {
   commentBox.style.display = "none";
 });
-//Comment box popup end
+//Comment box popup first pin end
 ////
+//Comment box popup for second pin
+var commentBtn2 = document.getElementsByClassName("commentBtn")[0];
+var commentBox2 = document.getElementsByClassName("commentBox")[0];
+var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
+
+commentBtn2.addEventListener("click", function () {
+  commentBox2.style.display = "block";
+});
+
+closeCommentBtn2.addEventListener("click", function () {
+  commentBox2.style.display = "none";
+});
+//Comment box popup for second pin end
+////
+//Comment box popup for third pin
+var commentBtn3 = document.getElementsByClassName("commentBtn")[1];
+var commentBox3 = document.getElementsByClassName("commentBox")[1];
+var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
+
+commentBtn3.addEventListener("click", function () {
+  commentBox3.style.display = "block";
+});
+
+closeCommentBtn3.addEventListener("click", function () {
+  commentBox3.style.display = "none";
+});
+//Comment box popup for third pin end
+////
+//Comment box popup for fourth pin 
+var commentBtn4 = document.getElementsByClassName("commentBtn")[2];
+var commentBox4 = document.getElementsByClassName("commentBox")[2];
+var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
+
+commentBtn4.addEventListener("click", function () {
+  commentBox4.style.display = "block";
+});
+
+closeCommentBtn4.addEventListener("click", function () {
+  commentBox4.style.display = "none";
+});
+//Comment box popup for fourth pin end
+////
+//Comment box popup for 5th pin 
+var commentBtn5 = document.getElementsByClassName("commentBtn")[3];
+var commentBox5 = document.getElementsByClassName("commentBox")[3];
+var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
+
+commentBtn5.addEventListener("click", function () {
+  commentBox5.style.display = "block";
+});
+
+closeCommentBtn5.addEventListener("click", function () {
+  commentBox5.style.display = "none";
+});
+//Comment box popup for 5th pin end
+////
+//Comment box popup for 6th pin 
+var commentBtn6 = document.getElementsByClassName("commentBtn")[4];
+var commentBox6 = document.getElementsByClassName("commentBox")[4];
+var closeCommentBtn6 = document.getElementsByClassName("closeComment")[4];
+
+commentBtn6.addEventListener("click", function () {
+  commentBox6.style.display = "block";
+});
+
+closeCommentBtn6.addEventListener("click", function () {
+  commentBox6.style.display = "none";
+});
+//Comment box popup for 6th pin end
+////
+//Comment box popup for 7th pin 
+var commentBtn7 = document.getElementsByClassName("commentBtn")[5];
+var commentBox7 = document.getElementsByClassName("commentBox")[5];
+var closeCommentBtn7 = document.getElementsByClassName("closeComment")[5];
+
+commentBtn7.addEventListener("click", function () {
+  commentBox7.style.display = "block";
+});
+
+closeCommentBtn7.addEventListener("click", function () {
+  commentBox7.style.display = "none";
+});
+//Comment box popup for 7th pin end
+///
+//Comment box popup for 8th pin 
+var commentBtn8 = document.getElementsByClassName("commentBtn")[6];
+var commentBox8 = document.getElementsByClassName("commentBox")[6];
+var closeCommentBtn8 = document.getElementsByClassName("closeComment")[6];
+
+commentBtn8.addEventListener("click", function () {
+  commentBox8.style.display = "block";
+});
+
+closeCommentBtn8.addEventListener("click", function () {
+  commentBox8.style.display = "none";
+});
+//Comment box popup for 8th pin end
 
 //Submit comment fetch API
 const submitCommentBtn = document.getElementById("submitComment");

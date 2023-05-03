@@ -2088,7 +2088,7 @@
             </button>
           </div>-->
           <div class="content-mid">
-            <h3>The Jonzing World Imprint</h3>
+            <h3 class="postCaption">The Jonzing World Imprint</h3>
             <span id="postDateMobile"></span>
 
             <div class="show-more">
@@ -2192,7 +2192,7 @@
                 </li>
               </ul>
             </div>
-            <p>
+            <p class="postBody">
               Nigeria's reggae-styled music sensation Ruger. His history,
               lifestyle, and a stylishly covered left eye. Always a cool dude
               and a fans favourite all the time. #ArtisteRuger
@@ -2207,7 +2207,7 @@
             <button
               onclick="readMore()"
               id="myBtn"
-              style="color: #fff; font-weight: bold"
+              style="font-weight: bold"
             >
               Show more
             </button>
@@ -2230,16 +2230,19 @@
                 </ul>
               </div>
             </div>
-            <form>
-              <div class="form-input-button">
+            <form class="form-input-button">
+              
                 <button onclick="commenterProfile()">
                   <img src="Images/user image.svg" alt="Profile pic" />
                 </button>
-                <input type="text" placeholder="Add your comment..." />
-                <button onclick="commentOnPost()" id="commentButton">
+                <input type="text" placeholder="Add your comment..." id="commentInput"/>
+                <div id="commentButton">
+                  <input type="button" id="sendCommentBtn" onclick="commentOnPost()">
                   <i class="fas fa-paper-plane"></i>
-                </button>
-              </div>
+                </div> 
+                <!---->
+
+              
             </form>
           </div>
         </div>

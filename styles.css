@@ -679,7 +679,7 @@ input:checked + .slider:before {
   padding: 5px 8px;
   color: #fff;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 #submitComment:hover,
@@ -1001,7 +1001,11 @@ input:checked + .slider:before {
 
   /*All things comment*/
   .commentBox {
-    top: 220px;
+    top: 400px;
+  }
+
+  #submitComment {
+    font-size: 13px;
   }
 
   #submitComment img {
@@ -1453,6 +1457,10 @@ input:checked + .slider:before {
     color: #fff;
     font-size: 13px;
   }
+
+  .commentBox {
+    top: 320px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -1518,6 +1526,10 @@ input:checked + .slider:before {
     border-radius: 0.5rem;
     transition: ease 0.4s;
     font-size: 16px;
+  }
+
+  .commentBox {
+    top: 260px;
   }
 }
 
@@ -1617,6 +1629,10 @@ input:checked + .slider:before {
   .mobileView button {
     width: 45px;
   }
+
+  .commentBox {
+    top: 220px;
+  }
 }
 
 @media (max-width: 350px) {
@@ -1677,7 +1693,20 @@ input:checked + .slider:before {
   }
 
   #card7 {
-    height: 365px;
+    height: 345px;
+  }
+
+  .commentBox {
+    top: 170px;
+  }
+
+  .my-video-controls {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 75%;
+    z-index: 1;
+    width: 98%;
   }
 
   .my-video-controls button,
@@ -1693,5 +1722,13 @@ input:checked + .slider:before {
 
   .mobileSearch {
     margin-left: -3px;
+  }
+
+  .my-video-controls input {
+    width: 70px !important;
+  }
+
+  #card7 {
+    height: 325px;
   }
 }

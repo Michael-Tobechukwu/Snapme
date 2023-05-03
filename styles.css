@@ -632,16 +632,25 @@ input:checked + .slider:before {
 }
 
 /* The Comment Box background */
+#commentBox, 
 .commentBox {
   display: none; /* Hidden by default */
   position: absolute; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
-  top: 195px;
+  top: 150px;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: none; /* Fallback color */
+}
+
+.commentBoxWide {
+  top: 35%;
+}
+
+.commentBoxLong {
+  top: 75%;
 }
 
 .commentBoxForm {
@@ -662,6 +671,11 @@ input:checked + .slider:before {
   font-size: 14px;
 }
 
+.commentBoxWide .commentInput {
+  height: 45px;
+ 
+}
+
 .closeComment {
   position: absolute;
   top: 8px;
@@ -680,6 +694,12 @@ input:checked + .slider:before {
   color: #fff;
   border-radius: 8px;
   font-size: 14px;
+}
+
+.commentBoxWide .submitComment {
+  padding: 0 3px;
+  font-size: 12px;
+  margin-top: -10px;
 }
 
 #submitComment:hover,
@@ -1001,7 +1021,7 @@ input:checked + .slider:before {
 
   /*All things comment*/
   .commentBox {
-    top: 400px;
+    top: 40%;
   }
 
   #submitComment {
@@ -1458,9 +1478,10 @@ input:checked + .slider:before {
     font-size: 13px;
   }
 
-  .commentBox {
+/*  .commentBox {
     top: 320px;
   }
+  */
 }
 
 @media (max-width: 425px) {
@@ -1527,10 +1548,11 @@ input:checked + .slider:before {
     transition: ease 0.4s;
     font-size: 16px;
   }
-
+/*
   .commentBox {
     top: 260px;
   }
+  */
 }
 
 @media (max-width: 375px) {
@@ -1629,10 +1651,11 @@ input:checked + .slider:before {
   .mobileView button {
     width: 45px;
   }
-
+/*
   .commentBox {
     top: 220px;
   }
+  */
 }
 
 @media (max-width: 350px) {
@@ -1669,35 +1692,31 @@ input:checked + .slider:before {
   }
 
   #card1 {
-    height: 400px;
+    height: 420px;
   }
 
   #card2 {
-    height: 275px;
+    height: 285px;
   }
 
   #card3 {
-    height: 450px;
+    height: 475px;
   }
 
   #card4 {
-    height: 290px;
+    height: 300px;
   }
 
   #card5 {
-    height: 450px;
+    height: 475px;
   }
 
   #card6 {
-    height: 270px;
+    height: 280px;
   }
 
   #card7 {
-    height: 345px;
-  }
-
-  .commentBox {
-    top: 170px;
+    height: 365px;
   }
 
   .my-video-controls {
@@ -1728,7 +1747,35 @@ input:checked + .slider:before {
     width: 70px !important;
   }
 
+  #card1 {
+    height: 400px;
+  }
+
+  #card2 {
+    height: 275px;
+  }
+
+  #card3 {
+    height: 450px;
+  }
+
+  #card4 {
+    height: 290px;
+  }
+
+  #card5 {
+    height: 450px;
+  }
+
+  #card6 {
+    height: 270px;
+  }
+
   #card7 {
     height: 325px;
+  }
+
+  .commentBox {
+    top: 37%;
   }
 }

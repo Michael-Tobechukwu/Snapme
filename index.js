@@ -1267,29 +1267,29 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`https://api.snapme-ng.com/api/v1/pins/:post.id/:commentId`, {
+  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"), // Replace with your own authentication method
+      Authorization: "Bearer " + localStorage.getItem("jwtToken"),
     },
     body: JSON.stringify(comment),
   })
     .then((response) => {
       if (response.ok) {
-        return response.json(); // Return the response as JSON
+        return response.json();
       } else {
         throw new Error("Network response was not ok");
       }
     })
     .then((data) => {
-      console.log(data); // Handle successful response data here
+      console.log(data);
     })
     .catch((error) => {
-      console.error("Error:", error); // Handle errors here
+      console.error("Error:", error);
     });
 });
-//Fetech API to submit comment
+//Fetch API to submit comment
 ////
 //Promote popup after 10 minutes
 function openPromotePopup() {

@@ -409,6 +409,7 @@ input:checked + .slider:before {
   color: #fff;
   padding: 5px 20px;
   border-radius: 2rem;
+  
 }
 
 #followUserBtn:hover {
@@ -582,30 +583,30 @@ button {
   width: 98%;
 }
 
-.form-input-button input {
+.form-input-button #commentInput {
   width: 65% !important;
   border-radius: 2rem !important;
-  border: none;
-}
-
-.content-bottom form input {
-  border-radius: 5rem;
+  border: 2px solid #fff;
   padding: 15px 0.7rem;
-  width: 40%;
   height: 35px;
-  font-size: 16px;
-  color: #000;
+  font-size: 14px;
+  color: #fff;
+  background: #031738;
 }
 
-#commentButton {
-  border-radius: 50%;
+#commentButton #sendCommentBtn {
   color: #fff;
   padding-left: 5px;
+  border: none;
+  background: none;
 }
 
 #commentButton .fa-paper-plane {
   font-size: 20px;
   transform: rotate(47deg);
+  color: #fff;
+  margin-top: -60px;
+  margin-left: -10px;
 }
 
 /* The Modal (background) */
@@ -711,7 +712,7 @@ button {
   display: none;
 }
 
-.timePinned {
+.timePosted {
   font-size: 12px !important;
   color: #fff;
 }
@@ -1180,7 +1181,7 @@ button {
 
   .content-top-mobile #followUserBtn {
     position: absolute;
-    bottom: 35px;
+    bottom: 20px;
     left: 40px;
     padding: 5px 20px !important;
     font-size: 14px;
@@ -1198,31 +1199,42 @@ button {
     width: 100%;
   }
 
-  .content-mid h3 {
+  .content-mid .postCaption {
     width: 100%;
+    margin-top: -30px;
   }
 
-  #commentButton .fa-paper-plane {
-    font-size: 20px;
+  .content-mid .icons-list, .content-mid #postDateMobile {
+    margin-top: -10px;
   }
 
-  .content-bottom form input {
-    border-radius: 5rem;
-    padding: 15px 0.7rem;
-    width: 50%;
-    height: 35px;
+  .content-mid .postBody {
+    margin-top: -20px;
+  }
+
+  .content-mid #myBtn {
+    margin-top: -20px;
+  }
+
+ #commentButton .fa-paper-plane {
+    cursor: pointer;
+  }
+
+  .form-input-button #commentInput {
     font-size: 13px;
-    color: #000;
+    background: #021129;
+    width: 50%;
+    color: #fff;
   }
 
   .mobileIcons {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 10px;
-    margin: 0.3rem auto !important;
-    padding: 0.1rem 1rem;
-    width: 98%;
+    top: 5px;
+    margin: 0 auto !important;
+    padding: 0 5px;
+    width: 100%;
   }
 
   .mobileIcons img {

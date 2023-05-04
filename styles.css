@@ -203,7 +203,7 @@ input:checked + .slider:before {
 
 .navmenu .main-logo img {
   width: 100%;
-  margin-left: -120px;
+  margin-left: -100px;
 }
 
 .navmenu .navbuttons {
@@ -580,12 +580,12 @@ input:checked + .slider:before {
 
 #image-cards .card .post-img h4 {
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   left: 0.5rem;
   font-weight: bold;
   color: #fff;
   margin-top: 0;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #image-cards .card .post-img a {
@@ -632,7 +632,18 @@ input:checked + .slider:before {
 }
 
 /* The Comment Box background */
-#commentBox, 
+#commentBox {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 130px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: none; /* Fallback color */
+} 
+
 .commentBox {
   display: none; /* Hidden by default */
   position: absolute; /* Stay in place */
@@ -676,6 +687,7 @@ input:checked + .slider:before {
  
 }
 
+#closeComment,
 .closeComment {
   position: absolute;
   top: 8px;
@@ -684,7 +696,17 @@ input:checked + .slider:before {
   font-size: 25px;
 }
 
-#submitComment,
+#submitComment {
+  position: absolute;
+  top: 75px;
+  left: 5px;
+  background: #ba00ba;
+  padding: 5px 8px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
 .submitComment {
   position: absolute;
   top: 60px;
@@ -697,7 +719,7 @@ input:checked + .slider:before {
 }
 
 .commentBoxWide .submitComment {
-  padding: 0 3px;
+  padding: 0 5px;
   font-size: 12px;
   margin-top: -10px;
 }
@@ -1005,12 +1027,12 @@ input:checked + .slider:before {
 
   #image-cards .card .post-img h4 {
     position: absolute;
-    bottom: -3px;
+    bottom: -0.5%;
     left: 5px;
     font-weight: bold;
     color: #fff;
     margin-top: 0;
-    font-size: 17px;
+    font-size: 13px;
   }
 
   .more-icons li {
@@ -1025,7 +1047,7 @@ input:checked + .slider:before {
   }
 
   #submitComment {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   #submitComment img {

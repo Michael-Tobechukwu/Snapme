@@ -905,7 +905,7 @@ function moreIcons() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    btnText.innerHTML = `<img src="Images/more-icon.svg" />`;
     moreIcons.style.display = "none";
   } else {
     dots.style.display = "none";
@@ -916,7 +916,7 @@ function moreIcons() {
 
 //More icons II button
 function moreIconsII() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots2");
   var moreIcons2 = document.getElementById("more-iconsII");
   var btnText = document.getElementById("myBtnII");
 
@@ -933,7 +933,7 @@ function moreIconsII() {
 
 //More icons III button
 function moreIconsIII() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots3");
   var moreIcons3 = document.getElementById("more-iconsIII");
   var btnText = document.getElementById("myBtnIII");
 
@@ -950,7 +950,7 @@ function moreIconsIII() {
 
 //More icons IV button
 function moreIconsIV() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots4");
   var moreIcons4 = document.getElementById("more-iconsIV");
   var btnText = document.getElementById("myBtnIV");
 
@@ -967,7 +967,7 @@ function moreIconsIV() {
 
 //More icons V button
 function moreIconsV() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots5");
   var moreIcons5 = document.getElementById("more-iconsV");
   var btnText = document.getElementById("myBtnV");
 
@@ -984,7 +984,7 @@ function moreIconsV() {
 
 //More icons VI button
 function moreIconsVI() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots6");
   var moreIcons6 = document.getElementById("more-iconsVI");
   var btnText = document.getElementById("myBtnVI");
 
@@ -1001,7 +1001,7 @@ function moreIconsVI() {
 
 //More icons VII button
 function moreIconsVII() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots7");
   var moreIcons7 = document.getElementById("more-iconsVII");
   var btnText = document.getElementById("myBtnVII");
 
@@ -1018,7 +1018,7 @@ function moreIconsVII() {
 
 //More icons VIII button
 function moreIconsVIII() {
-  var dots = document.getElementById("dots");
+  var dots = document.getElementById("dots8");
   var moreIcons8 = document.getElementById("more-iconsVIII");
   var btnText = document.getElementById("myBtnVIII");
 

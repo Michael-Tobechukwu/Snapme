@@ -1237,6 +1237,91 @@ footerLike.addEventListener("click", () => {
   }
 });
 ////
+////
+//Comment box popup for first catalogs for you pin
+const commentBtn = document.getElementById("commentBtn");
+const commentBox = document.getElementById("commentBox");
+const closeComment = document.getElementById("closeComment");
+
+commentBtn.addEventListener("click", function () {
+  commentBox.style.display = "block";
+});
+
+closeComment.addEventListener("click", function () {
+  commentBox.style.display = "none";
+});
+//Comment box popup first catalogs for you pin end
+////
+//Comment box popup for second catalogs for you pin
+var commentBtn2 = document.getElementsByClassName("commentBtn")[0];
+var commentBox2 = document.getElementsByClassName("commentBox")[0];
+var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
+
+commentBtn2.addEventListener("click", function () {
+  commentBox2.style.display = "block";
+});
+
+closeCommentBtn2.addEventListener("click", function () {
+  commentBox2.style.display = "none";
+});
+//Comment box popup for second catalogs for you pin end
+////
+//Comment box popup for third catalogs for you pin
+var commentBtn3 = document.getElementsByClassName("commentBtn")[1];
+var commentBox3 = document.getElementsByClassName("commentBox")[1];
+var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
+
+commentBtn3.addEventListener("click", function () {
+  commentBox3.style.display = "block";
+});
+
+closeCommentBtn3.addEventListener("click", function () {
+  commentBox3.style.display = "none";
+});
+//Comment box popup for third catalogs for you pin end
+////
+//Comment box popup for fourth catalogs for you pin 
+var commentBtn4 = document.getElementsByClassName("commentBtn")[2];
+var commentBox4 = document.getElementsByClassName("commentBox")[2];
+var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
+
+commentBtn4.addEventListener("click", function () {
+  commentBox4.style.display = "block";
+});
+
+closeCommentBtn4.addEventListener("click", function () {
+  commentBox4.style.display = "none";
+});
+//Comment box popup for fourth catalogs for you pin end
+////
+//Comment box popup for 5th pin 
+var commentBtn5 = document.getElementsByClassName("commentBtn")[3];
+var commentBox5 = document.getElementsByClassName("commentBox")[3];
+var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
+
+commentBtn5.addEventListener("click", function () {
+  commentBox5.style.display = "block";
+});
+
+closeCommentBtn5.addEventListener("click", function () {
+  commentBox5.style.display = "none";
+});
+//Comment box popup for 5th pin end
+////
+function thisUser() {
+  fetch("https://api.snapme-ng.com/api/v1/:username")
+    .then((response) => response.json())
+    .then((user) => {
+      console.log(user.name);
+      console.log(user.email);
+      console.log(user.bio);
+      console.log(user.avatarUrl);
+    })
+    .catch((error) => console.error(error));
+}
+thisUser();
+////
+
 //Go back to previous page
 function goBack() {
   window.history.back();

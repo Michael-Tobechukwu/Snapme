@@ -539,6 +539,10 @@ input:checked + .slider:before {
   color: #fff;
 }
 
+#dots, .dots {
+  display: none;
+}
+
 #image-cards {
   justify-content: space-between !important;
   width: 90%;

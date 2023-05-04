@@ -2038,8 +2038,8 @@
 
           <div class="mobileIcons">
             <!--top icons-->
-            <img src="Images/back arrow.svg" onclick="goBack()" />
-            <img src="Images/Snapme icon white.png" alt="logo" />
+            <img src="Images/back arrow.svg" class="backArrow" onclick="goBack()" />
+            <img src="Images/Snapme icon white.png" class="white-logo" alt="logo" />
           </div>
           <div class="content-top-mobile">
             <div class="userDetails">
@@ -2215,9 +2215,9 @@
           <div class="content-bottom">
             <p class="text-white">Comments</p>
             <div class="marcdiss-box">
-              <button onclick="window.location = 'username.html'">
+              <a onclick="thisUser()">
                 <img src="Images/azizy.png" width="50px" alt="Profile pic" />
-              </button>
+              </a>
               <div class="marcdiss">
                 <p class="username">marcdiss</p>
                 <p class="alias">The show maker</p>
@@ -2265,6 +2265,24 @@
                 </a>
 
                 <h4>BNXN (formerly Buju) | Snapme Catalog</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2282,7 +2300,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentModal()">
+                    <button id="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">527</p>
                     </button>
@@ -2394,12 +2412,28 @@
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                
                 <h4>Ayra Starr | Snapme Catalog</h4>
+                <div class="commentBox" id="commentBox2">
+                  <form class="commentBoxForm">
+                    <span class="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2417,7 +2451,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentModal()">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">387</p>
                     </button>
@@ -2562,12 +2596,28 @@
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                
                 <h4>Poetry | Snapme Catalog</h4>
+                <div class="commentBox" id="commentBox2">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2585,7 +2635,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentModal()">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">307</p>
                     </button>
@@ -2729,13 +2779,28 @@
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
-                  <span id="timePosted"></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                
                 <h4>Movies | Snapme Catalog</h4>
+                <div class="commentBox commentBoxWide">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2753,7 +2818,7 @@
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentModal">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">307</p>
                     </button>

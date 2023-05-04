@@ -88,7 +88,7 @@ button {
 
 .navmenu .main-logo img {
   width: 100%;
-  margin-left: -120px;
+  margin-left: -110px;
 }
 
 .navmenu .navbuttons {
@@ -531,17 +531,18 @@ button {
 
 .marcdiss-box {
   display: flex;
-  gap: 0.7rem;
-  align-items: flex-start;
+  gap: 10px;
+
   line-height: 0;
 }
 
-.marcdiss-box button {
-  width: 10%;
+.marcdiss-box a {
+  width: 15%;
 }
 
-.marcdiss-box button img {
-  width: 95%;
+.marcdiss-box a img {
+  width: 90%;
+  margin-top: -7px;
 }
 
 .marcdiss-box p,
@@ -712,7 +713,7 @@ button {
   display: none;
 }
 
-.timePosted {
+.timePosted, #timePosted {
   font-size: 12px !important;
   color: #fff;
 }
@@ -775,11 +776,12 @@ button {
 
 #suggestedCatalogs .card .post-img h4 {
   position: absolute;
-  bottom: 1rem;
+  bottom: -2px;
   left: 1rem;
   font-weight: bold;
   color: #fff;
   margin-top: 0;
+  font-size: 17px;
 }
 
 #suggestedCatalogs .card .post-img a {
@@ -787,6 +789,109 @@ button {
   top: 1rem;
   left: 1rem;
   text-decoration: none;
+}
+
+#commentBox {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 100px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: none; /* Fallback color */
+} 
+
+.commentBox {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 65%;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: none; /* Fallback color */
+}
+
+.commentBoxWide {
+  top: 35%;
+}
+
+.commentBoxLong {
+  top: 75%;
+}
+
+.commentBoxForm {
+  background: none;
+  height: max-content;
+  padding: 0 5px;
+}
+
+#commentInput,
+.commentInput {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  width: 100%;
+  height: max-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.commentBoxWide .commentInput {
+  height: 45px;
+ 
+}
+
+#closeComment,
+.closeComment {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  color: #000;
+  font-size: 25px;
+}
+
+#submitComment {
+  position: absolute;
+  top: 75px;
+  left: 5px;
+  background: #ba00ba;
+  padding: 5px 8px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submitComment {
+  position: absolute;
+  top: 60px;
+  left: 5px;
+  background: #ba00ba;
+  padding: 5px 8px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.commentBoxWide .submitComment {
+  padding: 0 3px;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+#submitComment:hover,
+.submitComment:hover {
+  background: #740974;
+}
+
+#submitComment img,
+.submitComment img {
+  width: 35px;
+  transform: rotate(47deg);
 }
 
 #suggestedCatalogs .card img {
@@ -1122,7 +1227,7 @@ button {
 
   .post-card {
     width: 100%;
-    margin: 0;
+      margin: 0;
     box-shadow: none;
     margin-bottom: 0 !important;
     position: relative;
@@ -1162,13 +1267,13 @@ button {
     align-items: center;
     gap: 0.5rem;
     position: absolute;
-    bottom: 60px;
+    bottom: 40px;
     left: 15px;
   }
 
-  .content-top-mobile .userDetails p {
+  .content-top-mobile .userDetails .azizy_username {
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 10px;
     cursor: pointer;
   }
@@ -1201,7 +1306,9 @@ button {
 
   .content-mid .postCaption {
     width: 100%;
-    margin-top: -30px;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    font-size: 17px;
   }
 
   .content-mid .icons-list, .content-mid #postDateMobile {
@@ -1214,6 +1321,38 @@ button {
 
   .content-mid #myBtn {
     margin-top: -20px;
+  }
+
+  #commentBox {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 40%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: none; /* Fallback color */
+  } 
+  
+  .commentBox {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 55%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: none; /* Fallback color */
+  }
+
+  .commentBoxWide {
+    top: 70px;
+  }
+
+  .commentBoxWide .commentInput {
+    height: 45px;
   }
 
  #commentButton .fa-paper-plane {
@@ -1237,9 +1376,13 @@ button {
     width: 100%;
   }
 
-  .mobileIcons img {
+  .mobileIcons .backArrow {
     width: 30px !important;
     cursor: pointer;
+  }
+
+  .mobileIcons .white-logo {
+  width: 20px !important;
   }
 
   .marcdiss-box {
@@ -1338,6 +1481,16 @@ button {
   #suggestedCatalogs .col,
   #suggestedCatalogs .col-5 {
     width: 100% !important;
+  }
+
+  #suggestedCatalogs .card .post-img h4 {
+    position: absolute;
+    bottom: -2px;
+    left: 0.4rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 0;
+    font-size: 13px;
   }
 
   #mobileFooter {

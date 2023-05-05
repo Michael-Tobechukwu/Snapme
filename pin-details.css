@@ -785,6 +785,9 @@ button {
 }
 
 #suggestedCatalogs .card .post-img a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -1529,6 +1532,14 @@ button {
   .mobileLike img {
     width: 100%;
   }
+
+  .post-img a {
+    font-size: 13px;
+    margin-left: -10px;
+    margin-top: -10px;
+
+  }
+
 }
 
 @media (max-width: 425px) {

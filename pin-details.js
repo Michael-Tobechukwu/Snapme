@@ -1321,6 +1321,45 @@ function thisUser() {
 }
 thisUser();
 ////
+function pinDetails() {
+  // Fetch the pin data from the backend
+  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+    .then(response => response.json())
+    .then(pin => {
+      // Create a container element to display the pin details
+      const container = document.createElement('div');
+
+      // Create elements for the pin caption, author, and content
+      const caption = document.createElement('h1');
+      const author = document.createElement('p');
+      const content = document.createElement('p');
+      const media = document.createElement(pin.media.type === 'image' ? 'img' : 'video');
+
+      // Set the text content of the elements to the pin data
+      caption.textContent = pin.caption;
+      author.textContent = `By ${pin.author}`;
+      content.textContent = pin.content;
+
+      // Set the attributes of the media element
+      media.src = pin.media.url;
+      media.alt = pin.caption;
+
+      // Add the elements to the container
+      container.appendChild(caption);
+      container.appendChild(author);
+      container.appendChild(content);
+      container.appendChild(media);
+
+      // Add the container to the UI
+      document.body.appendChild(container);
+    })
+    .catch(error => console.error(error));
+}
+
+// Call the pinDetails function with a pin ID
+pinDetails();
+
+//Get pin details end
 
 //Go back to previous page
 function goBack() {

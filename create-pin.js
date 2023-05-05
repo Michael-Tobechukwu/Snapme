@@ -5,6 +5,19 @@ function createPin() {
   const category = document.getElementById("category").value;
   const fileUpload = document.getElementById("inputGroupFile").value;
 
+    // generate unique pinId
+    const pinId = Math.random().toString(36).substring(2, 8) + Date.now().toString(36);
+
+    // add pin to array with generated pinId
+    pins.push({
+      pinId,
+      caption: pin.caption,
+      media: pin.media,
+      message: pin.message,
+    });
+  
+    return pinId;
+
   // Create a data object with the form data
   const data = {
     caption: caption,

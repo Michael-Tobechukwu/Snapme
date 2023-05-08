@@ -9,7 +9,7 @@ function toggleFollow() {
     followBtn.textContent = "Follow +";
   } else {
     // follow logic
-    followBtn.textContent = "Unfollow";
+    followBtn.textContent = "Following";
   }
 
   isFollowing = !isFollowing;
@@ -23,7 +23,7 @@ function toggleFollow2() {
     followBtn2.textContent = "Follow +";
   } else {
     // follow logic
-    followBtn2.textContent = "Unfollow";
+    followBtn2.textContent = "Following";
   }
 
   isFollowing = !isFollowing;
@@ -151,3 +151,8 @@ postCommentButton.addEventListener("click", function () {
   const authToken = "my-auth-token";
   postLivestreamComment(commentText, authToken);
 });
+
+// Go back to previous page
+function goBack() {
+  window.history.back();
+}

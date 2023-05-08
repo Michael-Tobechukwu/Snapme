@@ -4,22 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="google-signin-client_id"
-      content="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
+      content="406252614079-1qs3hukdpphr7bse43ef9d6nebr314ns.apps.googleusercontent.com"
     />
+    <!--<meta
+      name="google-signin-client_id"
+      content="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
+    />-->
     <link rel="icon" href="icon.png" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="apple-touch-icon" href="icon.png" />
-
-    <title>Snapme | Your timecapsule</title>
-    <link rel="manifest" href="/manifest.json" />
+    <title>Snapme | Your Timecapsule</title>
+    <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
-    <link rel="stylesheet" href="timeline.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
     />
@@ -46,17 +50,9 @@
     />
   </head>
   <body>
-    <div id="preloader">
-      <div class="preloader">
-        <img src="Images/snapme.png" alt="Snapme logo" width="50px" />
-        <p>Made from Ukraine and Africa</p>
-        <div class="progress">
-          <div class="color"></div>
-        </div>
-      </div>
-    </div>
+    
     <div class="wrapper container">
-      <nav class="navmenu">
+      <nav class="navmenu" id="myNavbar">
         <div class="hamburger">
           <div class="dropdown">
             <button
@@ -131,10 +127,13 @@
         <div class="main-logo">
           <a href="index.html"><img src="Images/white logo.png" /></a>
         </div>
+        <br />
         <div class="navbuttons">
-          <a href="timeline-light.html" id="toggle">
-            <img class="toggle-button" src="Images/toggle dark.svg" />
-          </a>
+          <label onclick="window.location='index-light.html'" class="switch">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+
           <button class="live-button" id="liveButton">LIVE</button>
 
           <!--Live pop up modal-->
@@ -144,13 +143,10 @@
               <span id="closeLive">&times;</span>
 
               <div class="livePopup">
-                <button
-                  id="goLive"
-                  onclick="window.location='/live-start.html'"
-                >
+                <button id="goLive" onclick="window.location='live-start.html'">
                   Go live
                 </button>
-                <button id="watchLive" onclick="window.location='/live.html'">
+                <button id="watchLive" onclick="window.location='live.html'">
                   Watch live
                 </button>
               </div>
@@ -158,22 +154,25 @@
           </div>
 
           <div class="search">
-            <input
-              type="search"
-              name="searchBar"
-              id="searchBar"
-              placeholder="Search catalogs..."
-            />
-            <button type="submit" class="searchBtn" onclick="searchPosts()">
-              <img class="search-icon" src="Images/search icon.svg" />
+            <button id="search-toggle-btn">
+              <img src="Images/search icon.svg" alt="" />
             </button>
+            <div id="search-container">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="search-btn">Go</button>
+              <ul id="search-results"></ul>
+            </div>
           </div>
 
           <div class="user-create">
             <a href="login.html"
               ><img class="user-image" src="Images/user image.svg"
             /></a>
-            <a href="create-pin.html"
+            <a id="createBtn"
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
           </div>
@@ -182,11 +181,91 @@
         <!--Mobile nav buttons-->
 
         <div class="navbuttonsMobile">
-          <a href="timeline-light.html" id="toggle">
+          <div class="hamburger">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary bg-transparent dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="Images/hamburger.svg" />
+              </button>
+              <ul class="dropdown-menu" id="mobileDropdown">
+                <li><a class="dropdown-item" href="about.html">About</a></li>
+                <li><a class="dropdown-item" href="terms.html">Terms</a></li>
+                <li>
+                  <a class="dropdown-item" href="privacy.html"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="promotions.html">Promotions</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="support.html">Support</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">Settings</a>
+                </li>
+
+                <div class="social-icons">
+                  <hr />
+                  <li class="copy">
+                    &copy; 2023 Snapme, Ekoverse Technologies
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://twitter.com/snapmeng"
+                      target="_blank"
+                      ><img src="Images/twitter.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://instagram.com/snapmeng/"
+                      target="_blank"
+                      ><img src="Images/instagram.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://m.facebook.com/groups/1661995654256478?group_view_referrer=search&_rdc=1&_rdr&paipv=0&eav=AfYEFfq9LrYXwGrD4O8UFGJQab45Hoqhj5noDv2hvMXRxbpiptRvWkL8Sx3NRkuaB28"
+                      target="_blank"
+                      ><img src="Images/facebook.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://t.me/snapmeng"
+                      target="_blank"
+                      ><img src="Images/telegram.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://snapme-ng.com/snapmeng"
+                      target="_blank"
+                      ><img src="Images/snapme.png"
+                    /></a>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="main-logo">
+            <a href="index.html"><img src="Images/white logo.png" /></a>
+          </div>
+          <a href="index-light.html" id="toggle">
             <img
               class="toggle-button"
               src="Images/toggle dark.svg"
-              width="50px"
+              width="40px"
             />
           </a>
           <button class="live-button" id="mobileLiveBtn">LIVE</button>
@@ -197,13 +276,10 @@
               <span id="closeLiveMobile">&times;</span>
 
               <div class="livePopup">
-                <button
-                  id="goLive"
-                  onclick="window.location='/live-start.html'"
-                >
+                <button id="goLive" onclick="window.location='live-start.html'">
                   Go live
                 </button>
-                <button id="watchLive" onclick="window.location='/live.html'">
+                <button id="watchLive" onclick="window.location='live.html'">
                   Watch live
                 </button>
               </div>
@@ -218,16 +294,24 @@
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
           </div>
+
+          <div class="mobileSearch">
+            <button id="mobileSearchToggleBtn">
+              <img src="Images/search icon.svg" />
+            </button>
+            <div id="mobile-search-container">
+              <input
+                type="search"
+                id="mobile-search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="mobile-search-btn">
+                <img src="Images/search icon.svg" alt="" />
+              </button>
+              <ul id="mobile-search-results"></ul>
+            </div>
+          </div>
         </div>
-        <button type="submit" class="mobileSearchBtn" onclick="searchPosts()">
-          <input
-            type="search"
-            name="searchBar"
-            id="mobileSearchBar"
-            placeholder="Search catalogs..."
-          />
-          <img src="Images/search icon.svg" />
-        </button>
 
         <!--Mobile nav buttons-->
 
@@ -235,7 +319,7 @@
       </nav>
 
       <div class="subscribe">
-        <button onclick="window.location='/subscribe.html'">Subscribe</button>
+        <button onclick="window.location='subscribe.html'">Subscribe</button>
       </div>
       <div class="tabs">
         <!--Music with popup-->
@@ -1432,20 +1516,15 @@
       <!--Tabs for mobile-->
       <div class="discover">
         <h4>Discover</h4>
-        <p>Trending catalogs</p>
+        <p>#Trending catalogs</p>
+        <button onclick="window.location='subscribe.html'">Subscribe</button>
       </div>
       <div class="mobileTabs">
-        <div
-          id="carouselExampleAutoplaying"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <a id="followPopup" class="d-block w-50"><p>Music</p> </a>
+        <div id="swipe-container">
+          <div id="music">
+            <div class="swipe-item">
+              <button id="followPopup" class="followPopup">Music</button>
             </div>
-
-            <!--Popup modal for mobile-->
 
             <!-- The Modal -->
             <div id="mobileFollowModal" class="modal">
@@ -1460,11 +1539,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <!--Popup modal for mobile-->
-
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Shows & Concerts</p></a>
+          <div id="showsConcerts">
+            <div class="swipe-item">
+              <button class="followPopup">Shows & Concerts</button>
             </div>
 
             <!-- The Modal -->
@@ -1483,9 +1562,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Dance</p></a>
+          <div id="dance">
+            <div class="swipe-item">
+              <button class="followPopup">Dance</button>
             </div>
 
             <!-- The Modal -->
@@ -1501,9 +1582,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Afrobeats</p></a>
+          <div id="Afrobeats">
+            <div class="swipe-item">
+              <button class="followPopup">Afrobeats</button>
             </div>
 
             <!-- The Modal -->
@@ -1522,9 +1605,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Comedy</p></a>
+          <div id="Comedy">
+            <div class="swipe-item">
+              <button class="followPopup">Comedy</button>
             </div>
 
             <!-- The Modal -->
@@ -1540,9 +1625,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Tag Stories</p></a>
+          <div id="tagStories">
+            <div class="swipe-item">
+              <button class="followPopup">Tag Stories</button>
             </div>
 
             <!-- The Modal -->
@@ -1561,9 +1648,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Photography</p></a>
+          <div id="Photography">
+            <div class="swipe-item">
+              <button class="followPopup">Photography</button>
             </div>
 
             <!-- The Modal -->
@@ -1582,9 +1671,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Art</p></a>
+          <div id="Art">
+            <div class="swipe-item">
+              <button class="followPopup">Art</button>
             </div>
 
             <!-- The Modal -->
@@ -1600,9 +1691,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Museums</p></a>
+          <div id="Museums">
+            <div class="swipe-item">
+              <button class="followPopup">Museum</button>
             </div>
 
             <!-- The Modal -->
@@ -1618,9 +1711,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Tourism</p></a>
+          <div id="Tourism">
+            <div class="swipe-item">
+              <button class="followPopup">Tourism</button>
             </div>
 
             <!-- The Modal -->
@@ -1636,9 +1731,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Fashion</p></a>
+          <div id="Fashion">
+            <div class="swipe-item">
+              <button class="followPopup">Fashion</button>
             </div>
 
             <!-- The Modal -->
@@ -1654,9 +1751,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Beauty & Kits</p></a>
+          <div id="BeautyKits">
+            <div class="swipe-item">
+              <button class="followPopup">Beauty & Kits</button>
             </div>
 
             <!-- The Modal -->
@@ -1675,9 +1774,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Food</p></a>
+          <div id="Food">
+            <div class="swipe-item">
+              <button class="followPopup">Food</button>
             </div>
 
             <!-- The Modal -->
@@ -1693,9 +1794,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Fitness</p></a>
+          <div id="Fitness">
+            <div class="swipe-item">
+              <button class="followPopup">Fitness</button>
             </div>
 
             <!-- The Modal -->
@@ -1711,9 +1814,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Football</p></a>
+          <div id="Football">
+            <div class="swipe-item">
+              <button class="followPopup">Football</button>
             </div>
 
             <!-- The Modal -->
@@ -1729,9 +1834,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Basketball</p></a>
+          <div id="Basketball">
+            <div class="swipe-item">
+              <button class="followPopup">Basketball</button>
             </div>
 
             <!-- The Modal -->
@@ -1750,9 +1857,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Sports</p></a>
+          <div id="Sports">
+            <div class="swipe-item">
+              <button class="followPopup">Sports</button>
             </div>
 
             <!-- The Modal -->
@@ -1768,9 +1877,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>News</p></a>
+          <div id="News">
+            <div class="swipe-item">
+              <button class="followPopup">News</button>
             </div>
 
             <!-- The Modal -->
@@ -1780,19 +1891,17 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button
-                    id="followNewsMobile"
-                    onclick="followNews
-                  ()"
-                  >
+                  <button id="followNewsMobile" onclick="followNews()">
                     Follow +
                   </button>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Fashion TV</p></a>
+          <div id="FashionTV">
+            <div class="swipe-item">
+              <button class="followPopup">Fashion TV</button>
             </div>
 
             <!-- The Modal -->
@@ -1811,9 +1920,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Cars</p></a>
+          <div id="Cars">
+            <div class="swipe-item">
+              <button class="followPopup">Cars</button>
             </div>
 
             <!-- The Modal -->
@@ -1829,9 +1940,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>House Decoration</p></a>
+          <div id="HouseDecoration">
+            <div class="swipe-item">
+              <button class="followPopup">House Decoration</button>
             </div>
 
             <!-- The Modal -->
@@ -1842,7 +1955,7 @@
                 <p>Follow catalog</p>
                 <div class="follow_popup">
                   <button
-                    id="followHouseMobile"
+                    id="followHouseDecorationMobile"
                     onclick="followHouseDecoration()"
                   >
                     Follow +
@@ -1850,9 +1963,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Nature</p></a>
+          <div id="Nature">
+            <div class="swipe-item">
+              <button class="followPopup">Nature</button>
             </div>
 
             <!-- The Modal -->
@@ -1862,15 +1977,17 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followMusicMobile" onclick="followNature()">
+                  <button id="followNatureMobile" onclick="followNature()">
                     Follow +
                   </button>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item text-center">
-              <a class="d-block w-50 followPopup"><p>Quotes</p></a>
+          <div id="Quotes">
+            <div class="swipe-item">
+              <button class="followPopup">Quotes</button>
             </div>
 
             <!-- The Modal -->
@@ -1886,9 +2003,11 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Pets</p></a>
+          <div id="Pets">
+            <div class="swipe-item">
+              <button class="followPopup">Pets</button>
             </div>
 
             <!-- The Modal -->
@@ -1898,15 +2017,17 @@
                 <span class="closeme">&times;</span>
                 <p>Follow catalog</p>
                 <div class="follow_popup">
-                  <button id="followPetMobile" onclick="followPets()">
+                  <button id="followPetsMobile" onclick="followPets()">
                     Follow +
                   </button>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="carousel-item">
-              <a class="d-block w-50 followPopup"><p>Others</p></a>
+          <div id="Others">
+            <div class="swipe-item">
+              <button class="followPopup">Others</button>
             </div>
 
             <!-- The Modal -->
@@ -1923,31 +2044,16 @@
               </div>
             </div>
           </div>
-
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
+        <!--swipe container ends-->
       </div>
+      <!--mobile tabs ends-->
 
       <!--Tabs for mobile-->
       <div id="timelineSuggested">
-        <!--<button id="timeCapsule" onclick="timeline()">Timecapsule</button>-->
+        <button id="timeCapsule" onclick="window.location='timeline.html'">
+          Timecapsule
+        </button>
         <div class="suggested">
           <div class="suggestedPics preview">
             <img src="Images/azizy.png" width="25px" />
@@ -1966,8 +2072,15 @@
           <button id="closeThis">&times;</button>
           <div class="suggested1">
             <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <p class="username" onclick="thisUser()">nkemimen</p>
-            <img id="subscribed-badge" src="Images/verified.svg" width="20px" />
+            <div class="usernameBox">
+              <p class="username" onclick="thisUser()">nkemimen</p>
+              <img
+                id="subscribed-badge"
+                src="Images/verified.svg"
+                width="20px"
+              />
+            </div>
+
             <button class="followSuggested" onclick="followThisUser()">
               Follow +
             </button>
@@ -1975,8 +2088,14 @@
 
           <div class="suggested2">
             <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <p class="username" onclick="thisUser()">thomasbarc</p>
-            <img id="subscribed-badge" src="Images/verified.svg" width="20px" />
+            <div class="usernameBox">
+              <p class="username" onclick="thisUser()">thomasbarc</p>
+              <img
+                id="subscribed-badge"
+                src="Images/verified.svg"
+                width="20px"
+              />
+            </div>
             <button class="followSuggested" onclick="followThisUser()">
               Follow +
             </button>
@@ -1984,8 +2103,14 @@
 
           <div class="suggested3">
             <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-            <p class="username" onclick="thisUser()">marcdiss</p>
-            <img id="subscribed-badge" src="Images/verified.svg" width="20px" />
+            <div class="usernameBox">
+              <p class="username" onclick="thisUser()">marcdiss</p>
+              <img
+                id="subscribed-badge"
+                src="Images/verified.svg"
+                width="20px"
+              />
+            </div>
             <button class="followSuggested" onclick="followThisUser()">
               Follow +
             </button>
@@ -1996,12 +2121,14 @@
           <div id="suggestedMore">
             <div class="suggested4">
               <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <p class="username" onclick="thisUser()">azizymakim</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
+              <div class="usernameBox">
+                <p class="username" onclick="thisUser()">azizymakim</p>
+                <img
+                  id="subscribed-badge"
+                  src="Images/verified.svg"
+                  width="20px"
+                />
+              </div>
               <button class="followSuggested" onclick="followThisUser()">
                 Follow +
               </button>
@@ -2009,8 +2136,14 @@
 
             <div class="suggested5">
               <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <p class="username" onclick="thisUser()">ayrastarr</p>
-              <img src="Images/verified.svg" width="20px" />
+              <div class="usernameBox">
+                <p class="username" onclick="thisUser()">ayrastarr</p>
+                <img
+                  id="subscribed-badge"
+                  src="Images/verified.svg"
+                  width="20px"
+                />
+              </div>
               <button class="followSuggested" onclick="followThisUser()">
                 Follow +
               </button>
@@ -2018,12 +2151,14 @@
 
             <div class="suggested6">
               <img onclick="thisUser()" src="Images/azizy.png" width="30px" />
-              <p class="username" onclick="thisUser()">asake</p>
-              <img
-                id="subscribed-badge"
-                src="Images/verified.svg"
-                width="20px"
-              />
+              <div class="usernameBox">
+                <p class="username" onclick="thisUser()">asake</p>
+                <img
+                  id="subscribed-badge"
+                  src="Images/verified.svg"
+                  width="20px"
+                />
+              </div>
               <button class="followSuggested" onclick="followThisUser()">
                 Follow +
               </button>
@@ -2032,32 +2167,48 @@
         </div>
       </div>
 
-      <h2 id="pageHeading">Your timecapsule</h2>
-
       <div id="image-cards" class="container mobileContainer">
         <ul id="results"></ul>
         <!--grid row one-->
         <div class="row myrow">
           <div class="col">
-            <div class="card mobileCard">
+            <div class="card mobileCard" id="card1">
               <div class="post-img">
                 <img
                   src="Images/ruger 7.jpg"
                   class="card-img-top"
-                  onclick="window.location = 'pin-details.html'"
+                  id="pinDetails" onclick="pinDetails()"
+                  onclick="window.location='pin-details.html'"
                 />
+                
                 <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="50px" />
-                  azizymakim
+                  <img src="Images/azizy.png" width="35px" /> azizymakim
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" alt="Profile pic"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span id="timePosted"></span>
-                </p>
-                <h4>The Jonzing World Imprint</h4>
+                </a>
+                <button id="followBtn">Follow +</button>
+
+                <h4 id="postTitle">The Jonzing World Imprint</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
               <div class="card-body">
                 <ul class="card-title icons-list">
@@ -2069,18 +2220,23 @@
                   </li>
 
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
 
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button id="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">396</p>
                     </button>
                   </li>
+
                   <li>
                     <button class="myPopupBtn">
                       <i class="fa-solid fa-share"></i>
@@ -2120,7 +2276,7 @@
 
                         <a
                           class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
                           target="_blank"
                         >
                           <img
@@ -2151,7 +2307,7 @@
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-icons">
+                    <div id="more-icons" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2170,28 +2326,52 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIcons()" id="myBtn">&#9776;</button>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
               <!--card end-->
             </div>
           </div>
           <div class="col-5">
-            <div class="card mobileCard">
+            <div class="card mobileCard" id="card2">
               <div class="post-img">
-                <img src="Images/liquorose 4.jpg" class="card-img-top" />
+                <img
+                  src="Images/liquorose 4.jpg"
+                  class="card-img-top"
+                  id="pinDetails2"
+                  onclick="pinDetails()"
+                />
                 <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="50px" alt="Profile pic" />
+                  <img src="Images/azizy.png" width="35px" alt="Profile pic" />
                   nkemimen
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                <button class="followBtn">Follow +</button>
+
                 <h4>Liquorose | Snapme Catalog</h4>
+                <div class="commentBox commentBoxWide" id="commentBox2">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2203,13 +2383,17 @@
                     </button>
                   </li>
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn2"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">401</p>
                     </button>
@@ -2253,7 +2437,7 @@
 
                         <a
                           class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
                           target="_blank"
                         >
                           <img
@@ -2284,8 +2468,8 @@
 
                 <div class="other-icons">
                   <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsII">
+                    <span id="dots2" class="dots"></span>
+                    <div id="more-iconsII" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2304,27 +2488,51 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsII()" id="myBtnII">&#9776;</button>
+                  <button onclick="moreIconsII()" id="myBtnII">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="card mobileCard">
+            <div class="card mobileCard" id="card3">
               <div class="post-img">
-                <img src="Images/asake 4.jpeg" class="card-img-top" />
+                <img
+                  src="Images/asake 4.jpeg"
+                  class="card-img-top"
+                  id="pinDetails3"
+                  onclick="pinDetails()"
+                />
                 <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="50px" alt="Profile pic" />
+                  <img src="Images/azizy.png" width="35px" alt="Profile pic" />
                   thomasbarc
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                <button class="followBtn">Follow +</button>
+
                 <h4>Asake | Snapme Catalog</h4>
+                <div class="commentBox" id="commentBox3">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2336,13 +2544,17 @@
                     </button>
                   </li>
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn3"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">489</p>
                     </button>
@@ -2386,7 +2598,7 @@
 
                         <a
                           class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
                           target="_blank"
                         >
                           <img
@@ -2416,8 +2628,8 @@
                 </ul>
                 <div class="other-icons">
                   <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsIII">
+                    <span id="dots3"></span>
+                    <div id="more-iconsIII" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2437,7 +2649,7 @@
                     </div>
                   </div>
                   <button onclick="moreIconsIII()" id="myBtnIII">
-                    &#9776;
+                    <img src="Images/more-icon.svg" width="20px" />
                   </button>
                 </div>
               </div>
@@ -2448,21 +2660,43 @@
 
         <div class="row myrow">
           <div class="col">
-            <div class="card mobileCard">
+            <div class="card mobileCard" id="card4">
               <div class="post-img">
-                <img src="Images/buju 2.jpeg" class="card-img-top" />
+                <img
+                  src="Images/buju 2.jpeg"
+                  class="card-img-top"
+                  id="pinDetails4"
+                  onclick="pinDetails()"
+                />
                 <a class="username text-white" href="username.html"
-                  ><img src="Images/azizy.png" width="50px" alt="Profile pic" />
+                  ><img src="Images/azizy.png" width="35px" alt="Profile pic" />
                   bryantcave
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg"
                   /></span>
+                  <span style="font-size: 12px" class="timePosted"></span>
                 </a>
-                <p class="timePinned">
-                  Posted
-                  <span class="timePosted"></span>
-                </p>
+                <button class="followBtn">Follow +</button>
+
                 <h4>BNXN (formerly Buju) | Snapme Catalog</h4>
+                <div class="commentBox commentBoxWide" id="commentBox4">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2474,13 +2708,17 @@
                     </button>
                   </li>
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn4"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">527</p>
                     </button>
@@ -2524,7 +2762,7 @@
 
                         <a
                           class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
                           target="_blank"
                         >
                           <img
@@ -2554,8 +2792,8 @@
                 </ul>
                 <div class="other-icons">
                   <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsIV">
+                    <span id="dots4"></span>
+                    <div id="more-iconsIV" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2574,28 +2812,52 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsIV()" id="myBtnIV">&#9776;</button>
+                  <button onclick="moreIconsIV()" id="myBtnIV">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="col">
-            <div class="card mobileCard">
+            <div class="card mobileCard" id="card5">
               <div class="post-img">
-                <img src="Images/Ayra-starr 20.jpeg" class="card-img-top" />
+                <img
+                  src="Images/Ayra-starr 20.jpeg"
+                  class="card-img-top"
+                  id="pinDetails5"
+                  onclick="pinDetails()"
+                />
                 <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="50px" alt="Profile pic" />
+                  <img src="Images/azizy.png" width="35px" alt="Profile pic" />
                   marcdiss
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg"
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                <button class="followBtn">Follow +</button>
+
                 <h4>Ayra Starr | Snapme Catalog</h4>
+                <div class="commentBox" id="commentBox5">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2607,13 +2869,17 @@
                     </button>
                   </li>
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn5"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">387</p>
                     </button>
@@ -2657,7 +2923,7 @@
 
                         <a
                           class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
                           target="_blank"
                         >
                           <img
@@ -2687,8 +2953,8 @@
                 </ul>
                 <div class="other-icons">
                   <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsV">
+                    <span id="dots5"></span>
+                    <div id="more-iconsV" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2707,31 +2973,55 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsV()" id="myBtnV">&#9776;</button>
+                  <button onclick="moreIconsV()" id="myBtnV">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="col-5">
-            <div class="card mobileCard">
+            <div class="card mobileCard" id="card6">
               <div class="post-img">
-                <img src="Images/wizkid2.jpg" class="card-img-top" />
+                <img
+                  src="Images/wizkid2.jpg"
+                  class="card-img-top"
+                  id="pinDetails6"
+                  onclick="pinDetails()"
+                />
                 <a
                   class="username text-white"
                   onclick="window.location='username.html'"
                 >
-                  <img src="Images/azizy.png" width="50px" alt="profile pic" />
+                  <img src="Images/azizy.png" width="35px" alt="profile pic" />
                   marcdiss
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" alt=""
                   /></span>
-                </a>
-                <p class="timePinned">
-                  Posted
                   <span class="timePosted"></span>
-                </p>
+                </a>
+                <button class="followBtn">Follow +</button>
+
                 <h4>Wizkid | Snapme Catalog</h4>
+                <div class="commentBox commentBoxWide">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
               </div>
 
               <div class="card-body">
@@ -2743,13 +3033,214 @@
                     </button>
                   </li>
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn6"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button class="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">307</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="myPopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">188</p>
+                    </button>
+                  </li>
+
+                  <!-- The Modal -->
+                  <div class="shareModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modalContent mobileModalContent">
+                      <span class="close">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+
+                        <a
+                          class="redditShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots6"></span>
+                    <div id="more-iconsVI" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>117</p>
+                        </li>
+                        <li>
+                          <i
+                            onclick="downloadPost()"
+                            class="fa-solid fa-download"
+                          ></i>
+                          <p>32</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIconsVI()" id="myBtnVI">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--grid row two-->
+        </div>
+        <div class="row myrow">
+          <div class="col-5">
+            <div class="card mobileCard" id="card7">
+              <div class="post-img">
+                <video
+                  class="video"
+                  muted
+                  loop
+                  id="pinDetails7"
+                  onclick="pinDetails()"
+                >
+                  <source src="Pawpaw hype.mp4" type="video/mp4" />
+                </video>
+                <div id="my-video-controls" class="my-video-controls">
+                  <button id="play-pause-btn">
+                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                  </button>
+                  <input
+                    type="range"
+                    id="volume-range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="1"
+                  />
+                  <button id="mute-btn">
+                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                  </button>
+                  <select id="speed-select" class="desktopOnly">
+                    <option value="1">1x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                  </select>
+                  <button id="skip-back-btn">
+                    <img src="Images/skip-backward.svg" alt="<<" />
+                  </button>
+                  <button id="skip-ahead-btn">
+                    <img src="Images/skip-forward.svg" alt=">>" />
+                  </button>
+                </div>
+                <a
+                  class="username text-white"
+                  onclick="window.location='username.html'"
+                >
+                  <img src="Images/azizy.png" width="35px" alt="profile pic" />
+                  estatecomedy
+                  <span id="subscribed-badge" class="verified-badge"
+                    ><img src="Images/verified.svg" alt=""
+                  /></span>
+                  <span class="timePosted"></span>
+                </a>
+                <button class="followBtn">Follow +</button>
+
+                <h4>Naija Movies | Snapme Catalog</h4>
+                <div class="commentBox" id="commentBox7">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">7.9k</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn7"
+                    >
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">5k</p>
+                  </li>
+                  <li>
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">307</p>
                     </button>
@@ -2823,8 +3314,8 @@
                 </ul>
                 <div class="other-icons">
                   <div>
-                    <span id="dots"></span>
-                    <div id="more-iconsVI">
+                    <span id="dots7"></span>
+                    <div id="more-iconsVII" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
@@ -2843,42 +3334,244 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIconsVI()" id="myBtnVI">&#9776;</button>
+                  <button onclick="moreIconsVII()" id="myBtnVII">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <!--grid row two-->
+          <div class="col-5">
+            <div class="card mobileCard" id="card8">
+              <div class="post-img">
+                <video
+                  class="video"
+                  loop
+                  muted
+                  id="pinDetails8"
+                  onclick="pinDetails()"
+                >
+                  <source src="Obedience.mp4" type="video/mp4" />
+                </video>
+                <div id="my-video-controls2" class="my-video-controls">
+                  <button id="play-pause-btn2">
+                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                  </button>
+                  <input
+                    type="range"
+                    id="volume-range2"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value="1"
+                  />
+                  <button id="mute-btn2">
+                    <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                  </button>
+                  <select id="speed-select2" class="desktopOnly">
+                    <option value="1">1x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                  </select>
+                  <button id="skip-back-btn2">
+                    <img src="Images/skip-backward.svg" alt="<<" />
+                  </button>
+                  <button id="skip-ahead-btn2">
+                    <img src="Images/skip-forward.svg" alt=">>" />
+                  </button>
+                </div>
+                <a
+                  class="username text-white"
+                  onclick="window.location='username.html'"
+                >
+                  <img src="Images/azizy.png" width="35px" alt="profile pic" />
+                  derek
+                  <span id="subscribed-badge" class="verified-badge"
+                    ><img src="Images/verified.svg" alt=""
+                  /></span>
+                  <span class="timePosted"></span>
+                </a>
+                <button class="followBtn">Follow +</button>
+
+                <h4>God's Will | Snapme Catalog</h4>
+                <div class="commentBox commentBoxLong">
+                  <form class="commentBoxForm">
+                    <span class="closeComment" > &times;</span>
+                    <textarea
+                      name="comment"
+                      class="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div class="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">7.9k</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button
+                      onclick="likePost()"
+                      class="like-button"
+                      id="likeBtn8"
+                    >
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">5k</p>
+                  </li>
+                  <li>
+                    <button class="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">307</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="myPopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">188</p>
+                    </button>
+                  </li>
+
+                  <!-- The Modal -->
+                  <div class="shareModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modalContent mobileModalContent">
+                      <span class="close">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+
+                        <a
+                          class="redditShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots8"></span>
+                    <div id="more-iconsVIII" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>117</p>
+                        </li>
+                        <li>
+                          <i
+                            onclick="downloadPost()"
+                            class="fa-solid fa-download"
+                          ></i>
+                          <p>32</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIconsVIII()" id="myBtnVIII">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="pin-container">
+            <!-- New pins will be added here -->
+          </div>
         </div>
       </div>
       <!--grid-->
 
+      <!-- Add a div for the popup content -->
+      <div id="promotePopup" class="promotePopup">
+        <h5>Promote your catalog</h5>
+        <button id="promoteButton" onclick="window.location='promotions.html'">
+          Go premium
+        </button>
+        <button id="closePromote" onclick="closePromote">No, thanks</button>
+      </div>
+
       <!--Mobile footer-->
       <div class="mobileView">
         <button onclick="window.location='index.html'">
-          <img src="Images/white house.svg" />
+          <img src="Images/white house.svg" alt="" />
         </button>
-        <button><img src="Images/love white.svg" /></button>
-        <button
-          class="mobileCreate"
-          onclick="window.location='/create-pin.html'"
-        >
-          <img src="Images/plus-svgrepo-com.svg" />
+        <button><img src="Images/microphone.svg" alt="" /></button>
+        <button class="mobileCreate" id="createBtnMobile">
+          <img src="Images/mobileCreate button.svg" alt="" />
         </button>
         <button><img src="Images/bell white.svg" /></button>
         <button><img src="Images/sliders white.svg" /></button>
       </div>
 
       <!--Mobile footer-->
-      <div class="install-button">Install</div>
+      <button class="install-button">Install App</button>
     </div>
     <!--wrapper ends-->
 
     <!--scripts-->
-
     <script src="timeline.js"></script>
     <script src="fetchAPI.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <script src="js/bootstrap.min.js"></script>

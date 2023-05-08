@@ -216,3 +216,7 @@ function showPwd() {
     passwordInput.type = "password";
   }
 }
+//Go back to previous page
+function goBack() {
+  window.history.back();
+}

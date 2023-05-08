@@ -7,18 +7,22 @@ body {
   background: #021129;
 }
 
-.liveHeadline {
-  margin: 0.5rem auto;
-  color: #fff;
-  text-align: center;
-}
-
 .wrapper {
   box-shadow: 3px 3px 8px #000;
   padding: 0.5rem;
   background: #021129;
   width: 45%;
   border-radius: 0.5rem;
+}
+ 
+.liveHeadline {
+  margin: 0.5rem auto;
+  color: #fff;
+  text-align: center;
+}
+
+.backArrow {
+  cursor: pointer;
 }
 
 .liveBox {

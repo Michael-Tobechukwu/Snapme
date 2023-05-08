@@ -95,33 +95,82 @@ window.onclick = function (event) {
   }
 };
 ////
+//Comment Popup
+const commentBtn = document.getElementById("commentBtn");
+const commentBox = document.getElementById("commentBox");
+const closeComment = document.getElementById("closeComment");
+
+commentBtn.addEventListener("click", function () {
+  commentBox.style.display = "block";
+});
+
+closeComment.addEventListener("click", function () {
+  commentBox.style.display = "none";
+});
+//Comment box popup first pin end
+//// 
+//Comment box popup for second pin
+var commentBtn2 = document.getElementsByClassName("commentBtn")[0];
+var commentBox2 = document.getElementsByClassName("commentBox")[0];
+var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
+
+commentBtn2.addEventListener("click", function () {
+  commentBox2.style.display = "block";
+});
+
+closeCommentBtn2.addEventListener("click", function () {
+  commentBox2.style.display = "none";
+});
+//Comment box popup for second pin end
+////
+//// 
+//Comment box popup for third pin
+var commentBtn3 = document.getElementsByClassName("commentBtn")[1];
+var commentBox3 = document.getElementsByClassName("commentBox")[1];
+var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
+
+commentBtn3.addEventListener("click", function () {
+  commentBox3.style.display = "block";
+});
+
+closeCommentBtn3.addEventListener("click", function () {
+  commentBox3.style.display = "none";
+});
+//Comment box popup for third pin end
 //Signedin Users Content
 //Check signed in status on page
-window.addEventListener("load", () => {
+// Get the button element
+const accountSettingsBtn = document.getElementById("accountSettings");
+
+// Add an event listener to the button
+accountSettingsBtn.addEventListener("click", () => {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
 
+  // Check if the user is logged in
   if (token) {
     try {
       // Attempt to decode the JWT token to get the user information
       const decodedToken = JSON.parse(atob(token.split(".")[1]));
       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
 
-      // Display the content for signed-in users
-      const signedInContent = document.getElementById("signedInContent");
-      signedInContent.style.display = "block";
+      // Redirect the user to the create pin page
+      window.location.href = "settings.html";
     } catch (err) {
-      // If there was an error decoding the token, assume the user is not signed in
+      // If there was an error decoding the token, assume the user is not logged in
       console.error("Error decoding JWT token:", err);
 
-      // Don't display the content for signed-in users
-      signedInContent.style.display = "none";
+      // Redirect the user to the login page
+      window.location.href = "login.html";
     }
   } else {
-    // Don't display the content for signed-in users
-    signedInContent.style.display = "none";
+    // Redirect the user to the login page
+    window.location.href = "login.html";
   }
 });
+
+//Check signed in status of user on create button clicked - mobile
+
 ////
 //Like button 1
 const likeButton = document.getElementsByClassName("like-button")[0];
@@ -191,7 +240,7 @@ function logOut() {
       console.error(error);
     });
 }
-
+////
 // Cataloged (my posts) in username
 function myPosts() {
   fetch("https://api.snapme-ng.com/api/v1/my-pins")
@@ -282,8 +331,8 @@ function toggleFollow(username, buttonElement) {
     .then((data) => {
       if (data.success) {
         if (action === "follow") {
-          buttonElement.innerText = "Unfollow";
-          buttonElement.setAttribute("data-action", "unfollow");
+          buttonElement.innerText = "Following";
+          buttonElement.setAttribute("data-action", "Following");
         } else {
           buttonElement.innerText = "Follow";
           buttonElement.setAttribute("data-action", "follow");
@@ -309,7 +358,7 @@ function toggleFollowUser() {
     followUserBtn.textContent = "Follow +";
   } else {
     // follow logic
-    followUserBtn.textContent = "Unfollow";
+    followUserBtn.textContent = "Following";
   }
 
   isFollowing = !isFollowing;
@@ -455,3 +504,9 @@ swipeContainer.addEventListener("touchend", () => {
   }
 });
 //
+/////
+
+//Go back to previous page
+function goBack() {
+  window.history.back();
+}

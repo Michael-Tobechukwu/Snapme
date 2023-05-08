@@ -313,8 +313,10 @@ function followedPosts() {
 }
 followedPosts();
 ////
-//Follow/unfollow user
-function toggleFollow(username, buttonElement) {
+//Follow/unfollow user request to server
+const username = document.getElementById('userID');
+
+function followThisUser(username, buttonElement) {
   const action = buttonElement.getAttribute("data-action");
   const method = action === "follow" ? "POST" : "DELETE";
 
@@ -334,7 +336,7 @@ function toggleFollow(username, buttonElement) {
           buttonElement.innerText = "Following";
           buttonElement.setAttribute("data-action", "Following");
         } else {
-          buttonElement.innerText = "Follow";
+          buttonElement.innerText = "Follow +";
           buttonElement.setAttribute("data-action", "follow");
         }
       } else {
@@ -348,7 +350,7 @@ function toggleFollow(username, buttonElement) {
 
 ////
 
-//Follow/unfollow user
+//Follow/unfollow user button content
 let isFollowing = false;
 const followUserBtn = document.getElementById("followUserBtn");
 

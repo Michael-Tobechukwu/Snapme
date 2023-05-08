@@ -70,9 +70,16 @@ body {
 }
 
 .top {
-  margin: 3rem auto 1rem auto;
+  position: absolute;
   display: flex;
+  padding: 5px 10px;
   justify-content: space-between;
+  width: 100%;
+  margin-top: 0;
+}
+
+.top .backArrow i {
+  text-shadow: 3px 3px 5px #000;
 }
 
 .logout button {
@@ -144,10 +151,6 @@ body {
 .userInfoInner p {
   color: #fff;
   font-size: 16px;
-}
-
-.follow-button {
-  margin-right: 20px;
 }
 
 .user-List {
@@ -226,6 +229,110 @@ body {
   background: none;
 }
 
+/* The Comment Box background */
+#commentBox {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 120px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: none;
+} 
+
+.commentBox {
+  display: none; /* Hidden by default */
+  position: absolute; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 150px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: none;
+}
+
+.commentBoxWide {
+  top: 35%;
+}
+
+.commentBoxLong {
+  top: 75%;
+}
+
+.commentBoxForm {
+  background: none;
+  height: max-content;
+  padding: 0 5px;
+}
+
+#commentInput,
+.commentInput {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  width: 100%;
+  height: max-content;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.commentBoxWide .commentInput {
+  height: 45px;
+ 
+}
+
+#closeComment,
+.closeComment {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  color: #000;
+  font-size: 25px;
+}
+
+#submitComment {
+  position: absolute;
+  top: 75px;
+  left: 5px;
+  background: #ba00ba;
+  padding: 5px 8px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submitComment {
+  position: absolute;
+  top: 60px;
+  left: 5px;
+  background: #ba00ba;
+  padding: 5px 8px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.commentBoxWide .submitComment {
+  padding: 0 5px;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+#submitComment:hover,
+.submitComment:hover {
+  background: #740974;
+}
+
+#submitComment img,
+.submitComment img {
+  width: 35px;
+  transform: rotate(47deg);
+}
+
 #myBtn,
 #myBtnII,
 #myBtnIII,
@@ -238,23 +345,13 @@ body {
   font-size: 1.4rem;
 }
 
-#more-icons li,
-#more-iconsII li,
-#more-iconsIII li,
-#more-iconsIV li,
-#more-iconsV li,
-#more-iconsVI li {
+.more-icons li {
   list-style: none;
   display: inline-block;
   margin-right: 0.6rem;
 }
 
-#more-icons li p,
-#more-iconsII li p,
-#more-iconsIII li p,
-#more-iconsIV li p,
-#more-iconsV li p,
-#more-iconsVI li p {
+.more-icons li p {
   color: #fff;
 }
 
@@ -305,11 +402,11 @@ body {
 
 #image-cards .card .post-img h4 {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: -7px;
+  left: 7px;
   font-weight: bold;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 #image-cards .card img {
@@ -467,12 +564,6 @@ body {
     display: block;
   }
 
-  .topMobile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .user-List {
     margin-left: 1rem;
   }
@@ -531,8 +622,9 @@ body {
   }
 
   .top {
-    margin-top: 20px;
+    margin-top: 0;
     width: 100%;
+    padding: 5px;
   }
 
   #mobileUserTabs {
@@ -583,7 +675,7 @@ body {
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 130px;
+    top: 95px;
     left: 10px;
   }
 
@@ -617,12 +709,17 @@ body {
 
   .userButtons {
     /*follow and account settings buttons*/
-    margin: 10px 0;
+    margin: 5px 0;
     display: flex;
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .userButtons button {
+    padding: 8px 12px;
+    font-size: 13px;
   }
 
   .user-List {
@@ -644,7 +741,7 @@ body {
   }
 
   #image-cards .card .post-img h4 {
-    bottom: 35px;
+    bottom: -5px;
   }
 
   #image-cards .card .card-body {
@@ -679,12 +776,5 @@ body {
 }
 
 @media (max-width: 320px) {
-  .userInfo {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    position: absolute;
-    top: 108px;
-    left: 10px;
-  }
+
 }

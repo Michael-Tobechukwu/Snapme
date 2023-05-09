@@ -68,3 +68,8 @@ function goLive() {
 }
 
 goLive();
+
+//Go back 
+function goBack() {
+  window.history.back();
+}

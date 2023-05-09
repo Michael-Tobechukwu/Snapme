@@ -36,3 +36,8 @@ function updateProfile() {
 }
 updateProfile();
 //Update profile ends
+
+//Go back to previous page
+function goBack() {
+  window.history.back();
+}

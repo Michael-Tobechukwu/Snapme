@@ -7,18 +7,23 @@ body {
   background: #021129 !important;
 }
 
-.container {
+.wrapper {
   margin: 2rem auto;
   width: 100%;
 }
 
 #logo {
-  margin: 1rem auto 4rem auto;
+  margin: 1rem auto 1rem auto;
   width: 30%;
 }
 
 #logo img {
   width: 100%;
+}
+
+.backArrow {
+  cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .content {
@@ -66,7 +71,7 @@ hr {
 }
 
 h2 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   color: #fff;
   font-size: 3rem;
 }
@@ -97,7 +102,7 @@ p {
 
   .nav-links,
   .body-text {
-    width: 95%;
+    width: 98%;
   }
 
   #logo {
@@ -109,12 +114,23 @@ p {
   }
 
   .mobileHeading h2 {
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
   }
 
   .body-text h2,
   #termsService {
     display: none;
+  }
+}
+
+@media (max-width: 568px) {
+  #logo {
+    margin: 1rem auto 0 auto;
+    width: 60%;
+  }
+  
+  .content {
+    margin-top: 0;
   }
 }

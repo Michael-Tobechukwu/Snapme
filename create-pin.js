@@ -45,8 +45,7 @@ function createPin() {
       // Update the UI with the response data
       const pinContainer = document.getElementById("pin-container");
       const pinElement = document.createElement("div");
-      pinElement.innerHTML = `
-        <h3>${data.caption}</h3>
+      pinElement.innerHTML = `<h3>${data.caption}</h3>
         <p>${data.message}</p>
         <p>${data.category}</p>
         <div>${data.fileUpload}</div>
@@ -55,29 +54,32 @@ function createPin() {
                   <li>
                     <button>
                       <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">7.9k</p>
+                      <p class="text-white">2.4k</p>
                     </button>
                   </li>
+
                   <li class="likeListItem">
                     <button
                       onclick="likePost()"
                       class="like-button"
-                      id="likeBtn8"
+                      id="likeBtn"
                     >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
                   </li>
+
                   <li>
-                    <button onclick="commentOnPost()">
+                    <button id="commentBtn">
                       <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">307</p>
+                      <p class="text-white">396</p>
                     </button>
                   </li>
+
                   <li>
                     <button class="myPopupBtn">
                       <i class="fa-solid fa-share"></i>
-                      <p class="text-white">188</p>
+                      <p class="text-white">123</p>
                     </button>
                   </li>
 
@@ -113,7 +115,7 @@ function createPin() {
 
                         <a
                           class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
                           target="_blank"
                         >
                           <img
@@ -144,18 +146,18 @@ function createPin() {
                 <div class="other-icons">
                   <div>
                     <span id="dots"></span>
-                    <div id="more-icons">
+                    <div id="more-icons" class="more-icons">
                       <ul>
                         <li onclick="savePost()">
                           <i class="fa-solid fa-bookmark"></i>
-                          <p>117</p>
+                          <p>197</p>
                         </li>
                         <li>
                           <i
                             onclick="downloadPost()"
                             class="fa-solid fa-download"
                           ></i>
-                          <p>32</p>
+                          <p>29</p>
                         </li>
                         <li onclick="deletePost()">
                           <i class="fa-solid fa-trash"></i>
@@ -164,12 +166,10 @@ function createPin() {
                     </div>
                   </div>
                   <button onclick="moreIcons()" id="myBtn">
-                  <img src="Images/more-icon.svg" width="20px" />
+                    <img src="Images/more-icon.svg" width="20px" />
                   </button>
                 </div>
-              </div>
-
-      `;
+              </div>`;
       pinContainer.appendChild(pinElement);
     })
     .catch((error) => {
@@ -184,4 +184,9 @@ function handleFileSelect(event) {
   for (let i = 0; i < files.length; i++) {
     console.log(files[i].name);
   }
+}
+
+//Go to the previous page
+function goBack() {
+  window.history.back();
 }

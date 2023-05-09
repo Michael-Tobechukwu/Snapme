@@ -32,7 +32,7 @@
     <div class="wrapper container">
       <div class="content">
         <div class="top">
-          <div class="backArrow" onclick="window.location='username.html'">
+          <div class="backArrow" onclick="goBack()">
             <i class="fa-solid fa-arrow-left-long"></i>
           </div>
         </div>
@@ -69,6 +69,7 @@
             </div>
           </div>
           <button type="submit" class="sendBtn">
+            
             <img src="Images/send.svg" width="30px" />
           </button>
         </form>
@@ -84,18 +85,7 @@
     </div>
 
     <!--scripts-->
-    <script>
-      var pwdInput = document.getElementById("passwordInput");
-      var showPassword = document.getElementById("eyeIcon");
-
-      function showPwd() {
-        if (pwdInput.type === "password") {
-          pwdInput.type = "text";
-        } else {
-          pwdInput.type = "password";
-        }
-      }
-    </script>
+    <script src="settings.js">    </script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

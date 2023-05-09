@@ -26,3 +26,8 @@ closeLiveMobile.onclick = function () {
   liveModalMobile.style.display = "none";
 };
 //Live popup ends
+
+//Go to the previous page
+function goBack() {
+  window.history.back();
+}

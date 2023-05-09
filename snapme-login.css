@@ -23,7 +23,7 @@ body {
   box-shadow: 3px 3px 12px #000;
   background: #021129 !important;
   border-radius: 2rem !important;
-  padding: 2rem 1rem;
+  padding: 1rem 0.5rem;
 }
 
 .logo {
@@ -32,16 +32,21 @@ body {
   width: 40%;
 }
 
+.backArrow {
+  margin-bottom: 10px;
+
+}
+
 .logo img {
   margin: 1.5rem auto;
   width: 100%;
 }
 
 .card {
-  width: 60%;
+  width: 80%;
   background: #021129 !important;
   border-radius: 2rem !important;
-  padding: 3rem 2rem;
+  padding: 1rem;
   border: 2px solid #fff;
 }
 
@@ -136,5 +141,9 @@ button i {
 
   .logo {
     width: 50%;
+  }
+
+  .logo img {
+    margin-bottom: 10px;
   }
 }

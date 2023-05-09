@@ -101,29 +101,6 @@ async function makeApiRequest(url, method = "GET", data = null) {
   }
 }
 
-/*
-async function login() {
-  fetch("https://api.snapme-ng.com/api/v1/login", {
-    method: "POST",
-    credentials: "include",
-    mode: "cors",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-  });
-  if (result.ok) {
-    const { data } = await result.json();
-    localStorage.setItem("token", data);
-  } else {
-    console.log("There was an error!", error); // Show an error
-  }
-}*/
-
 ////
 //Google sign in
 function handleCredentialResponse(response) {
@@ -205,17 +182,6 @@ function checkLoginState() {
 }
 //Facebook login
 /////
-//Show password on button click
-var passwordInput = document.getElementById("password");
-var eyeIcon = document.getElementsByClassName("eyeIcon")[0];
-
-function showPwd() {
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-  } else {
-    passwordInput.type = "password";
-  }
-}
 //Go back to previous page
 function goBack() {
   window.history.back();

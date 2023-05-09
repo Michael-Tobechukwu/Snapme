@@ -99,6 +99,10 @@ form.deleteAccount {
   border: none;
 }
 
+.sendBtn img {
+  transform: rotate(47deg);
+}
+
 .bottom {
   color: #fff;
   margin: 2rem auto;

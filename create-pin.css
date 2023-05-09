@@ -12,7 +12,7 @@ body {
 }
 
 .lead {
-  margin: 1rem auto;
+  margin: 0.5rem auto;
   width: 100%;
 }
 
@@ -28,8 +28,14 @@ body {
   justify-content: space-between;
   box-shadow: 3px 3px 8px #000;
   width: 60%;
-  margin: 2rem auto;
+  margin: 0.5rem auto;
   padding: 1rem !important;
+}
+
+.backArrow {
+  cursor: pointer;
+  margin-top: 0;
+  margin-bottom: 10px;  
 }
 
 .box-right input,

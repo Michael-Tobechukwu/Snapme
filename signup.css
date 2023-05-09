@@ -24,6 +24,10 @@ body {
   padding: 1rem 1.5rem;
 }
 
+.backArrow {
+  cursor: pointer;
+}
+
 .inner {
   width: 90%;
   margin: 0 auto;

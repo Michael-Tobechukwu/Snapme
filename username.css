@@ -212,7 +212,7 @@ body {
 .swipe-item button {
   color: #fff;
   background: #021129;
-  border: white solid 2px;
+  border: none;
   padding: 0.5rem 1rem;
   border-radius: 2rem !important;
   font-size: 14px;
@@ -636,18 +636,19 @@ body {
   }
 
   #mobileUserTabs button {
-    border: 2px solid #fff;
+    border: none;
     background: #031738;
-    padding: 0.4rem 0.8rem;
+    padding: 3px 5px;
     color: #fff;
     font-size: 14px;
     border-radius: 0.5rem;
   }
 
   #mobileUserTabs button:focus {
-    background: #fff;
-    color: #021129;
+    text-decoration: underline;
+    color: #fff;
     font-weight: 600;
+    padding: 3px 5px;
   }
 
   .userTabs {
@@ -734,7 +735,7 @@ body {
   .swipe-item button {
     color: #fff;
     background: #021129;
-    border: white solid 2px;
+    border:none;
     padding: 0.5rem 1rem;
     border-radius: 2rem !important;
     font-size: 14px;

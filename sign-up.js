@@ -62,3 +62,8 @@ function showConfPwd() {
 //Convert username input to lowercase
 var userNameInput = document.getElementById("username");
 userNameInput = userNameInput.value.toLowerCase();
+
+//Go back to previous page
+function goBack() {
+  window.history.back();
+}

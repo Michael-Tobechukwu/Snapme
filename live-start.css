@@ -18,8 +18,6 @@ body {
   height: 700px;
 }
 
-
-
 .wrapper .main-logo img {
   width: 40%;
   margin: 0 auto;
@@ -36,6 +34,11 @@ body {
   border-radius: 1rem;
   background: #021129;
   border: 2px solid #fff;
+}
+
+.backArrow {
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .live {
@@ -224,13 +227,14 @@ body {
 
   .content {
     border: none;
-    width: 98%;
-    padding: 0;
+    width: 100%;
+    padding: 0 5px;
     margin: 5px auto;
   }
 
   .caption {
     width: 100%;
+    padding: 0;
   }
 
   .caption-input {

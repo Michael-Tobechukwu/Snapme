@@ -3,17 +3,17 @@
   "short_name": "Snapme",
   "icons": [
     {
-      "src": "/Snapme favicon small.jpg",
+      "src": "/Snapme favicon small.png",
       "sizes": "192x192",
-      "type": "image/jpg"
+      "type": "image/png"
     },
     {
-      "src": "/Snapme favicon.jpg",
+      "src": "/Snapme favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "start_url": "/all-pins",
+  "start_url": "/",
   "background_color": "#021129",
   "display": "standalone",
   "theme_color": "#007aff"

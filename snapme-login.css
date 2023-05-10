@@ -34,7 +34,7 @@ body {
 
 .backArrow {
   margin-bottom: 10px;
-
+  cursor: pointer;
 }
 
 .logo img {
@@ -83,16 +83,23 @@ input {
   text-decoration: none;
 }
 
-button {
+#login-button {
   margin: 0.5rem auto;
   background: #021129;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   padding: 0.7rem 1rem;
   border-radius: 50%;
 }
 
-button i {
+#login-button i {
   color: #fff;
+  transform: rotate(49deg);
+  transition: 0.5s ease;
+}
+
+#login-button:hover {
+  background: #ba00ba;
+  border: #ba00ba 2px solid;
 }
 
 @media (max-width: 1024px) {

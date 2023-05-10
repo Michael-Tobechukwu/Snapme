@@ -586,7 +586,7 @@ input:checked + .slider:before {
 
 #image-cards .card .post-img h4 {
   position: absolute;
-  bottom: -10px;
+  bottom: -5px;
   left: 0.5rem;
   font-weight: bold;
   color: #fff;
@@ -807,8 +807,8 @@ input:checked + .slider:before {
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: #333;
-  color: white;
+  background-color: #021129;
+  color: #fff;
   font-size: 1.2rem;
   padding: 1rem;
   border: none;

@@ -328,32 +328,24 @@ mobileCreateBtn.addEventListener("click", () => {
 ////
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit
-setTimeout(function () {
+setTimeout(function() {
   let deferredPrompt;
 
   window.addEventListener("beforeinstallprompt", (e) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
     e.preventDefault();
-
-    // Stash the event so it can be triggered later.
     deferredPrompt = e;
-
-    // Update UI to notify the user that they can add the app to the home screen
     showInstallButton();
   });
 
   function showInstallButton() {
-    // Show the "Add to Home Screen" button
     const installButton = document.querySelector(".install-button");
     installButton.classList.add("show");
     installButton.addEventListener("click", installApp);
   }
 
   function installApp() {
-    // Show the prompt
     deferredPrompt.prompt();
 
-    // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         console.log("User accepted the install prompt");
@@ -361,11 +353,14 @@ setTimeout(function () {
         console.log("User dismissed the install prompt");
       }
 
-      // Reset the deferred prompt variable
       deferredPrompt = null;
     });
   }
-}, 60000); // 60,000 milliseconds = 1 minute
+
+  // Trigger the "beforeinstallprompt" event after 1 minute
+  const event = new Event("beforeinstallprompt");
+  window.dispatchEvent(event);
+}, 60000);
 
 ///Add to home screen/install prompt end
 ////
@@ -1413,22 +1408,45 @@ document.getElementById("pinDetails7").addEventListener("click", pinDetails);
 document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
-  fetch("https://api.snapme-ng.com/api/v1/pin-details/:id")
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+  // Fetch the pin data from the backend
+  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+    .then(response => response.json())
+    .then(pin => {
+      // Create a container element to display the pin details
+      const container = document.createElement('div');
+
+      // Create elements for the pin caption, author, and content
+      const caption = document.createElement('h1');
+      const author = document.createElement('p');
+      const content = document.createElement('p');
+      const media = document.createElement(pin.media.type === 'image' ? 'img' : 'video');
+
+      // Set the text content of the elements to the pin data
+      caption.textContent = pin.caption;
+      author.textContent = `By ${pin.author}`;
+      content.textContent = pin.content;
+
+      // Set the attributes of the media element
+      media.src = pin.media.url;
+      media.alt = pin.caption;
+
+      // Add the elements to the container
+      container.appendChild(caption);
+      container.appendChild(author);
+      container.appendChild(content);
+      container.appendChild(media);
+
+      // Add the container to the UI
+      document.body.appendChild(container);
     })
-    .then(function (data) {
-      console.log(data);
-    })
-    .catch(function (error) {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+    .catch(error => console.error(error));
 }
+
+// Call the pinDetails function with a pin ID
 pinDetails();
+
 //Get pin details end
+
 ////
 //Play video when scrolled into view
 //Video 1

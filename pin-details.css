@@ -532,12 +532,12 @@ button {
 .marcdiss-box {
   display: flex;
   gap: 10px;
-
   line-height: 0;
 }
 
 .marcdiss-box a {
   width: 15%;
+  cursor: pointer;
 }
 
 .marcdiss-box a img {
@@ -548,6 +548,10 @@ button {
 .marcdiss-box p,
 .marcdiss-box small {
   color: #fff;
+}
+
+.marcdiss .username {
+  cursor: pointer;
 }
 
 .marcdiss ul {
@@ -584,6 +588,15 @@ button {
   width: 98%;
 }
 
+.commenterProfile input {
+  background: none; 
+  border: none;
+}
+
+.commenterProfile img {
+  cursor: pointer;
+}
+
 .form-input-button #commentInput {
   width: 65% !important;
   border-radius: 2rem !important;
@@ -600,6 +613,7 @@ button {
   padding-left: 5px;
   border: none;
   background: none;
+  
 }
 
 #commentButton .fa-paper-plane {
@@ -608,6 +622,7 @@ button {
   color: #fff;
   margin-top: -60px;
   margin-left: -10px;
+  cursor: pointer;
 }
 
 /* The Modal (background) */

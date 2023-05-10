@@ -589,12 +589,12 @@ button {
 }
 
 .commenterProfile input {
-  background: none; 
-  border: none;
+  display: none;
 }
 
 .commenterProfile img {
   cursor: pointer;
+  margin-left: -3px;
 }
 
 .form-input-button #commentInput {

@@ -336,6 +336,7 @@ input:checked + .slider:before {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
+
 }
 
 .tabs button:hover {
@@ -863,9 +864,16 @@ input:checked + .slider:before {
 
 /*Mobile view*/
 @media (max-width: 568px) {
+  #preloader {
+    width: 100%;
+    height: 100%;
+
+  }
+
   .preloader {
     text-align: center;
     margin: 50% auto 0 auto;
+
   }
 
   .wrapper,

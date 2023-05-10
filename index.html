@@ -2189,10 +2189,10 @@
                 <img
                   src="Images/ruger 7.jpg"
                   class="card-img-top"
-                  id="pinDetails"
+                  id="pinDetails" onclick="pinDetails()"
                   onclick="window.location='pin-details.html'"
                 />
-                <!--onclick="pinDetails()"-->
+                
                 <a class="username text-white" href="username.html">
                   <img src="Images/azizy.png" width="35px" /> azizymakim
                   <span id="subscribed-badge" class="verified-badge"
@@ -3173,7 +3173,7 @@
                 </video>
                 <div id="my-video-controls" class="my-video-controls">
                   <button id="play-pause-btn">
-                    <img src="Images/pause-button.svg" alt="Pause/Play" />
+                    <img src="Images/pause-white.svg" alt="Pause/Play" />
                   </button>
                   <input
                     type="range"
@@ -3578,6 +3578,12 @@
 
       <!--Mobile footer-->
       <button class="install-button">Install App</button>
+      <div class="install-prompt">
+        <p>Do you want to install this app?</p>
+        <button class="install-yes">Yes</button>
+        <button class="install-no">No</button>
+        <button class="install-close">Close</button>
+      </div>
     </div>
     <!--wrapper ends-->
 

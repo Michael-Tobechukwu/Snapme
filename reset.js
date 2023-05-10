@@ -1,3 +1,10 @@
+const backBtn = document.querySelector('.backArrow');
+backBtn.addEventListener('click', goBack 
+)
+function goBack() {
+  window.history.back();
+}
+
 //Show new password
 var pwdInput = document.getElementById("new-password");
 var showPasswordIcon = document.getElementsByClassName("eyeIcon")[0];

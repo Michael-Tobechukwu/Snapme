@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-  margin: 2rem auto;
+  margin: 1rem auto;
   width: 100%;
 }
 
@@ -29,6 +29,10 @@ body {
   gap: 3rem;
 }
 
+.backArrow {
+  cursor: pointer;
+}
+
 .nav-links {
   width: 33%;
   color: #000;
@@ -38,7 +42,7 @@ body {
 .nav-links p {
   color: #021129;
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 14px;
 }
 
 hr {
@@ -47,15 +51,15 @@ hr {
 
 .nav-links a {
   text-decoration: none;
-  color: #000;
-
+  color: #3d3c3c;
   padding: 0.5rem;
   transition: ease 0.4s;
+  font-size: 14px;
 }
 
 .nav-links a:hover {
-  background: #021129;
-  color: #fff;
+  text-transform: underline;
+  color: #021129;
 }
 
 .body-text {
@@ -106,11 +110,37 @@ p {
   }
 
   .mobileHeading h2 {
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
   }
 
   .body-text h2 {
     display: none;
+  }
+
+
+}
+
+@media (max-width: 568px) {
+  #logo {
+    margin: 1rem auto 1rem auto;
+    width: 60%;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 3rem;
+  }
+  
+  h5 {
+    color: #fff;
+    margin: 1rem auto;
+    font-weight: 600;
+  }
+  
+  p {
+    color: #fff;
+    margin: 1rem auto;
   }
 }

@@ -2219,7 +2219,7 @@
                 <img src="Images/azizy.png" width="50px" alt="Profile pic" />
               </a>
               <div class="marcdiss">
-                <p class="username">marcdiss</p>
+                <p class="username" onclick="thisUser()">marcdiss</p>
                 <p class="alias">The show maker</p>
 
                 <ul id="signedInContent2">
@@ -2231,16 +2231,18 @@
               </div>
             </div>
             <form class="form-input-button">
+
+              <div class="commenterProfile">
+                <input type="button" onclick="commenterProfile()">
+                <img src="Images/user image.svg"/>
+              </div>
               
-                <button onclick="commenterProfile()">
-                  <img src="Images/user image.svg" alt="Profile pic" />
-                </button>
                 <input type="text" placeholder="Add your comment..." id="commentInput"/>
                 <div id="commentButton">
                   <input type="button" id="sendCommentBtn" onclick="commentOnPost()">
                   <i class="fas fa-paper-plane"></i>
                 </div> 
-                <!---->
+                
 
               
             </form>

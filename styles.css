@@ -800,25 +800,26 @@ input:checked + .slider:before {
   font-weight: 600;
 }
 
-.install-button {
-  display: none;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.install-prompt {
+  margin-bottom: 65px;
   text-align: center;
-  background-color: #021129;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.install-prompt, .install-prompt button {
   color: #fff;
-  font-size: 1.2rem;
-  padding: 1rem;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-.install-button.show {
+.install-yes.show {
   display: block;
-  margin-top: 20px;
+
+}
+
+.install-prompt button {
+
 }
 
 /*Media queries*/

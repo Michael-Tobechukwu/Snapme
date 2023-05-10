@@ -30,6 +30,10 @@ body {
   position: realtive;
 }
 
+.backArrow {
+  cursor:pointer;
+}
+
 video {
   margin: 0.5rem auto;
   width: 100%;

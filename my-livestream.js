@@ -1,3 +1,11 @@
+const backBtn = document.querySelector('.backArrow');
+backBtn.addEventListener('click', goBack 
+)
+function goBack() {
+  window.history.back();
+}
+
+
 //End livestream
 document.getElementById("endStreamBtn").addEventListener("click", endLive);
 

@@ -338,8 +338,8 @@ setTimeout(function() {
   });
 
   function showInstallButton() {
-    const installButton = document.querySelector(".install-button");
-    const closeButton = document.querySelector(".close-button");
+    const installButton = document.querySelector(".install-yes");
+    const closeButton = document.querySelector(".install-no");
     installButton.classList.add("show");
     closeButton.classList.add("show");
     installButton.addEventListener("click", installApp);
@@ -366,8 +366,8 @@ setTimeout(function() {
 
   function closePrompt() {
     deferredPrompt = null;
-    const installButton = document.querySelector(".install-button");
-    const closeButton = document.querySelector(".close-button");
+    const installButton = document.querySelector(".install-yes");
+    const closeButton = document.querySelector(".install-no");
     installButton.classList.remove("show");
     closeButton.classList.remove("show");
   }

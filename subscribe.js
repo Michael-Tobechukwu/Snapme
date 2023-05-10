@@ -20,3 +20,8 @@ function subscribe() {
       .catch((error) => console.error("Error:", error));
   }
   subscribe();
+
+  //Go back to previous page
+  function goBack() {
+    window.history.back();
+  }

@@ -1308,6 +1308,8 @@ closeCommentBtn5.addEventListener("click", function () {
 });
 //Comment box popup for 5th pin end
 ////
+
+//Get request to fetch user profile 
 function thisUser() {
   fetch("https://api.snapme-ng.com/api/v1/:username")
     .then((response) => response.json())
@@ -1321,6 +1323,7 @@ function thisUser() {
 }
 thisUser();
 ////
+
 function pinDetails() {
   // Fetch the pin data from the backend
   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)

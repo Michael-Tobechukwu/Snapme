@@ -339,28 +339,44 @@ setTimeout(function() {
 
   function showInstallButton() {
     const installButton = document.querySelector(".install-button");
+    const closeButton = document.querySelector(".close-button");
     installButton.classList.add("show");
+    closeButton.classList.add("show");
     installButton.addEventListener("click", installApp);
+    closeButton.addEventListener("click", closePrompt);
   }
 
   function installApp() {
     deferredPrompt.prompt();
 
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the install prompt");
-      } else {
-        console.log("User dismissed the install prompt");
-      }
+    deferredPrompt.userChoice
+      .then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
 
-      deferredPrompt = null;
-    });
+        deferredPrompt = null;
+      })
+      .catch((error) => {
+        console.error("Error occurred while handling userChoice", error);
+      });
+  }
+
+  function closePrompt() {
+    deferredPrompt = null;
+    const installButton = document.querySelector(".install-button");
+    const closeButton = document.querySelector(".close-button");
+    installButton.classList.remove("show");
+    closeButton.classList.remove("show");
   }
 
   // Trigger the "beforeinstallprompt" event after 1 minute
   const event = new Event("beforeinstallprompt");
   window.dispatchEvent(event);
 }, 60000);
+
 
 ///Add to home screen/install prompt end
 ////

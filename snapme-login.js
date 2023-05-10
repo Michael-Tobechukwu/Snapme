@@ -1,4 +1,3 @@
-
 //Show password on button click
 var passwordInput = document.getElementById("password");
 var eyeIcon = document.getElementsByClassName("eyeIcon")[0];
@@ -10,15 +9,28 @@ function showPwd() {
     passwordInput.type = "password";
   }
 }
+////
+//Go back to previous page
+
+const backBtn = document.querySelector('.backArrow');
+
+backBtn.addEventListener('click', goBack 
+)
+
+function goBack() {
+  window.history.back();
+}
+
+////
 //Snapme login
 const url = "https://api.snapme-ng.com/api/v1/login";
 const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
+const thisPasswordInput = document.getElementById("password");
 const loginButton = document.getElementById("login-button");
 
 loginButton.addEventListener("click", () => {
   const username = usernameInput.value;
-  const password = passwordInput.value;
+  const password = thisPasswordInput.value;
   
   if (username === "" || password === "") {
     const errorDiv = document.getElementById("error-message");
@@ -51,10 +63,3 @@ loginButton.addEventListener("click", () => {
     console.error("There was a problem with the fetch operation:", error);
   });
 });
-
-
-//Go back to previous page
-function goBack() {
-    window.history.back();
-  }
-  

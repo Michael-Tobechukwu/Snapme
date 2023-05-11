@@ -801,7 +801,7 @@ input:checked + .slider:before {
 }
 
 .install-prompt {
-  /*display: none;*/
+  display: none;
   border: 2px solid #fff;
   border-radius: 8px;
   padding: 10px;
@@ -892,7 +892,7 @@ input:checked + .slider:before {
   }
 
   .install-prompt {
-    /*display: none;*/
+    display: none;
     border: 2px solid #fff;
     padding: 5px;
     width: 98%;

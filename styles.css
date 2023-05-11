@@ -369,7 +369,7 @@ input:checked + .slider:before {
 .my-video-controls button {
   width: 20%;
   background: none !important;
-  color: #021129 !important;
+  color: #fff !important;
   border: none !important;
 }
 
@@ -384,16 +384,16 @@ input:checked + .slider:before {
 
 .my-video-controls input[type="range"] {
   width: 25%;
-  color: #021129;
-  background: #021129 !important;
+  color: #fff;
+  background: #fff !important;
 }
 
 .my-video-controls select {
   padding: 5px;
   border-radius: 5px;
-  color: #fff;
-  background: #021129;
-  width: 18%;
+  color: #021129;
+  background: #fff;
+  width: 21%;
 }
 
 .my-video-controls {
@@ -801,11 +801,17 @@ input:checked + .slider:before {
 }
 
 .install-prompt {
-  margin-bottom: 65px;
+  display: none;
   text-align: center;
   border: 2px solid #fff;
-  border-radius: 8px;
-  padding: 5px;
+  border-radius: 25px;
+  padding: 0;
+  width: 30%;
+  margin: 5px auto;
+  position: absolute;
+  bottom: 0;
+  background: #ba00ba;
+  z-index: 1;
 }
 
 .install-prompt, .install-prompt button {
@@ -815,11 +821,6 @@ input:checked + .slider:before {
 
 .install-yes.show {
   display: block;
-
-}
-
-.install-prompt button {
-
 }
 
 /*Media queries*/
@@ -881,6 +882,32 @@ input:checked + .slider:before {
   .container {
     padding: 0.5rem 5px !important;
     overflow: hidden;
+  }
+
+  .install-prompt {
+    /*display: none;*/
+    border: 2px solid #fff;
+    border-radius: 25px;
+    padding: 5px;
+    width: 98%;
+    position: absolute;
+    top: 0;
+    background: #ba00ba;
+    z-index: 1;
+  }
+  
+  .install-prompt p, .install-prompt button {
+    margin-top: -10px;
+
+  }
+  
+  .install-prompt, .install-prompt button {
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .install-yes.show {
+    display: block;
   }
 
   .navmenu,

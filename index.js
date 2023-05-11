@@ -340,8 +340,10 @@ setTimeout(function() {
   function showInstallButton() {
     const installButton = document.querySelector(".install-yes");
     const closeButton = document.querySelector(".install-no");
+    const installPrompt = document.querySelector(".install-prompt");
     installButton.classList.add("show");
     closeButton.classList.add("show");
+    installPrompt.style.display = "block";
     installButton.addEventListener("click", installApp);
     closeButton.addEventListener("click", closePrompt);
   }
@@ -368,15 +370,18 @@ setTimeout(function() {
     deferredPrompt = null;
     const installButton = document.querySelector(".install-yes");
     const closeButton = document.querySelector(".install-no");
+    const installPrompt = document.querySelector(".install-prompt");
     installButton.classList.remove("show");
     closeButton.classList.remove("show");
+    installPrompt.style.display = "none";
   }
 
   // Trigger the "beforeinstallprompt" event after 1 minute
-  const event = new Event("beforeinstallprompt");
-  window.dispatchEvent(event);
-}, 60000);
-
+  setTimeout(() => {
+    const event = new Event("beforeinstallprompt");
+    window.dispatchEvent(event);
+  }, 60000);
+}, 0);
 
 ///Add to home screen/install prompt end
 ////
@@ -1501,7 +1506,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-//Video controls
+//Video controls 1
 //const video = document.getElementById("video");
 const playPauseBtn = document.getElementById("play-pause-btn");
 const volumeRange = document.getElementById("volume-range");
@@ -1514,10 +1519,10 @@ const skipAheadBtn = document.getElementById("skip-ahead-btn");
 playPauseBtn.addEventListener("click", () => {
   if (video.paused) {
     video.play();
-    playPauseBtn.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
+    playPauseBtn.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
   } else {
     video.pause();
-    playPauseBtn.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
+    playPauseBtn.innerHTML = `<img src="Images/play-button-white.svg" alt="">`;
   }
 });
 
@@ -1530,11 +1535,11 @@ volumeRange.addEventListener("input", () => {
 muteBtn.addEventListener("click", () => {
   if (video.muted) {
     video.muted = false;
-    muteBtn.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
+    muteBtn.innerHTML = `<img src="Images/mute-white.svg">`;
     volumeRange.value = video.volume;
   } else {
     video.muted = true;
-    muteBtn.innerHTML = `<img src="Images/unmute button.svg" alt="Unmute" />`;
+    muteBtn.innerHTML = `<img src="Images/unmute-white.svg" alt="Unmute/Mute" />`;
     volumeRange.value = 0;
   }
 });
@@ -1568,10 +1573,10 @@ const skipAheadBtn2 = document.getElementById("skip-ahead-btn2");
 playPauseBtn2.addEventListener("click", () => {
   if (video2.paused) {
     video2.play();
-    playPauseBtn2.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
+    playPauseBtn2.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
   } else {
     video2.pause();
-    playPauseBtn2.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
+    playPauseBtn2.innerHTML = `<img src="Images/play-button-white.svg" alt="Play" />`;
   }
 });
 
@@ -1584,11 +1589,11 @@ volumeRange2.addEventListener("input", () => {
 muteBtn2.addEventListener("click", () => {
   if (video2.muted) {
     video2.muted = false;
-    muteBtn2.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
+    muteBtn2.innerHTML = `<img src="Images/mute-white.svg" alt="Mute" />`;
     volumeRange2.value = video2.volume;
   } else {
     video2.muted = true;
-    muteBtn2.innerHTML = `<img src="Images/unmute button.svg" alt="Mute" />`;
+    muteBtn2.innerHTML = `<img src="Images/unmute-white.svg" alt="Mute" />`;
     volumeRange2.value = 0;
   }
 });

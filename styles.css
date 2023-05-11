@@ -801,20 +801,27 @@ input:checked + .slider:before {
 }
 
 .install-prompt {
-  display: none;
-  text-align: center;
+  /*display: none;*/
   border: 2px solid #fff;
-  border-radius: 25px;
-  padding: 0;
+  border-radius: 8px;
+  padding: 10px;
   width: 30%;
-  margin: 5px auto;
-  position: absolute;
-  bottom: 0;
   background: #ba00ba;
-  z-index: 1;
+  position: absolute;
+  left: 35%;
+  z-index: 9999;
+  text-align: center;
+  color: #fff;
 }
 
-.install-prompt, .install-prompt button {
+.install-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: -10px;
+}
+
+.install-buttons button {
   color: #fff;
   cursor: pointer;
 }
@@ -887,27 +894,28 @@ input:checked + .slider:before {
   .install-prompt {
     /*display: none;*/
     border: 2px solid #fff;
-    border-radius: 25px;
     padding: 5px;
     width: 98%;
     position: absolute;
-    top: 0;
-    background: #ba00ba;
-    z-index: 1;
-  }
-  
-  .install-prompt p, .install-prompt button {
-    margin-top: -10px;
-
-  }
-  
-  .install-prompt, .install-prompt button {
+    left: 3px;
+    z-index: 9999;
     color: #fff;
+  }
+
+  .install-buttons {
+    margin-top: -15px;
+  }  
+
+  .install-buttons button {
     cursor: pointer;
   }
   
   .install-yes.show {
     display: block;
+  }
+
+  #installApp {
+    margin-bottom: 50px;
   }
 
   .navmenu,

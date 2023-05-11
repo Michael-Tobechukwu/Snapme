@@ -393,7 +393,8 @@ input:checked + .slider:before {
   border-radius: 5px;
   color: #021129;
   background: #fff;
-  width: 21%;
+  width: 25%;
+  font-size: 12px;
 }
 
 .my-video-controls {

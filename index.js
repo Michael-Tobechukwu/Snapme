@@ -337,6 +337,10 @@ setTimeout(function() {
     showInstallButton();
   });
 
+  window.addEventListener("appinstalled", (evt) => {
+    console.log("App installed successfully!");
+  });
+
   function showInstallButton() {
     const installButton = document.querySelector(".install-yes");
     const closeButton = document.querySelector(".install-no");
@@ -349,8 +353,6 @@ setTimeout(function() {
   }
 
   function installApp() {
-    deferredPrompt.prompt();
-
     deferredPrompt.userChoice
       .then((choiceResult) => {
         if (choiceResult.outcome === "accepted") {
@@ -364,6 +366,8 @@ setTimeout(function() {
       .catch((error) => {
         console.error("Error occurred while handling userChoice", error);
       });
+
+    deferredPrompt.prompt();
   }
 
   function closePrompt() {
@@ -382,9 +386,9 @@ setTimeout(function() {
     window.dispatchEvent(event);
   }, 60000);
 }, 0);
-
 ///Add to home screen/install prompt end
 ////
+
 //Like button 1
 const likeButton = document.getElementsByClassName("like-button")[0];
 let isLiked = false;

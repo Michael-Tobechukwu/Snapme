@@ -3,9 +3,7 @@ input {
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-image: url("Images/asake\ 4.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #021129 !important;
 }
 
 .container {

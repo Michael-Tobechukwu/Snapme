@@ -3,7 +3,212 @@ input {
   font-family: "Poppins", sans-serif;
 }
 
+input,*,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
 input,
+label,
+select {
+  font-size: 14px;
+}
+
+body {
+  background: #021129;
+}
+
+.container {
+  background: #021129;
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 8px #000;
+  padding: 1rem 1.5rem;
+}
+
+.backArrow {
+  cursor: pointer;
+}
+
+.inner {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 50%;
+  margin: 0.4rem auto 0.7rem auto;
+}
+
+.logo img {
+  width: 100%;
+}
+
+input {
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: none;
+}
+
+.gender-birthday {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.gender-input {
+  width: 45%;
+}
+
+.gender-input p {
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+.gender-input label {
+  color: #fff;
+  padding: 0;
+  width: 40%;
+}
+
+.birthday {
+  margin: 1.5rem 0;
+  color: #fff;
+  width: 45%;
+}
+
+.birthday input {
+  background: #fff;
+  color: #696868;
+  border: 2px solid #fff;
+}
+
+.occupation-country {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.occupation,
+.country {
+  width: 45%;
+}
+
+#countryList {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.3rem;
+  background: #fff;
+  color: #696868;
+  border: 2px solid #fff;
+}
+
+.password {
+  position: relative;
+}
+
+.password img {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: none;
+  cursor: pointer;
+}
+
+button {
+  margin: 1rem auto;
+  background: #021129;
+  border: 3px solid #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 50%;
+}
+
+button i {
+  color: #fff;
+}
+
+.already {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 14px;
+}
+
+.already p {
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.already a {
+  text-decoration: none;
+  margin-top: 0;
+}
+
+.agree {
+  margin: 1rem auto;
+  font-size: 12px;
+}
+
+.agree p {
+  color: #fff;
+}
+
+/*MEDIA QUERIES*/
+
+@media (max-width: 1024px) {
+  .container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 80%;
+  }
+
+  .gender-birthday {
+    width: 100%;
+  }
+
+  .gender-birthday input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 568px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .occupation,
+  .country {
+    width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  span.male {
+    gap: 20px !important;
+  }
+
+  span.custom {
+    gap: 8px !important ;
+  }
+}
+
 label,
 select {
   font-size: 14px;

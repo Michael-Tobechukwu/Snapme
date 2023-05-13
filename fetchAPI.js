@@ -1,4 +1,4 @@
-const api = `http://localhost:5000/api/v1`;
+const api = `https://api.snapme-ng.com/api/v1`;
 
 //Search fetch API
 function searchPosts() {

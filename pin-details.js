@@ -35,7 +35,7 @@ window.onclick = function (event) {
   }
 };
 
-const api2 = `http://localhost:5000/api/v1`;
+const api2 = `https://api.snapme-ng.com/api/v1`;
 
 function checkJwt(location) {
   const jwtToken = document.cookie
@@ -615,7 +615,7 @@ window.onclick = function (event) {
 //       // If there was an error decoding the token, assume the user is not signed in
 //       console.error("Error decoding JWT token:", err);
 
-      // Redirect the user to the login page
+// Redirect the user to the login page
 //       window.location.href = "login.html";
 //     }
 //   } else {
@@ -1759,7 +1759,7 @@ closeCommentBtn3.addEventListener("click", function () {
 });
 //Comment box popup for third catalogs for you pin end
 ////
-//Comment box popup for fourth catalogs for you pin 
+//Comment box popup for fourth catalogs for you pin
 var commentBtn4 = document.getElementsByClassName("commentBtn")[2];
 var commentBox4 = document.getElementsByClassName("commentBox")[2];
 var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
@@ -1773,7 +1773,7 @@ closeCommentBtn4.addEventListener("click", function () {
 });
 //Comment box popup for fourth catalogs for you pin end
 ////
-//Comment box popup for 5th pin 
+//Comment box popup for 5th pin
 var commentBtn5 = document.getElementsByClassName("commentBtn")[3];
 var commentBox5 = document.getElementsByClassName("commentBox")[3];
 var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
@@ -1788,7 +1788,7 @@ closeCommentBtn5.addEventListener("click", function () {
 //Comment box popup for 5th pin end
 ////
 
-//Get request to fetch user profile 
+//Get request to fetch user profile
 function thisUser() {
   fetch("https://api.snapme-ng.com/api/v1/:username")
     .then((response) => response.json())
@@ -1806,16 +1806,18 @@ thisUser();
 function pinDetails() {
   // Fetch the pin data from the backend
   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
-    .then(response => response.json())
-    .then(pin => {
+    .then((response) => response.json())
+    .then((pin) => {
       // Create a container element to display the pin details
-      const container = document.createElement('div');
+      const container = document.createElement("div");
 
       // Create elements for the pin caption, author, and content
-      const caption = document.createElement('h1');
-      const author = document.createElement('p');
-      const content = document.createElement('p');
-      const media = document.createElement(pin.media.type === 'image' ? 'img' : 'video');
+      const caption = document.createElement("h1");
+      const author = document.createElement("p");
+      const content = document.createElement("p");
+      const media = document.createElement(
+        pin.media.type === "image" ? "img" : "video"
+      );
 
       // Set the text content of the elements to the pin data
       caption.textContent = pin.caption;
@@ -1835,7 +1837,7 @@ function pinDetails() {
       // Add the container to the UI
       document.body.appendChild(container);
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 }
 
 // Call the pinDetails function with a pin ID

@@ -1,6 +1,5 @@
-const backBtn = document.querySelector('.backArrow');
-backBtn.addEventListener('click', goBack 
-)
+const backBtn = document.querySelector(".backArrow");
+backBtn.addEventListener("click", goBack);
 function goBack() {
   window.history.back();
 }
@@ -11,7 +10,7 @@ var showPasswordIcon = document.getElementsByClassName("eyeIcon")[0];
 const otpBtn = document.getElementById("otp");
 const resetForm = document.getElementById("resetForm");
 
-let api = "http://localhost:5000/api/v1";
+let api = "https://api.snapme-ng.com/api/v1";
 
 function showPwd() {
   if (pwdInput.type === "password") {

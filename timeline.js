@@ -4,7 +4,7 @@ window.addEventListener("load", function () {
   }, 2000);
 });
 
-let api1 = `http://localhost:5000/api/v1`;
+let api1 = `https://api.snapme-ng.com/api/v1`;
 
 //Preloader
 window.onload = function () {
@@ -1489,7 +1489,7 @@ closeCommentBtn3.addEventListener("click", function () {
 });
 //Comment box popup for third pin end
 ////
-//Comment box popup for fourth pin 
+//Comment box popup for fourth pin
 var commentBtn4 = document.getElementsByClassName("commentBtn")[2];
 var commentBox4 = document.getElementsByClassName("commentBox")[2];
 var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
@@ -1503,7 +1503,7 @@ closeCommentBtn4.addEventListener("click", function () {
 });
 //Comment box popup for fourth pin end
 ////
-//Comment box popup for 5th pin 
+//Comment box popup for 5th pin
 var commentBtn5 = document.getElementsByClassName("commentBtn")[3];
 var commentBox5 = document.getElementsByClassName("commentBox")[3];
 var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
@@ -1517,7 +1517,7 @@ closeCommentBtn5.addEventListener("click", function () {
 });
 //Comment box popup for 5th pin end
 ////
-//Comment box popup for 6th pin 
+//Comment box popup for 6th pin
 var commentBtn6 = document.getElementsByClassName("commentBtn")[4];
 var commentBox6 = document.getElementsByClassName("commentBox")[4];
 var closeCommentBtn6 = document.getElementsByClassName("closeComment")[4];
@@ -1531,7 +1531,7 @@ closeCommentBtn6.addEventListener("click", function () {
 });
 //Comment box popup for 6th pin end
 ////
-//Comment box popup for 7th pin 
+//Comment box popup for 7th pin
 var commentBtn7 = document.getElementsByClassName("commentBtn")[5];
 var commentBox7 = document.getElementsByClassName("commentBox")[5];
 var closeCommentBtn7 = document.getElementsByClassName("closeComment")[5];
@@ -1545,7 +1545,7 @@ closeCommentBtn7.addEventListener("click", function () {
 });
 //Comment box popup for 7th pin end
 ///
-//Comment box popup for 8th pin 
+//Comment box popup for 8th pin
 var commentBtn8 = document.getElementsByClassName("commentBtn")[6];
 var commentBox8 = document.getElementsByClassName("commentBox")[6];
 var closeCommentBtn8 = document.getElementsByClassName("closeComment")[6];
@@ -1625,16 +1625,18 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 function pinDetails() {
   // Fetch the pin data from the backend
   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
-    .then(response => response.json())
-    .then(pin => {
+    .then((response) => response.json())
+    .then((pin) => {
       // Create a container element to display the pin details
-      const container = document.createElement('div');
+      const container = document.createElement("div");
 
       // Create elements for the pin caption, author, and content
-      const caption = document.createElement('h1');
-      const author = document.createElement('p');
-      const content = document.createElement('p');
-      const media = document.createElement(pin.media.type === 'image' ? 'img' : 'video');
+      const caption = document.createElement("h1");
+      const author = document.createElement("p");
+      const content = document.createElement("p");
+      const media = document.createElement(
+        pin.media.type === "image" ? "img" : "video"
+      );
 
       // Set the text content of the elements to the pin data
       caption.textContent = pin.caption;
@@ -1654,7 +1656,7 @@ function pinDetails() {
       // Add the container to the UI
       document.body.appendChild(container);
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 }
 
 // Call the pinDetails function with a pin ID

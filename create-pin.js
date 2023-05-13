@@ -1,190 +1,116 @@
+const create = document.getElementById("create");
+
+const api3 = `http://localhost:5000/api/v1`;
+
+function getJwt() {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    window.location.href = "/login.html";
+    return;
+  }
+  return jwtToken;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    Swal.fire("Ooops!", `You need to login first!`, "error");
+    // redirect user to login page if jwtToken doesn't exist
+    window.location.href = "/login.html";
+    return;
+  }
+  return;
+});
+
 //Create pin
 function createPin() {
   const caption = document.getElementById("caption").value;
   const message = document.getElementById("message").value;
   const category = document.getElementById("category").value;
-  const fileUpload = document.getElementById("inputGroupFile").value;
 
-    // generate unique pinId
-    const pinId = Math.random().toString(36).substring(2, 8) + Date.now().toString(36);
+  // generate unique pinId
+  const pinId =
+    Math.random().toString(36).substring(2, 8) + Date.now().toString(36);
 
-    // add pin to array with generated pinId
-    pins.push({
-      pinId,
-      caption: pin.caption,
-      media: pin.media,
-      message: pin.message,
-    });
-  
-    return pinId;
+  // add pin to array with generated pinId
+  pins.push({
+    pinId,
+    caption: pin.caption,
+    media: pin.media,
+    message: pin.message,
+  });
+
+  return pinId;
 
   // Create a data object with the form data
-  const data = {
-    caption: caption,
-    message: message,
-    category: category,
-    fileUpload: input,
+  const formData = new FormData();
+  const filesInput = document.getElementById("inputGroupFile");
+  for (let i = 0; i < filesInput.files.length; i++) {
+    formData.append("media", filesInput.files[i]);
+  }
+  formData.append("caption", caption);
+  formData.append("message", message);
+
+  const options = {
+    method: "POST",
+    body: formData,
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${getJwt()}`,
+    },
   };
 
   // Send the data to the server using the Fetch API
-  fetch("https://api.snapme-ng.com/api/v1/create-pin/:catalog", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
+  fetch(`${api3}/create-pin/${category}`, options)
     .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 400) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 403) {
+        throw new Error(response.statusText);
+      } else if (response.status === 500) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
-      return response.json();
     })
     .then((data) => {
-      console.log(data);
-      // Update the UI with the response data
-      const pinContainer = document.getElementById("pin-container");
-      const pinElement = document.createElement("div");
-      pinElement.innerHTML = `<h3>${data.caption}</h3>
-        <p>${data.message}</p>
-        <p>${data.category}</p>
-        <div>${data.fileUpload}</div>
-        <div class="card-body">
-                <ul class="card-title icons-list">
-                  <li>
-                    <button>
-                      <i class="fa-solid fa-eye"></i>
-                      <p class="text-white">2.4k</p>
-                    </button>
-                  </li>
-
-                  <li class="likeListItem">
-                    <button
-                      onclick="likePost()"
-                      class="like-button"
-                      id="likeBtn"
-                    >
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">5k</p>
-                  </li>
-
-                  <li>
-                    <button id="commentBtn">
-                      <i class="fa-solid fa-comment"></i>
-                      <p class="text-white">396</p>
-                    </button>
-                  </li>
-
-                  <li>
-                    <button class="myPopupBtn">
-                      <i class="fa-solid fa-share"></i>
-                      <p class="text-white">123</p>
-                    </button>
-                  </li>
-
-                  <!-- The Modal -->
-                  <div class="shareModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modalContent mobileModalContent">
-                      <span class="close">&times;</span>
-                      <p>Share this post</p>
-                      <div class="share_popup">
-                        <a
-                          class="facebookShare"
-                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
-                          target="_blank"
-                          ><img src="Images/facebook new.svg"
-                        /></a>
-                        <a
-                          class=""
-                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
-                          data-size="large"
-                          target="_blank"
-                        >
-                          <img src="Images/twitter new.svg" alt="Twitter"
-                        /></a>
-
-                        <a
-                          class="whatsappShare"
-                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                        </a>
-
-                        <a
-                          class="telegramShare"
-                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img
-                            src="Images/telegram new.svg"
-                            alt="Telegram share"
-                          />
-                        </a>
-
-                        <a
-                          class="linkedinShare"
-                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
-                          target="_blank"
-                        >
-                          <img src="Images/linkedin.svg" alt="Linkedin" />
-                        </a>
-
-                        <a
-                          class="redditShare"
-                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
-                          target="_blank"
-                        >
-                          <img src="Images/reddit.svg" alt="Reddit" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </ul>
-                <div class="other-icons">
-                  <div>
-                    <span id="dots"></span>
-                    <div id="more-icons" class="more-icons">
-                      <ul>
-                        <li onclick="savePost()">
-                          <i class="fa-solid fa-bookmark"></i>
-                          <p>197</p>
-                        </li>
-                        <li>
-                          <i
-                            onclick="downloadPost()"
-                            class="fa-solid fa-download"
-                          ></i>
-                          <p>29</p>
-                        </li>
-                        <li onclick="deletePost()">
-                          <i class="fa-solid fa-trash"></i>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button onclick="moreIcons()" id="myBtn">
-                    <img src="Images/more-icon.svg" width="20px" />
-                  </button>
-                </div>
-              </div>`;
-      pinContainer.appendChild(pinElement);
+      const postId = data.postId;
+      Swal.fire(
+        "Success!",
+        `Pin created successfully under the ${data.catalog} catalog!`,
+        "success"
+      );
+      window.location.href = `pin-details.html?id=${postId}`;
     })
     .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error,
+        footer: '<a href="/subscribe.html">Go to subscribe page now!</a>',
+      });
     });
 }
-createPin();
+
+create.addEventListener("submit", function (event) {
+  event.preventDefault();
+  createPin();
+});
 
 //Accept multiple files
-function handleFileSelect(event) {
-  const files = event.target.files;
-  for (let i = 0; i < files.length; i++) {
-    console.log(files[i].name);
-  }
-}
+// function handleFileSelect(event) {
+//   const files = event.target.files;
+//   for (let i = 0; i < files.length; i++) {
+//     console.log(files[i].name);
+//   }
+// }
 
 //Go to the previous page
 function goBack() {

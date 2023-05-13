@@ -53,7 +53,11 @@ function getOtp() {
   const email = document.getElementById("username").value;
 
   if (!email) {
-    alert("Enter an email address or username");
+    Swal.fire(
+      "Warning!",
+      `Please enter an existing email address or username!`,
+      "error"
+    );
     return;
   }
 
@@ -84,10 +88,10 @@ function getOtp() {
     })
     .then((data) => {
       console.log(data.message);
-      alert(`Password reset OTP has been sent to your mailbox! ${data.email}!`);
+      Swal.fire("Success!", `${data.message} at ${data.email}!`, "success");
     })
     .catch((error) => {
-      alert(error.message);
+      Swal.fire("Error!", `${error}`, "error");
       console.error(error);
     });
 }
@@ -114,16 +118,20 @@ function resetPassword() {
   const token = document.getElementById("code").value;
   const password = document.getElementById("new-password").value;
 
-  console.log(token);
-
   if (!token) {
-    alert("Please insert the 6-digit OTP that was sent to you mail!");
+    Swal.fire(
+      "Warning!",
+      `Please insert the 6-digit OTP that was sent to you mail!`,
+      "error"
+    );
     return;
   }
 
   if (!password) {
-    alert(
-      "Please input your new password, it must not be less than 8 characters!"
+    Swal.fire(
+      "Warning!",
+      `Please input your new password, it must not be less than 8 characters!`,
+      "error"
     );
     return;
   }
@@ -153,14 +161,15 @@ function resetPassword() {
       }
     })
     .then((data) => {
-      console.log(data.message);
-      // alert(
-      //   `${data.message}! You can login with your new password immediately!`
-      // );
+      Swal.fire(
+        "Success!",
+        `${data.message}! You can login with your new password!`,
+        "success"
+      );
       window.location.href = "/login.html";
     })
     .catch((error) => {
-      alert(error.message);
+      Swal.fire("Ooops!", `${error}`, "error");
       console.error(error);
     });
 }

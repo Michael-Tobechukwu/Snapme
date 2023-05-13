@@ -49,8 +49,10 @@ function signup() {
         return response.json();
       } else if (response.status === 400) {
         throw new Error(
-          `There are some errors in your signup form, check it and try again: ${response.status} ${response.statusText}`
+          `There are some errors in your signup form, check it and try again: ${response.statusText}`
         );
+      } else if (response.status === 401) {
+        throw new Error(`${response.statusText}`);
       }
     })
     .then((data) => {
@@ -58,7 +60,7 @@ function signup() {
       window.location.href = "/timeline.html";
     })
     .catch((error) => {
-      alert(error.message);
+      Swal.fire("Ooops!", `${error}`, "error");
       console.error(error);
     });
 }

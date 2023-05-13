@@ -19,7 +19,7 @@ function checkJwt(location) {
     ?.split("=")[1];
   console.log(jwtToken);
   if (jwtToken && location === "profile") {
-    window.location.href = "/username.html";
+    window.location.href = "/user.html";
     return;
   } else if (!jwtToken && location === "profile") {
     // redirect to the login page if jwtToken doesn't exist
@@ -86,10 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Render the posts in the timeline element
         const timelineElement = document.querySelector(".row");
 
-        console.log(posts);
-
         posts.forEach((post) => {
-          console.log(post.user.username);
+          // console.log(post._id);
+          const postId = post._id;
 
           const postElement = document.createElement("div");
           postElement.classList.add("col");
@@ -97,10 +96,15 @@ document.addEventListener("DOMContentLoaded", function () {
           postElement.innerHTML = `
         <div class="card mobileCard">
             <div class="post-img">
-              <img src="${
-                post?.media[0]
-              }" class="card-img-top" onclick="window.location = 'pin-details.html'" />
-              <a class="username text-white" href="username.html">
+            ${
+              post.media[0].endsWith(".mp4")
+                ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                <source src="${post?.media[0]}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>`
+                : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+            }
+              <a class="username text-white" href="user.html">
                 <img src="${post.user.picture}" width="50px" />
                 ${post.user.username}
                 ${
@@ -173,12 +177,37 @@ document.addEventListener("DOMContentLoaded", function () {
                         target="_blank"
                       >
                         <img src="Images/whatsapp new.svg" alt="WhatsApp"/></a>
+
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+
+                        <a
+                          class="redditShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
                         </div>
                       </div>
                     </div>
                   </ul>
-
-                  <p class="card-text">${post.description}</p>
+                  
                   <a href="#" class="btn btn-primary">Read more</a>
                 </div>
           </div>`;
@@ -187,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
     .catch((error) => {
-      alert(`error fetching timeline: ${error}`);
+      Swal.fire("Ooops!", `Error fetching timeline: ${error}`, "error");
       console.error("Error fetching timeline:", error);
     });
 });

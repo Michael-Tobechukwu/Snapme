@@ -50,11 +50,15 @@ function followCatalog(catalogName) {
       return response.json();
     })
     .then((data) => {
-      alert(`Successfully followed catalog: ${data.catalog}`);
+      Swal.fire(
+        "Success!",
+        `Successfully followed the ${data.catalog} catalog!`,
+        "success"
+      );
       console.log("Successfully followed catalog:", data.catalog);
     })
     .catch((error) => {
-      alert(`Error following catalog: ${error}`);
+      Swal.fire("Ooops!", `Error following catalog: ${error}`, "error");
       console.error("Error following catalog:", error);
     });
 }

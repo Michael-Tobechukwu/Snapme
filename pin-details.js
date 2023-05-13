@@ -35,7 +35,438 @@ window.onclick = function (event) {
   }
 };
 
-//Like button for pin
+const api2 = `http://localhost:5000/api/v1`;
+
+function checkJwt(location) {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  console.log(jwtToken);
+  if (jwtToken && location === "profile") {
+    window.location.href = "/user.html";
+    return;
+  } else if (!jwtToken && location === "profile") {
+    // redirect to the login page if jwtToken doesn't exist
+    // alert("You need to login first!");
+    window.location.href = "/login.html";
+    return;
+  } else if (!jwtToken && location === "post") {
+    // redirect to the login page
+    // alert("You need to login first!");
+    window.location.href = "/login.html";
+    return;
+  } else if (jwtToken && location === "post") {
+    window.location.href = "/create-pin.html";
+    return;
+  }
+}
+
+function getJwt() {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    window.location.href = "/login.html";
+    return;
+  }
+  return jwtToken;
+}
+
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+const id = getQueryParam("id");
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!id) {
+    Swal.fire("Ooops!", `Post not found!`, "error");
+    window.location.href = "timeline.html";
+    return;
+  }
+  // Make an HTTP request to the timeline API endpoint
+  fetch(`${api2}/pin-details/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Network Response Error");
+      }
+    })
+    .then((posts) => {
+      console.log(posts);
+      const pinDetailsElement = document.getElementById("pinCard");
+
+      let mediaHTML = "";
+      if (Array.isArray(posts.media) && posts.media.length > 0) {
+        // Determine if the media is an image or video
+        const isImage =
+          posts.media[0].endsWith(".jpg") ||
+          posts.media[0].endsWith(".jpeg") ||
+          posts.media[0].endsWith(".png") ||
+          posts.media[0].endsWith(".svg") ||
+          posts.media[0].endsWith(".tiff") ||
+          posts.media[0].endsWith(".webp") ||
+          posts.media[0].endsWith(".gif");
+        const isVideo =
+          posts.media[0].endsWith(".mp4") ||
+          posts.media[0].endsWith(".avi") ||
+          posts.media[0].endsWith(".mov") ||
+          posts.media[0].endsWith(".mkv") ||
+          posts.media[0].endsWith(".3gp") ||
+          posts.media[0].endsWith(".flv") ||
+          posts.media[0].endsWith(".wmv") ||
+          posts.media[0].endsWith(".webm");
+
+        // If the media is an image, create an img tag and append it to the mediaHTML string
+        if (isImage) {
+          mediaHTML += `<img src="${posts.media[0]}" class="post-image" onclick="openFullscreen(this)" />`;
+        }
+
+        // If the media is a video, create a video tag and append it to the mediaHTML string
+        if (isVideo) {
+          mediaHTML += `<video src="${posts.media[0]}" class="post-video" onclick="openFullscreen(this)" controls></video>`;
+        }
+
+        // If there are more than one media, create a slider
+        if (posts.media.length > 1) {
+          mediaHTML = `
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper" onclick="log()">
+                ${posts.media
+                  .map((media, index) => {
+                    const isImage =
+                      media.endsWith(".jpg") ||
+                      media.endsWith(".jpeg") ||
+                      media.endsWith(".png") ||
+                      media.endsWith(".svg") ||
+                      media.endsWith(".tiff") ||
+                      media.endsWith(".webp") ||
+                      media.endsWith(".gif");
+                    const isVideo =
+                      media.endsWith(".mp4") ||
+                      media.endsWith(".avi") ||
+                      media.endsWith(".mov") ||
+                      media.endsWith(".mkv") ||
+                      media.endsWith(".3gp") ||
+                      media.endsWith(".flv") ||
+                      media.endsWith(".wmv") ||
+                      media.endsWith(".webm");
+                    const type = isImage ? "image" : isVideo ? "video" : null;
+                    if (type) {
+                      return `
+                        <div class="swiper-slide" onclick="openFullscreen(this)">
+                          ${
+                            type === "image"
+                              ? `<img src="${media}" class="post-image"/>`
+                              : `<video class="video" loop>
+                            <source src="${media}" type="video/mp4" />
+                          </video>
+                          <div id="my-video-controls" class="my-video-controls">
+                            <button id="play-pause-btn">
+                              <img src="Images/pause-button.svg" alt="Pause/Play" />
+                            </button>
+                            <input
+                              type="range"
+                              id="volume-range"
+                              min="0"
+                              max="1"
+                              step="0.1"
+                              value="1"
+                            />
+                            <button id="mute-btn">
+                              <img src="Images/unmute button.svg" alt="Unmute/Mute" />
+                            </button>
+                            <select id="speed-select">
+                              <option value="1">1x</option>
+                              <option value="0.5">0.5x</option>
+                              <option value="1.5">1.5x</option>
+                              <option value="2">2x</option>
+                            </select>
+                            <button id="skip-back-btn">
+                              <img src="Images/skip-backward.svg" alt="<<" />
+                            </button>
+                            <button id="skip-ahead-btn">
+                              <img src="Images/skip-forward.svg" alt=">>" />
+                            </button>
+                          </div>`
+                          }
+                        </div>`;
+                    }
+                  })
+                  .join("")}
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>`;
+        }
+      }
+
+      pinDetailsElement.innerHTML = `
+        <div class="img">
+        ${mediaHTML}
+
+          <div class="mobileIcons">
+            <img
+              src="Images/back arrow.svg"
+              onclick="history.back()"
+            />
+            <img src="Images/Snapme icon white.png" alt="logo" />
+          </div>
+          <div class="content-top-mobile">
+            <div class="userDetails">
+              <img src="${posts.user.picture}" />
+              <p
+                class="azizy_username"
+                onclick="window.location='user.html?user=${
+                  posts.user.username
+                }'"
+              >
+                ${posts.user.username}
+              </p>
+            </div>
+            <button
+              id="followUserBtn"
+              class="follow"
+              onclick="followThisUser()"
+            >
+              Follow +
+            </button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-top">
+            <div class="userDetails">
+              <img
+                src="${posts.user.picture}"
+                onclick="window.location='user.html?user=${
+                  posts.user.username
+                }'"
+              />
+              <div class="text">
+                <p
+                  class="azizy_username"
+                  onclick="window.location='user.html?user=${
+                    posts.user.username
+                  }'"
+                >
+                ${posts.user.username}
+                </p>
+                <span id="postDate">${moment(posts.date)
+                  .locale("en")
+                  .format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")}</span>
+              </div>
+            </div>
+            <button
+              id="followUserButton"
+              class="follow"
+              onclick=""
+            >
+              Follow +
+            </button>
+          </div>
+
+          <!--<div class="subscribe">
+            <button onclick="window.location='subscribe.html'">
+              Subscribe
+            </button>
+          </div>-->
+          <div class="content-mid">
+            <h3>${posts.caption}</h3>
+            <span id="postDateMobile"></span>
+
+            <div class="show-more">
+              <ul class="card-title icons-list">
+                <li>
+                  <button>
+                    <i class="fa-solid fa-eye"></i>
+                    <p class="text-white">${posts.views}</p>
+                  </button>
+                </li>
+                <li class="likeDiv">
+                  <button onclick="likePost()" id="like-button">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <p class="text-white">${posts.likes.length}</p>
+                </li>
+                <li>
+                <a href="#commentForm">
+                  <button onclick="">
+                    <i class="fa-solid fa-comment"></i>
+                    <p class="text-white">${posts.comment.length}</p>
+                  </button>
+                  </a>
+                </li>
+                <li>
+                  <button id="sharePinBtn">
+                    <i class="fa-solid fa-share"></i>
+                    <p class="text-white">${posts.shares}</p>
+                  </button>
+                </li>
+
+                <!--The modal-->
+                <div id="sharePinModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modalContent mobileModalContent">
+                    <span id="closeZ">&times;</span>
+                    <p>Share this post</p>
+                    <div class="share_popup">
+                      <a
+                        class="facebookShare"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/pin-details/"
+                        target="_blank"
+                        ><img src="Images/facebook new.svg"
+                      /></a>
+                      <a
+                        class=""
+                        href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/pin-details/&hashtags=fashion,music,sports,Snapme"
+                        data-size="large"
+                        target="_blank"
+                      >
+                        <img src="Images/twitter new.svg" alt="Twitter"
+                      /></a>
+
+                      <a
+                        class="whatsappShare"
+                        href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/pin-details/"
+                        target="_blank"
+                      >
+                        <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                      </a>
+
+                      <a
+                        class="telegramShare"
+                        href="https://t.me/share/url?url=https://snapme-ng.com/pin-details&text=I found this awesome post on Snapme! Check it out!"
+                        target="_blank"
+                      >
+                        <img
+                          src="Images/telegram new.svg"
+                          alt="Telegram share"
+                        />
+                      </a>
+
+                      <a
+                        class="linkedinShare"
+                        href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/pin-details/"
+                        target="_blank"
+                      >
+                        <img src="Images/linkedin.svg" alt="Linkedin" />
+                      </a>
+
+                      <a
+                        class="redditShare"
+                        href="http://www.reddit.com/submit?url=https://snapme-ng.com/pin-details/&text=I found this awesome post on Snapme! Check it out!"
+                        target="_blank"
+                      >
+                        <img src="Images/reddit.svg" alt="Reddit" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <li>
+                  <button onclick="savePost()">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <p class="text-white">197</p>
+                  </button>
+                </li>
+                <li>
+                  <button onclick="downloadPost()">
+                    <i class="fa-solid fa-download"></i>
+                    <p class="text-white">29</p>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <p>
+              ${posts.message}
+              <span id="dots">...</span
+              ><span id="more-text"
+                >More info about Ruger....Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Phasellus imperdiet, nulla et
+                dictum interdum, nisi lorem egestas vitae scelerisque enim
+                ligula venenatis dolor.</span
+              >
+            </p>
+            <button
+              onclick="readMore()"
+              id="myBtn"
+              style="color: #fff; font-weight: bold"
+            >
+              Show more
+            </button>
+          </div>
+          <div class="content-bottom">
+            <p class="text-white">Comments</p>
+            <div class="marcdiss-box">
+              <button onclick="window.location = 'user.html?user=${
+                posts.comment.username
+              }'">
+                <img src="${posts.comment.picture}" width="50px" alt="${
+        posts.comment.username
+      } Profile Picture" />
+              </button>
+              <div class="marcdiss">
+                <p class="username">${posts.comment.username}</p>
+                <p class="alias">${posts.comment}</p>
+
+                <ul id="signedInContent2">
+                  <li onclick="${likeComment(posts.comment.id)}">Like</li>
+                  <li onclick="${replyComment(posts.comment.id)}">Reply</li>
+                  <li onclick="${deleteReply(
+                    posts.comment.id,
+                    posts.comment.replies.id
+                  )}">Remove</li>
+                  <li onclick="${deleteComment(posts.comment.id)}">Delete</li>
+                </ul>
+              </div>
+            </div>
+            <form id="commentForm">
+              <div class="form-input-button">
+                <button onclick="user.html?user=${username}">
+                  <img src="${user}" alt="Profile pic" />
+                </button>
+                <input type="text" name="text" placeholder="Add your comment..." required/>
+                <button type="submit" onclick="commentOnPost()">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        `;
+      // pinDetailsElement.appendChild(pinElement);
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `${error}`, "error");
+      console.log(error);
+    });
+});
+
+function openFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    /* Safari */
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    /* IE11 */
+    element.msRequestFullscreen();
+  }
+}
+
+//Pin details post like
 const likeButton = document.querySelector("#like-button");
 let isLiked = false;
 
@@ -160,35 +591,38 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
-//Catalogs for you pins share end
-/////
-//Check signed in status of user when create button is clicked
-const createBtn = document.getElementById("createBtn");
-createBtn.addEventListener("click", () => {
-  // Get the JWT token from local storage
-  const token = localStorage.getItem("jwtToken");
 
-  // Check if the user is logged in
-  if (token) {
-    try {
-      // Attempt to decode the JWT token to get the user information
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+//Catalogs for you pins share
+////
+//Signedin Users Content
+//Check signed in status on page
+// window.addEventListener("load", () => {
+//   // Get the JWT token from local storage
+//   const token = localStorage.getItem("jwtToken");
 
-      // Redirect the user to the create pin page
-      window.location.href = "create-pin.html";
-    } catch (err) {
-      // If there was an error decoding the token, assume the user is not logged in
-      console.error("Error decoding JWT token:", err);
+//   if (token) {
+//     try {
+//       // Attempt to decode the JWT token to get the user information
+//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
+//       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+
+//       // Display the content for signed-in users
+//       const signedInContent = document.getElementById("signedInContent");
+//       const signedInContent2 = document.getElementById("signedInContent2");
+//       signedInContent.style.display = "block";
+//       signedInContent2.style.display = "block";
+//     } catch (err) {
+//       // If there was an error decoding the token, assume the user is not signed in
+//       console.error("Error decoding JWT token:", err);
 
       // Redirect the user to the login page
-      window.location.href = "login.html";
-    }
-  } else {
-    // Redirect the user to the login page
-    window.location.href = "login.html";
-  }
-});
+//       window.location.href = "login.html";
+//     }
+//   } else {
+//     // Redirect the user to the login page
+//     window.location.href = "login.html";
+//   }
+// });
 
 ////
 
@@ -955,98 +1389,143 @@ window.onscroll = function () {
 
 ////
 //Commenter profile
-function commenterProfile() {
-  fetch("https://api.snapme-ng.com//api/v1/:username")
-    .then((response) => response.json())
-    .then((data) => {
-      // Display the user profile data on the page
-      const profileContainer = document.querySelector("#profile-container");
-      profileContainer.innerHTML = `
-      <h2>${data.name}</h2>
-      <p>Email: ${data.email}</p>
-      <p>Age: ${data.age}</p>
-      <p>Location: ${data.location}</p>
-    `;
-    })
-    .catch((error) => {
-      // Handle any errors that occurred during the request
-      console.error("Error fetching user profile:", error);
-    });
-}
-commenterProfile();
+// function commenterProfile() {
+//   fetch(`${api2}/:username`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // Display the user profile data on the page
+//       const profileContainer = document.querySelector("#profile-container");
+//       profileContainer.innerHTML = `
+//       <h2>${data.name}</h2>
+//       <p>Email: ${data.email}</p>
+//       <p>Age: ${data.age}</p>
+//       <p>Location: ${data.location}</p>
+//     `;
+//     })
+//     .catch((error) => {
+//       // Handle any errors that occurred during the request
+//       console.error("Error fetching user profile:", error);
+//     });
+// }
 
 //Like comment
-function likeComment() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like/:commentId", {
+function likeComment(commentId) {
+  fetch(`${api2}/pins/${id}/like/${commentId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
     },
-    body: JSON.stringify({
-      userId: "abc123",
-      timestamp: new Date().toISOString(),
-    }),
   })
     .then((response) => {
-      if (response.ok) {
-        console.log("Successfully liked the comment!");
-      } else {
-        console.log("Failed to like the comment.");
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 500) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
     })
-    .catch((error) => console.error("Error:", error));
+    .then((data) => {
+      console.log(`${data.message}`);
+    })
+    .catch((error) => console.error(error));
 }
 
 //Reply Comment
-function replyComment() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/:postId/comment/:id/reply", {
+function replyComment(commentId) {
+  const text = document.getElementById("text").value;
+
+  fetch(`${api2}/pins/${id}/comment/${commentId}/reply`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer <token>",
+      Authorization: `Bearer ${getJwt()}`,
     },
     body: JSON.stringify({
-      userId: 123,
-      postId: 456,
-      comment: "This is a great post!",
+      text,
     }),
   })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error(error));
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 401) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 500) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+    })
+    .then((data) => {
+      console.log(`${data.message}`);
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `${error}`, "error");
+      console.error(error);
+    });
 }
-replyComment();
 
 //Remove/delete reply
-function deleteReply() {
-  fetch(
-    "https://api.snapme-ng.com//api/v1/pins/:postId/:commentId/delete/:replyId",
-    {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer <token>",
-      },
-    }
-  )
-    .then((response) => console.log("Data deleted successfully"))
-    .catch((error) => console.error(error));
-}
-deleteReply();
-
-//Delete Comment
-function deleteComment() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/:id/delete/:commentId", {
+function deleteReply(commentId, replyId) {
+  fetch(`${api2}/pins/${id}/${commentId}/delete/${replyId}`, {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer <token>",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
     },
   })
-    .then((response) => console.log("Data deleted successfully"))
-    .catch((error) => console.error(error));
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 401) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 500) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+    })
+    .then((data) => {
+      Swal.fire("Success", `${data.message}`, "success");
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `${error}`, "error");
+      console.error(error);
+    });
 }
-deleteComment();
+
+//Delete Comment
+function deleteComment(commentId) {
+  fetch(`${api2}/pins/${id}/delete/${commentId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 401) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 500) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+    })
+    .then((data) => {
+      Swal.fire("Success", `${data.message}`, "success");
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `${error}`, "error");
+      console.error(error);
+    });
+}
 //Delete comment end
 /////
+
 //Video controls
 //const video = document.getElementById("video");
 const playPauseBtn = document.getElementById("play-pause-btn");

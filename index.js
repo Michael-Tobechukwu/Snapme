@@ -1526,7 +1526,7 @@ playPauseBtn.addEventListener("click", () => {
     playPauseBtn.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
   } else {
     video.pause();
-    playPauseBtn.innerHTML = `<img src="Images/play-button-white.svg" alt="">`;
+    playPauseBtn.innerHTML = `<img src="Images/play-button-white.svg">`;
   }
 });
 
@@ -1741,7 +1741,7 @@ followBtn.addEventListener("click", () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt_token")}`, // Replace with the actual name of your JWT token in localStorage
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, 
     },
     credentials: "include",
     mode: "cors",

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>Snapme login</title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -34,28 +35,41 @@
         <div class="logo">
           <a href="index.html"><img src="Images/Snapme logo main.png" /></a>
         </div>
-        <div class="card">
-          <form id="loginForm">
+       
+        <div class="card" id="form">
+          <img src="Images/back arrow.svg" class="backArrow" onclick="" width="25px"/>
+          
+          <form>
             <input
               type="text"
-              name="identifier"
-              id="identifier"
+              name="username"
+              id="username"
               placeholder="Username or email"
               required
             />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              required
-            />
-            <button type="submit" id="submitBtn">
+            <div class="password">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <img
+                src="Images/eye see.svg"
+                width="30px"
+                class="eyeIcon"
+                onclick="showPwd()"
+              />
+            </div>
+            <div id="error-message"></div>
+
+            <button id="login-button" type="submit">
               <i class="fa-solid fa-paper-plane"></i>
             </button>
             <div class="forgot">
               <p>Forgot password?</p>
-              <a href="/reset-password.html">Reset</a>
+              <a href="reset-password.html">Reset</a>
             </div>
           </form>
         </div>
@@ -63,72 +77,10 @@
       <!--wrapper ends-->
     </div>
     <!--scripts-->
-    <script>
-      let loginForm = document.getElementById("loginForm");
-      let submitBtn = document.getElementById("submitBtn");
-
-      let api = "https://api.snapme-ng.com/api/v1";
-
-      function login() {
-        const identifier = document.getElementById("identifier").value;
-        const password = document.getElementById("password").value;
-
-        let d = new Date();
-        d.setTime(d.getTime() + 24 * 60 * 60 * 1000);
-        let expires = "expires=" + d.toUTCString();
-
-        const payload = { identifier, password };
-
-        fetch(`${api}/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        })
-          .then((response) => {
-            if (response.status === 200) {
-              return response.json();
-            } else if (response.status === 400) {
-              throw new Error(
-                `There are some errors in your login form, check it and try again: ${response.status} ${response.statusText}`
-              );
-            } else if (response.status === 401) {
-              throw new Error(
-                `Your password is incorrect, please check it and try again!`
-              );
-            }
-          })
-          .then((data) => {
-            document.cookie = `jwtToken=${data.token};${expires};path=/;`;
-            const returnUrl = localStorage.getItem("returnUrl");
-            if (returnUrl) {
-              localStorage.removeItem("returnUrl");
-              window.location.href = returnUrl;
-            } else {
-              // Redirect the user to the default page after login
-              window.location.href = "/timeline.html";
-            }
-          })
-          .catch((error) => {
-            Swal.fire("Ooops!", `${error}`, "error");
-            console.error(error);
-          });
-      }
-
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          login();
-        });
-    </script>
-    <script src="main.js"></script>
+    <script src="snapme-login.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {

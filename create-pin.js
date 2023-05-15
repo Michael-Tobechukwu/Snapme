@@ -9,6 +9,7 @@ function getJwt() {
     ?.split("=")[1];
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
+    localStorage.setItem("returnUrl", window.location.href);
     window.location.href = "/login.html";
     return;
   }
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .find((cookie) => cookie.startsWith("jwtToken="))
     ?.split("=")[1];
   if (!jwtToken) {
+    localStorage.setItem("returnUrl", window.location.href);
     Swal.fire("Ooops!", `You need to login first!`, "error");
     // redirect user to login page if jwtToken doesn't exist
     window.location.href = "/login.html";

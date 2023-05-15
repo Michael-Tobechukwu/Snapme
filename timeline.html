@@ -3483,12 +3483,18 @@
       // Retrieve token from query parameter
       const token = getQueryParam("token");
 
+      // Retrieve return url from localStorage
+      const returnUrl = localStorage.getItem("returnUrl");
+
       // If token exists, set it as a cookie with 1 day expiration
       if (token) {
-        console.log(token);
         setCookie("jwtToken", token, 1);
-        // Redirect to timeline.html or any other desired page
-        window.location.href = "timeline.html";
+      }
+
+      //If return Url exists, redirect to the page else stay on this page
+      if (returnUrl) {
+        localStorage.removeItem("returnUrl");
+        window.location.href = returnUrl;
       }
     </script>
   </body>

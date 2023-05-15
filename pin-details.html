@@ -2032,222 +2032,7 @@
       </div>
       <!--mobile tabs ends-->
 
-      <div class="post-card">
-        <div class="img">
-          <img src="Images/ruger 7.jpg" class="post-image" />
-
-          <div class="mobileIcons">
-            <!--top icons-->
-            <img src="Images/back arrow.svg" class="backArrow" onclick="goBack()" />
-            <img src="Images/Snapme icon white.png" class="white-logo" alt="logo" />
-          </div>
-          <div class="content-top-mobile">
-            <div class="userDetails">
-              <img src="Images/azizy.png" />
-              <p
-                class="azizy_username"
-                onclick="window.location='username.html'"
-              >
-                azizymakim
-              </p>
-            </div>
-            <button
-              id="followUserBtn"
-              class="follow"
-              onclick="followThisUser()"
-            >
-              Follow +
-            </button>
-          </div>
-        </div>
-        <div class="content">
-          <div class="content-top">
-            <div class="userDetails">
-              <img
-                src="Images/azizy.png"
-                onclick="window.location='username.html'"
-              />
-              <div class="text">
-                <p
-                  class="azizy_username"
-                  onclick="window.location='username.html'"
-                >
-                  azizymakim
-                </p>
-                <span id="postDate"></span>
-              </div>
-            </div>
-            <button id="followUserButton" class="follow" onclick="">
-              Follow +
-            </button>
-          </div>
-
-          <!--<div class="subscribe">
-            <button onclick="window.location='subscribe.html'">
-              Subscribe
-            </button>
-          </div>-->
-          <div class="content-mid">
-            <h3 class="postCaption">The Jonzing World Imprint</h3>
-            <span id="postDateMobile"></span>
-
-            <div class="show-more">
-              <ul class="card-title icons-list">
-                <li>
-                  <button>
-                    <i class="fa-solid fa-eye"></i>
-                    <p class="text-white">2.4k</p>
-                  </button>
-                </li>
-                <li class="likeDiv">
-                  <button onclick="likePost()" id="like-button">
-                    <i class="far fa-heart"></i>
-                  </button>
-                  <p class="text-white">5k</p>
-                </li>
-                <li>
-                  <button id="commentCount">
-                    <i class="fa-solid fa-comment"></i>
-                    <p class="text-white">396</p>
-                  </button>
-                </li>
-                <li>
-                  <button id="sharePinBtn">
-                    <i class="fa-solid fa-share"></i>
-                    <p class="text-white">123</p>
-                  </button>
-                </li>
-
-                <!--The modal-->
-                <div id="sharePinModal" class="modal">
-                  <!-- Modal content -->
-                  <div class="modalContent mobileModalContent">
-                    <span id="closeZ">&times;</span>
-                    <p>Share this post</p>
-                    <div class="share_popup">
-                      <a
-                        class="facebookShare"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/pin-details/"
-                        target="_blank"
-                        ><img src="Images/facebook new.svg"
-                      /></a>
-                      <a
-                        class=""
-                        href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/pin-details/&hashtags=fashion,music,sports,Snapme"
-                        data-size="large"
-                        target="_blank"
-                      >
-                        <img src="Images/twitter new.svg" alt="Twitter"
-                      /></a>
-
-                      <a
-                        class="whatsappShare"
-                        href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/pin-details/"
-                        target="_blank"
-                      >
-                        <img src="Images/whatsapp new.svg" alt="WhatsApp" />
-                      </a>
-
-                      <a
-                        class="telegramShare"
-                        href="https://t.me/share/url?url=https://snapme-ng.com/pin-details&text=I found this awesome post on Snapme! Check it out!"
-                        target="_blank"
-                      >
-                        <img
-                          src="Images/telegram new.svg"
-                          alt="Telegram share"
-                        />
-                      </a>
-
-                      <a
-                        class="linkedinShare"
-                        href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/pin-details/"
-                        target="_blank"
-                      >
-                        <img src="Images/linkedin.svg" alt="Linkedin" />
-                      </a>
-
-                      <a
-                        class="redditShare"
-                        href="http://www.reddit.com/submit?url=https://snapme-ng.com/pin-details/&text=I found this awesome post on Snapme! Check it out!"
-                        target="_blank"
-                      >
-                        <img src="Images/reddit.svg" alt="Reddit" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <li>
-                  <button onclick="savePost()">
-                    <i class="fa-solid fa-bookmark"></i>
-                    <p class="text-white">197</p>
-                  </button>
-                </li>
-                <li>
-                  <button onclick="downloadPost()">
-                    <i class="fa-solid fa-download"></i>
-                    <p class="text-white">29</p>
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <p class="postBody">
-              Nigeria's reggae-styled music sensation Ruger. His history,
-              lifestyle, and a stylishly covered left eye. Always a cool dude
-              and a fans favourite all the time. #ArtisteRuger
-              <span id="dots">...</span
-              ><span id="more-text"
-                >More info about Ruger....Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Phasellus imperdiet, nulla et
-                dictum interdum, nisi lorem egestas vitae scelerisque enim
-                ligula venenatis dolor.</span
-              >
-            </p>
-            <button
-              onclick="readMore()"
-              id="myBtn"
-              style="font-weight: bold"
-            >
-              Show more
-            </button>
-          </div>
-          <div class="content-bottom">
-            <p class="text-white">Comments</p>
-            <div class="marcdiss-box">
-              <a onclick="thisUser()">
-                <img src="Images/azizy.png" width="50px" alt="Profile pic" />
-              </a>
-              <div class="marcdiss">
-                <p class="username" onclick="thisUser()">marcdiss</p>
-                <p class="alias">The show maker</p>
-
-                <ul id="signedInContent2">
-                  <li onclick="likeComment()">Like</li>
-                  <li onclick="replyComment()">Reply</li>
-                  <li onclick="deleteReply()">Remove</li>
-                  <li onclick="deleteComment()">Delete</li>
-                </ul>
-              </div>
-            </div>
-            <form class="form-input-button">
-
-              <div class="commenterProfile">
-                <input type="button" onclick="commenterProfile()">
-                <img src="Images/user image.svg"/>
-              </div>
-              
-                <input type="text" placeholder="Add your comment..." id="commentInput"/>
-                <div id="commentButton">
-                  <input type="button" id="sendCommentBtn" onclick="commentOnPost()">
-                  <i class="fas fa-paper-plane"></i>
-                </div> 
-                
-
-              
-            </form>
-          </div>
-        </div>
+      <div class="post-card" id="pinCard">
         <!--content div-->
       </div>
       <h2 class="suggestedHeading">Catalogs for you</h2>
@@ -2256,9 +2041,17 @@
           <div class="col-5">
             <div class="card mobileCard">
               <div class="post-img">
-                <img src="Images/buju 2.jpeg" class="card-img-top" onclick="pinDetails()"/>
+                <img
+                  src="Images/buju 2.jpeg"
+                  class="card-img-top"
+                  onclick="pinDetails()"
+                />
                 <a class="username text-white" href="username.html"
-                  ><img src="Images/azizy.png" width="35px" class="profilePic" />
+                  ><img
+                    src="Images/azizy.png"
+                    width="35px"
+                    class="profilePic"
+                  />
                   <span class="nameOfUser">bryantcave</span>
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
@@ -2407,16 +2200,20 @@
           <div class="col-5">
             <div class="card mobileCard">
               <div class="post-img">
-                <img src="Images/Ayra-starr 20.jpeg" class="card-img-top" onclick="pinDetails()"/>
+                <img
+                  src="Images/Ayra-starr 20.jpeg"
+                  class="card-img-top"
+                  onclick="pinDetails()"
+                />
                 <a class="username text-white" href="username.html">
-                  <img src="Images/azizy.png" width="35px" class="profilePic"/>
+                  <img src="Images/azizy.png" width="35px" class="profilePic" />
                   alexa
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
                   <span class="timePosted"></span>
                 </a>
-                
+
                 <h4>Ayra Starr | Snapme Catalog</h4>
                 <div class="commentBox" id="commentBox2">
                   <form class="commentBoxForm">
@@ -2600,11 +2397,11 @@
                   /></span>
                   <span class="timePosted"></span>
                 </a>
-                
+
                 <h4>Poetry | Snapme Catalog</h4>
                 <div class="commentBox" id="commentBox2">
                   <form class="commentBoxForm">
-                    <span class="closeComment" > &times;</span>
+                    <span class="closeComment"> &times;</span>
                     <textarea
                       name="comment"
                       class="commentInput"
@@ -2776,18 +2573,18 @@
                   class="username text-white"
                   onclick="window.location='username.html'"
                 >
-                  <img src="Images/azizy.png" width="35px" class="profilePic"/>
+                  <img src="Images/azizy.png" width="35px" class="profilePic" />
                   marcdiss
                   <span id="subscribed-badge" class="verified-badge"
                     ><img src="Images/verified.svg" width="20px"
                   /></span>
                   <span class="timePosted"></span>
                 </a>
-                
+
                 <h4>Movies | Snapme Catalog</h4>
                 <div class="commentBox commentBoxWide">
                   <form class="commentBoxForm">
-                    <span class="closeComment" > &times;</span>
+                    <span class="closeComment"> &times;</span>
                     <textarea
                       name="comment"
                       class="commentInput"
@@ -2853,6 +2650,27 @@
                         >
                           <img src="Images/twitter new.svg" alt="Twitter"
                         /></a>
+                  <!-- The Modal -->
+                  <div class="shareModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modalContent mobileModalContent">
+                      <span class="close">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/pin-details/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/pin-details/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
 
                         <a
                           class="whatsappShare"
@@ -2873,6 +2691,13 @@
                           />
                         </a>
 
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/pin-details/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
                         <a
                           class="linkedinShare"
                           href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/pin-details/"
@@ -2924,23 +2749,66 @@
           <!--grid row two-->
         </div>
       </div>
-
-      <!--Mobile footer-->
-      <div id="mobileFooter">
-        <button onclick="window.location='index.html'">
-          <i class="fa-solid fa-house-chimney"></i>
-        </button>
-        <button><i class="fa-solid fa-microphone"></i></button>
-        <button class="mobileLike" onclick="likePost()">
-          <img src="Images/like empty.svg" alt="" />
-        </button>
-        <button><i class="fa-solid fa-bell"></i></button>
-        <button><i class="fa-solid fa-sliders"></i></button>
+    </div>
+                        <a
+                          class="redditShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/pin-details/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-iconsIV" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>117</p>
+                        </li>
+                        <li>
+                          <i
+                            onclick="downloadPost()"
+                            class="fa-solid fa-download"
+                          ></i>
+                          <p>32</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIconsIV()" id="myBtnIV">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--grid row two-->
+        </div>
       </div>
 
-      <!--Mobile footer-->
-      <!--wrapper end-->
+    <!--Mobile footer-->
+    <div id="mobileFooter">
+      <button onclick="window.location='index.html'">
+        <i class="fa-solid fa-house-chimney"></i>
+      </button>
+      <button><i class="fa-solid fa-microphone"></i></button>
+      <button class="mobileLike" onclick="likePost()">
+        <img src="Images/like empty.svg" alt="" />
+      </button>
+      <button><i class="fa-solid fa-bell"></i></button>
+      <button><i class="fa-solid fa-sliders"></i></button>
     </div>
+
+    <!--Mobile footer-->
+    <!--wrapper end-->
 
     <script src="pin-details.js"></script>
     <script src="fetchAPI.js"></script>

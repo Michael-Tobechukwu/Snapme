@@ -1,12 +1,12 @@
-//Post date and time
-var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
-var postDate = postDate.toLocaleString();
-document.getElementById("postDate").innerHTML = postDate;
+// //Post date and time
+// var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
+// var postDate = postDate.toLocaleString();
+// document.getElementById("postDate").innerHTML = postDate;
 
-//Post date and time on mobile
-var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
-var postDate = postDate.toLocaleString();
-document.getElementById("postDateMobile").innerHTML = postDate;
+// //Post date and time on mobile
+// var postDate = moment("20012023, 15:16", "DDMMYYYY, h:mm a");
+// var postDate = postDate.toLocaleString();
+// document.getElementById("postDateMobile").innerHTML = postDate;
 
 //Pin details Share
 // Get the modal
@@ -19,23 +19,23 @@ var pinBtn = document.getElementById("sharePinBtn");
 var closeThis = document.getElementById("closeZ");
 
 // When the user clicks the button, open the modals
-pinBtn.onclick = function () {
-  pinModal.style.display = "block";
-};
+// pinBtn.onclick = function () {
+//   pinModal.style.display = "block";
+// };
 
 // When the user clicks on <span> (x), close the modal
-closeThis.onclick = function () {
-  pinModal.style.display = "none";
-};
+// closeThis.onclick = function () {
+//   pinModal.style.display = "none";
+// };
 
-// Close the modal by clicking outside the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    pinModal.style.display = "none";
-  }
-};
+// // Close the modal by clicking outside the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     pinModal.style.display = "none";
+//   }
+// };
 
-const api2 = `https://api.snapme-ng.com/api/v1`;
+const api2 = `http://localhost:5000/api/v1`;
 
 function checkJwt(location) {
   const jwtToken = document.cookie
@@ -69,6 +69,7 @@ function getJwt() {
     ?.split("=")[1];
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
+    localStorage.setItem("returnUrl", window.location.href);
     window.location.href = "/login.html";
     return;
   }
@@ -82,12 +83,13 @@ function getQueryParam(name) {
 
 const id = getQueryParam("id");
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
   if (!id) {
     Swal.fire("Ooops!", `Post not found!`, "error");
     window.location.href = "timeline.html";
     return;
   }
+  console.log(id);
   // Make an HTTP request to the timeline API endpoint
   fetch(`${api2}/pin-details/${id}`, {
     method: "GET",
@@ -103,47 +105,50 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Network Response Error");
       }
     })
-    .then((posts) => {
-      console.log(posts);
+    .then((post) => {
+      console.log(post);
+      console.log(post.post.user);
+      console.log(post.username);
+
       const pinDetailsElement = document.getElementById("pinCard");
 
       let mediaHTML = "";
-      if (Array.isArray(posts.media) && posts.media.length > 0) {
+      if (Array.isArray(post.post.media) && post.post.media.length > 0) {
         // Determine if the media is an image or video
         const isImage =
-          posts.media[0].endsWith(".jpg") ||
-          posts.media[0].endsWith(".jpeg") ||
-          posts.media[0].endsWith(".png") ||
-          posts.media[0].endsWith(".svg") ||
-          posts.media[0].endsWith(".tiff") ||
-          posts.media[0].endsWith(".webp") ||
-          posts.media[0].endsWith(".gif");
+          post.post.media[0].endsWith(".jpg") ||
+          post.post.media[0].endsWith(".jpeg") ||
+          post.post.media[0].endsWith(".png") ||
+          post.post.media[0].endsWith(".svg") ||
+          post.post.media[0].endsWith(".tiff") ||
+          post.post.media[0].endsWith(".webp") ||
+          post.post.media[0].endsWith(".gif");
         const isVideo =
-          posts.media[0].endsWith(".mp4") ||
-          posts.media[0].endsWith(".avi") ||
-          posts.media[0].endsWith(".mov") ||
-          posts.media[0].endsWith(".mkv") ||
-          posts.media[0].endsWith(".3gp") ||
-          posts.media[0].endsWith(".flv") ||
-          posts.media[0].endsWith(".wmv") ||
-          posts.media[0].endsWith(".webm");
+          post.post.media[0].endsWith(".mp4") ||
+          post.post.media[0].endsWith(".avi") ||
+          post.post.media[0].endsWith(".mov") ||
+          post.post.media[0].endsWith(".mkv") ||
+          post.post.media[0].endsWith(".3gp") ||
+          post.post.media[0].endsWith(".flv") ||
+          post.post.media[0].endsWith(".wmv") ||
+          post.post.media[0].endsWith(".webm");
 
         // If the media is an image, create an img tag and append it to the mediaHTML string
         if (isImage) {
-          mediaHTML += `<img src="${posts.media[0]}" class="post-image" onclick="openFullscreen(this)" />`;
+          mediaHTML += `<img src="${post.post.media[0]}" class="post-image" onclick="openFullscreen(this)" />`;
         }
 
         // If the media is a video, create a video tag and append it to the mediaHTML string
         if (isVideo) {
-          mediaHTML += `<video src="${posts.media[0]}" class="post-video" onclick="openFullscreen(this)" controls></video>`;
+          mediaHTML += `<video src="${post.post.media[0]}" class="post-video" onclick="openFullscreen(this)" controls></video>`;
         }
 
         // If there are more than one media, create a slider
-        if (posts.media.length > 1) {
+        if (post.post.media.length > 1) {
           mediaHTML = `
             <div class="swiper mySwiper">
               <div class="swiper-wrapper" onclick="log()">
-                ${posts.media
+                ${post.post.media
                   .map((media, index) => {
                     const isImage =
                       media.endsWith(".jpg") ||
@@ -222,18 +227,18 @@ document.addEventListener("DOMContentLoaded", function () {
               src="Images/back arrow.svg"
               onclick="history.back()"
             />
-            <img src="Images/Snapme icon white.png" alt="logo" />
+            <img src="Images/Snapme icon white.png" class="white-logo" alt="logo" />
           </div>
           <div class="content-top-mobile">
             <div class="userDetails">
-              <img src="${posts.user.picture}" />
+              <img src="${post.post.user.picture}" />
               <p
                 class="azizy_username"
                 onclick="window.location='user.html?user=${
-                  posts.user.username
+                  post.post.user.username
                 }'"
               >
-                ${posts.user.username}
+                ${post.post.user.username}
               </p>
             </div>
             <button
@@ -249,21 +254,21 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="content-top">
             <div class="userDetails">
               <img
-                src="${posts.user.picture}"
+                src="${post.post.user.picture}"
                 onclick="window.location='user.html?user=${
-                  posts.user.username
+                  post.post.user.username
                 }'"
               />
               <div class="text">
                 <p
                   class="azizy_username"
                   onclick="window.location='user.html?user=${
-                    posts.user.username
+                    post.post.user.username
                   }'"
                 >
-                ${posts.user.username}
+                ${post.post.user.username}
                 </p>
-                <span id="postDate">${moment(posts.date)
+                <span id="postDate">${moment(post.post.date)
                   .locale("en")
                   .format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")}</span>
               </div>
@@ -276,14 +281,9 @@ document.addEventListener("DOMContentLoaded", function () {
               Follow +
             </button>
           </div>
-
-          <!--<div class="subscribe">
-            <button onclick="window.location='subscribe.html'">
-              Subscribe
-            </button>
-          </div>-->
+          
           <div class="content-mid">
-            <h3>${posts.caption}</h3>
+            <h3 class="postCaption">${post.post.caption}</h3>
             <span id="postDateMobile"></span>
 
             <div class="show-more">
@@ -291,27 +291,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li>
                   <button>
                     <i class="fa-solid fa-eye"></i>
-                    <p class="text-white">${posts.views}</p>
+                    <p class="text-white">${post.post.views}</p>
                   </button>
                 </li>
                 <li class="likeDiv">
                   <button onclick="likePost()" id="like-button">
                     <i class="far fa-heart"></i>
                   </button>
-                  <p class="text-white">${posts.likes.length}</p>
+                  <p class="text-white">${post.post?.likes?.length}</p>
                 </li>
                 <li>
                 <a href="#commentForm">
-                  <button onclick="">
+                  <button id="commentCount">
                     <i class="fa-solid fa-comment"></i>
-                    <p class="text-white">${posts.comment.length}</p>
+                    <p class="text-white">${post.post?.comment?.length}</p>
                   </button>
                   </a>
                 </li>
                 <li>
                   <button id="sharePinBtn">
                     <i class="fa-solid fa-share"></i>
-                    <p class="text-white">${posts.shares}</p>
+                    <p class="text-white">${post.post.shares}</p>
                   </button>
                 </li>
 
@@ -378,75 +378,86 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li>
                   <button onclick="savePost()">
                     <i class="fa-solid fa-bookmark"></i>
-                    <p class="text-white">197</p>
+                    <p class="text-white">${post.post.saves}</p>
                   </button>
                 </li>
                 <li>
                   <button onclick="downloadPost()">
                     <i class="fa-solid fa-download"></i>
-                    <p class="text-white">29</p>
+                    <p class="text-white">${post.post.downloads}</p>
                   </button>
                 </li>
               </ul>
             </div>
-            <p>
-              ${posts.message}
-              <span id="dots">...</span
-              ><span id="more-text"
-                >More info about Ruger....Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Phasellus imperdiet, nulla et
-                dictum interdum, nisi lorem egestas vitae scelerisque enim
-                ligula venenatis dolor.</span
-              >
-            </p>
-            <button
-              onclick="readMore()"
-              id="myBtn"
-              style="color: #fff; font-weight: bold"
-            >
-              Show more
-            </button>
+            <p class="postBody">
+  ${
+    post.post.message.length <= 100
+      ? post.post.message
+      : post.post.message.substring(0, 100) +
+        "<span id='dots'>...</span><span id='more-text' style='display: none'>" +
+        post.post.message.substring(100) +
+        "</span>"
+  }
+</p>
+<button onclick="readMore()" id="myBtn" style="font-weight: bold; display: ${
+        post.post.message.length <= 100 ? "none" : "block"
+      }">
+  Show more
+</button>
+
           </div>
           <div class="content-bottom">
             <p class="text-white">Comments</p>
-            <div class="marcdiss-box">
-              <button onclick="window.location = 'user.html?user=${
-                posts.comment.username
-              }'">
-                <img src="${posts.comment.picture}" width="50px" alt="${
-        posts.comment.username
-      } Profile Picture" />
-              </button>
-              <div class="marcdiss">
-                <p class="username">${posts.comment.username}</p>
-                <p class="alias">${posts.comment}</p>
 
-                <ul id="signedInContent2">
-                  <li onclick="${likeComment(posts.comment.id)}">Like</li>
-                  <li onclick="${replyComment(posts.comment.id)}">Reply</li>
-                  <li onclick="${deleteReply(
-                    posts.comment.id,
-                    posts.comment.replies.id
-                  )}">Remove</li>
-                  <li onclick="${deleteComment(posts.comment.id)}">Delete</li>
-                </ul>
-              </div>
-            </div>
-            <form id="commentForm">
-              <div class="form-input-button">
-                <button onclick="user.html?user=${username}">
-                  <img src="${user}" alt="Profile pic" />
-                </button>
-                <input type="text" name="text" placeholder="Add your comment..." required/>
-                <button type="submit" onclick="commentOnPost()">
-                  <i class="fas fa-paper-plane"></i>
-                </button>
-              </div>
+            <div id="dynamicComment">
+  ${
+    post.post.comment.length > 0
+      ? post.post.comment
+          .map(
+            (comment) => `
+      <div class="marcdiss-box">
+        <button onclick="window.location = 'user.html?user=${comment.username}'">
+          <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
+        </button>
+        <div class="marcdiss">
+          <p class="username">${comment.username}</p>
+          <p class="alias">${comment.text}</p>
+
+          <ul id="signedInContent2">
+            <li onclick="likeComment('${comment.id}')">Like</li>
+            <li onclick="replyComment('${comment.id}')">Reply</li>
+            <li onclick="deleteReply('${comment.id}', '${comment.replies?.id}')">Remove</li>
+            <li onclick="deleteComment('${comment.id}')">Delete</li>
+          </ul>
+        </div>
+      </div>
+    `
+          )
+          .join("")
+      : `<p style="color: white">No comments yet!</p>`
+  }
+</div>
+
+            <form class="form-input-button">
+
+              <div class="commenterProfile">
+                <input type="button" onclick="user.html?user=${post.username}">
+                <div class="imageContainer">
+                <img src="${post.user}" alt="${post.username} Profile pic" />
+                </div>
+              </div>  
+
+                <input type="text" name="text" placeholder="Add your comment..." id="commentInput" required/>
+
+                <div id="commentButton">
+                <button type="button" id="sendCommentBtn" onclick="commentOnPost()">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+                </div>
             </form>
           </div>
         </div>
         `;
-      // pinDetailsElement.appendChild(pinElement);
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");
@@ -487,20 +498,84 @@ likeBtn.addEventListener("click", likePost);
 
 //Put request to like a post
 function likePost() {
-  fetch("https://api.snapme-ng.com/api/v1/pins/:id/like", {
+  fetch(`${api2}/pins/${id}/like`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      userId: 456,
-    }),
   })
     .then((response) => response.json())
     .then((data) => {
       console.log("Post liked successfully");
     })
     .catch((error) => console.error(error));
+}
+
+//Add comment
+function commentOnPost() {
+  const text = document.getElementById("commentInput").value;
+  const container = document.getElementById("dynamicComment");
+
+  console.log(text);
+
+  fetch(`${api2}/pins/comment/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
+    },
+    body: JSON.stringify({
+      text,
+    }),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      } else if (response.status === 401) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      } else if (response.status === 500) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+    })
+    .then((data) => {
+      console.log(data);
+
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("marcdiss-box");
+
+      commentElement.innerHTML = `
+  ${
+    data.length !== 0
+      ? data
+          .map(
+            (comment) => `
+            <button onclick="window.location = 'user.html?user=${comment.username}'">
+              <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
+            </button>
+            <div class="marcdiss">
+              <p class="username">${comment.username}</p>
+              <p class="alias">${comment.text}</p>
+              <ul id="signedInContent2">
+                <li onclick="likeComment('${comment.id}')">Like</li>
+                <li onclick="replyComment('${comment.id}')">Reply</li>
+                <li onclick="deleteReply('${comment.id}', '${comment.replies?.id}')">Remove</li>
+                <li onclick="deleteComment('${comment.id}')">Delete</li>
+              </ul>
+            </div>
+          `
+          )
+          .join("")
+      : "<p>No comments yet!</p>"
+  }
+`;
+      container.appendChild(commentElement);
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `${error}`, "error");
+      console.error(error);
+    });
 }
 
 //Catalogs for you pins share
@@ -1434,7 +1509,7 @@ function likeComment(commentId) {
 
 //Reply Comment
 function replyComment(commentId) {
-  const text = document.getElementById("text").value;
+  // const text = document.getElementById("text").value;
 
   fetch(`${api2}/pins/${id}/comment/${commentId}/reply`, {
     method: "POST",
@@ -1442,9 +1517,9 @@ function replyComment(commentId) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getJwt()}`,
     },
-    body: JSON.stringify({
-      text,
-    }),
+    // body: JSON.stringify({
+    //   text,
+    // }),
   })
     .then((response) => {
       if (response.status === 200) {
@@ -1789,59 +1864,59 @@ closeCommentBtn5.addEventListener("click", function () {
 ////
 
 //Get request to fetch user profile
-function thisUser() {
-  fetch("https://api.snapme-ng.com/api/v1/:username")
-    .then((response) => response.json())
-    .then((user) => {
-      console.log(user.name);
-      console.log(user.email);
-      console.log(user.bio);
-      console.log(user.avatarUrl);
-    })
-    .catch((error) => console.error(error));
-}
-thisUser();
+// function thisUser() {
+//   fetch("https://api.snapme-ng.com/api/v1/:username")
+//     .then((response) => response.json())
+//     .then((user) => {
+//       console.log(user.name);
+//       console.log(user.email);
+//       console.log(user.bio);
+//       console.log(user.avatarUrl);
+//     })
+//     .catch((error) => console.error(error));
+// }
+// thisUser();
 ////
 
-function pinDetails() {
-  // Fetch the pin data from the backend
-  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
-    .then((response) => response.json())
-    .then((pin) => {
-      // Create a container element to display the pin details
-      const container = document.createElement("div");
+// function pinDetails() {
+//   // Fetch the pin data from the backend
+//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+//     .then((response) => response.json())
+//     .then((pin) => {
+//       // Create a container element to display the pin details
+//       const container = document.createElement("div");
 
-      // Create elements for the pin caption, author, and content
-      const caption = document.createElement("h1");
-      const author = document.createElement("p");
-      const content = document.createElement("p");
-      const media = document.createElement(
-        pin.media.type === "image" ? "img" : "video"
-      );
+//       // Create elements for the pin caption, author, and content
+//       const caption = document.createElement("h1");
+//       const author = document.createElement("p");
+//       const content = document.createElement("p");
+//       const media = document.createElement(
+//         pin.media.type === "image" ? "img" : "video"
+//       );
 
-      // Set the text content of the elements to the pin data
-      caption.textContent = pin.caption;
-      author.textContent = `By ${pin.author}`;
-      content.textContent = pin.content;
+//       // Set the text content of the elements to the pin data
+//       caption.textContent = pin.caption;
+//       author.textContent = `By ${pin.author}`;
+//       content.textContent = pin.content;
 
-      // Set the attributes of the media element
-      media.src = pin.media.url;
-      media.alt = pin.caption;
+//       // Set the attributes of the media element
+//       media.src = pin.media.url;
+//       media.alt = pin.caption;
 
-      // Add the elements to the container
-      container.appendChild(caption);
-      container.appendChild(author);
-      container.appendChild(content);
-      container.appendChild(media);
+//       // Add the elements to the container
+//       container.appendChild(caption);
+//       container.appendChild(author);
+//       container.appendChild(content);
+//       container.appendChild(media);
 
-      // Add the container to the UI
-      document.body.appendChild(container);
-    })
-    .catch((error) => console.error(error));
-}
+//       // Add the container to the UI
+//       document.body.appendChild(container);
+//     })
+//     .catch((error) => console.error(error));
+// }
 
-// Call the pinDetails function with a pin ID
-pinDetails();
+// // Call the pinDetails function with a pin ID
+// pinDetails();
 
 //Get pin details end
 

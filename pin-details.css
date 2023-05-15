@@ -409,7 +409,6 @@ input:checked + .slider:before {
   color: #fff;
   padding: 5px 20px;
   border-radius: 2rem;
-  
 }
 
 #followUserBtn:hover {
@@ -533,6 +532,7 @@ button {
   display: flex;
   gap: 10px;
   line-height: 0;
+  flex-wrap: wrap;
 }
 
 .marcdiss-box a {
@@ -592,9 +592,20 @@ button {
   display: none;
 }
 
-.commenterProfile img {
+.imageContainer {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #5a015a;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.imageContainer img {
   cursor: pointer;
-  margin-left: -3px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* margin-left: 3px; */
 }
 
 .form-input-button #commentInput {
@@ -613,7 +624,6 @@ button {
   padding-left: 5px;
   border: none;
   background: none;
-  
 }
 
 #commentButton .fa-paper-plane {
@@ -728,7 +738,8 @@ button {
   display: none;
 }
 
-.timePosted, #timePosted {
+.timePosted,
+#timePosted {
   font-size: 12px !important;
   color: #fff;
 }
@@ -819,7 +830,7 @@ button {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: none; /* Fallback color */
-} 
+}
 
 .commentBox {
   display: none; /* Hidden by default */
@@ -861,7 +872,6 @@ button {
 
 .commentBoxWide .commentInput {
   height: 45px;
- 
 }
 
 #closeComment,
@@ -1245,7 +1255,7 @@ button {
 
   .post-card {
     width: 100%;
-      margin: 0;
+    margin: 0;
     box-shadow: none;
     margin-bottom: 0 !important;
     position: relative;
@@ -1329,7 +1339,8 @@ button {
     font-size: 17px;
   }
 
-  .content-mid .icons-list, .content-mid #postDateMobile {
+  .content-mid .icons-list,
+  .content-mid #postDateMobile {
     margin-top: -10px;
   }
 
@@ -1351,8 +1362,8 @@ button {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: none; /* Fallback color */
-  } 
-  
+  }
+
   .commentBox {
     display: none; /* Hidden by default */
     position: absolute; /* Stay in place */
@@ -1373,7 +1384,7 @@ button {
     height: 45px;
   }
 
- #commentButton .fa-paper-plane {
+  #commentButton .fa-paper-plane {
     cursor: pointer;
   }
 
@@ -1400,7 +1411,7 @@ button {
   }
 
   .mobileIcons .white-logo {
-  width: 20px !important;
+    width: 20px !important;
   }
 
   .marcdiss-box {
@@ -1552,9 +1563,7 @@ button {
     font-size: 13px;
     margin-left: -10px;
     margin-top: -10px;
-
   }
-
 }
 
 @media (max-width: 425px) {

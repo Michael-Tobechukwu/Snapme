@@ -93,25 +93,25 @@ function likePost() {
 }
 likePost();
 
-//Post request to comment on post
-function commentOnPost() {
-  fetch(`${api}/pins/comment/:id`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer <token>",
-    },
-    body: JSON.stringify({
-      userId: 123,
-      postId: 456,
-      comment: "This is a great post!",
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error(error));
-}
-commentOnPost();
+// //Post request to comment on post
+// function commentOnPost() {
+//   fetch(`${api}/pins/comment/:id`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: "Bearer <token>",
+//     },
+//     body: JSON.stringify({
+//       userId: 123,
+//       postId: 456,
+//       comment: "This is a great post!",
+//     }),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => console.log(data))
+//     .catch((error) => console.error(error));
+// }
+// commentOnPost();
 
 //Get request to download post
 function downloadPost() {

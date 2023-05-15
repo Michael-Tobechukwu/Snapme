@@ -56,8 +56,15 @@ function signup() {
       }
     })
     .then((data) => {
-      document.cookie = `jwtToken=${data.token}; path=/;`;
-      window.location.href = "/timeline.html";
+      document.cookie = `jwtToken=${data.token};${expires};path=/;`;
+      const returnUrl = localStorage.getItem("returnUrl");
+      if (returnUrl) {
+        localStorage.removeItem("returnUrl");
+        window.location.href = returnUrl;
+      } else {
+        // Redirect the user to the default page after login
+        window.location.href = "/timeline.html";
+      }
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");

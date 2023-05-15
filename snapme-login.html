@@ -101,7 +101,14 @@
           })
           .then((data) => {
             document.cookie = `jwtToken=${data.token};${expires};path=/;`;
-            window.location.href = "/timeline.html";
+            const returnUrl = localStorage.getItem("returnUrl");
+            if (returnUrl) {
+              localStorage.removeItem("returnUrl");
+              window.location.href = returnUrl;
+            } else {
+              // Redirect the user to the default page after login
+              window.location.href = "/timeline.html";
+            }
           })
           .catch((error) => {
             Swal.fire("Ooops!", `${error}`, "error");

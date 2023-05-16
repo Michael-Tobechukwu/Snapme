@@ -1,3 +1,4 @@
+
 window.addEventListener("load", function () {
   setTimeout(function () {
     navigator.splashscreen.hide();
@@ -221,6 +222,7 @@ window.onclick = function (event) {
 };
 //Share popup modals end
 /////
+
 //Make dropdown stack on top
 const mobileDropdown = document.getElementById("mobileDropdown");
 mobileDropdown.style.zIndex = "9999";
@@ -262,7 +264,6 @@ window.addEventListener("scroll", () => {
       ""; /* reset the top position to its original state */
   }
 });
-
 ////
 //Check signed in status of user when create button is clicked
 // Get the button element
@@ -348,26 +349,16 @@ setTimeout(function() {
     installButton.classList.add("show");
     closeButton.classList.add("show");
     installPrompt.style.display = "block";
-    installButton.addEventListener("click", installApp);
-    closeButton.addEventListener("click", closePrompt);
-  }
-
-  function installApp() {
-    deferredPrompt.userChoice
-      .then((choiceResult) => {
-        if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the install prompt");
+    installButton.addEventListener("click", () => {
+      deferredPrompt.prompt().then(choice => {
+        if (choice === "accepted") {
+          console.log("User accepted the install prompt.");
         } else {
-          console.log("User dismissed the install prompt");
+          console.log("User dismissed the install prompt.");
         }
-
-        deferredPrompt = null;
-      })
-      .catch((error) => {
-        console.error("Error occurred while handling userChoice", error);
       });
-
-    deferredPrompt.prompt();
+    });
+    closeButton.addEventListener("click", closePrompt);
   }
 
   function closePrompt() {
@@ -385,10 +376,20 @@ setTimeout(function() {
     const event = new Event("beforeinstallprompt");
     window.dispatchEvent(event);
   }, 60000);
+
+  // Prevent Chrome from automatically prompting the user to install a PWA
+  chrome.webNavigation.onCommitted.addListener(function(details) {
+    if (details.frameUrl === window.location.href) {
+      chrome.webNavigation.onCommitted.removeListener(this);
+      setTimeout(() => {
+        window.dispatchEvent(new Event("beforeinstallprompt"));
+      }, 60000);
+    }
+  });
 }, 0);
+
 ///Add to home screen/install prompt end
 ////
-
 //Like button 1
 const likeButton = document.getElementsByClassName("like-button")[0];
 let isLiked = false;

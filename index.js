@@ -339,7 +339,14 @@ setTimeout(function() {
   });
 
   window.addEventListener("appinstalled", (evt) => {
-    console.log("App installed successfully!");
+    deferredPrompt.prompt().then(choice => {
+      if (choice === "accepted") {
+        console.log("User accepted the install prompt.");
+        document.querySelector(".install-prompt").remove();
+      } else {
+        console.log("User dismissed the install prompt.");
+      }
+    });
   });
 
   function showInstallButton() {
@@ -387,6 +394,12 @@ setTimeout(function() {
     }
   });
 }, 0);
+
+// Remove the install prompt after the user has installed the app
+window.addEventListener("appinstalled", function(evt) {
+  document.querySelector(".install-prompt").remove();
+});
+
 
 ///Add to home screen/install prompt end
 ////

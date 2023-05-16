@@ -203,7 +203,7 @@ input:checked + .slider:before {
 
 .navmenu .main-logo img {
   width: 100%;
-  margin-left: -60px;
+  margin-left: -100px;
 }
 
 .navmenu .navbuttons {
@@ -801,20 +801,16 @@ input:checked + .slider:before {
   font-weight: 600;
 }
 
-
 .install-prompt {
   display: none;
   border: 2px solid #fff;
   border-radius: 8px;
   padding: 10px;
   width: 30%;
-  height: 70px;
   background: #ba00ba;
   position: fixed;
-  top: 30%;
-  left: 30%;
-  right: 0;
-  bottom: 0;
+  left: 35%;
+  top: 75%;
   z-index: 9999;
   text-align: center;
   color: #fff;
@@ -839,10 +835,8 @@ input:checked + .slider:before {
 /*Media queries*/
 /*Tablet view*/
 @media (max-width: 1024px) {
-
-  
   .navmenu .main-logo img {
-    margin-left: 40px !important;
+    margin-left: 0px;
   }
 }
 
@@ -904,8 +898,7 @@ input:checked + .slider:before {
     border: 2px solid #fff;
     padding: 5px;
     width: 98%;
-    position: fixed;
-    top: 75%;
+    position: absolute;
     left: 3px;
     z-index: 9999;
     color: #fff;

@@ -898,8 +898,9 @@ input:checked + .slider:before {
     border: 2px solid #fff;
     padding: 5px;
     width: 98%;
-    position: absolute;
+    position: fixed;
     left: 3px;
+    top: 70%;
     z-index: 9999;
     color: #fff;
   }

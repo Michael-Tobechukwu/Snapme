@@ -315,29 +315,24 @@ followedPosts();
 ////
 //Follow/unfollow user request to server
 const username = document.getElementById('userID');
+const buttonElement = document.getElementById('followUserBtn');
 
 function followThisUser(username, buttonElement) {
-  const action = buttonElement.getAttribute("data-action");
-  const method = action === "follow" ? "POST" : "DELETE";
+  const currentFollowStatus = buttonElement.innerText;
 
   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
-    method: method,
+    method: currentFollowStatus === "Follow +" ? "POST" : "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      action: action,
-    }),
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        if (action === "follow") {
+        if (currentFollowStatus === "Follow +") {
           buttonElement.innerText = "Following";
-          buttonElement.setAttribute("data-action", "Following");
         } else {
           buttonElement.innerText = "Follow +";
-          buttonElement.setAttribute("data-action", "follow");
         }
       } else {
         console.error("Failed to toggle follow status");
@@ -348,26 +343,10 @@ function followThisUser(username, buttonElement) {
     });
 }
 
-////
-
-//Follow/unfollow user button content
-let isFollowing = false;
-const followUserBtn = document.getElementById("followUserBtn");
-
-function toggleFollowUser() {
-  if (isFollowing) {
-    // unfollow logic
-    followUserBtn.textContent = "Follow +";
-  } else {
-    // follow logic
-    followUserBtn.textContent = "Following";
-  }
-
-  isFollowing = !isFollowing;
-}
-
-followUserBtn.addEventListener("click", toggleFollowUser);
-//////
+buttonElement.addEventListener('click', () => {
+  followThisUser(username, buttonElement);
+});
+//////----------
 
 //More icons button
 function moreIcons() {

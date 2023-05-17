@@ -264,44 +264,13 @@ window.addEventListener("scroll", () => {
       ""; /* reset the top position to its original state */
   }
 });
-////
-//Check signed in status of user when create button is clicked
-// Get the button element
+////------------------------------
+
+//Check login status when create button is clicked, & redirect to create pin page
 const createBtn = document.getElementById("createBtn");
-
-// Add an event listener to the button
-createBtn.addEventListener("click", () => {
-  // Get the JWT token from local storage
-  const token = localStorage.getItem("jwtToken");
-
-  // Check if the user is logged in
-  if (token) {
-    try {
-      // Attempt to decode the JWT token to get the user information
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
-
-      // Redirect the user to the create pin page
-      window.location.href = "create-pin.html";
-    } catch (err) {
-      // If there was an error decoding the token, assume the user is not logged in
-      console.error("Error decoding JWT token:", err);
-
-      // Redirect the user to the login page
-      window.location.href = "login.html";
-    }
-  } else {
-    // Redirect the user to the login page
-    window.location.href = "login.html";
-  }
-});
-
-//Check signed in status of user on create button clicked - mobile
-// Get the button element
 const mobileCreateBtn = document.getElementById("createBtnMobile");
 
-// Add an event listener to the button
-mobileCreateBtn.addEventListener("click", () => {
+function checkLoginStatus() {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
 
@@ -325,7 +294,60 @@ mobileCreateBtn.addEventListener("click", () => {
     // Redirect the user to the login page
     window.location.href = "login.html";
   }
-});
+}
+
+// Add an event listener to the create button
+createBtn.addEventListener("click", checkLoginStatus);
+mobileCreateBtn.addEventListener("click", checkLoginStatus);
+////------------------------------
+
+//Check signed in status of user when comment button is clicked
+const commentRedirect = document.querySelector('.commentRedirectBtn');
+const commentRedirect2 = document.querySelector('.commentRedirectBtn2');
+const commentRedirect3 = document.querySelector('.commentRedirectBtn3');
+const commentRedirect4 = document.querySelector('.commentRedirectBtn4');
+const commentRedirect5 = document.querySelector('.commentRedirectBtn5');
+const commentRedirect6 = document.querySelector('.commentRedirectBtn6');
+const commentRedirect7 = document.querySelector('.commentRedirectBtn7');
+const commentRedirect8 = document.querySelector('.commentRedirectBtn8');
+
+// Add an event listener to the comment buttons
+commentRedirect.addEventListener("click", checkLoginStatus2);
+commentRedirect2.addEventListener("click", checkLoginStatus2);
+commentRedirect3.addEventListener("click", checkLoginStatus2);
+commentRedirect4.addEventListener("click", checkLoginStatus2);
+commentRedirect5.addEventListener("click", checkLoginStatus2);
+commentRedirect6.addEventListener("click", checkLoginStatus2);
+commentRedirect7.addEventListener("click", checkLoginStatus2);
+commentRedirect8.addEventListener("click", checkLoginStatus2);
+
+//Check login status when comment & like buttons are clicked, & redirect to homepage
+function checkLoginStatus2() {
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
+
+  // Check if the user is logged in
+  if (token) {
+    try {
+      // Attempt to decode the JWT token to get the user information
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const userId = decodedToken.userId;
+
+      // Redirect the user to the homepage
+      window.location.href = "index.html";
+    } catch (err) {
+      // If there was an error decoding the token, assume the user is not logged in
+      console.error("Error decoding JWT token:", err);
+
+      // Redirect the user to the login page
+      window.location.href = "login.html";
+    }
+  } else {
+    // Redirect the user to the login page
+    window.location.href = "login.html";
+  }
+}
+
 ////
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit

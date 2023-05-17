@@ -917,10 +917,6 @@ input:checked + .slider:before {
     display: block;
   }
 
-  #installApp {
-    margin-bottom: 50px;
-  }
-
   .navmenu,
   .navbuttonsMobile {
     margin: 0 !important;
@@ -1094,9 +1090,40 @@ input:checked + .slider:before {
   }
 
   /*All things comment*/
-  .commentBox {
-    top: 40%;
+
+  #commentBox {
+top: 61%;
   }
+
+  #commentBox2 {
+    top: 52%;
+    }  
+
+  #commentBox3 {
+    top: 70%;
+    }  
+
+    #commentBox4 {
+      top: 55%;
+    }  
+  
+    #commentBox5 {
+        top: 70%;
+    }  
+
+    #commentBox6 {
+          top: 51%;
+    }
+    
+    #commentBox7 {
+      top: 60%;
+    }
+
+    #commentBox8 {
+   top: 80%;
+    }
+      
+
 
   #submitComment {
     font-size: 12px;

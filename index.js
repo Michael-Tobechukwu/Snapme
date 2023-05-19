@@ -301,7 +301,9 @@ createBtn.addEventListener("click", checkLoginStatus);
 mobileCreateBtn.addEventListener("click", checkLoginStatus);
 ////------------------------------
 
-//Check signed in status of user when comment button is clicked
+//Check login status when comment button is clicked, & redirect to homepage and show comment box
+
+//Get comment buttons
 const commentRedirect = document.querySelector('.commentRedirectBtn');
 const commentRedirect2 = document.querySelector('.commentRedirectBtn2');
 const commentRedirect3 = document.querySelector('.commentRedirectBtn3');
@@ -321,7 +323,8 @@ commentRedirect6.addEventListener("click", checkLoginStatus2);
 commentRedirect7.addEventListener("click", checkLoginStatus2);
 commentRedirect8.addEventListener("click", checkLoginStatus2);
 
-//Check login status when comment & like buttons are clicked, & redirect to homepage
+
+//Check login status when comment button is clicked, & redirect to homepage and show comment box
 function checkLoginStatus2() {
   // Get the JWT token from local storage
   const token = localStorage.getItem("jwtToken");
@@ -345,6 +348,11 @@ function checkLoginStatus2() {
   } else {
     // Redirect the user to the login page
     window.location.href = "login.html";
+  }
+
+  // If the user is logged in, show the comment box
+  if (token) {
+    document.getElementById("commentBox").style.display = "block";
   }
 }
 
@@ -421,10 +429,9 @@ setTimeout(function() {
 window.addEventListener("appinstalled", function(evt) {
   document.querySelector(".install-prompt").remove();
 });
-
-
 ///Add to home screen/install prompt end
 ////
+
 //Like button 1
 const likeButton = document.getElementsByClassName("like-button")[0];
 let isLiked = false;

@@ -1,3 +1,4 @@
+//For testing on vercel and local server
 //Google sign in
 function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token: " + response.credential);
@@ -5,7 +6,7 @@ function handleCredentialResponse(response) {
 window.onload = function () {
   google.accounts.id.initialize({
     client_id:
-      "821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com",
+      "406252614079-4f1go3bfek412mh0935cd0lujr96jnes.apps.googleusercontent.com",
     callback: handleCredentialResponse,
   });
   google.accounts.id.renderButton(
@@ -19,10 +20,30 @@ window.onload = function () {
 //Snapme Login
 const form = document.querySelector("form");
 
-form.addEventListener("submit", async (event) => {
+const loadingIndicator = document.createElement("div");
+loadingIndicator.classList.add("loading-indicator");
+
+const message = document.createElement("div");
+message.classList.add("message");
+
+async function snapmeLogin(event) {
   event.preventDefault();
+  loadingIndicator.style.display = "block";
+
   const email = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+
+  // Validate email address
+  if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+    alert("Invalid email address");
+    return;
+  }
+
+  // Validate password
+  if (password.length < 8) {
+    alert("Password must be at least 8 characters long");
+    return;
+  }
 
   try {
     const response = await fetch("https://api.snapme-ng.com/api/v1/login", {
@@ -36,89 +57,26 @@ form.addEventListener("submit", async (event) => {
     if (response.ok) {
       const data = await response.json();
       const token = data.token;
-      //   document.cookie = `jwt=${token}; HttpOnly; Secure`;
-      document.cookie = `jwt=${token}`;
+      document.cookie = `jwt=${token}; HttpOnly; Secure`;
       window.location.href = "index.html";
+      message.textContent = "Login successful";
     } else {
       alert("Invalid email or password");
+      message.textContent = "Login failed";
     }
   } catch (error) {
     console.error("Error:", error);
     alert("An error occurred while logging in. Please try again.");
-  }
-});
-
-// Check for token in query parameter
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const token = urlParams.get("token");
-// Remove token from query parameter
-if (window.location.search.includes("token")) {
-  document.cookie = `jwt=${token}; HttpOnly; Secure`;
-  window.history.replaceState({}, document.title, "/");
-}
-
-// Function to get JWT token from cookies
-function getJwtToken() {
-  const jwtCookie = document.cookie
-    .split(";")
-    .find((cookie) => cookie.trim().startsWith("jwt="));
-  if (!jwtCookie) {
-    return null;
-  }
-  const jwtToken = jwtCookie.split("=")[1];
-  return jwtToken;
-}
-
-// Function to make authenticated API requests
-async function makeApiRequest(url, method = "GET", data = null) {
-  const jwtToken = getJwtToken();
-  if (!jwtToken) {
-    throw new Error("User is not authenticated.");
-  }
-
-  try {
-    const response = await fetch(url, {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      body: data ? JSON.stringify(data) : null,
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      return responseData;
-    } else {
-      throw new Error(
-        `Request failed with status ${response.status}: ${response.statusText}`
-      );
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
+  } finally {
+    loadingIndicator.style.display = "none";
   }
 }
+
+form.addEventListener("submit", snapmeLogin);
 
 ////
-//Google sign in
-function handleCredentialResponse(response) {
-  console.log("Encoded JWT ID token: " + response.credential);
-}
-window.onload = function () {
-  google.accounts.id.initialize({
-    client_id:
-      "821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com",
-    callback: handleCredentialResponse,
-  });
-  google.accounts.id.renderButton(
-    document.getElementById("googleBtn"),
-    { theme: "outline", size: "large" } // customization attributes
-  );
-  google.accounts.id.prompt(); // also display the One Tap dialog
-};
-////
+
+
 /*/Facebook sign in
 window.fbAsyncInit = function () {
   FB.init({

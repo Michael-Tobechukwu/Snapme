@@ -62,8 +62,68 @@ function followCatalog(catalogName) {
       console.error("Error following catalog:", error);
     });
 }
+//FOLLOW CATALOGS END
 
-//Like post
+//Like & unlike a post
+function likePost() {
+  // Check if the user is signed in by verifying the JWT token from local storage
+  const token = localStorage.getItem('jwtToken'); // Retrieve the JWT token from local storage
+
+  if (!token) {
+    // Save the current page URL to local storage
+    localStorage.setItem('redirectURL', window.location.href);
+
+    // Redirect to login.html
+    window.location.href = 'login.html';
+    return;
+  }
+
+  // Create the URL for the API endpoint
+  const url = 'https://api.snapme-ng.com/api/v1/pins/like';
+
+  // Fetch options for the POST request
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`, // Include the JWT token in the Authorization header
+      // Add any additional headers if required
+    },
+  };
+
+  // Get the like button element
+  const likeButton = document.getElementById('likeBtn'); // Replace with the actual ID of the like button element
+
+  // Check the current state of the like button
+  const isLiked = likeButton.innerHTML === '<i class="fas fa-heart"></i>';
+
+  // Send the POST request to like or unlike the post
+  fetch(url, options)
+    .then(response => {
+      // Handle the response as per your requirements
+      // For example, check the response status
+      if (response.ok) {
+        // Toggle the like button state
+        if (isLiked) {
+          // Post unliked successfully
+          console.log('Post unliked!');
+          likeButton.innerHTML = '<i class="far fa-heart"></i>';
+        } else {
+          // Post liked successfully
+          console.log('Post liked!');
+          likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+        }
+      } else {
+        // Handle any error cases
+        console.error('Failed to like/unlike post:', response.status);
+      }
+    })
+    .catch(error => {
+      // Handle any network or fetch errors
+      console.error('Error occurred while liking/unliking post:', error);
+    });
+}
+
 //Add click event listener to like buttons
 document.getElementById("likeBtn").addEventListener("click", likePost);
 document.getElementById("likeBtn2").addEventListener("click", likePost);
@@ -74,8 +134,24 @@ document.getElementById("likeBtn6").addEventListener("click", likePost);
 document.getElementById("likeBtn7").addEventListener("click", likePost);
 document.getElementById("likeBtn8").addEventListener("click", likePost);
 
-//Put request to like a post
+///Like & unlike a post end
+
+/*
 const userId = 456;
+const likeButton = document.getElementsByClassName("like-button")[0];
+let isLiked = false;
+
+likeButton.addEventListener("click", () => {
+  if (isLiked) {
+    likeButton.innerHTML = '<i class="far fa-heart"></i>';
+    isLiked = false;
+  } else {
+    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+    isLiked = true;
+    likePost();
+  }
+  likeButton.style.color = "#fff";
+});
 
 async function likePost() {
   const response = await fetch("${api}/pins/:id/like", {
@@ -96,6 +172,31 @@ async function likePost() {
     console.log("Error liking post:", data.error);
   }
 }
+
+
+
+/*const userId = 456;
+
+async function likePost() {
+  const response = await fetch("${api}/pins/:id/like", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (data.success) {
+    console.log("Post liked successfully");
+  } else {
+    console.log("Error liking post:", data.error);
+  }
+}
+*/
 
 //Post request to comment on post
 const token = "<token>";
@@ -289,4 +390,3 @@ function subscribe() {
     })
     .catch((error) => console.error("Error:", error));
 }
-subscribe();

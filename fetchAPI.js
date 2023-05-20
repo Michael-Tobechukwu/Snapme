@@ -196,26 +196,6 @@ async function likePost() {
     console.log("Error liking post:", data.error);
   }
 }
-*/
-
-//Post request to comment on post
-const token = "<token>";
-
-async function commentOnPost(userId, postId, comment) {
-  const response = await fetch("${api}/pins/comment/:id", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      userId,
-      postId,
-      comment,
-    }),
-  });
-
-  const data = await response.json();
 
   console.log(data);
 }
@@ -338,21 +318,6 @@ function deletePost() {
     .catch((error) => {
       console.error("Error making request to API:", error);
     });
-}
-
-//Fetch timeline post
-function timeline() {
-  const timelineBtn = document.getElementById('timeCapsule');
-  fetch(`${api}pins/timeline`)
-    .then((response) => response.json())
-    .then((posts) => {
-      posts.forEach((post) => {
-        console.log(post.title);
-        console.log(post.body);
-      });
-    })
-    .catch((error) => console.error(error));
-    timelineBtn.addEventListener('click', timeline)
 }
 
 //Get suggested Accounts of users to follow

@@ -108,7 +108,7 @@ closeComment.addEventListener("click", function () {
   commentBox.style.display = "none";
 });
 //Comment box popup first pin end
-//// 
+////
 //Comment box popup for second pin
 var commentBtn2 = document.getElementsByClassName("commentBtn")[0];
 var commentBox2 = document.getElementsByClassName("commentBox")[0];
@@ -123,7 +123,7 @@ closeCommentBtn2.addEventListener("click", function () {
 });
 //Comment box popup for second pin end
 ////
-//// 
+////
 //Comment box popup for third pin
 var commentBtn3 = document.getElementsByClassName("commentBtn")[1];
 var commentBox3 = document.getElementsByClassName("commentBox")[1];
@@ -225,7 +225,7 @@ var logoutBtn = document.getElementById("logout-button");
 logoutBtn.addEventListener("click", logOut);
 
 function logOut() {
-  fetch("https://api.snapme-ng.com/api/v1/logout", {
+  fetch("http://localhost:5000/api/v1/logout", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -243,7 +243,7 @@ function logOut() {
 ////
 // Cataloged (my posts) in username
 function myPosts() {
-  fetch("https://api.snapme-ng.com/api/v1/my-pins")
+  fetch("http://localhost:5000/api/v1/my-pins")
     .then((response) => response.json())
     .then((posts) => {
       posts.forEach((post) => {
@@ -314,13 +314,13 @@ function followedPosts() {
 followedPosts();
 ////
 //Follow/unfollow user request to server
-const username = document.getElementById('userID');
-const buttonElement = document.getElementById('followUserBtn');
+const username = document.getElementById("userID");
+const buttonElement = document.getElementById("followUserBtn");
 
 function followThisUser(username, buttonElement) {
   const currentFollowStatus = buttonElement.innerText;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: currentFollowStatus === "Follow +" ? "POST" : "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -343,7 +343,7 @@ function followThisUser(username, buttonElement) {
     });
 }
 
-buttonElement.addEventListener('click', () => {
+buttonElement.addEventListener("click", () => {
   followThisUser(username, buttonElement);
 });
 //////----------
@@ -451,7 +451,7 @@ function moreIconsVI() {
 ////
 //Get user profile
 function thisUser() {
-  fetch("https://api.snapme-ng.com/api/v1/:username")
+  fetch("http://localhost:5000/api/v1/:username")
     .then((response) => response.json())
     .then((user) => {
       console.log(user.name);

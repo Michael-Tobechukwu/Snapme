@@ -12,10 +12,9 @@ function showPwd() {
 ////
 //Go back to previous page
 
-const backBtn = document.querySelector('.backArrow');
+const backBtn = document.querySelector(".backArrow");
 
-backBtn.addEventListener('click', goBack 
-)
+backBtn.addEventListener("click", goBack);
 
 function goBack() {
   window.history.back();
@@ -23,43 +22,64 @@ function goBack() {
 
 ////
 //Snapme login
-const url = "https://api.snapme-ng.com/api/v1/login";
-const usernameInput = document.getElementById("username");
-const thisPasswordInput = document.getElementById("password");
-const loginButton = document.getElementById("login-button");
+const url = "http://localhost:5000/api/v1/login";
 
-loginButton.addEventListener("click", () => {
-  const username = usernameInput.value;
-  const password = thisPasswordInput.value;
-  
-  if (username === "" || password === "") {
+function loginSubmit() {
+  const identifier = document.getElementById("identifier").value;
+  const password = document.getElementById("password").value;
+  const returnUrl = localStorage.getItem("returnUrl");
+
+  if (identifier === "" || password === "") {
     const errorDiv = document.getElementById("error-message");
     errorDiv.textContent = "Username and password cannot be empty";
     return;
   }
 
+  console.log(identifier);
+  console.log(password);
+
   const requestBody = {
-    username: username,
-    password: password
+    identifier,
+    password,
   };
-  
+
   fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(requestBody)
+    body: JSON.stringify(requestBody),
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error("There was a problem with the fetch operation:", error);
-  });
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 400) {
+        throw new Error(
+          `There are some errors in your login form, check it and try again: ${response.statusText}`
+        );
+      } else if (response.status === 401) {
+        throw new Error(
+          `Your password is incorrect, please check it and try again!`
+        );
+      }
+    })
+    .then((data) => {
+      document.cookie = `jwtToken=${data.token};${data.expires};path=/;`;
+      {
+        returnUrl
+          ? (window.location.href = returnUrl)
+          : (window.location.href = "./timeline.html");
+      }
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `${error}`, "error");
+      console.error(error);
+    });
+}
+
+const loginForm = document.getElementById("loginForm");
+
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  loginSubmit();
 });

@@ -1,3 +1,4 @@
+const api4 = `http://localhost:5000/api/v1`;
 
 window.addEventListener("load", function () {
   setTimeout(function () {
@@ -10,6 +11,224 @@ window.onload = function () {
   var preloader = document.getElementById("preloader");
   preloader.style.display = "none";
 };
+
+function getJwt() {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    localStorage.setItem("returnUrl", window.location.href);
+    window.location.href = "/login.html";
+    return;
+  }
+  return jwtToken;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetch(`${api4}/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Network Response Error");
+      }
+    })
+    .then((posts) => {
+      console.log(posts);
+      const allPinElement = document.querySelector(".row");
+
+      posts.forEach((post) => {
+        const postId = post._id;
+
+        const postElement = document.createElement("div");
+        postElement.classList.add("col");
+
+        postElement.innerHTML = `
+          <div class="col">
+          <div class="card mobileCard" id="card1">
+            <div class="post-img">
+            ${
+              post.media[0].endsWith(".mp4")
+                ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                <source src="${post?.media[0]}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>`
+                : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+            }
+
+            <a class="username text-white" href="user.html?username=${
+              post.user.username
+            }">
+                <img src="${post.user.picture}" width="35px" />
+                ${post.user.username}
+                ${
+                  post.user.role === "subscribed"
+                    ? '<span id="subscribed-badge" class="verified-badge"><img src="Images/verified.svg" alt="Profile pic" /></span>'
+                    : ""
+                }
+                <span id="timePosted">${moment(post.date).fromNow()}</span>
+              </a>
+              <button id="followBtn">Follow +</button>
+
+              <h4 id="postTitle">${post.caption}</h4>
+              <div id="commentBox">
+                <form class="commentBoxForm">
+                  <span id="closeComment"> &times;</span>
+                  <textarea
+                    name="comment"
+                    id="commentInput"
+                    placeholder="Enter your comment here..."
+                  ></textarea>
+
+                  <div id="submitComment">
+                    <input
+                      type="button"
+                      value="Comment"
+                      style="background: none; border: none; color: #fff"
+                    /><img src="Images/send.svg" alt="Comment" width="20px" />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-title icons-list">
+                <li>
+                  <button>
+                    <i class="fa-solid fa-eye"></i>
+                    <p class="text-white">${post?.views}</p>
+                  </button>
+                </li>
+
+                <li class="likeListItem">
+                  <button
+                    class="like-button"
+                    id="likeBtn"
+                  >
+                    <i class="far fa-heart" style="color: #fff"></i>
+                  </button>
+                  <p class="text-white">${post?.likes?.length}</p>
+                </li>
+
+                <li>
+                  <button id="commentBtn" class="commentRedirectBtn">
+                    <i class="fa-solid fa-comment"></i>
+                    <p class="text-white">${post?.comment?.length}</p>
+                  </button>
+                </li>
+
+                <li>
+                  <button class="myPopupBtn">
+                    <i class="fa-solid fa-share"></i>
+                    <p class="text-white">${post?.shares}</p>
+                  </button>
+                </li>
+
+                <!-- The Modal -->
+                <div class="shareModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modalContent mobileModalContent">
+                    <span class="close">&times;</span>
+                    <p>Share this post</p>
+                    <div class="share_popup">
+                      <a
+                        class="facebookShare"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                        target="_blank"
+                        ><img src="Images/facebook new.svg"
+                      /></a>
+                      <a
+                        class=""
+                        href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                        data-size="large"
+                        target="_blank"
+                      >
+                        <img src="Images/twitter new.svg" alt="Twitter"
+                      /></a>
+
+                      <a
+                        class="whatsappShare"
+                        href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                        target="_blank"
+                      >
+                        <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                      </a>
+
+                      <a
+                        class="telegramShare"
+                        href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                        target="_blank"
+                      >
+                        <img
+                          src="Images/telegram new.svg"
+                          alt="Telegram share"
+                        />
+                      </a>
+
+                      <a
+                        class="linkedinShare"
+                        href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                        target="_blank"
+                      >
+                        <img src="Images/linkedin.svg" alt="Linkedin" />
+                      </a>
+
+                      <a
+                        class="redditShare"
+                        href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                        target="_blank"
+                      >
+                        <img src="Images/reddit.svg" alt="Reddit" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+              <div class="other-icons">
+                <div>
+                  <span id="dots"></span>
+                  <div id="more-icons" class="more-icons">
+                    <ul>
+                      <li onclick="savePost()">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <p>${post?.saves}</p>
+                      </li>
+                      <li>
+                        <i
+                          onclick="downloadPost()"
+                          class="fa-solid fa-download"
+                        ></i>
+                        <p>${post?.downloads}</p>
+                      </li>
+                      <li onclick="deletePost()">
+                        <i class="fa-solid fa-trash"></i>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <button onclick="moreIcons()" id="myBtn">
+                  <img src="Images/more-icon.svg" width="20px" />
+                </button>
+              </div>
+            </div>
+            <!--card end-->
+          </div>
+        </div>`;
+        allPinElement.appendChild(postElement);
+      });
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `Error fetching all pins: ${error}`, "error");
+      console.error("Error fetching all pins:", error);
+    });
+});
 
 // Social media share modal
 //Share popup modal 1
@@ -304,14 +523,14 @@ mobileCreateBtn.addEventListener("click", checkLoginStatus);
 //Check login status when comment button is clicked, & redirect to homepage and show comment box
 
 //Get comment buttons
-const commentRedirect = document.querySelector('.commentRedirectBtn');
-const commentRedirect2 = document.querySelector('.commentRedirectBtn2');
-const commentRedirect3 = document.querySelector('.commentRedirectBtn3');
-const commentRedirect4 = document.querySelector('.commentRedirectBtn4');
-const commentRedirect5 = document.querySelector('.commentRedirectBtn5');
-const commentRedirect6 = document.querySelector('.commentRedirectBtn6');
-const commentRedirect7 = document.querySelector('.commentRedirectBtn7');
-const commentRedirect8 = document.querySelector('.commentRedirectBtn8');
+const commentRedirect = document.querySelector(".commentRedirectBtn");
+const commentRedirect2 = document.querySelector(".commentRedirectBtn2");
+const commentRedirect3 = document.querySelector(".commentRedirectBtn3");
+const commentRedirect4 = document.querySelector(".commentRedirectBtn4");
+const commentRedirect5 = document.querySelector(".commentRedirectBtn5");
+const commentRedirect6 = document.querySelector(".commentRedirectBtn6");
+const commentRedirect7 = document.querySelector(".commentRedirectBtn7");
+const commentRedirect8 = document.querySelector(".commentRedirectBtn8");
 
 // Add an event listener to the comment buttons
 commentRedirect.addEventListener("click", checkLoginStatus2);
@@ -322,7 +541,6 @@ commentRedirect5.addEventListener("click", checkLoginStatus2);
 commentRedirect6.addEventListener("click", checkLoginStatus2);
 commentRedirect7.addEventListener("click", checkLoginStatus2);
 commentRedirect8.addEventListener("click", checkLoginStatus2);
-
 
 //Check login status when comment button is clicked, & redirect to homepage and show comment box
 function checkLoginStatus2() {
@@ -380,7 +598,7 @@ closeCommentBtn3.addEventListener("click", function () {
   commentBox3.style.display = "none";
 });
 
-//Comment box close for fourth pin 
+//Comment box close for fourth pin
 var commentBox4 = document.getElementsByClassName("commentBox")[2];
 var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
 
@@ -388,7 +606,7 @@ closeCommentBtn4.addEventListener("click", function () {
   commentBox4.style.display = "none";
 });
 
-//Comment box close for 5th pin 
+//Comment box close for 5th pin
 var commentBox5 = document.getElementsByClassName("commentBox")[3];
 var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
 
@@ -396,7 +614,7 @@ closeCommentBtn5.addEventListener("click", function () {
   commentBox5.style.display = "none";
 });
 
-//Comment box close for 6th pin 
+//Comment box close for 6th pin
 var commentBox6 = document.getElementsByClassName("commentBox")[4];
 var closeCommentBtn6 = document.getElementsByClassName("closeComment")[4];
 
@@ -404,7 +622,7 @@ closeCommentBtn6.addEventListener("click", function () {
   commentBox6.style.display = "none";
 });
 
-//Comment box close for 7th pin 
+//Comment box close for 7th pin
 var commentBox7 = document.getElementsByClassName("commentBox")[5];
 var closeCommentBtn7 = document.getElementsByClassName("closeComment")[5];
 
@@ -412,7 +630,7 @@ closeCommentBtn7.addEventListener("click", function () {
   commentBox7.style.display = "none";
 });
 
-//Comment box close for 8th pin 
+//Comment box close for 8th pin
 var commentBox8 = document.getElementsByClassName("commentBox")[6];
 var closeCommentBtn8 = document.getElementsByClassName("closeComment")[6];
 
@@ -425,7 +643,7 @@ closeCommentBtn8.addEventListener("click", function () {
 
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit
-setTimeout(function() {
+setTimeout(function () {
   let deferredPrompt;
 
   window.addEventListener("beforeinstallprompt", (e) => {
@@ -435,7 +653,7 @@ setTimeout(function() {
   });
 
   window.addEventListener("appinstalled", (evt) => {
-    deferredPrompt.prompt().then(choice => {
+    deferredPrompt.prompt().then((choice) => {
       if (choice === "accepted") {
         console.log("User accepted the install prompt.");
         document.querySelector(".install-prompt").remove();
@@ -453,7 +671,7 @@ setTimeout(function() {
     closeButton.classList.add("show");
     installPrompt.style.display = "block";
     installButton.addEventListener("click", () => {
-      deferredPrompt.prompt().then(choice => {
+      deferredPrompt.prompt().then((choice) => {
         if (choice === "accepted") {
           console.log("User accepted the install prompt.");
         } else {
@@ -481,7 +699,7 @@ setTimeout(function() {
   }, 60000);
 
   // Prevent Chrome from automatically prompting the user to install a PWA
-  chrome.webNavigation.onCommitted.addListener(function(details) {
+  chrome.webNavigation.onCommitted.addListener(function (details) {
     if (details.frameUrl === window.location.href) {
       chrome.webNavigation.onCommitted.removeListener(this);
       setTimeout(() => {
@@ -492,7 +710,7 @@ setTimeout(function() {
 }, 0);
 
 // Remove the install prompt after the user has installed the app
-window.addEventListener("appinstalled", function(evt) {
+window.addEventListener("appinstalled", function (evt) {
   document.querySelector(".install-prompt").remove();
 });
 ///Add to home screen/install prompt end
@@ -1222,9 +1440,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1286,8 +1502,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1340,7 +1555,7 @@ function showMoreAccounts() {
 //Subscriber's badge
 document.addEventListener("DOMContentLoaded", function () {
   // Send an AJAX request to get the subscription status
-  fetch("https://api.snapme-ng.com/api/v1/user/status")
+  fetch("http://localhost:5000/api/v1/user/status")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -1367,7 +1582,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //Subscriber's badge ends
 ////
 
-
 //Submit comment fetch API
 const submitCommentBtn = document.getElementById("submitComment");
 
@@ -1382,7 +1596,7 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1434,17 +1648,19 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
   // Fetch the pin data from the backend
-  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
-    .then(response => response.json())
-    .then(pin => {
+  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+    .then((response) => response.json())
+    .then((pin) => {
       // Create a container element to display the pin details
-      const container = document.createElement('div');
+      const container = document.createElement("div");
 
       // Create elements for the pin caption, author, and content
-      const caption = document.createElement('h1');
-      const author = document.createElement('p');
-      const content = document.createElement('p');
-      const media = document.createElement(pin.media.type === 'image' ? 'img' : 'video');
+      const caption = document.createElement("h1");
+      const author = document.createElement("p");
+      const content = document.createElement("p");
+      const media = document.createElement(
+        pin.media.type === "image" ? "img" : "video"
+      );
 
       // Set the text content of the elements to the pin data
       caption.textContent = pin.caption;
@@ -1464,7 +1680,7 @@ function pinDetails() {
       // Add the container to the UI
       document.body.appendChild(container);
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 }
 
 // Call the pinDetails function with a pin ID
@@ -1710,7 +1926,7 @@ const followUserBtn = document.querySelector("#followBtn");
 followUserBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1737,11 +1953,11 @@ const followBtn = document.querySelector(".followBtn");
 followBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, 
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
     },
     credentials: "include",
     mode: "cors",

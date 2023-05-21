@@ -1,4 +1,4 @@
-const api = `https://api.snapme-ng.com/api/v1`;
+const api = `http://localhost:5000/api/v1`;
 
 //Search fetch API
 function searchPosts() {
@@ -79,7 +79,7 @@ function likePost() {
   }
 
   // Create the URL for the API endpoint
-  const url = 'https://api.snapme-ng.com/api/v1/pins/like';
+  const url = 'http://localhost:5000/api/v1/pins/like';
 
   // Fetch options for the POST request
   const options = {

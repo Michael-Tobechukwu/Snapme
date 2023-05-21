@@ -3,7 +3,7 @@ var yourPassword = document.getElementById("password");
 var confPassword = document.getElementById("confirm-password");
 var submitBtn = document.getElementById("submitBtn");
 
-let api = "https://api.snapme-ng.com/api/v1";
+let api = "http://localhost:5000/api/v1";
 
 function checkPassword() {
   if (yourPassword.value === confPassword.value) {

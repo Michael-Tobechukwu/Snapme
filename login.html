@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta
+    <!-- <meta
       name="google-signin-client_id"
       content="406252614079-4f1go3bfek412mh0935cd0lujr96jnes.apps.googleusercontent.com"
-    />
+    /> -->
     <!--<meta
       name="google-signin-client_id"
       content="821458730737-usn923od1v0rvv5mo790ebupq67u7ne1.apps.googleusercontent.com"
@@ -40,18 +40,23 @@
     <title>Snapme | Login</title>
   </head>
   <body>
-    <script>
-      window.fbAsyncInit = function() {
+    <!-- <script>
+      window.fbAsyncInit = function () {
         FB.init({
-          appId            : '211243608348274',
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v16.0'
+          appId: "211243608348274",
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: "v16.0",
         });
       };
     </script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js"
+    ></script>
+    <div id="fb-root"></div> -->
     <!--<script
       async
       defer
@@ -60,25 +65,28 @@
       nonce="BwcR4GDq"
     ></script>-->
 
-    <script
+    <!-- <script
       async
       defer
       crossorigin="anonymous"
       src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0&appId=1237048957228430&autoLogAppEvents=1"
       nonce="bE9NZBvL"
-    ></script>
+    ></script> -->
 
     <div class="container">
       <a href="index.html"
         ><img src="Images/Snapme logo main.png" class="main-logo"
       /></a>
       <div class="card bg-transparent">
-        
         <div class="logo">
-          <img src="Images/back arrow.svg" class="backArrow" onclick="goBack()" />
+          <img
+            src="Images/back arrow.svg"
+            class="backArrow"
+            onclick="goBack()"
+          />
           <div class="logoLock">
             <a href="index.html"><img src="Images/Snapme icon main.png" /></a>
-          <i class="fa-solid fa-lock"></i>
+            <i class="fa-solid fa-lock"></i>
           </div>
         </div>
 
@@ -90,45 +98,27 @@
           <img src="Images/snapme.png" style="width: 30px !important" />
           Login with Snapme
         </button>
-        <!--<button
-          onclick="window.location = 'https://snapme-ng.com/auth/twitter'"
-          class="twitter"
-        >
-          Login with Twitter <i class="fa-brands fa-twitter"></i>
-        </button>-->
 
-        <button onclick="loginInstagram()">
-          <i class="fa-brands fa-instagram"></i>
-          Login with Instagram
+        <button class="instagram">
+          <a href="http://localhost:5000/api/v1/auth/instagram">
+            <i class="fa-brands fa-instagram"></i>
+            Login with Instagram
+          </a>
         </button>
 
-        <!--        <fb:login-button
-          scope="public_profile,email"
-          onlogin="checkLoginState();"
-        >
-        </fb:login-button>-->
+        <button class="facebook">
+          <a href="http://localhost:5000/api/v1/auth/facebook">
+            <i class="fa-brands fa-facebook"></i>
+            Login with Facebook
+          </a>
+        </button>
 
-        <!--<div
-          class="fb-login-button"
-          data-width="250px"
-          data-size="medium"
-          data-button-type=""
-          data-layout=""
-          data-auto-logout-link="true"
-          data-use-continue-as="true"
-        ></div>-->
-
-        <div
-          class="fb-login-button"
-          data-width="250px"
-          data-size="large"
-          data-button-type=""
-          data-layout=""
-          data-auto-logout-link="true"
-          data-use-continue-as="true"
-        ></div>
-
-        <div id="googleBtn">Login with Google</div>
+        <button id="googleBtn">
+          <a href="http://localhost:5000/api/v1/auth/google">
+            <i class="fa-brands fa-google"></i>
+            Login with Google
+          </a>
+        </button>
 
         <div class="signup">
           <p>Don't have a Snapme account?</p>

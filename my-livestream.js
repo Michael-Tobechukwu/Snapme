@@ -8,7 +8,7 @@ function goBack() {
 document.getElementById("endStreamBtn").addEventListener("click", endLive);
 
 function endLive() {
-  fetch("http://localhost:5000/api/v1/live/end", {
+  fetch("https://api.snapme-ng.com/api/v1/live/end", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -82,7 +82,7 @@ document.getElementById("currentDateTime2").innerHTML = currentDate;
 
 //Get user profile
 function thisUser() {
-  fetch("http://localhost:5000/api/v1/:username")
+  fetch("https://api.snapme-ng.com/api/v1/:username")
     .then((response) => response.json())
     .then((user) => {
       console.log(user.name);

@@ -1,4 +1,4 @@
-const api4 = `http://localhost:5000/api/v1`;
+const api4 = `https://api.snapme-ng.com/api/v1`;
 
 window.addEventListener("load", function () {
   setTimeout(function () {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getJwt()}`,
+      // Authorization: `Bearer ${getJwt()}`,
     },
   })
     .then((response) => {
@@ -1440,7 +1440,9 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
@@ -1502,7 +1504,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1555,7 +1558,7 @@ function showMoreAccounts() {
 //Subscriber's badge
 document.addEventListener("DOMContentLoaded", function () {
   // Send an AJAX request to get the subscription status
-  fetch("http://localhost:5000/api/v1/user/status")
+  fetch("https://api.snapme-ng.com/api/v1/user/status")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -1596,7 +1599,7 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
+  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1648,7 +1651,7 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
   // Fetch the pin data from the backend
-  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
     .then((response) => response.json())
     .then((pin) => {
       // Create a container element to display the pin details
@@ -1926,7 +1929,7 @@ const followUserBtn = document.querySelector("#followBtn");
 followUserBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1953,7 +1956,7 @@ const followBtn = document.querySelector(".followBtn");
 followBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

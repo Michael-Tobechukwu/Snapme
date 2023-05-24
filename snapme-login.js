@@ -22,7 +22,7 @@ function goBack() {
 
 ////
 //Snapme login
-const url = "http://localhost:5000/api/v1/login";
+const url = "https://api.snapme-ng.com/api/v1/login";
 
 function loginSubmit() {
   const identifier = document.getElementById("identifier").value;
@@ -64,7 +64,7 @@ function loginSubmit() {
       }
     })
     .then((data) => {
-      document.cookie = `jwtToken=${data.token};${data.expires};path=/;`;
+      document.cookie = `jwtToken=${data.token};path=/;`;
       {
         returnUrl
           ? (window.location.href = returnUrl)

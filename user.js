@@ -225,7 +225,7 @@ var logoutBtn = document.getElementById("logout-button");
 logoutBtn.addEventListener("click", logOut);
 
 function logOut() {
-  fetch("http://localhost:5000/api/v1/logout", {
+  fetch("https://api.snapme-ng.com/api/v1/logout", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
@@ -243,7 +243,7 @@ function logOut() {
 ////
 // Cataloged (my posts) in username
 function myPosts() {
-  fetch("http://localhost:5000/api/v1/my-pins")
+  fetch("https://api.snapme-ng.com/api/v1/my-pins")
     .then((response) => response.json())
     .then((posts) => {
       posts.forEach((post) => {
@@ -320,7 +320,7 @@ const buttonElement = document.getElementById("followUserBtn");
 function followThisUser(username, buttonElement) {
   const currentFollowStatus = buttonElement.innerText;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
     method: currentFollowStatus === "Follow +" ? "POST" : "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -451,7 +451,7 @@ function moreIconsVI() {
 ////
 //Get user profile
 function thisUser() {
-  fetch("http://localhost:5000/api/v1/:username")
+  fetch("https://api.snapme-ng.com/api/v1/:username")
     .then((response) => response.json())
     .then((user) => {
       console.log(user.name);

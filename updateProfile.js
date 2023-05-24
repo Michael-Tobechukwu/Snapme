@@ -16,7 +16,7 @@ done_button.addEventListener("click", function () {
 });
 
 function updateProfile() {
-  fetch("http://localhost:5000/api/v1/update-profile/:username", {
+  fetch("https://api.snapme-ng.com/api/v1/update-profile/:username", {
     method: "POST",
     body: JSON.stringify({ userId: "123" }),
     headers: {

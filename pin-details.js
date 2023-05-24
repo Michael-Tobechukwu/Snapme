@@ -35,7 +35,7 @@ var closeThis = document.getElementById("closeZ");
 //   }
 // };
 
-const api2 = `http://localhost:5000/api/v1`;
+const api2 = `https://api.snapme-ng.com/api/v1`;
 
 function checkJwt(location) {
   const jwtToken = document.cookie
@@ -70,8 +70,7 @@ function getJwt() {
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
     localStorage.setItem("returnUrl", window.location.href);
-    window.location.href = "/login.html";
-    return;
+    return undefined;
   }
   return jwtToken;
 }
@@ -82,6 +81,8 @@ function getQueryParam(name) {
 }
 
 const id = getQueryParam("id");
+
+const token = getJwt();
 
 window.addEventListener("load", function () {
   if (!id) {
@@ -95,14 +96,14 @@ window.addEventListener("load", function () {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getJwt()}`,
+      Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
     },
   })
     .then((response) => {
-      if (response.ok) {
+      if (response.status === 200) {
         return response.json();
-      } else {
-        throw new Error("Network Response Error");
+      } else if (response.status === 401) {
+        throw new Error(`${response.statusText}`);
       }
     })
     .then((post) => {
@@ -147,7 +148,7 @@ window.addEventListener("load", function () {
         if (post.post.media.length > 1) {
           mediaHTML = `
             <div class="slider-container">
-              <div class="slider" onclick="log()">
+              <div class="slider">
                 ${post.post.media
                   .map((media, index) => {
                     const isImage =
@@ -415,7 +416,7 @@ window.addEventListener("load", function () {
       ? post.post.comment
           .map(
             (comment) => `
-      <div class="marcdiss-box">
+      <div id="comment-${comment.id}" class="marcdiss-box">
         <button onclick="window.location = 'user.html?user=${comment.username}'">
           <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
         </button>
@@ -438,7 +439,9 @@ window.addEventListener("load", function () {
   }
 </div>
 
-            <form class="form-input-button">
+         ${
+           token
+             ? `<form class="form-input-button">
 
               <div class="commenterProfile">
                 <input type="button" onclick="user.html?user=${post.username}">
@@ -454,7 +457,9 @@ window.addEventListener("load", function () {
       <i class="fas fa-paper-plane"></i>
     </button>
                 </div>
-            </form>
+            </form>`
+             : `<p style="color: white; font-size: 10px;">You need to <a href="login.html">login</a> first to be able to make comments!</p>`
+         }
           </div>
         </div>
         `;
@@ -477,16 +482,39 @@ function openFullscreen(element) {
   }
 }
 
+const slider = document.querySelector(".slider");
+const prev = document.querySelector(".arrow-prev");
+const next = document.querySelector(".arrow-next");
+const slideWidth = slider.clientWidth;
+
+let currentPosition = 0;
+
+prev.addEventListener("click", () => {
+  currentPosition += slideWidth;
+  if (currentPosition > 0) {
+    currentPosition = -slideWidth * (slider.children.length - 1);
+  }
+  slider.style.transform = `translateX(${currentPosition}px)`;
+});
+
+next.addEventListener("click", () => {
+  currentPosition -= slideWidth;
+  if (currentPosition < -slideWidth * (slider.children.length - 1)) {
+    currentPosition = 0;
+  }
+  slider.style.transform = `translateX(${currentPosition}px)`;
+});
+
 //Pin details post like
-const likeButton = document.querySelector("#like-button");
+const likeBtns = document.querySelector("#like-button");
 let isLiked = false;
 
-likeButton.addEventListener("click", () => {
+likeBtns.addEventListener("click", () => {
   if (isLiked) {
-    likeButton.innerHTML = '<i class="far fa-heart"></i>';
+    likeBtns.innerHTML = '<i class="far fa-heart"></i>';
     isLiked = false;
   } else {
-    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+    likeBtns.innerHTML = '<i class="fas fa-heart"></i>';
     isLiked = true;
   }
 });
@@ -1267,7 +1295,9 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
@@ -1329,7 +1359,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1483,6 +1514,7 @@ window.onscroll = function () {
 
 //Like comment
 function likeComment(commentId) {
+  if (token === undefined) window.location.href = "login.html";
   fetch(`${api2}/pins/${id}/like/${commentId}`, {
     method: "PUT",
     headers: {
@@ -1507,6 +1539,7 @@ function likeComment(commentId) {
 
 //Reply Comment
 function replyComment(commentId) {
+  if (token === undefined) window.location.href = "login.html";
   // const text = document.getElementById("text").value;
 
   fetch(`${api2}/pins/${id}/comment/${commentId}/reply`, {
@@ -1541,6 +1574,7 @@ function replyComment(commentId) {
 
 //Remove/delete reply
 function deleteReply(commentId, replyId) {
+  if (token === undefined) window.location.href = "login.html";
   fetch(`${api2}/pins/${id}/${commentId}/delete/${replyId}`, {
     method: "DELETE",
     headers: {
@@ -1552,11 +1586,11 @@ function deleteReply(commentId, replyId) {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 404) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       } else if (response.status === 401) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       } else if (response.status === 500) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       }
     })
     .then((data) => {
@@ -1570,6 +1604,7 @@ function deleteReply(commentId, replyId) {
 
 //Delete Comment
 function deleteComment(commentId) {
+  if (token === undefined) window.location.href = "login.html";
   fetch(`${api2}/pins/${id}/delete/${commentId}`, {
     method: "DELETE",
     headers: {
@@ -1579,13 +1614,17 @@ function deleteComment(commentId) {
   })
     .then((response) => {
       if (response.status === 200) {
+        const commentElement = document.getElementById(`comment-${commentId}`);
+        if (commentElement) {
+          commentElement.remove();
+        }
         return response.json();
       } else if (response.status === 404) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       } else if (response.status === 401) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       } else if (response.status === 500) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       }
     })
     .then((data) => {
@@ -1863,7 +1902,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 //Get request to fetch user profile
 // function thisUser() {
-//   fetch("http://localhost:5000/api/v1/:username")
+//   fetch("https://api.snapme-ng.com/api/v1/:username")
 //     .then((response) => response.json())
 //     .then((user) => {
 //       console.log(user.name);
@@ -1878,7 +1917,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details

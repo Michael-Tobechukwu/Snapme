@@ -42,7 +42,7 @@ document.getElementById("currentDateTime2").innerHTML = currentDate;
 
 //Start livestream
 function goLive() {
-  fetch("http://localhost:5000/api/v1/live/start", {
+  fetch("https://api.snapme-ng.com/api/v1/live/start", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

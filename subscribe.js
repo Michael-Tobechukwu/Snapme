@@ -1,6 +1,6 @@
 //Subscribe
 function subscribe() {
-  fetch("https://api.snapme-ng.com/api/v1/subscribe/:index", {
+  fetch("http://localhost:5000/api/v1/subscribe/:index", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

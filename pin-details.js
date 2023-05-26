@@ -35,7 +35,7 @@ var closeThis = document.getElementById("closeZ");
 //   }
 // };
 
-const api2 = `https://api.snapme-ng.com/api/v1`;
+const api2 = `http://localhost:5000/api/v1`;
 
 function checkJwt(location) {
   const jwtToken = document.cookie
@@ -103,7 +103,13 @@ window.addEventListener("load", function () {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 401) {
-        throw new Error(`${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
+      } else if (response.status === 500) {
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((post) => {
@@ -147,8 +153,8 @@ window.addEventListener("load", function () {
         // If there are more than one media, create a slider
         if (post.post.media.length > 1) {
           mediaHTML = `
-            <div class="slider-container">
-              <div class="slider">
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
                 ${post.post.media
                   .map((media, index) => {
                     const isImage =
@@ -171,7 +177,7 @@ window.addEventListener("load", function () {
                     const type = isImage ? "image" : isVideo ? "video" : null;
                     if (type) {
                       return `
-                        <div class="slide" onclick="openFullscreen(this)">
+                        <div class="swiper-slide" onclick="openFullscreen(this)">
                           ${
                             type === "image"
                               ? `<img src="${media}" class="post-image"/>`
@@ -212,8 +218,8 @@ window.addEventListener("load", function () {
                   })
                   .join("")}
               </div>
-              <div class="arrow-prev"><</div>
-              <div class="arrow-next">></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
               <div class="swiper-pagination"></div>
             </div>`;
         }
@@ -463,6 +469,16 @@ window.addEventListener("load", function () {
           </div>
         </div>
         `;
+      var swiper = new Swiper(".mySwiper", {
+        pagination: {
+          el: ".swiper-pagination",
+          type: "progressbar",
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");
@@ -481,29 +497,6 @@ function openFullscreen(element) {
     element.msRequestFullscreen();
   }
 }
-
-const slider = document.querySelector(".slider");
-const prev = document.querySelector(".arrow-prev");
-const next = document.querySelector(".arrow-next");
-const slideWidth = slider.clientWidth;
-
-let currentPosition = 0;
-
-prev.addEventListener("click", () => {
-  currentPosition += slideWidth;
-  if (currentPosition > 0) {
-    currentPosition = -slideWidth * (slider.children.length - 1);
-  }
-  slider.style.transform = `translateX(${currentPosition}px)`;
-});
-
-next.addEventListener("click", () => {
-  currentPosition -= slideWidth;
-  if (currentPosition < -slideWidth * (slider.children.length - 1)) {
-    currentPosition = 0;
-  }
-  slider.style.transform = `translateX(${currentPosition}px)`;
-});
 
 //Pin details post like
 const likeBtns = document.querySelector("#like-button");
@@ -545,6 +538,9 @@ function commentOnPost() {
   const text = document.getElementById("commentInput").value;
   const container = document.getElementById("dynamicComment");
 
+  if (!text) {
+    return;
+  }
   console.log(text);
 
   fetch(`${api2}/pins/comment/${id}`, {
@@ -563,7 +559,9 @@ function commentOnPost() {
       } else if (response.status === 404) {
         throw new Error(`${response.status} ${response.statusText}`);
       } else if (response.status === 401) {
-        throw new Error(`${response.status} ${response.statusText}`);
+        throw new Error(
+          `You need to login first: <br> ${response.statusText}! <br> <a href="login.html">click here to login</a>`
+        );
       } else if (response.status === 500) {
         throw new Error(`${response.status} ${response.statusText}`);
       }
@@ -1295,9 +1293,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1359,8 +1355,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1902,7 +1897,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 //Get request to fetch user profile
 // function thisUser() {
-//   fetch("https://api.snapme-ng.com/api/v1/:username")
+//   fetch("http://localhost:5000/api/v1/:username")
 //     .then((response) => response.json())
 //     .then((user) => {
 //       console.log(user.name);
@@ -1917,7 +1912,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details

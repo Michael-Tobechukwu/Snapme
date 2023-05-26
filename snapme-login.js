@@ -22,7 +22,7 @@ function goBack() {
 
 ////
 //Snapme login
-const url = "https://api.snapme-ng.com/api/v1/login";
+const url = "http://localhost:5000/api/v1/login";
 
 function loginSubmit() {
   const identifier = document.getElementById("identifier").value;
@@ -34,9 +34,6 @@ function loginSubmit() {
     errorDiv.textContent = "Username and password cannot be empty";
     return;
   }
-
-  console.log(identifier);
-  console.log(password);
 
   const requestBody = {
     identifier,
@@ -64,7 +61,7 @@ function loginSubmit() {
       }
     })
     .then((data) => {
-      document.cookie = `jwtToken=${data.token};path=/;`;
+      document.cookie = `jwtToken=${data.token}; max-age=${data.expires}; path=/;`;
       {
         returnUrl
           ? (window.location.href = returnUrl)

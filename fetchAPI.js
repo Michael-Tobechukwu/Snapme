@@ -1,4 +1,4 @@
-const api5 = `https://api.snapme-ng.com/api/v1`;
+const api5 = `http://localhost:5000/api/v1`;
 
 //Search fetch API
 function searchPosts() {
@@ -18,6 +18,41 @@ function searchPosts() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Search results:", data);
+    })
+    .catch((error) => console.error(error));
+}
+
+//FOLLOW USERS
+function followThisUser(username) {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    localStorage.setItem("returnUrl", window.location.href);
+    window.location.href = "/login";
+    return;
+  }
+
+  fetch(`${api5}/${username}/follow`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      } else if (response.status === 500) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+    })
+    .then((data) => {
+      console.log(`${data.message}`);
     })
     .catch((error) => console.error(error));
 }
@@ -80,7 +115,7 @@ function likePost() {
   }
 
   // Create the URL for the API endpoint
-  const url = "https://api.snapme-ng.com/api/v1/pins/like";
+  const url = "http://localhost:5000/api/v1/pins/like";
 
   // Fetch options for the POST request
   const options = {

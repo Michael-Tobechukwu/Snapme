@@ -9,7 +9,18 @@ function showPwd() {
   }
 }
 
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+const username = getQueryParam("username");
+
+function updateP(username) {
+  window.location.href = `updateProfile.html?username=${username}`;
+}
+
 //Go to the previous page
 function goBack() {
-    window.history.back();
-  }
+  window.history.back();
+}

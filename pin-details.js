@@ -35,16 +35,24 @@ var closeThis = document.getElementById("closeZ");
 //   }
 // };
 
-const api2 = `http://localhost:5000/api/v1`;
+const api2 = `https://api.snapme-ng.com/api/v1`;
+
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+const id = getQueryParam("id");
+
+let currentProfile = localStorage.getItem("username");
 
 function checkJwt(location) {
   const jwtToken = document.cookie
     .split("; ")
     .find((cookie) => cookie.startsWith("jwtToken="))
     ?.split("=")[1];
-  console.log(jwtToken);
   if (jwtToken && location === "profile") {
-    window.location.href = "/user.html";
+    window.location.href = `/user.html?username=${currentProfile}`;
     return;
   } else if (!jwtToken && location === "profile") {
     // redirect to the login page if jwtToken doesn't exist
@@ -75,13 +83,6 @@ function getJwt() {
   return jwtToken;
 }
 
-function getQueryParam(name) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(name);
-}
-
-const id = getQueryParam("id");
-
 const token = getJwt();
 
 window.addEventListener("load", function () {
@@ -90,7 +91,6 @@ window.addEventListener("load", function () {
     window.location.href = "timeline.html";
     return;
   }
-  console.log(id);
   // Make an HTTP request to the timeline API endpoint
   fetch(`${api2}/pin-details/${id}`, {
     method: "GET",
@@ -113,10 +113,6 @@ window.addEventListener("load", function () {
       }
     })
     .then((post) => {
-      console.log(post);
-      console.log(post.post.user);
-      console.log(post.username);
-
       const pinDetailsElement = document.getElementById("pinCard");
 
       let mediaHTML = "";
@@ -238,42 +234,71 @@ window.addEventListener("load", function () {
           </div>
           <div class="content-top-mobile">
             <div class="userDetails">
-              <img src="${post.post.user.picture}" />
+            <img src="${
+              post.post.user.picture ===
+              "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+                ? `Images/user image.svg`
+                : post.post.user.picture
+            }" class="profilePic" />
               <p
                 class="azizy_username"
-                onclick="window.location='user.html?user=${
+                onclick="window.location='user.html?username=${
                   post.post.user.username
                 }'"
               >
                 ${post.post.user.username}
               </p>
+              ${
+                post.post.user.role === "subscribed"
+                  ? ' <img id="subscribed-badge" src="Images/verified.svg" style="width: 20px;" alt="verified badge"/>'
+                  : ""
+              }
             </div>
             <button
-              id="followUserBtn"
-              class="follow"
-              onclick="followThisUser()"
-            >
-              Follow +
-            </button>
+                   id="followUserBtn"
+                   class="follow"
+                   style="${
+                     post.post.user.username !== post?.username
+                       ? `display: block`
+                       : `display: none`
+                   }"
+                   onclick="followThisUser('${post.post.user.username}')"
+                 >
+                 ${
+                   post.post.user.followers.includes(post?.id)
+                     ? "Following &#10003;"
+                     : post.post.user.username === post?.username ||
+                       post.id === null
+                     ? ""
+                     : "Follow +"
+                 }
+                 </button>
           </div>
         </div>
         <div class="content">
           <div class="content-top">
             <div class="userDetails">
-              <img
-                src="${post.post.user.picture}"
-                onclick="window.location='user.html?user=${
-                  post.post.user.username
-                }'"
-              />
+            <img src="${
+              post.post.user.picture ===
+              "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+                ? `Images/user image.svg`
+                : post.post.user.picture
+            }" onclick="window.location='user.html?username=${
+        post.post.user.username
+      }' class="profilePic" />
               <div class="text">
                 <p
                   class="azizy_username"
-                  onclick="window.location='user.html?user=${
+                  onclick="window.location='user.html?username=${
                     post.post.user.username
                   }'"
                 >
                 ${post.post.user.username}
+                ${
+                  post.post.user.role === "subscribed"
+                    ? ' <img id="subscribed-badge" src="Images/verified.svg" style="width: 20px;" alt="verified badge"/>'
+                    : ""
+                }
                 </p>
                 <span id="postDate">${moment(post.post.date)
                   .locale("en")
@@ -281,12 +306,24 @@ window.addEventListener("load", function () {
               </div>
             </div>
             <button
-              id="followUserButton"
-              class="follow"
-              onclick=""
-            >
-              Follow +
-            </button>
+                   id="followUserBtn"
+                   class="follow"
+                   style="${
+                     post.post.user.username !== post?.username
+                       ? `display: block`
+                       : `display: none`
+                   }
+                   onclick="followThisUser('${post.post.user.username}')"
+                 >
+                 ${
+                   post.post.user.followers.includes(post?.id)
+                     ? "Following &#10003;"
+                     : post.post.user.username === post?.username ||
+                       post.id === null
+                     ? ""
+                     : "Follow +"
+                 }
+                 </button>
           </div>
           
           <div class="content-mid">
@@ -452,7 +489,19 @@ window.addEventListener("load", function () {
               <div class="commenterProfile">
                 <input type="button" onclick="user.html?user=${post.username}">
                 <div class="imageContainer">
-                <img src="${post.user}" alt="${post.username} Profile pic" />
+                <img src="${
+                  post.user ===
+                  "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+                    ? `Images/user image.svg`
+                    : post.user
+                }" alt="${
+                 post.username
+               } Profile pic" onclick="window.location='user.html?username=${
+                 post.username
+               }'" />
+                <!--<img src="${post.user}" alt="${
+                 post.username
+               } Profile pic" />-->
                 </div>
               </div>  
 
@@ -479,6 +528,218 @@ window.addEventListener("load", function () {
           prevEl: ".swiper-button-prev",
         },
       });
+
+      fetch(`${api2}/catalog/suggested/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json();
+          } else if (response.status === 404) {
+            return response.json().then((data) => {
+              throw new Error(data.message || "Error: " + response.statusText);
+            });
+          } else if (response.status === 401) {
+            return response.json().then((data) => {
+              throw new Error(data.message || "Error: " + response.statusText);
+            });
+          } else if (response.status === 500) {
+            return response.json().then((data) => {
+              throw new Error(data.message || "Error: " + response.statusText);
+            });
+          }
+        })
+        .then((posts) => {
+          // console.log(posts);
+          posts.suggestedPosts.forEach((post) => {
+            const suggested = document.querySelector(".row");
+            // console.log(post);
+
+            const suggestedElement = document.createElement("div");
+            suggestedElement.classList.add("col-5");
+
+            suggestedElement.innerHTML = `
+            <div class="card mobileCard">
+              <div class="post-img">
+              ${
+                post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${post._id}'">
+                  <source src="${post?.media[0]}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${post._id}'" />`
+              }
+                <a class="username text-white" href="user.html?username=${
+                  post.user.username
+                }"
+                  >
+                  <img src="${
+                    post.user.picture ===
+                    "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+                      ? `Images/user image.svg`
+                      : post.user.picture
+                  }" alt="${post.user.username} Profile pic" width="35px"
+                 class="profilePic" onclick="window.location='user.html?username=${
+                   post.user.username
+                 }'" />
+                  <span class="nameOfUser">${post.user.username}</span>
+                  <span id="subscribed-badge" class="verified-badge"
+                    > ${
+                      post.user.role === "subscribed"
+                        ? ' <img src="Images/verified.svg" style="width: 20px;" alt="verified badge"/>'
+                        : ""
+                    }</span>
+                  <span id="timePosted">${moment(post.date).fromNow()}</span>
+                </a>
+
+                <h4>${post.caption}</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">${post?.views}</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button onclick="likePost()" class="like-button">
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">${post?.likes?.length}</p>
+                  </li>
+                  <li>
+                    <button id="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">${post?.comment?.length}</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="myPopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">${post.shares}</p>
+                    </button>
+                  </li>
+
+                  <!-- The Modal -->
+                  <div class="shareModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modalContent mobileModalContent">
+                      <span class="close">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/pin-details/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/pin-details/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/pin-details/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/pin-details&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/pin-details/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+
+                        <a
+                          class="redditShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/pin-details/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-iconsV" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>${post.saves}</p>
+                        </li>
+                        <li>
+                          <i
+                            onclick="downloadPost()"
+                            class="fa-solid fa-download"
+                          ></i>
+                          <p>${post.downloads}</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIcons5()" id="myBtnV">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            `;
+            suggested.appendChild(suggestedElement);
+          });
+        })
+        .catch((error) => {
+          Swal.fire("Ooops!", `${error}`, "error");
+          console.log(error);
+        });
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");
@@ -541,7 +802,6 @@ function commentOnPost() {
   if (!text) {
     return;
   }
-  console.log(text);
 
   fetch(`${api2}/pins/comment/${id}`, {
     method: "POST",
@@ -567,8 +827,6 @@ function commentOnPost() {
       }
     })
     .then((data) => {
-      console.log(data);
-
       const commentElement = document.createElement("div");
       commentElement.classList.add("marcdiss-box");
 
@@ -1226,39 +1484,39 @@ closeLiveMobile.onclick = function () {
 //Live popup ends
 ////
 //Follow/unfollow user on desktop
-let isFollowingDesktop = false;
+// let isFollowingDesktop = false;
 
-const thisFollowButton = document.getElementById("followUserButton");
-function toggleFollowUser() {
-  if (isFollowingDesktop) {
-    // unfollow logic
-    thisFollowButton.textContent = "Follow +";
-  } else {
-    // follow logic
-    thisFollowButton.textContent = "Following";
-  }
+// const thisFollowButton = document.getElementById("followUserButton");
+// function toggleFollowUser() {
+//   if (isFollowingDesktop) {
+//     // unfollow logic
+//     thisFollowButton.textContent = "Follow +";
+//   } else {
+//     // follow logic
+//     thisFollowButton.textContent = "Following";
+//   }
 
-  isFollowingDesktop = !isFollowingDesktop;
-}
+//   isFollowingDesktop = !isFollowingDesktop;
+// }
 
-thisFollowButton.addEventListener("click", toggleFollowUser);
+// thisFollowButton.addEventListener("click", toggleFollowUser);
 
 //Follow/unfollow user on mobile
-let isFollowing = false;
-const followBtn = document.getElementById("followUserBtn");
-function toggleFollowUser() {
-  if (isFollowing) {
-    // unfollow logic
-    followBtn.textContent = "Follow +";
-  } else {
-    // follow logic
-    followBtn.textContent = "Following";
-  }
+// let isFollowing = false;
+// const followBtn = document.getElementById("followUserBtn");
+// function toggleFollowUser() {
+//   if (isFollowing) {
+//     // unfollow logic
+//     followBtn.textContent = "Follow +";
+//   } else {
+//     // follow logic
+//     followBtn.textContent = "Following";
+//   }
 
-  isFollowing = !isFollowing;
-}
+//   isFollowing = !isFollowing;
+// }
 
-followBtn.addEventListener("click", toggleFollowUser);
+// followBtn.addEventListener("click", toggleFollowUser);
 
 ////
 // Get the search toggle button, search container, search input, search button, and search results list
@@ -1293,7 +1551,9 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
@@ -1355,7 +1615,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1897,7 +2158,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 //Get request to fetch user profile
 // function thisUser() {
-//   fetch("http://localhost:5000/api/v1/:username")
+//   fetch("https://api.snapme-ng.com/api/v1/:username")
 //     .then((response) => response.json())
 //     .then((user) => {
 //       console.log(user.name);
@@ -1912,7 +2173,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details

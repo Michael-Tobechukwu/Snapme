@@ -220,7 +220,7 @@
 //   }
 // });
 
-const api6 = `http://localhost:5000/api/v1`;
+const api6 = `https://api.snapme-ng.com/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -242,7 +242,22 @@ function getQueryParam(name) {
 
 const username = getQueryParam("username");
 
-const token = getJwt();
+// const token = getJwt();
+
+async function getRandomImage() {
+  const response = await fetch(
+    "https://api.unsplash.com/photos/random?client_id=N4MqS0O1YuELy-OhQ0ZH44j8NPTqjPlYO2tPAvXvM6I"
+  );
+  const data = await response.json();
+  const imageUrl = data.urls.regular;
+  return imageUrl;
+}
+
+// async function getRandomImage() {
+//   const response = await fetch("https://source.unsplash.com/random");
+//   const imageUrl = response.url;
+//   return imageUrl;
+// }
 
 ////
 //Get user profile
@@ -252,7 +267,6 @@ window.addEventListener("load", function () {
     window.location.href = "index.html";
     return;
   }
-  console.log(username);
   // Make an HTTP request to the timeline API endpoint
   fetch(`${api6}/${username}`, {
     method: "GET",
@@ -265,15 +279,19 @@ window.addEventListener("load", function () {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 404) {
-        throw new Error(`${response.message}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 500) {
-        throw new Error(
-          `An error occurred from our side, please try again later!`
-        );
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((user) => {
-      console.log(user);
+      const userId = user.user?._id;
+      const newTitle = user.user.username;
+      document.title = `Snapme || @${newTitle}`;
 
       const userElement = document.getElementById("mainContent");
 
@@ -290,12 +308,17 @@ window.addEventListener("load", function () {
           </button>
         </div>
       </div>
-      <div class="banner">
-        <img src="Images/cover photo.jpg" alt="" />
-      </div>
+      <div class="banner"s>
+    </div>
+    
       <div class="mainUserDetails">
         <div class="userInfo">
-          <img src="${user.user.picture}" class="profilePic" />
+          <img src="${
+            user.user.picture ===
+            "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+              ? `Images/user image.svg`
+              : user.user.picture
+          }" class="profilePic" />
           <div class="userInfoInner">
             <div class="userNameBadge">
               <h3 id="userID">${user.user.username}</h3>
@@ -315,18 +338,24 @@ window.addEventListener("load", function () {
              ? `<button
               id="followUserBtn"
               class="follow"
-              onclick="followThisUser(${user.user.username})"
+              onclick="followThisUser('${user.user.username}')"
             >
-              Follow +
+            ${
+              user.user.followers.includes(user?.currentId)
+                ? "Following &#10003;"
+                : "Follow +"
+            }
             </button>`
              : ""
          }
   
-            <button id="accountSettings" class="editButton" style="${
-              user.user.username === user.currentUser
-                ? `display: block`
-                : `display: none`
-            }">
+            <button id="accountSettings" onclick="window.location.href='settings.html?username=${
+              user.user.username
+            }'" class="editButton" style="${
+        user.user.username === user.currentUser
+          ? `display: block`
+          : `display: none`
+      }">
               Account Settings
             </button>
           </div>
@@ -334,43 +363,80 @@ window.addEventListener("load", function () {
       </div>
 
       <ul class="user-List">
-        <li>${user.user?.occupation}</li>
-        <li>${user.user?.country}</li>
-        <li>Followers: ${user.user.followers.length}</li>
-        <li>Following: ${user.user.following.length}</li>
+        <li>${
+          user.user?._id === user?.currentId && !user.user?.occupation
+            ? `<a href=updateProfile.html?id=${user.user?._id} style="color: white;">Add your occupation</a><span style="color: red;"> (IMPORTANT!)</span>`
+            : user.user?._id !== user?.currentId && !user.user?.occupation
+            ? ""
+            : user.user?.occupation
+        }</li>
+        <li>${
+          user.user?._id === user?.currentId && !user.user?.country
+            ? `<a href=updateProfile.html?id=${user.user?._id} style="color: white;">Add your country </a><span style="color: red;"> (IMPORTANT!)</span>`
+            : user.user?._id !== user?.currentId && !user.user?.country
+            ? ""
+            : user.user?.country
+        }</li>
+        <li id="followersCount">Followers: ${user.user.followers.length}</li>
+        <li id="followingCount">Following: ${user.user.following.length}</li>
       </ul>
 
       <div class="userTabs" id="">
-        <button id="CataloguedBtn" onclick="myPosts()">Cataloged</button>
-        <button onclick="likedPosts()">Liked</button>
-        <button onclick="savedPosts()">Saved</button>
-        <button onclick="followedPosts()">Followed</button>
+        <button id="CataloguedBtn" onclick="myPosts('${
+          user.user?._id
+        }')">Cataloged</button>
+        <button onclick="likedPosts('${user.user?._id}')">Liked</button>
+        <button onclick="savedPosts('${user.user?._id}')">Saved</button>
+        <button onclick="followedPosts('${user.user?._id}')">Followed</button>
       </div>
 
       <div id="mobileUserTabs">
         <div id="swipe-container">
           <div class="swipe-item">
-            <button onclick="myPosts()" id="CataloguedBtn">
+            <button onclick="myPosts('${user.user?._id}')"  id="CataloguedBtn">
               Cataloged
             </button>
           </div>
 
           <div class="swipe-item">
-            <button onclick="likedPosts()" class="">Liked</button>
+            <button onclick="likedPosts('${
+              user.user?._id
+            }')" class="">Liked</button>
           </div>
 
           <div class="swipe-item">
-            <button onclick="savedPosts()" class="">Saved</button>
+            <button onclick="savedPosts('${
+              user.user?._id
+            }')" class="">Saved</button>
           </div>
 
           <div class="swipe-item">
-            <button onclick="followedPosts()" class="">Followed</button>
+            <button onclick="followedPosts('${
+              user.user?._id
+            }')" class="">Followed</button>
           </div>
         </div>
       </div>
     </div>
+    <div id="image-cards" class="container-fluid text-center">
+      <div class="row myrow" id="userPins">
+      </div>
+    </div>  
+
       `;
-      console.log(userElement);
+      async function renderBanner() {
+        const banner = document.querySelector(".banner");
+        banner.style.backgroundImage = user.user.coverPicture
+          ? `url(${user.user.coverPicture})`
+          : `url('${await getRandomImage()}')`;
+      }
+
+      renderBanner();
+
+      const cataloguedBtn = document.getElementById("CataloguedBtn");
+
+      cataloguedBtn.focus();
+      myPosts(userId);
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");
@@ -389,108 +455,1160 @@ function logOut() {
 }
 ////
 // Cataloged (my posts) in username
-function myPosts() {
-  fetch("http://localhost:5000/api/v1/my-pins")
-    .then((response) => response.json())
-    .then((posts) => {
-      posts.forEach((post) => {
-        console.log(post.title);
-        console.log(post.body);
-      });
-    })
-    .catch((error) => console.error(error));
+
+let activeTab = "";
+
+function myPosts(id) {
+  if (activeTab === "catalogBtn") {
+    return;
+  }
+
+  (() => {
+    let currentPage = 1;
+    let allPostsLoaded = false;
+    let isLoading = false;
+
+    const showLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
+      }
+
+      const spinnerElement = document.createElement("div");
+      spinnerElement.id = "loadingSpinner";
+      spinnerElement.textContent = "Loading...";
+      document.getElementById("userPins").appendChild(spinnerElement);
+    };
+
+    const hideLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
+      }
+    };
+
+    const loadPosts = () => {
+      if (isLoading || allPostsLoaded) {
+        return;
+      }
+
+      isLoading = true;
+      showLoadingSpinner();
+
+      fetch(`${api6}/pins/mypins/${id}?params=${currentPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Network Response Error");
+          }
+        })
+        .then((posts) => {
+          if (posts.length === 0) {
+            allPostsLoaded = true;
+
+            if (currentPage === 1) {
+              const postElement = document.getElementById("userPins");
+
+              while (postElement.firstChild) {
+                postElement.firstChild.remove();
+              }
+
+              // if (!document.getElementById("userPins").hasChildNodes()) {
+              const messageElement = document.createElement("div");
+              messageElement.classList.add("col-12");
+              messageElement.innerHTML = `
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Nothing to see here...</h5>
+                  <p class="card-text">There are no pins to display here yet...</p>
+                  <button type="button" class="btn btn-primary" onclick="location.href='create-pin.html'">Create new pin</button>
+                  <button type="button" class="btn btn-secondary" onclick="location.href='friends.html'">Make friends</button>
+                </div>
+              </div>`;
+              postElement.appendChild(messageElement);
+              // return;
+              // }
+            }
+          } else {
+            const postElement = document.getElementById("userPins");
+
+            while (postElement.firstChild) {
+              postElement.firstChild.remove();
+            }
+
+            posts.forEach((post) => {
+              const postId = post._id;
+
+              const postContent = document.createElement("div");
+              postContent.classList.add("col");
+
+              postContent.innerHTML = `
+              <div class="card">
+              <div class="post-img">
+              ${
+                post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                  <source src="${post?.media[0]}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+              }
+                <div class="userDetails">
+                  <a href="user.html?username=${post.user.username}">
+                    <img src="${post.user.picture}" width="30px" />
+                    <span style="font-size: 13px">${post.user.username}</span>
+                    ${
+                      post.user.role === "subscribed"
+                        ? '<img src="Images/verified.svg" width="20px" />'
+                        : ""
+                    }
+                    <span style="font-size: 12px" id="timePosted">${moment(
+                      post.date
+                    ).fromNow()}</span>
+                  </a>
+                </div>
+  
+                <h4>${post?.caption}</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+  
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img
+                        src="Images/send.svg"
+                        alt="Comment"
+                        width="20px"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+  
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">${post?.views}</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button onclick="likePost()" class="like-button">
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">${post.likes?.length}</p>
+                  </li>
+                  <li>
+                    <button id="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">${post.comment?.length}</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="sharePopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">${post.shares}</p>
+                    </button>
+                  </li>
+                  
+                  <div class="shareUserModal" class="modal">
+                    <div class="modalContent mobileModalContent">
+                      <span class="closeX">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+  
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+  
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-icons" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>${post.saves}</p>
+                        </li>
+                        <li onclick="downloadPost()">
+                          <i class="fa-solid fa-download"></i>
+                          <p>${post.downloads}</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+              `;
+              postElement.appendChild(postContent);
+              activeTab = "catalogBtn";
+            });
+          }
+          isLoading = false;
+          hideLoadingSpinner();
+        })
+        .catch((error) => {
+          console.error(error);
+          isLoading = false;
+          hideLoadingSpinner();
+          Swal.fire("Ooops!", `${error}`, "error");
+        });
+    };
+
+    loadPosts();
+
+    window.addEventListener("scroll", () => {
+      if (
+        !allPostsLoaded &&
+        !isLoading &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight
+      ) {
+        if (document.getElementById("userPins").hasChildNodes()) {
+          currentPage++;
+          loadPosts();
+        }
+      }
+    });
+  })();
 }
 
 //Liked posts
-function likedPosts() {
-  fetch("http://localhost:5000api/v1/pins/liked-pins")
-    .then((response) => response.json())
-    .then((data) => {
-      // Loop through the liked posts and add them to the page
-      data.forEach((post) => {
-        const postElement = document.createElement("div");
-        postElement.innerText = post.title;
-        document.body.appendChild(postElement);
-      });
-    })
-    .catch((error) => console.error(error));
+function likedPosts(id) {
+  if (activeTab === "likedBtn") {
+    return;
+  }
+
+  (() => {
+    let currentPage = 1;
+    let allPostsLoaded = false;
+    let isLoading = false;
+
+    const showLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
+      }
+
+      const spinnerElement = document.createElement("div");
+      spinnerElement.id = "loadingSpinner";
+      spinnerElement.textContent = "Loading...";
+      document.getElementById("userPins").appendChild(spinnerElement);
+    };
+
+    const hideLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
+      }
+    };
+
+    const loadPosts = () => {
+      if (isLoading || allPostsLoaded) {
+        return;
+      }
+
+      isLoading = true;
+      showLoadingSpinner();
+
+      fetch(`${api6}/pins/liked-pins/${id}?params=${currentPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Network Response Error");
+          }
+        })
+        .then((posts) => {
+          if (posts.length === 0) {
+            allPostsLoaded = true;
+
+            if (currentPage === 1) {
+              const postElement = document.getElementById("userPins");
+
+              while (postElement.firstChild) {
+                postElement.firstChild.remove();
+              }
+
+              // if (!document.getElementById("userPins").hasChildNodes()) {
+              const messageElement = document.createElement("div");
+              messageElement.classList.add("col-12");
+              messageElement.innerHTML = `
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Nothing to see here...</h5>
+                  <p class="card-text">There are no pins to display here yet...</p>
+                  <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Visit Pins</button>
+                </div>
+              </div>`;
+              postElement.appendChild(messageElement);
+              // return;
+              // }
+            }
+          } else {
+            const postElement = document.getElementById("userPins");
+
+            while (postElement.firstChild) {
+              postElement.firstChild.remove();
+            }
+
+            posts.forEach((post) => {
+              const postId = post._id;
+
+              const postContent = document.createElement("div");
+              postContent.classList.add("col");
+
+              postContent.innerHTML = `
+              <div class="card">
+              <div class="post-img">
+              ${
+                post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                  <source src="${post?.media[0]}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+              }
+                <div class="userDetails">
+                  <a href="user.html?username=${post.user.username}">
+                    <img src="${post.user.picture}" width="30px" />
+                    <span style="font-size: 13px">${post.user.username}</span>
+                    ${
+                      post.user.role === "subscribed"
+                        ? '<img src="Images/verified.svg" width="20px" />'
+                        : ""
+                    }
+                    <span style="font-size: 12px" id="timePosted">${moment(
+                      post.date
+                    ).fromNow()}</span>
+                  </a>
+                </div>
+  
+                <h4>${post?.caption}</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+  
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img
+                        src="Images/send.svg"
+                        alt="Comment"
+                        width="20px"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+  
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">${post?.views}</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button onclick="likePost()" class="like-button">
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">${post.likes?.length}</p>
+                  </li>
+                  <li>
+                    <button id="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">${post.comment?.length}</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="sharePopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">${post.shares}</p>
+                    </button>
+                  </li>
+                  
+                  <div class="shareUserModal" class="modal">
+                    <div class="modalContent mobileModalContent">
+                      <span class="closeX">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+  
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+  
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-icons" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>${post.saves}</p>
+                        </li>
+                        <li onclick="downloadPost()">
+                          <i class="fa-solid fa-download"></i>
+                          <p>${post.downloads}</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+              `;
+              postElement.appendChild(postContent);
+              activeTab = "likedBtn";
+            });
+          }
+          isLoading = false;
+          hideLoadingSpinner();
+        })
+        .catch((error) => {
+          console.error(error);
+          isLoading = false;
+          hideLoadingSpinner();
+          Swal.fire("Ooops!", `${error}`, "error");
+        });
+    };
+
+    loadPosts();
+
+    window.addEventListener("scroll", () => {
+      if (
+        !allPostsLoaded &&
+        !isLoading &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight
+      ) {
+        if (document.getElementById("userPins").hasChildNodes()) {
+          currentPage++;
+          loadPosts();
+        }
+      }
+    });
+  })();
 }
 
 //Saved posts
-function savedPosts() {
-  fetch("http://localhost:5000api/v1/pins/saved-pins")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+function savedPosts(id) {
+  if (activeTab === "savedBtn") {
+    return;
+  }
+
+  (() => {
+    let currentPage = 1;
+    let allPostsLoaded = false;
+    let isLoading = false;
+
+    const showLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
       }
-      return response.json();
-    })
-    .then((data) => {
-      // Loop through the saved posts and add them to the page
-      data.forEach((post) => {
-        const postElement = document.createElement("div");
-        postElement.innerText = post.title;
-        document.body.appendChild(postElement);
-      });
-    })
-    .catch((error) => console.error(error));
+
+      const spinnerElement = document.createElement("div");
+      spinnerElement.id = "loadingSpinner";
+      spinnerElement.textContent = "Loading...";
+      document.getElementById("userPins").appendChild(spinnerElement);
+    };
+
+    const hideLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
+      }
+    };
+
+    const loadPosts = () => {
+      if (isLoading || allPostsLoaded) {
+        return;
+      }
+
+      isLoading = true;
+      showLoadingSpinner();
+
+      fetch(`${api6}/pins/saved-pins/${id}?params=${currentPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else if (response.status === 404) {
+            return response.json().then((data) => {
+              throw new Error(data.message || "Error: " + response.statusText);
+            });
+          }
+        })
+        .then((posts) => {
+          if (posts.length === 0) {
+            allPostsLoaded = true;
+
+            if (currentPage === 1) {
+              const postElement = document.getElementById("userPins");
+
+              while (postElement.firstChild) {
+                postElement.firstChild.remove();
+              }
+
+              // if (!document.getElementById("userPins").hasChildNodes()) {
+              const messageElement = document.createElement("div");
+              messageElement.classList.add("col-12");
+              messageElement.innerHTML = `
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Nothing to see here...</h5>
+                  <p class="card-text">There are no pins to display here yet...</p>
+                  <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Visit Pins</button>
+                </div>
+              </div>`;
+              postElement.appendChild(messageElement);
+              // return;
+              // }
+            }
+          } else {
+            const postElement = document.getElementById("userPins");
+
+            while (postElement.firstChild) {
+              postElement.firstChild.remove();
+            }
+
+            posts.forEach((post) => {
+              const postId = post._id;
+
+              const postContent = document.createElement("div");
+              postContent.classList.add("col");
+
+              postContent.innerHTML = `
+              <div class="card">
+              <div class="post-img">
+              ${
+                post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                  <source src="${post?.media[0]}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+              }
+                <div class="userDetails">
+                  <a href="user.html?username=${post.user.username}">
+                    <img src="${post.user.picture}" width="30px" />
+                    <span style="font-size: 13px">${post.user.username}</span>
+                    ${
+                      post.user.role === "subscribed"
+                        ? '<img src="Images/verified.svg" width="20px" />'
+                        : ""
+                    }
+                    <span style="font-size: 12px" id="timePosted">${moment(
+                      post.date
+                    ).fromNow()}</span>
+                  </a>
+                </div>
+  
+                <h4>${post?.caption}</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+  
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img
+                        src="Images/send.svg"
+                        alt="Comment"
+                        width="20px"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+  
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">${post?.views}</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button onclick="likePost()" class="like-button">
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">${post.likes?.length}</p>
+                  </li>
+                  <li>
+                    <button id="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">${post.comment?.length}</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="sharePopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">${post.shares}</p>
+                    </button>
+                  </li>
+                  
+                  <div class="shareUserModal" class="modal">
+                    <div class="modalContent mobileModalContent">
+                      <span class="closeX">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+  
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+  
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-icons" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>${post.saves}</p>
+                        </li>
+                        <li onclick="downloadPost()">
+                          <i class="fa-solid fa-download"></i>
+                          <p>${post.downloads}</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+              `;
+              postElement.appendChild(postContent);
+              activeTab = "savedBtn";
+            });
+          }
+          isLoading = false;
+          hideLoadingSpinner();
+        })
+        .catch((error) => {
+          console.error(error);
+          isLoading = false;
+          hideLoadingSpinner();
+          Swal.fire("Ooops!", `${error}`, "error");
+        });
+    };
+
+    loadPosts();
+
+    window.addEventListener("scroll", () => {
+      if (
+        !allPostsLoaded &&
+        !isLoading &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight
+      ) {
+        if (document.getElementById("userPins").hasChildNodes()) {
+          currentPage++;
+          loadPosts();
+        }
+      }
+    });
+  })();
 }
 
 //Followed posts
-function followedPosts() {
-  fetch("http://localhost:5000/v1/users/following/pins")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+function followedPosts(id) {
+  if (activeTab === "followedBtn") {
+    return;
+  }
+
+  (() => {
+    let currentPage = 1;
+    let allPostsLoaded = false;
+    let isLoading = false;
+
+    const showLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
       }
-      return response.json();
-    })
-    .then((data) => {
-      // Loop through the followed posts and add them to the page
-      data.forEach((post) => {
-        const postElement = document.createElement("div");
-        postElement.innerText = post.title;
-        document.body.appendChild(postElement);
-      });
-    })
-    .catch((error) => console.error(error));
+
+      const spinnerElement = document.createElement("div");
+      spinnerElement.id = "loadingSpinner";
+      spinnerElement.textContent = "Loading...";
+      document.getElementById("userPins").appendChild(spinnerElement);
+    };
+
+    const hideLoadingSpinner = () => {
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      if (loadingSpinner) {
+        loadingSpinner.remove();
+      }
+    };
+
+    const loadPosts = () => {
+      if (isLoading || allPostsLoaded) {
+        return;
+      }
+
+      isLoading = true;
+      showLoadingSpinner();
+
+      fetch(`${api6}/users/following/pins/${id}?params=${currentPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else if (response.status === 404) {
+            return response.json().then((data) => {
+              throw new Error(data.message || "Error: " + response.statusText);
+            });
+          }
+        })
+        .then((posts) => {
+          if (posts.length === 0) {
+            allPostsLoaded = true;
+
+            if (currentPage === 1) {
+              const postElement = document.getElementById("userPins");
+
+              while (postElement.firstChild) {
+                postElement.firstChild.remove();
+              }
+
+              // if (!document.getElementById("userPins").hasChildNodes()) {
+              const messageElement = document.createElement("div");
+              messageElement.classList.add("col-12");
+              messageElement.innerHTML = `
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Nothing to see here...</h5>
+                  <p class="card-text">There are no pins to display here yet...</p>
+                  <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Visit Pins</button>
+                </div>
+              </div>`;
+              postElement.appendChild(messageElement);
+              // return;
+              // }
+            }
+          } else {
+            const postElement = document.getElementById("userPins");
+
+            while (postElement.firstChild) {
+              postElement.firstChild.remove();
+            }
+
+            posts.forEach((post) => {
+              const postId = post._id;
+
+              const postContent = document.createElement("div");
+              postContent.classList.add("col");
+
+              postContent.innerHTML = `
+              <div class="card">
+              <div class="post-img">
+              ${
+                post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                  <source src="${post?.media[0]}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+              }
+                <div class="userDetails">
+                  <a href="user.html?username=${post.user.username}">
+                    <img src="${post.user.picture}" width="30px" />
+                    <span style="font-size: 13px">${post.user.username}</span>
+                    ${
+                      post.user.role === "subscribed"
+                        ? '<img src="Images/verified.svg" width="20px" />'
+                        : ""
+                    }
+                    <span style="font-size: 12px" id="timePosted">${moment(
+                      post.date
+                    ).fromNow()}</span>
+                  </a>
+                </div>
+  
+                <h4>${post?.caption}</h4>
+                <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+  
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img
+                        src="Images/send.svg"
+                        alt="Comment"
+                        width="20px"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+  
+              <div class="card-body">
+                <ul class="card-title icons-list">
+                  <li>
+                    <button>
+                      <i class="fa-solid fa-eye"></i>
+                      <p class="text-white">${post?.views}</p>
+                    </button>
+                  </li>
+                  <li class="likeListItem">
+                    <button onclick="likePost()" class="like-button">
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">${post.likes?.length}</p>
+                  </li>
+                  <li>
+                    <button id="commentBtn">
+                      <i class="fa-solid fa-comment"></i>
+                      <p class="text-white">${post.comment?.length}</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="sharePopupBtn">
+                      <i class="fa-solid fa-share"></i>
+                      <p class="text-white">${post.shares}</p>
+                    </button>
+                  </li>
+                  
+                  <div class="shareUserModal" class="modal">
+                    <div class="modalContent mobileModalContent">
+                      <span class="closeX">&times;</span>
+                      <p>Share this post</p>
+                      <div class="share_popup">
+                        <a
+                          class="facebookShare"
+                          href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                          target="_blank"
+                          ><img src="Images/facebook new.svg"
+                        /></a>
+                        <a
+                          class=""
+                          href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                          data-size="large"
+                          target="_blank"
+                        >
+                          <img src="Images/twitter new.svg" alt="Twitter"
+                        /></a>
+  
+                        <a
+                          class="whatsappShare"
+                          href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                        </a>
+  
+                        <a
+                          class="telegramShare"
+                          href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img
+                            src="Images/telegram new.svg"
+                            alt="Telegram share"
+                          />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                          target="_blank"
+                        >
+                          <img src="Images/linkedin.svg" alt="Linkedin" />
+                        </a>
+  
+                        <a
+                          class="linkedinShare"
+                          href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                          target="_blank"
+                        >
+                          <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-icons" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>${post.saves}</p>
+                        </li>
+                        <li onclick="downloadPost()">
+                          <i class="fa-solid fa-download"></i>
+                          <p>${post.downloads}</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+              `;
+              postElement.appendChild(postContent);
+              activeTab = "followedBtn";
+            });
+          }
+          isLoading = false;
+          hideLoadingSpinner();
+        })
+        .catch((error) => {
+          console.error(error);
+          isLoading = false;
+          hideLoadingSpinner();
+          Swal.fire("Ooops!", `${error}`, "error");
+        });
+    };
+
+    loadPosts();
+
+    window.addEventListener("scroll", () => {
+      if (
+        !allPostsLoaded &&
+        !isLoading &&
+        window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight
+      ) {
+        if (document.getElementById("userPins").hasChildNodes()) {
+          currentPage++;
+          loadPosts();
+        }
+      }
+    });
+  })();
 }
-
-////
-//Follow/unfollow user request to server
-// const username = document.getElementById("userID");
-// const buttonElement = document.getElementById("followUserBtn");
-
-// function followThisUser(username, buttonElement) {
-//   const currentFollowStatus = buttonElement.innerText;
-
-//   fetch(`http://localhost:5000/api/v1/${username}/follow`, {
-//     method: currentFollowStatus === "Follow +" ? "POST" : "DELETE",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (data.success) {
-//         if (currentFollowStatus === "Follow +") {
-//           buttonElement.innerText = "Following";
-//         } else {
-//           buttonElement.innerText = "Follow +";
-//         }
-//       } else {
-//         console.error("Failed to toggle follow status");
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("Error toggling follow status:", error);
-//     });
-// }
-
-// buttonElement.addEventListener("click", () => {
-//   followThisUser(username, buttonElement);
-// });
-//////----------
 
 //More icons button
 function moreIcons() {
@@ -595,27 +1713,27 @@ function moreIconsVI() {
 
 ////
 //Swipe tabs on mobile
-// const swipeContainer = document.getElementById("swipe-container");
+const swipeContainer = document.getElementById("swipe-container");
 
-// let touchStartX = 0;
-// let touchEndX = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
-// swipeContainer.addEventListener("touchstart", (event) => {
-//   touchStartX = event.touches[0].clientX;
-// });
+swipeContainer.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
+});
 
-// swipeContainer.addEventListener("touchmove", (event) => {
-//   touchEndX = event.touches[0].clientX;
-// });
+swipeContainer.addEventListener("touchmove", (event) => {
+  touchEndX = event.touches[0].clientX;
+});
 
-// swipeContainer.addEventListener("touchend", () => {
-//   if (touchEndX < touchStartX) {
-//     swipeContainer.scrollBy({ left: 50, behavior: "smooth" });
-//   } else if (touchEndX > touchStartX) {
-//     swipeContainer.scrollBy({ left: -50, behavior: "smooth" });
-//   }
-// });
-//
+swipeContainer.addEventListener("touchend", () => {
+  if (touchEndX < touchStartX) {
+    swipeContainer.scrollBy({ left: 50, behavior: "smooth" });
+  } else if (touchEndX > touchStartX) {
+    swipeContainer.scrollBy({ left: -50, behavior: "smooth" });
+  }
+});
+
 /////
 
 //Go back to previous page

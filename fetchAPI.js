@@ -1,4 +1,4 @@
-const api5 = `http://localhost:5000/api/v1`;
+const api5 = `https://api.snapme-ng.com/api/v1`;
 
 //Search fetch API
 function searchPosts() {
@@ -24,6 +24,9 @@ function searchPosts() {
 
 //FOLLOW USERS
 function followThisUser(username) {
+  const followersTotal = document.getElementById("followersCount");
+  const followingTotal = document.getElementById("followingCount");
+
   const jwtToken = document.cookie
     .split("; ")
     .find((cookie) => cookie.startsWith("jwtToken="))
@@ -31,7 +34,7 @@ function followThisUser(username) {
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
     localStorage.setItem("returnUrl", window.location.href);
-    window.location.href = "/login";
+    window.location.href = "/login.html";
     return;
   }
 
@@ -46,13 +49,26 @@ function followThisUser(username) {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 404) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 500) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((data) => {
-      console.log(`${data.message}`);
+      console.log(data);
+      const follow = document.getElementById("followUserBtn");
+      const followersTotal = document.getElementById("followersCount");
+      const followingTotal = document.getElementById("followingCount");
+      if (follow) {
+        follow.innerHTML = data.following ? "Following &#10003" : "Follow +";
+      }
+      followersTotal.textContent = `Followers: ${data.followersCount.length}`;
+      followingTotal.textContent = `Following: ${data.followingCount.length}`;
+      Swal.fire("Success!", `${data.message}`, "success");
     })
     .catch((error) => console.error(error));
 }
@@ -115,7 +131,7 @@ function likePost() {
   }
 
   // Create the URL for the API endpoint
-  const url = "http://localhost:5000/api/v1/pins/like";
+  const url = "https://api.snapme-ng.com/api/v1/pins/like";
 
   // Fetch options for the POST request
   const options = {

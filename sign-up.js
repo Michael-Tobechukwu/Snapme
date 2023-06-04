@@ -3,7 +3,7 @@ var yourPassword = document.getElementById("password");
 var confPassword = document.getElementById("confirm-password");
 var submitBtn = document.getElementById("submitBtn");
 
-let api = "http://localhost:5000/api/v1";
+let api = "https://api.snapme-ng.com/api/v1";
 
 function checkPassword() {
   if (yourPassword.value === confPassword.value) {
@@ -13,6 +13,8 @@ function checkPassword() {
   }
 }
 submitBtn.addEventListener("click", checkPassword);
+
+let returnUrl = localStorage.getItem("returnUrl");
 
 //Signup API
 function signup() {
@@ -56,8 +58,8 @@ function signup() {
       }
     })
     .then((data) => {
-      document.cookie = `jwtToken=${data.token};${expires};path=/;`;
-      const returnUrl = localStorage.getItem("returnUrl");
+      document.cookie = `jwtToken=${data.token}; max-age=${data.expires}; path=/;`;
+      localStorage.setItem("username", data.username);
       if (returnUrl) {
         localStorage.removeItem("returnUrl");
         window.location.href = returnUrl;

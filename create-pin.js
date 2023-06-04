@@ -1,6 +1,6 @@
 const create = document.getElementById("create");
 
-const api3 = `http://localhost:5000/api/v1`;
+const api3 = `https://api.snapme-ng.com/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie

@@ -10,7 +10,7 @@ var showPasswordIcon = document.getElementsByClassName("eyeIcon")[0];
 const otpBtn = document.getElementById("otp");
 const resetForm = document.getElementById("resetForm");
 
-let api = "http://localhost:5000/api/v1";
+let api = "https://api.snapme-ng.com/api/v1";
 
 function showPwd() {
   if (pwdInput.type === "password") {
@@ -77,7 +77,7 @@ function getOtp() {
         return response.json();
       } else if (response.status === 404) {
         throw new Error(
-          `Account with that email or username does not exist, please check it and try again!: ${response.status} ${response.statusText}`
+          `Account with that email or username does not exist, please check it and try again!: ${response.statusText}`
         );
       } else if (response.status === 500) {
         throw new Error(
@@ -120,7 +120,7 @@ function resetPassword() {
   if (!token) {
     Swal.fire(
       "Warning!",
-      `Please insert the 6-digit OTP that was sent to you mail!`,
+      `Please insert the 6-digit OTP that was sent to your mail!`,
       "error"
     );
     return;
@@ -151,7 +151,7 @@ function resetPassword() {
         return response.json();
       } else if (response.status === 404) {
         throw new Error(
-          `Invalid or expired token! Please tap on 'Get OTP' to get a new one!: ${response.status} ${response.statusText}`
+          `Invalid or expired token! Please tap on 'Get OTP' to get a new one!: ${response.statusText}`
         );
       } else if (response.status === 500) {
         throw new Error(
@@ -164,8 +164,9 @@ function resetPassword() {
         "Success!",
         `${data.message}! You can login with your new password!`,
         "success"
-      );
-      window.location.href = "/login.html";
+      ).then(() => {
+        window.location.href = "/login.html";
+      });
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");

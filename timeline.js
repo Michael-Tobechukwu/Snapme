@@ -4,7 +4,7 @@ window.addEventListener("load", function () {
   }, 2000);
 });
 
-let api1 = `http://localhost:5000/api/v1`;
+let api1 = `https://api.snapme-ng.com/api/v1`;
 
 //Preloader
 window.onload = function () {
@@ -13,13 +13,13 @@ window.onload = function () {
 };
 
 function checkJwt(location) {
+  const currentProfile = localStorage.getItem("username");
   const jwtToken = document.cookie
     .split("; ")
     .find((cookie) => cookie.startsWith("jwtToken="))
     ?.split("=")[1];
-  console.log(jwtToken);
   if (jwtToken && location === "profile") {
-    window.location.href = "/user.html";
+    window.location.href = `/user.html?username=${currentProfile}`;
     return;
   } else if (!jwtToken && location === "profile") {
     // redirect to the login page if jwtToken doesn't exist
@@ -51,29 +51,152 @@ function getJwt() {
   return jwtToken;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Make an HTTP request to the timeline API endpoint
-  fetch(`${api1}/pins/timeline`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getJwt()}`,
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Network Response Error");
-      }
-    })
-    .then((posts) => {
-      if (posts.length === 0) {
-        const timelineElement = document.querySelector(".row");
+// window.addEventListener("load", () => {
+//   fetch(`${api1}/user/suggested`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: getJwt() ? `Bearer ${getJwt()}` : undefined,
+//     },
+//   })
+//     .then((response) => {
+//       if (response.status === 200) {
+//         return response.json();
+//       } else if (response.status === 404) {
+//         return response.json().then((data) => {
+//           throw new Error(data.message || "Error: " + response.statusText);
+//         });
+//       } else if (response.status === 401) {
+//         return response.json().then((data) => {
+//           throw new Error(data.message || "Error: " + response.statusText);
+//         });
+//       } else if (response.status === 500) {
+//         return response.json().then((data) => {
+//           throw new Error(data.message || "Error: " + response.statusText);
+//         });
+//       }
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       const cardsContainer = document.querySelector(".cards-container");
 
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("col-12");
-        messageElement.innerHTML = `
+//       data.forEach((user) => {
+//         const profileCard = createProfileCard(user);
+//         cardsContainer.appendChild(profileCard);
+//       });
+
+//       const prevButton = document.querySelector(".prev-button");
+//       const nextButton = document.querySelector(".next-button");
+
+//       prevButton.addEventListener("click", slideCards);
+//       nextButton.addEventListener("click", slideCards);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// });
+
+// function createProfileCard(user) {
+//   const card = document.createElement("div");
+//   card.classList.add("profile-card");
+
+//   const image = document.createElement("img");
+//   image.src = user.picture;
+//   card.appendChild(image);
+
+//   const nameHeading = document.createElement("h3");
+//   nameHeading.textContent = user.name;
+//   card.appendChild(nameHeading);
+
+//   const usernameParagraph = document.createElement("p");
+//   usernameParagraph.textContent = `@${user.username}`;
+//   card.appendChild(usernameParagraph);
+
+//   // const roleParagraph = document.createElement("p");
+//   // roleParagraph.textContent = user.role;
+//   // card.appendChild(roleParagraph);
+
+//   card.addEventListener("click", () => {
+//     // Redirect to user's profile
+//     window.location.href = `/profile?id=${user.id}`;
+//   });
+
+//   return card;
+// }
+
+function slideCards(event) {
+  const cardsContainer = document.querySelector(".cards-container");
+  const cardWidth = document.querySelector(".profile-card").offsetWidth;
+  const button = event.target;
+  const direction = button.classList.contains("prev-button") ? 1 : -1;
+  const currentTranslateX =
+    parseInt(cardsContainer.style.transform.split(" ")[1]) || 0;
+  const newTranslateX = currentTranslateX + direction * cardWidth;
+
+  cardsContainer.style.transform = `translateX(${newTranslateX}px)`;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  let currentPage = 1;
+  let allPostsLoaded = false;
+  let isLoading = false;
+
+  const showLoadingSpinner = () => {
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    if (loadingSpinner) {
+      loadingSpinner.remove();
+    }
+
+    const spinnerElement = document.createElement("div");
+    spinnerElement.id = "loadingSpinner";
+    spinnerElement.textContent = "Loading...";
+    document.getElementById("userPins").appendChild(spinnerElement);
+  };
+
+  const hideLoadingSpinner = () => {
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    if (loadingSpinner) {
+      loadingSpinner.remove();
+    }
+  };
+
+  const getPosts = () => {
+    if (isLoading || allPostsLoaded) {
+      return;
+    }
+
+    isLoading = true;
+    showLoadingSpinner();
+
+    // Make an HTTP request to the timeline API endpoint
+    fetch(`${api1}/pins/timeline?page=${currentPage}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getJwt()}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Network Response Error");
+        }
+      })
+      .then((posts) => {
+        if (posts.length === 0) {
+          allPostsLoaded = true;
+
+          if (currentPage === 1) {
+            const timelineElement = document.querySelector(".row");
+
+            while (timelineElement.firstChild) {
+              timelineElement.firstChild.remove();
+            }
+
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("col-12");
+            messageElement.innerHTML = `
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Nothing to see here...</h5>
@@ -82,19 +205,24 @@ document.addEventListener("DOMContentLoaded", function () {
               <button type="button" class="btn btn-secondary" onclick="location.href='friends.html'">Make friends</button>
             </div>
           </div>`;
-        timelineElement.appendChild(messageElement);
-      } else {
-        // Render the posts in the timeline element
-        const timelineElement = document.querySelector(".row");
+            timelineElement.appendChild(messageElement);
+          }
+        } else {
+          // Render the posts in the timeline element
+          const timelineElement = document.querySelector(".row");
 
-        posts.forEach((post) => {
-          // console.log(post._id);
-          const postId = post._id;
+          while (timelineElement.firstChild) {
+            timelineElement.firstChild.remove();
+          }
 
-          const postElement = document.createElement("div");
-          postElement.classList.add("col");
+          posts.forEach((post) => {
+            // console.log(post._id);
+            const postId = post._id;
 
-          postElement.innerHTML = `
+            const postElement = document.createElement("div");
+            postElement.classList.add("col");
+
+            postElement.innerHTML = `
         <div class="card mobileCard">
             <div class="post-img">
             ${
@@ -105,7 +233,9 @@ document.addEventListener("DOMContentLoaded", function () {
               </video>`
                 : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
             }
-              <a class="username text-white" href="user.html">
+              <a class="username text-white" href="user.html?username=${
+                post.user.username
+              }">
                 <img src="${post.user.picture}" width="50px" />
                 ${post.user.username}
                 ${
@@ -212,14 +342,35 @@ document.addEventListener("DOMContentLoaded", function () {
                   <a href="#" class="btn btn-primary">Read more</a>
                 </div>
           </div>`;
-          timelineElement.appendChild(postElement);
-        });
+            timelineElement.appendChild(postElement);
+          });
+        }
+        isLoading = false;
+        hideLoadingSpinner();
+      })
+      .catch((error) => {
+        isLoading = false;
+        hideLoadingSpinner();
+        Swal.fire("Ooops!", `Error fetching timeline: ${error}`, "error");
+        console.error("Error fetching timeline:", error);
+      });
+  };
+
+  getPosts();
+
+  window.addEventListener("scroll", () => {
+    if (
+      !allPostsLoaded &&
+      !isLoading &&
+      window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight
+    ) {
+      if (document.getElementById("userPins").hasChildNodes()) {
+        currentPage++;
+        getPosts();
       }
-    })
-    .catch((error) => {
-      Swal.fire("Ooops!", `Error fetching timeline: ${error}`, "error");
-      console.error("Error fetching timeline:", error);
-    });
+    }
+  });
 });
 // Social media share modal
 //Share popup modal 1
@@ -1304,7 +1455,9 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
@@ -1366,7 +1519,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1417,32 +1571,32 @@ function showMoreAccounts() {
 //More suggested accounts end
 ////
 //Subscriber's badge
-document.addEventListener("DOMContentLoaded", function () {
-  // Send an AJAX request to get the subscription status
-  fetch("http://localhost:5000/api/v1/user/status")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Error getting subscription status");
-      }
-    })
-    .then((data) => {
-      // Check if the user is subscribed
-      const isSubscribed = data.isSubscribed;
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Send an AJAX request to get the subscription status
+//   fetch("https://api.snapme-ng.com/api/v1/user/status")
+//     .then((response) => {
+//       if (response.ok) {
+//         return response.json();
+//       } else {
+//         throw new Error("Error getting subscription status");
+//       }
+//     })
+//     .then((data) => {
+//       // Check if the user is subscribed
+//       const isSubscribed = data.isSubscribed;
 
-      // Show the badge if the user is subscribed
-      if (isSubscribed) {
-        const badgeElement = document.getElementById("subscribed-badge");
-        badgeElement.style.display = "inline-block";
-      } else {
-        badgeElement.style.display = "none";
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
+//       // Show the badge if the user is subscribed
+//       if (isSubscribed) {
+//         const badgeElement = document.getElementById("subscribed-badge");
+//         badgeElement.style.display = "inline-block";
+//       } else {
+//         badgeElement.style.display = "none";
+//       }
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// });
 //Subscriber's badge ends
 ////
 //Comment box popup for first pin
@@ -1558,41 +1712,41 @@ closeCommentBtn8.addEventListener("click", function () {
 //Comment box popup for 8th pin end
 
 //Submit comment fetch API
-const submitCommentBtn = document.getElementById("submitComment");
+// const submitCommentBtn = document.getElementById("submitComment");
 
-submitCommentBtn.addEventListener("click", function () {
-  const commentInput = document.getElementById("commentInput").value;
-  if (!commentInput) {
-    // Handle empty comment input error
-    return;
-  }
+// submitCommentBtn.addEventListener("click", function () {
+//   const commentInput = document.getElementById("commentInput").value;
+//   if (!commentInput) {
+//     // Handle empty comment input error
+//     return;
+//   }
 
-  const comment = {
-    text: commentInput,
-  };
+//   const comment = {
+//     text: commentInput,
+//   };
 
-  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("jwtToken"),
-    },
-    body: JSON.stringify(comment),
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Network response was not ok");
-      }
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+//   fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+//     },
+//     body: JSON.stringify(comment),
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         return response.json();
+//       } else {
+//         throw new Error("Network response was not ok");
+//       }
+//     })
+//     .then((data) => {
+//       console.log(data);
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// });
 //Fetch API to submit comment
 ////
 //Promote popup after 10 minutes
@@ -1611,54 +1765,54 @@ document.getElementById("closePromote").addEventListener("click", closePromote);
 //Promote notification popup
 ////
 //Get pin details
-document.getElementById("pinDetails").addEventListener("click", pinDetails);
-document.getElementById("pinDetails2").addEventListener("click", pinDetails);
-document.getElementById("pinDetails3").addEventListener("click", pinDetails);
-document.getElementById("pinDetails4").addEventListener("click", pinDetails);
-document.getElementById("pinDetails5").addEventListener("click", pinDetails);
-document.getElementById("pinDetails6").addEventListener("click", pinDetails);
-document.getElementById("pinDetails7").addEventListener("click", pinDetails);
-document.getElementById("pinDetails8").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails2").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails3").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails4").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails5").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails6").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails7").addEventListener("click", pinDetails);
+// document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
-function pinDetails() {
-  // Fetch the pin data from the backend
-  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
-    .then((response) => response.json())
-    .then((pin) => {
-      // Create a container element to display the pin details
-      const container = document.createElement("div");
+// function pinDetails() {
+//   // Fetch the pin data from the backend
+//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+//     .then((response) => response.json())
+//     .then((pin) => {
+//       // Create a container element to display the pin details
+//       const container = document.createElement("div");
 
-      // Create elements for the pin caption, author, and content
-      const caption = document.createElement("h1");
-      const author = document.createElement("p");
-      const content = document.createElement("p");
-      const media = document.createElement(
-        pin.media.type === "image" ? "img" : "video"
-      );
+//       // Create elements for the pin caption, author, and content
+//       const caption = document.createElement("h1");
+//       const author = document.createElement("p");
+//       const content = document.createElement("p");
+//       const media = document.createElement(
+//         pin.media.type === "image" ? "img" : "video"
+//       );
 
-      // Set the text content of the elements to the pin data
-      caption.textContent = pin.caption;
-      author.textContent = `By ${pin.author}`;
-      content.textContent = pin.content;
+//       // Set the text content of the elements to the pin data
+//       caption.textContent = pin.caption;
+//       author.textContent = `By ${pin.author}`;
+//       content.textContent = pin.content;
 
-      // Set the attributes of the media element
-      media.src = pin.media.url;
-      media.alt = pin.caption;
+//       // Set the attributes of the media element
+//       media.src = pin.media.url;
+//       media.alt = pin.caption;
 
-      // Add the elements to the container
-      container.appendChild(caption);
-      container.appendChild(author);
-      container.appendChild(content);
-      container.appendChild(media);
+//       // Add the elements to the container
+//       container.appendChild(caption);
+//       container.appendChild(author);
+//       container.appendChild(content);
+//       container.appendChild(media);
 
-      // Add the container to the UI
-      document.body.appendChild(container);
-    })
-    .catch((error) => console.error(error));
-}
+//       // Add the container to the UI
+//       document.body.appendChild(container);
+//     })
+//     .catch((error) => console.error(error));
+// }
 
 // Call the pinDetails function with a pin ID
-pinDetails();
+// pinDetails();
 
 //Get pin details end
 
@@ -1895,56 +2049,56 @@ window.onscroll = function () {
 
 ////
 //Follow user for first post
-const followUserBtn = document.querySelector("#followBtn");
+// const followUserBtn = document.querySelector("#followBtn");
 
-followUserBtn.addEventListener("click", () => {
-  const username = document.querySelector(".username").textContent;
+// followUserBtn.addEventListener("click", () => {
+//   const username = document.querySelector(".username").textContent;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Replace with the actual name of your JWT token in localStorage
-    },
-    credentials: "include",
-    mode: "cors",
-    // Add any other necessary options here
-  })
-    .then((response) => {
-      if (response.ok) {
-        followUserBtn.textContent = "Following";
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+//   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Replace with the actual name of your JWT token in localStorage
+//     },
+//     credentials: "include",
+//     mode: "cors",
+//     // Add any other necessary options here
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         followUserBtn.textContent = "Following";
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// });
 
 ////
 // Follow user other posts
-const followBtn = document.querySelector(".followBtn");
+// const followBtn = document.querySelector(".followBtn");
 
-followBtn.addEventListener("click", () => {
-  const username = document.querySelector(".username").textContent;
+// followBtn.addEventListener("click", () => {
+//   const username = document.querySelector(".username").textContent;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt_token")}`, // Replace with the actual name of your JWT token in localStorage
-    },
-    credentials: "include",
-    mode: "cors",
-    // Add any other necessary options here
-  })
-    .then((response) => {
-      if (response.ok) {
-        followBtn.textContent = "Following";
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+//   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${localStorage.getItem("jwt_token")}`, // Replace with the actual name of your JWT token in localStorage
+//     },
+//     credentials: "include",
+//     mode: "cors",
+//     // Add any other necessary options here
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         followBtn.textContent = "Following";
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// });
 
 /////

@@ -22,10 +22,10 @@ function goBack() {
 
 ////
 //Snapme login
-const url = "https://api.snapme-ng.com/api/v1/login";
+const url = "http://localhost:5000/api/v1/login";
 
 function loginSubmit() {
-  const identifier = document.getElementById("identifier").value;
+  const identifier = document.getElementById("identifier").value.toLowerCase();
   const password = document.getElementById("password").value;
   const returnUrl = localStorage.getItem("returnUrl");
 
@@ -63,6 +63,7 @@ function loginSubmit() {
     .then((data) => {
       document.cookie = `jwtToken=${data.token}; max-age=${data.expires}; path=/;`;
       localStorage.setItem("username", data.username);
+      localStorage.setItem("picture", data.picture);
       if (returnUrl) {
         localStorage.removeItem("returnUrl");
         window.location.href = returnUrl;

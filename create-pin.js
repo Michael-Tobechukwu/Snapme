@@ -1,6 +1,6 @@
 const create = document.getElementById("create");
 
-const api3 = `https://api.snapme-ng.com/api/v1`;
+const api3 = `http://localhost:5000/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -37,19 +37,19 @@ function createPin() {
   const message = document.getElementById("message").value;
   const category = document.getElementById("category").value;
 
-  // generate unique pinId
-  const pinId =
-    Math.random().toString(36).substring(2, 8) + Date.now().toString(36);
+  // // generate unique pinId
+  // const pinId =
+  //   Math.random().toString(36).substring(2, 8) + Date.now().toString(36);
 
-  // add pin to array with generated pinId
-  pins.push({
-    pinId,
-    caption: pin.caption,
-    media: pin.media,
-    message: pin.message,
-  });
+  // // add pin to array with generated pinId
+  // pins.push({
+  //   pinId,
+  //   caption: pin.caption,
+  //   media: pin.media,
+  //   message: pin.message,
+  // });
 
-  return pinId;
+  // return pinId;
 
   // Create a data object with the form data
   const formData = new FormData();
@@ -88,8 +88,9 @@ function createPin() {
         "Success!",
         `Pin created successfully under the ${data.catalog} catalog!`,
         "success"
-      );
-      window.location.href = `pin-details.html?id=${postId}`;
+      ).then(() => {
+        window.location.href = `pin-details.html?id=${postId}`;
+      });
     })
     .catch((error) => {
       Swal.fire({

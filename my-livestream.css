@@ -31,7 +31,7 @@ body {
 }
 
 .backArrow {
-  cursor:pointer;
+  cursor: pointer;
 }
 
 video {
@@ -191,4 +191,28 @@ video {
   video {
     width: 100%;
   }
+}
+
+.camera-switch {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.camera-switch button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.camera-switch button i {
+  font-size: 20px;
+  color: white;
+}
+
+.video.front-camera {
+  transform: scaleX(-1);
+}
+
+.video.rear-camera {
+  transform: scaleX(1);
 }

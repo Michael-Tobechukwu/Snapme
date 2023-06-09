@@ -1,4 +1,4 @@
-const api5 = `https://api.snapme-ng.com/api/v1`;
+const api5 = `http://localhost:5000/api/v1`;
 
 //Search fetch API
 function searchPosts() {
@@ -21,6 +21,49 @@ function searchPosts() {
     })
     .catch((error) => console.error(error));
 }
+
+//FOLLOW CATALOGS
+function followCatalog(catalogName) {
+  const jwtToken = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith("jwtToken="))
+    ?.split("=")[1];
+  if (!jwtToken) {
+    // redirect user to login page if jwtToken doesn't exist
+    localStorage.setItem("returnUrl", window.location.href);
+    window.location.href = "/login";
+    return;
+  }
+  fetch(`${api5}/catalog/${catalogName}/follow`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+    },
+    body: JSON.stringify({
+      catalogName: catalogName,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to follow catalog");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      Swal.fire(
+        "Success!",
+        `Successfully followed the ${data.catalog} catalog!`,
+        "success"
+      );
+      console.log("Successfully followed catalog:", data.catalog);
+    })
+    .catch((error) => {
+      Swal.fire("Ooops!", `Error following catalog: ${error}`, "error");
+      console.error("Error following catalog:", error);
+    });
+}
+//FOLLOW CATALOGS END
 
 //FOLLOW USERS
 function followThisUser(username) {
@@ -73,108 +116,65 @@ function followThisUser(username) {
     .catch((error) => console.error(error));
 }
 
-//FOLLOW CATALOGS
-function followCatalog(catalogName) {
-  const jwtToken = document.cookie
-    .split("; ")
-    .find((cookie) => cookie.startsWith("jwtToken="))
-    ?.split("=")[1];
-  if (!jwtToken) {
-    // redirect user to login page if jwtToken doesn't exist
-    localStorage.setItem("returnUrl", window.location.href);
-    window.location.href = "/login";
-    return;
-  }
-  fetch(`${api5}/catalog/${catalogName}/follow`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwtToken}`,
-    },
-    body: JSON.stringify({
-      catalogName: catalogName,
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to follow catalog");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      Swal.fire(
-        "Success!",
-        `Successfully followed the ${data.catalog} catalog!`,
-        "success"
-      );
-      console.log("Successfully followed catalog:", data.catalog);
-    })
-    .catch((error) => {
-      Swal.fire("Ooops!", `Error following catalog: ${error}`, "error");
-      console.error("Error following catalog:", error);
-    });
-}
-//FOLLOW CATALOGS END
+// //Like & unlike a post
+// function likePost() {
+//   // Check if the user is signed in by verifying the JWT token from local storage
+//   const token = localStorage.getItem("jwtToken"); // Retrieve the JWT token from local storage
 
-//Like & unlike a post
-function likePost() {
-  // Check if the user is signed in by verifying the JWT token from local storage
-  const token = localStorage.getItem("jwtToken"); // Retrieve the JWT token from local storage
+//   if (!token) {
+//     // Save the current page URL to local storage
+//     localStorage.setItem("redirectURL", window.location.href);
 
-  if (!token) {
-    // Save the current page URL to local storage
-    localStorage.setItem("redirectURL", window.location.href);
+//     // Redirect to login.html
+//     window.location.href = "login.html";
+//     return;
+//   }
 
-    // Redirect to login.html
-    window.location.href = "login.html";
-    return;
-  }
+//   // Create the URL for the API endpoint
+//   const url = "http://localhost:5000/api/v1/pins/like";
 
-  // Create the URL for the API endpoint
-  const url = "https://api.snapme-ng.com/api/v1/pins/like";
+//   // Fetch options for the POST request
+//   const options = {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`, // Include the JWT token in the Authorization header
+//       // Add any additional headers if required
+//     },
+//   };
 
-  // Fetch options for the POST request
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Include the JWT token in the Authorization header
-      // Add any additional headers if required
-    },
-  };
+//   // Get the like button element
+//   const likeButton = document.getElementById("likeBtn"); // Replace with the actual ID of the like button element
 
-  // Get the like button element
-  const likeButton = document.getElementById("likeBtn"); // Replace with the actual ID of the like button element
+//   // Check the current state of the like button
+//   const isLiked = likeButton.innerHTML === '<i class="fas fa-heart"></i>';
 
-  // Check the current state of the like button
-  const isLiked = likeButton.innerHTML === '<i class="fas fa-heart"></i>';
-
-  // Send the POST request to like or unlike the post
-  fetch(url, options)
-    .then((response) => {
-      // Handle the response as per your requirements
-      // For example, check the response status
-      if (response.ok) {
-        // Toggle the like button state
-        if (isLiked) {
-          // Post unliked successfully
-          console.log("Post unliked!");
-          likeButton.innerHTML = '<i class="far fa-heart"></i>';
-        } else {
-          // Post liked successfully
-          console.log("Post liked!");
-          likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-        }
-      } else {
-        // Handle any error cases
-        console.error("Failed to like/unlike post:", response.status);
-      }
-    })
-    .catch((error) => {
-      // Handle any network or fetch errors
-      console.error("Error occurred while liking/unliking post:", error);
-    });
-}
+//   // Send the POST request to like or unlike the post
+//   fetch(url, options)
+//     .then((response) => {
+//       // Handle the response as per your requirements
+//       // For example, check the response status
+//       if (response.ok) {
+//         // Toggle the like button state
+//         if (isLiked) {
+//           // Post unliked successfully
+//           console.log("Post unliked!");
+//           likeButton.innerHTML = '<i class="far fa-heart"></i>';
+//         } else {
+//           // Post liked successfully
+//           console.log("Post liked!");
+//           likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+//         }
+//       } else {
+//         // Handle any error cases
+//         console.error("Failed to like/unlike post:", response.status);
+//       }
+//     })
+//     .catch((error) => {
+//       // Handle any network or fetch errors
+//       console.error("Error occurred while liking/unliking post:", error);
+//     });
+// }
 
 //Add click event listener to like buttons
 document.getElementById("likeBtn").addEventListener("click", likePost);

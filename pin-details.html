@@ -160,13 +160,20 @@
           </div>
 
           <div class="user-create">
+            <button id="profilePicture" onclick="checkJwt('profile')"></button>
+            <button id="createBtn" onclick="checkJwt('post')">
+              <img class="create-plus" src="Images/create plus.svg" />
+            </button>
+          </div>
+
+          <!-- <div class="user-create">
             <a href="login.html"
               ><img class="user-image" src="Images/user image.svg"
             /></a>
             <a id="createBtn"
               ><img class="create-plus" src="Images/create plus.svg"
             /></a>
-          </div>
+          </div> -->
         </div>
 
         <!--Mobile nav buttons-->
@@ -278,13 +285,18 @@
           </div>
 
           <div class="user-create">
-            <button onclick="checkJwt('profile')">
-              <img class="user-image" src="Images/user image.svg" />
-            </button>
-            <button onclick="checkJwt('post')">
+            <button id="profilePicture" onclick="checkJwt('profile')"></button>
+            <button id="createBtn" onclick="checkJwt('post')">
               <img class="create-plus" src="Images/create plus.svg" />
             </button>
           </div>
+
+          <!-- <div class="user-create">
+            <button id="profilePicture" onclick="checkJwt('profile')"></button>
+            <button onclick="checkJwt('post')">
+              <img class="create-plus" src="Images/create plus.svg" />
+            </button>
+          </div> -->
 
           <div class="mobileSearch">
             <button id="mobileSearchToggleBtn">

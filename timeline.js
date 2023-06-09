@@ -4,7 +4,7 @@ window.addEventListener("load", function () {
   }, 2000);
 });
 
-let api1 = `https://api.snapme-ng.com/api/v1`;
+let api1 = `http://localhost:5000/api/v1`;
 
 //Preloader
 window.onload = function () {
@@ -137,6 +137,38 @@ function slideCards(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  const currentPic = localStorage.getItem("picture");
+  const profile = document.getElementById("profilePicture");
+  const profileM = document.getElementById("profilePictureM");
+
+  // Create an image element
+  const image = document.createElement("img");
+  image.src =
+    currentPic ===
+    "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+      ? `Images/user image.svg`
+      : currentPic;
+  image.alt = "user Image";
+  image.className = "user-image";
+  image.style = "border-radius: 50%; border: 2px solid #ba00ba;";
+
+  // Set the image as the innerHTML of the button
+  profile.innerHTML = "";
+  profile.appendChild(image);
+
+  const imageM = document.createElement("img");
+  image.src =
+    currentPic ===
+    "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+      ? `Images/user image.svg`
+      : currentPic;
+  image.className = "user-image";
+  image.style =
+    "border-radius: 50%; border: 2px solid #ba00ba; width: 20px; height: 20px;";
+
+  profileM.innerHTML = "";
+  profileM.appendChild(imageM);
+
   let currentPage = 1;
   let allPostsLoaded = false;
   let isLoading = false;
@@ -199,10 +231,10 @@ document.addEventListener("DOMContentLoaded", function () {
             messageElement.innerHTML = `
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Nothing to see here...</h5>
-              <p class="card-text">There are no pins to display in your timeline.</p>
-              <button type="button" class="btn btn-primary" onclick="location.href='create-pin.html'">Create new pin</button>
-              <button type="button" class="btn btn-secondary" onclick="location.href='friends.html'">Make friends</button>
+              <h5 class="card-title">You haven't created any catalog yet...</h5>
+              <p class="card-text">Create catalogs or follow any user to see pins.</p>
+              <button type="button" class="btn btn-primary" onclick="location.href='create-pin.html'">Create your catalog</button>
+              <button type="button" class="btn btn-secondary" onclick="location.href='friends.html'">Follow other users</button>
             </div>
           </div>`;
             timelineElement.appendChild(messageElement);
@@ -236,7 +268,9 @@ document.addEventListener("DOMContentLoaded", function () {
               <a class="username text-white" href="user.html?username=${
                 post.user.username
               }">
-                <img src="${post.user.picture}" width="50px" />
+                <img src="${
+                  post.user.picture
+                }" style="border-radius: 50%; border: 2px solid #ba00ba;"  width="50px" />
                 ${post.user.username}
                 ${
                   post.user.role === "subscribed"
@@ -358,6 +392,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   getPosts();
 
+  // Social media share modal
+  //Share popup modal 1
+
+  // Get the modal
+  var modal = document.getElementByClassName("shareModal");
+
+  // Get the button that opens the modalshare
+  var btn = document.getElementByClassName("myPopupBtn");
+
+  // Get the <span> element that closes the modals
+  var span = document.getElementByClassName("close");
+
+  // When the user clicks the button, open the modals
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Close the modal
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
   window.addEventListener("scroll", () => {
     if (
       !allPostsLoaded &&
@@ -372,216 +435,189 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-// Social media share modal
-//Share popup modal 1
 
-// Get the modal
-var modal = document.getElementsByClassName("shareModal")[0];
+// //Share 2
+// var modal = document.getElementsByClassName("shareModal")[1];
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[0];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[1];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[0];
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[1];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-//Share 2
-var modal = document.getElementsByClassName("shareModal")[1];
+// //Share 3
+// var modal = document.getElementsByClassName("shareModal")[2];
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[1];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[2];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[1];
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[2];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-//Share 3
-var modal = document.getElementsByClassName("shareModal")[2];
+// //Share 4
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[2];
+// var modal = document.getElementsByClassName("shareModal")[3];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[2];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[3];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[3];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-//Share 4
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-var modal = document.getElementsByClassName("shareModal")[3];
+// //Share 5
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[3];
+// var modal = document.getElementsByClassName("shareModal")[4];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[3];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[4];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[4];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-//Share 5
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-var modal = document.getElementsByClassName("shareModal")[4];
+// //Share 6
+// var modal = document.getElementsByClassName("shareModal")[5];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[5];
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[4];
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[5];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[4];
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// //Share 7
+// var modal = document.getElementsByClassName("shareModal")[6];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[6];
 
-//Share 6
-var modal = document.getElementsByClassName("shareModal")[5];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[5];
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[6];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[5];
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// //Share 8
+// var modal = document.getElementsByClassName("shareModal")[7];
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[7];
 
-//Share 7
-var modal = document.getElementsByClassName("shareModal")[6];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[6];
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[7];
 
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[6];
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
+// //Share popup modals end
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 8
-var modal = document.getElementsByClassName("shareModal")[7];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[7];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[7];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-//Share popup modals end
 /////
 //Make dropdown stack on top
 const mobileDropdown = document.getElementById("mobileDropdown");
@@ -628,65 +664,65 @@ window.addEventListener("scroll", () => {
 ////
 //Check signed in status of user when create button is clicked
 // Get the button element
-const createBtn = document.getElementById("createBtn");
+// const createBtn = document.getElementById("createBtn");
 
-// Add an event listener to the button
-createBtn.addEventListener("click", () => {
-  // Get the JWT token from local storage
-  const token = localStorage.getItem("jwtToken");
+// // Add an event listener to the button
+// createBtn.addEventListener("click", () => {
+//   // Get the JWT token from local storage
+//   const token = localStorage.getItem("jwtToken");
 
-  // Check if the user is logged in
-  if (token) {
-    try {
-      // Attempt to decode the JWT token to get the user information
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+//   // Check if the user is logged in
+//   if (token) {
+//     try {
+//       // Attempt to decode the JWT token to get the user information
+//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
+//       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
 
-      // Redirect the user to the create pin page
-      window.location.href = "create-pin.html";
-    } catch (err) {
-      // If there was an error decoding the token, assume the user is not logged in
-      console.error("Error decoding JWT token:", err);
+//       // Redirect the user to the create pin page
+//       window.location.href = "create-pin.html";
+//     } catch (err) {
+//       // If there was an error decoding the token, assume the user is not logged in
+//       console.error("Error decoding JWT token:", err);
 
-      // Redirect the user to the login page
-      window.location.href = "login.html";
-    }
-  } else {
-    // Redirect the user to the login page
-    window.location.href = "login.html";
-  }
-});
+//       // Redirect the user to the login page
+//       window.location.href = "login.html";
+//     }
+//   } else {
+//     // Redirect the user to the login page
+//     window.location.href = "login.html";
+//   }
+// });
 
-//Check signed in status of user on create button clicked - mobile
-// Get the button element
-const mobileCreateBtn = document.getElementById("createBtnMobile");
+// //Check signed in status of user on create button clicked - mobile
+// // Get the button element
+// const mobileCreateBtn = document.getElementById("createBtnMobile");
 
-// Add an event listener to the button
-mobileCreateBtn.addEventListener("click", () => {
-  // Get the JWT token from local storage
-  const token = localStorage.getItem("jwtToken");
+// // Add an event listener to the button
+// mobileCreateBtn.addEventListener("click", () => {
+//   // Get the JWT token from local storage
+//   const token = localStorage.getItem("jwtToken");
 
-  // Check if the user is logged in
-  if (token) {
-    try {
-      // Attempt to decode the JWT token to get the user information
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+//   // Check if the user is logged in
+//   if (token) {
+//     try {
+//       // Attempt to decode the JWT token to get the user information
+//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
+//       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
 
-      // Redirect the user to the create pin page
-      window.location.href = "create-pin.html";
-    } catch (err) {
-      // If there was an error decoding the token, assume the user is not logged in
-      console.error("Error decoding JWT token:", err);
+//       // Redirect the user to the create pin page
+//       window.location.href = "create-pin.html";
+//     } catch (err) {
+//       // If there was an error decoding the token, assume the user is not logged in
+//       console.error("Error decoding JWT token:", err);
 
-      // Redirect the user to the login page
-      window.location.href = "login.html";
-    }
-  } else {
-    // Redirect the user to the login page
-    window.location.href = "login.html";
-  }
-});
+//       // Redirect the user to the login page
+//       window.location.href = "login.html";
+//     }
+//   } else {
+//     // Redirect the user to the login page
+//     window.location.href = "login.html";
+//   }
+// });
 ////
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit
@@ -1455,9 +1491,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1519,8 +1553,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1573,7 +1606,7 @@ function showMoreAccounts() {
 //Subscriber's badge
 // document.addEventListener("DOMContentLoaded", function () {
 //   // Send an AJAX request to get the subscription status
-//   fetch("https://api.snapme-ng.com/api/v1/user/status")
+//   fetch("http://localhost:5000/api/v1/user/status")
 //     .then((response) => {
 //       if (response.ok) {
 //         return response.json();
@@ -1725,7 +1758,7 @@ closeCommentBtn8.addEventListener("click", function () {
 //     text: commentInput,
 //   };
 
-//   fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+//   fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -1776,7 +1809,7 @@ document.getElementById("closePromote").addEventListener("click", closePromote);
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details
@@ -2054,7 +2087,7 @@ window.onscroll = function () {
 // followUserBtn.addEventListener("click", () => {
 //   const username = document.querySelector(".username").textContent;
 
-//   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+//   fetch(`http://localhost:5000/api/v1/${username}/follow`, {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -2081,7 +2114,7 @@ window.onscroll = function () {
 // followBtn.addEventListener("click", () => {
 //   const username = document.querySelector(".username").textContent;
 
-//   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+//   fetch(`http://localhost:5000/api/v1/${username}/follow`, {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",

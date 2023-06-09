@@ -28,57 +28,21 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="https://unpkg.com/@cloudinary/js-streaming/dist/js-streaming.js"></script>
   </head>
   <body>
     <div class="wrapper container">
-      
-      <div id="liveBox">
-        <img src="Images/back arrow.svg" width="25px" class="backArrow">
-        <div class="liveButton">
-          <img
-            src="Images/white logo.png"
-            alt="Snapme logo"
-            onclick="window.location='index.html'"
-          />
-          <button>LIVE</button>
-        </div>
-        <video autoplay loop muted>
-          <source src="Mom putting a word in.mp4" />
-        </video>
-        <div class="liveInfo">
-          <p id="liveTitle">My livestream</p>
-          <div class="liveDetails">
-            <div class="liveDetailsInner">
-              <img onclick="thisUser()" src="Images/azizy.png" width="50px" />
-              <div class="liveText">
-                <p>
-                  <a onclick="thisUser()">azizymakim</a> |
-                  <span id="currentDateTime"></span>
-                </p>
-                <div class="icons">
-                  <button>
-                    <i class="fa-solid fa-eye"></i>
-                    <p id="viewCount" class="text-white">2.1k</p>
-                  </button>
-                  <button>
-                    <i class="fa-solid fa-comment"></i>
-                    <p class="text-white">113</p>
-                  </button>
-                </div>
-              </div>
-
-              <button class="endButton" id="endStreamBtn" onclick="endLive()">
-                End livestream
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--Live Stream Content here-->
     </div>
 
     <!--Scripts-->
     <script src="my-livestream.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sweetalert2.all.min.js" type="application/javascript"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/sweetalert2@11"
+      type="application/javascript"
+    ></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {

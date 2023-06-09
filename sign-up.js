@@ -3,13 +3,15 @@ var yourPassword = document.getElementById("password");
 var confPassword = document.getElementById("confirm-password");
 var submitBtn = document.getElementById("submitBtn");
 
-let api = "https://api.snapme-ng.com/api/v1";
+let api = "http://localhost:5000/api/v1";
 
 function checkPassword() {
-  if (yourPassword.value === confPassword.value) {
-    alert("\nPasswords match. Click OK to continue.");
-  } else {
-    alert("\nPasswords do not match. Check and try again.");
+  if (yourPassword.value !== confPassword.value) {
+    Swal.fire(
+      "Ooops!",
+      `Passwords do not match. Please check and try again!`,
+      "error"
+    );
   }
 }
 submitBtn.addEventListener("click", checkPassword);
@@ -18,13 +20,16 @@ let returnUrl = localStorage.getItem("returnUrl");
 
 //Signup API
 function signup() {
-  const username = document.getElementById("username").value;
-  const fullname = document.getElementById("fullname").value;
+  const username = document.getElementById("username").value.toLowerCase();
+  const fullN = document.getElementById("fullname").value.toLowerCase();
+  const fullname = fullN.replace(/(?:^|\s)\w/g, function (match) {
+    return match.toUpperCase();
+  });
   const gender = document.querySelector('input[name="gender"]:checked').value;
   const dob = document.getElementById("dob").value;
   const occupation = document.getElementById("occupation").value;
   const country = document.getElementById("countryList").value;
-  const email = document.getElementById("email").value;
+  const email = document.getElementById("email").value.toLowerCase();
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
 
@@ -60,6 +65,7 @@ function signup() {
     .then((data) => {
       document.cookie = `jwtToken=${data.token}; max-age=${data.expires}; path=/;`;
       localStorage.setItem("username", data.username);
+      localStorage.setItem("picture", data.picture);
       if (returnUrl) {
         localStorage.removeItem("returnUrl");
         window.location.href = returnUrl;

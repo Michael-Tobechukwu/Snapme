@@ -35,7 +35,7 @@ var closeThis = document.getElementById("closeZ");
 //   }
 // };
 
-const api2 = `https://api.snapme-ng.com/api/v1`;
+const api2 = `http://localhost:5000/api/v1`;
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -86,6 +86,27 @@ function getJwt() {
 const token = getJwt();
 
 window.addEventListener("load", function () {
+  if (token) {
+    const currentPic = localStorage.getItem("picture");
+    const profile = document.getElementById("profilePicture");
+    // const profileM = document.getElementById("profilePictureM");
+
+    // Create an image element
+    const image = document.createElement("img");
+    image.src =
+      currentPic ===
+      "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+        ? `Images/user image.svg`
+        : currentPic;
+    image.alt = "user Image";
+    image.className = "user-image";
+    image.style = "border-radius: 50%; border: 2px solid #ba00ba;";
+
+    // Set the image as the innerHTML of the button
+    profile.innerHTML = "";
+    profile.appendChild(image);
+  }
+
   if (!id) {
     Swal.fire("Ooops!", `Post not found!`, "error");
     window.location.href = "timeline.html";
@@ -239,7 +260,7 @@ window.addEventListener("load", function () {
               "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
                 ? `Images/user image.svg`
                 : post.post.user.picture
-            }" class="profilePic" />
+            }" style="border-radius: 50%; border: 2px solid #ba00ba;" class="profilePic" />
               <p
                 class="azizy_username"
                 onclick="window.location='user.html?username=${
@@ -283,7 +304,7 @@ window.addEventListener("load", function () {
               "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
                 ? `Images/user image.svg`
                 : post.post.user.picture
-            }" onclick="window.location='user.html?username=${
+            }" style="border-radius: 50%; border: 2px solid #ba00ba;" onclick="window.location='user.html?username=${
         post.post.user.username
       }' class="profilePic" />
               <div class="text">
@@ -582,7 +603,9 @@ window.addEventListener("load", function () {
                     "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
                       ? `Images/user image.svg`
                       : post.user.picture
-                  }" alt="${post.user.username} Profile pic" width="35px"
+                  }" style="border-radius: 50%; border: 2px solid #ba00ba;" alt="${
+              post.user.username
+            } Profile pic" width="35px"
                  class="profilePic" onclick="window.location='user.html?username=${
                    post.user.username
                  }'" />
@@ -745,6 +768,86 @@ window.addEventListener("load", function () {
       Swal.fire("Ooops!", `${error}`, "error");
       console.log(error);
     });
+
+  // const likeBtns = document.querySelector("#like-button");
+  // let isLiked = false;
+
+  // likeBtns.addEventListener("click", () => {
+  //   if (isLiked) {
+  //     likeBtns.innerHTML = '<i class="far fa-heart"></i>';
+  //     isLiked = false;
+  //   } else {
+  //     likeBtns.innerHTML = '<i class="fas fa-heart"></i>';
+  //     isLiked = true;
+  //   }
+  // });
+  ////
+  // //Like post fetch API
+  // const likeBtn = document.getElementById("like-button");
+  // //Add fetch API to button
+  // likeBtn.addEventListener("click", likePost);
+
+  //Catalogs for you pins share
+  //Share 1
+  var btn = document.getElementsByClassName("myPopupBtn")[0];
+  var modal = document.getElementsByClassName("shareModal")[0];
+  var closeThisNow = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modals
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  closeThisNow.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Close the modal
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  //Suggested catalogs like buttons
+  //Like button for suggested catalog 1
+  const likeButton1 = document.getElementsByClassName("like-button")[0];
+  let isLiked1 = false;
+
+  likeButton1.addEventListener("click", () => {
+    if (isLiked1) {
+      likeButton1.innerHTML = `<i class="far fa-heart"></i>`;
+      likeButton1.style.color = "#fff";
+      isLiked1 = false;
+    } else {
+      likeButton1.innerHTML = `<i class="fas fa-heart"></i>`;
+      likeButton1.style.color = "#fff";
+      isLiked1 = true;
+    }
+  });
+
+  //Play video when scrolled into view
+  //Video 1
+  const video = document.getElementsByClassName("video")[0];
+  let isPlaying = false;
+
+  window.addEventListener("scroll", () => {
+    const videoTop = video.getBoundingClientRect().top;
+    const videoBottom = video.getBoundingClientRect().bottom;
+    const viewportHeight = window.innerHeight;
+
+    if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
+      video.play();
+      isPlaying = true;
+    } else if (videoTop >= viewportHeight || videoBottom < 0) {
+      video.pause();
+      isPlaying = false;
+    }
+  });
+
+  var timePinned = moment("20230129", "YYYYMMDD").fromNow();
+  document.getElementById("timePosted").innerHTML = timePinned;
 });
 
 function openFullscreen(element) {
@@ -760,23 +863,6 @@ function openFullscreen(element) {
 }
 
 //Pin details post like
-const likeBtns = document.querySelector("#like-button");
-let isLiked = false;
-
-likeBtns.addEventListener("click", () => {
-  if (isLiked) {
-    likeBtns.innerHTML = '<i class="far fa-heart"></i>';
-    isLiked = false;
-  } else {
-    likeBtns.innerHTML = '<i class="fas fa-heart"></i>';
-    isLiked = true;
-  }
-});
-////
-//Like post fetch API
-const likeBtn = document.getElementById("like-button");
-//Add fetch API to button
-likeBtn.addEventListener("click", likePost);
 
 //Put request to like a post
 function likePost() {
@@ -863,94 +949,71 @@ function commentOnPost() {
     });
 }
 
-//Catalogs for you pins share
-//Share 1
-var btn = document.getElementsByClassName("myPopupBtn")[0];
-var modal = document.getElementsByClassName("shareModal")[0];
-var closeThisNow = document.getElementsByClassName("close")[0];
+// //Share 2
+// var btn = document.getElementsByClassName("myPopupBtn")[1];
+// var modal = document.getElementsByClassName("shareModal")[1];
+// var closeThisNow = document.getElementsByClassName("close")[1];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks on <span> (x), close the modal
-closeThisNow.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks on <span> (x), close the modal
+// closeThisNow.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-//Share 2
-var btn = document.getElementsByClassName("myPopupBtn")[1];
-var modal = document.getElementsByClassName("shareModal")[1];
-var closeThisNow = document.getElementsByClassName("close")[1];
+// //Share 3
+// var btn = document.getElementsByClassName("myPopupBtn")[2];
+// var modal = document.getElementsByClassName("shareModal")[2];
+// var closeThisNow = document.getElementsByClassName("close")[2];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks on <span> (x), close the modal
-closeThisNow.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks on <span> (x), close the modal
+// closeThisNow.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
-//Share 3
-var btn = document.getElementsByClassName("myPopupBtn")[2];
-var modal = document.getElementsByClassName("shareModal")[2];
-var closeThisNow = document.getElementsByClassName("close")[2];
+// //Share 4
+// var btn = document.getElementsByClassName("myPopupBtn")[3];
+// var modal = document.getElementsByClassName("shareModal")[3];
+// var closeThisNow = document.getElementsByClassName("close")[3];
 
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+// // When the user clicks the button, open the modals
+// btn.onclick = function () {
+//   modal.style.display = "block";
+// };
 
-// When the user clicks on <span> (x), close the modal
-closeThisNow.onclick = function () {
-  modal.style.display = "none";
-};
+// // When the user clicks on <span> (x), close the modal
+// closeThisNow.onclick = function () {
+//   modal.style.display = "none";
+// };
 
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 4
-var btn = document.getElementsByClassName("myPopupBtn")[3];
-var modal = document.getElementsByClassName("shareModal")[3];
-var closeThisNow = document.getElementsByClassName("close")[3];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-closeThisNow.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
 
 //Catalogs for you pins share
 ////
@@ -986,108 +1049,73 @@ window.onclick = function (event) {
 
 ////
 
-//Play video when scrolled into view
-//Video 1
-const video = document.getElementsByClassName("video")[0];
-let isPlaying = false;
+// //Video 2
+// const video2 = document.getElementsByClassName("video")[1];
+// let isPlaying2 = false;
 
-window.addEventListener("scroll", () => {
-  const videoTop = video.getBoundingClientRect().top;
-  const videoBottom = video.getBoundingClientRect().bottom;
-  const viewportHeight = window.innerHeight;
+// window.addEventListener("scroll", () => {
+//   const video2Top = video2.getBoundingClientRect().top;
+//   const video2Bottom = video2.getBoundingClientRect().bottom;
+//   const viewportHeight = window.innerHeight;
 
-  if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
-    video.play();
-    isPlaying = true;
-  } else if (videoTop >= viewportHeight || videoBottom < 0) {
-    video.pause();
-    isPlaying = false;
-  }
-});
-
-//Video 2
-const video2 = document.getElementsByClassName("video")[1];
-let isPlaying2 = false;
-
-window.addEventListener("scroll", () => {
-  const video2Top = video2.getBoundingClientRect().top;
-  const video2Bottom = video2.getBoundingClientRect().bottom;
-  const viewportHeight = window.innerHeight;
-
-  if (video2Top < viewportHeight && video2Bottom >= 0 && !isPlaying2) {
-    video2.play();
-    isPlaying2 = true;
-  } else if (video2Top >= viewportHeight || video2Bottom < 0) {
-    video2.pause();
-    isPlaying2 = false;
-  }
-});
+//   if (video2Top < viewportHeight && video2Bottom >= 0 && !isPlaying2) {
+//     video2.play();
+//     isPlaying2 = true;
+//   } else if (video2Top >= viewportHeight || video2Bottom < 0) {
+//     video2.pause();
+//     isPlaying2 = false;
+//   }
+// });
 //Video played when scrolled into view end
 ////
-//Suggested catalogs like buttons
-//Like button for suggested catalog 1
-const likeButton1 = document.getElementsByClassName("like-button")[0];
-let isLiked1 = false;
 
-likeButton1.addEventListener("click", () => {
-  if (isLiked1) {
-    likeButton1.innerHTML = `<i class="far fa-heart"></i>`;
-    likeButton1.style.color = "#fff";
-    isLiked1 = false;
-  } else {
-    likeButton1.innerHTML = `<i class="fas fa-heart"></i>`;
-    likeButton1.style.color = "#fff";
-    isLiked1 = true;
-  }
-});
+// //Like button for suggested catalog 2
+// const likeButton2 = document.getElementsByClassName("like-button")[1];
+// let isLiked2 = false;
 
-//Like button for suggested catalog 2
-const likeButton2 = document.getElementsByClassName("like-button")[1];
-let isLiked2 = false;
+// likeButton2.addEventListener("click", () => {
+//   if (isLiked2) {
+//     likeButton2.innerHTML = `<i class="far fa-heart"></i>`;
+//     likeButton2.style.color = "#fff";
+//     isLiked2 = false;
+//   } else {
+//     likeButton2.innerHTML = `<i class="fas fa-heart"></i>`;
+//     likeButton2.style.color = "#fff";
+//     isLiked2 = true;
+//   }
+// });
 
-likeButton2.addEventListener("click", () => {
-  if (isLiked2) {
-    likeButton2.innerHTML = `<i class="far fa-heart"></i>`;
-    likeButton2.style.color = "#fff";
-    isLiked2 = false;
-  } else {
-    likeButton2.innerHTML = `<i class="fas fa-heart"></i>`;
-    likeButton2.style.color = "#fff";
-    isLiked2 = true;
-  }
-});
+// //Like button for suggested 3
+// const likeButton3 = document.getElementsByClassName("like-button")[2];
+// let isLiked3 = false;
 
-//Like button for suggested 3
-const likeButton3 = document.getElementsByClassName("like-button")[2];
-let isLiked3 = false;
+// likeButton3.addEventListener("click", () => {
+//   if (isLiked3) {
+//     likeButton3.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton3.style.color = "#fff";
+//     isLiked3 = false;
+//   } else {
+//     likeButton3.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton3.style.color = "#fff";
+//     isLiked3 = true;
+//   }
+// });
 
-likeButton3.addEventListener("click", () => {
-  if (isLiked3) {
-    likeButton3.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton3.style.color = "#fff";
-    isLiked3 = false;
-  } else {
-    likeButton3.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton3.style.color = "#fff";
-    isLiked3 = true;
-  }
-});
+// //Like button for suggested 4
+// const likeButton4 = document.getElementsByClassName("like-button")[3];
+// let isLiked4 = false;
 
-//Like button for suggested 4
-const likeButton4 = document.getElementsByClassName("like-button")[3];
-let isLiked4 = false;
-
-likeButton4.addEventListener("click", () => {
-  if (isLiked4) {
-    likeButton4.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton4.style.color = "#fff";
-    isLiked4 = false;
-  } else {
-    likeButton4.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton4.style.color = "#fff";
-    isLiked4 = true;
-  }
-});
+// likeButton4.addEventListener("click", () => {
+//   if (isLiked4) {
+//     likeButton4.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton4.style.color = "#fff";
+//     isLiked4 = false;
+//   } else {
+//     likeButton4.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton4.style.color = "#fff";
+//     isLiked4 = true;
+//   }
+// });
 ////
 //Follow catalog popup on mobile
 // Music
@@ -1105,17 +1133,15 @@ close.onclick = function () {
 };
 ////
 //Time posted
-var timePinned = moment("20230129", "YYYYMMDD").fromNow();
-document.getElementById("timePosted").innerHTML = timePinned;
 
-var timePinned = moment("20220210", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
+// var timePinned = moment("20220210", "YYYYMMDD").fromNow();
+// document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
 
-var timePinned = moment("20221229", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
+// var timePinned = moment("20221229", "YYYYMMDD").fromNow();
+// document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
 
-var timePinned = moment("20230228", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
+// var timePinned = moment("20230228", "YYYYMMDD").fromNow();
+// document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
 
 // Shows and concerts
 var followMeBtn = document.getElementsByClassName("followPopup")[0];
@@ -1551,9 +1577,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1615,8 +1639,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -2158,7 +2181,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 //Get request to fetch user profile
 // function thisUser() {
-//   fetch("https://api.snapme-ng.com/api/v1/:username")
+//   fetch("http://localhost:5000/api/v1/:username")
 //     .then((response) => response.json())
 //     .then((user) => {
 //       console.log(user.name);
@@ -2173,7 +2196,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details

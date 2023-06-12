@@ -304,9 +304,9 @@
             <button id="profilePicture" onclick="checkJwt('profile')">
               <img class="user-image" src="Images/user image.svg" />
             </button>
-            <button onclick="checkJwt('post')">
+            <!--<button onclick="checkJwt('post')">
               <img class="create-plus" src="Images/create plus.svg" />
-            </button>
+            </button>-->
           </div>
 
           <div class="mobileSearch">
@@ -2135,7 +2135,7 @@
             </div>
           </div>
 
-          <button
+          <!--<button
             class="carousel-control-prev"
             type="button"
             data-bs-target="#carouselExample"
@@ -2152,7 +2152,7 @@
           >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-          </button>
+          </button>-->
         </div>
       </div>
       <!--mobile tabs ends-->
@@ -2302,7 +2302,8 @@
           <img src="Images/white house.svg" alt="" />
         </button>
         <button><img src="Images/microphone.svg" alt="" /></button>
-        <button class="mobileCreate" id="createBtnMobile">
+
+        <button class="mobileCreate" id="createBtnMobile" onclick="checkJwt('post')">
           <img src="Images/mobileCreate button.svg" alt="" />
         </button>
         <button><img src="Images/bell white.svg" /></button>

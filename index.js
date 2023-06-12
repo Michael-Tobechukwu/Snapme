@@ -276,9 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Social media share modal
-let parentContainer = document.querySelector('.myrow');
-parentContainer.addEventListener('click', function(event) {
-  let target = event.target;
+document.addEventListener('DOMContentLoaded', function() {
+    let parentContainer = document.querySelector('.myrow');parentContainer.addEventListener('click', function(event) {
+      let target = event.target;
 
   // Check if the clicked element has the desired class name
   if (target.classList.contains('myPopupBtn')) {
@@ -363,7 +363,7 @@ parentContainer.addEventListener('click', function(event) {
       modal.style.display = 'none';
     });
   }
-});
+})}
 
 
 

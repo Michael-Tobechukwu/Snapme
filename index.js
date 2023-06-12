@@ -579,17 +579,15 @@ window.onclick = function (event) {
 */
 //Share popup modals end
 /////
-
 //Make dropdown stack on top
 if (window.innerWidth <= 768) {
-  let mobileDropdown = document.getElementById('mobileDropdown');
+  let mobileDropdown = document.querySelector('.dropdown-menu');
   if (mobileDropdown) {
     mobileDropdown.style.zIndex = "9999";
   } else {
     console.error("Element with ID 'mobileDropdown' not found in the DOM.");
   }
 }
-
 ////
 //Catalog buttons fixed position on scroll
 const catalogsContainer = document.querySelector("#swipe-container");

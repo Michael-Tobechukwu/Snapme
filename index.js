@@ -276,6 +276,100 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Social media share modal
+// Assuming you have a parent element with the class 'myrow' in your initial HTML markup
+let parentContainer = document.querySelector('.myrow');
+
+parentContainer.addEventListener('click', function(event) {
+  let target = event.target;
+
+  // Check if the clicked element has the desired class name
+  if (target.classList.contains('myPopupBtn')) {
+    // Code to execute when a button with the class 'myPopupBtn' is clicked
+
+    // Create the modal element dynamically
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    // Set the modal content
+    modal.innerHTML = `
+      <!-- The Modal -->
+                <div class="shareModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modalContent mobileModalContent">
+                    <span class="close">&times;</span>
+                    <p>Share this post</p>
+                    <div class="share_popup">
+                      <a
+                        class="facebookShare"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://snapme-ng.com/"
+                        target="_blank"
+                        ><img src="Images/facebook new.svg"
+                      /></a>
+                      <a
+                        class=""
+                        href="https://twitter.com/share?text=I found this awesome post on Snapme! Check it out!&url=https://snapme-ng.com/&hashtags=fashion,music,sports,Snapme"
+                        data-size="large"
+                        target="_blank"
+                      >
+                        <img src="Images/twitter new.svg" alt="Twitter"
+                      /></a>
+
+                      <a
+                        class="whatsappShare"
+                        href="https://api.whatsapp.com/send/?text=I+found+this+awesome+post+on+Snapme.+Check+it+out!+https://snapme-ng.com/"
+                        target="_blank"
+                      >
+                        <img src="Images/whatsapp new.svg" alt="WhatsApp" />
+                      </a>
+
+                      <a
+                        class="telegramShare"
+                        href="https://t.me/share/url?url=https://snapme-ng.com/all-pins&text=I found this awesome post on Snapme! Check it out!"
+                        target="_blank"
+                      >
+                        <img
+                          src="Images/telegram new.svg"
+                          alt="Telegram share"
+                        />
+                      </a>
+
+                      <a
+                        class="linkedinShare"
+                        href="https://linkedin.com/shareArticle?mini=true&url=https://snapme-ng.com/"
+                        target="_blank"
+                      >
+                        <img src="Images/linkedin.svg" alt="Linkedin" />
+                      </a>
+
+                      <a
+                        class="redditShare"
+                        href="http://www.reddit.com/submit?url=https://snapme-ng.com/&text=I found this awesome post on Snapme! Check it out!"
+                        target="_blank"
+                      >
+                        <img src="Images/reddit.svg" alt="Reddit" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+    `;
+
+    // Append the modal element to the DOM
+    document.body.appendChild(modal);
+
+    // Show the modal
+    modal.style.display = 'block';
+
+    // Close the modal when the close button is clicked
+    let closeButton = modal.querySelector('.close');
+    closeButton.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  }
+});
+
+
+
+/*
 //Share popup modal 1
 
 // Get the modal
@@ -288,9 +382,9 @@ var btn = document.getElementsByClassName("myPopupBtn")[0];
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+//btn.onclick = function () {
+  //modal.style.display = "block";
+//};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
@@ -484,6 +578,7 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+*/
 //Share popup modals end
 /////
 

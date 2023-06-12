@@ -203,7 +203,7 @@ input:checked + .slider:before {
 
 .navmenu .main-logo img {
   width: 100%;
-  margin-left: 0;
+  margin-left: 20px;
 }
 
 .navmenu .navbuttons {

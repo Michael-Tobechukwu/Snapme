@@ -75,11 +75,17 @@ function createPin() {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 400) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 403) {
-        throw new Error(response.statusText);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 500) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((data) => {

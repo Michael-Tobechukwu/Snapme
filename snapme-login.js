@@ -51,13 +51,13 @@ function loginSubmit() {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 400) {
-        throw new Error(
-          `There are some errors in your login form, check it and try again: ${response.statusText}`
-        );
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 401) {
-        throw new Error(
-          `Your password is incorrect, please check it and try again!`
-        );
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((data) => {

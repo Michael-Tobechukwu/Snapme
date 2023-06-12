@@ -54,12 +54,19 @@ function signup() {
     .then((response) => {
       if (response.status === 200) {
         return response.json();
-      } else if (response.status === 400) {
-        throw new Error(
-          `There are some errors in your signup form, check it and try again: ${response.statusText}`
-        );
       } else if (response.status === 401) {
-        throw new Error(`${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
+      } else if (response.status === 500) {
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
+      } else if (response.status === 400) {
+        return response.json().then((data) => {
+          console.log(data.err);
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((data) => {

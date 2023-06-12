@@ -47,8 +47,8 @@ function getJwt() {
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
     localStorage.setItem("returnUrl", window.location.href);
-    window.location.href = "/login.html";
-    return;
+    // window.location.href = "/login.html";
+    return null;
   }
   return jwtToken;
 }

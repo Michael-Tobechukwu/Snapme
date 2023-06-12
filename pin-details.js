@@ -137,7 +137,7 @@ window.addEventListener("load", function () {
       const pinDetailsElement = document.getElementById("pinCard");
 
       let mediaHTML = "";
-      if (Array.isArray(post.post.media) && post.post.media.length > 0) {
+      if (Array.isArray(post.post.media) && post.post.media.length >= 1) {
         // Determine if the media is an image or video
         const isImage =
           post.post.media[0].endsWith(".jpg") ||
@@ -168,7 +168,7 @@ window.addEventListener("load", function () {
         }
 
         // If there are more than one media, create a slider
-        if (post.post.media.length > 1) {
+        if (post.post.media.length >= 1) {
           mediaHTML = `
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
@@ -587,12 +587,16 @@ window.addEventListener("load", function () {
             <div class="card mobileCard">
               <div class="post-img">
               ${
-                post.media[0].endsWith(".mp4")
-                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${post._id}'">
+                post.media[0]?.endsWith(".mp4")
+                  ? `<video class="card-img-top" controls onclick="window.location = 'pin-details.html?id=${post._id}'">
                   <source src="${post?.media[0]}" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>`
-                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${post._id}'" />`
+                  : `<img src="${post.media[0]}" style="${
+                      !post.media[0] ? `display: none;` : `display: flex;`
+                    }" class="card-img-top" onclick="window.location = 'pin-details.html?id=${
+                      post._id
+                    }'" />`
               }
                 <a class="username text-white" href="user.html?username=${
                   post.user.username
@@ -620,6 +624,7 @@ window.addEventListener("load", function () {
                 </a>
 
                 <h4>${post.caption}</h4>
+                <p>${post.message}</p>
                 <div id="commentBox">
                   <form class="commentBoxForm">
                     <span id="closeComment"> &times;</span>

@@ -276,9 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Social media share modal
-// Assuming you have a parent element with the class 'myrow' in your initial HTML markup
 let parentContainer = document.querySelector('.myrow');
-
 parentContainer.addEventListener('click', function(event) {
   let target = event.target;
 

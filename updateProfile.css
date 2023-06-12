@@ -133,6 +133,46 @@ label.uploadProfilePic input[type="file"] {
   border: 2px solid #bd74bd;
 }
 
+.formFields {
+  margin-top: 20px;
+  padding: 5px 15px;
+}
+
+.formFields label {
+  display: inline-block;  
+  width: 25%;
+  margin: 10px auto;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 5px;
+  border: none;
+}
+
+.formFields input {
+  width: 72%;
+  font-size: 13px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  color: #021129;
+}
+
+.formFields .yourGender select {
+  width: 72%;
+  margin: 0 auto;
+  font-size: 13px;
+  color: #fff;
+  background: #021129;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  padding: 5px;
+}
+
+.formFields .yourGender option {
+  color: #fff;
+  font-size: 13px;
+}
+
 /*MOBILE VIEW*/
 @media (max-width: 768px) {
   .content {
@@ -157,4 +197,40 @@ label.uploadProfilePic input[type="file"] {
     width: 98%;
     margin: 0 auto;
   }
+
+  .formFields {
+    margin-top: 20px;
+    padding: 0 10px;
+  }
+
+  .formFields label {
+    display: block;  
+    width: 95%;
+    margin: 10px 0 0 0;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .formFields input {
+    width: 98%;
+    font-size: 13px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    color: #021129;
+  }
+  
+  .formFields .yourGender select {
+    width: 98%;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #fff;
+    background: #021129;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    padding: 5px;
+  }
 }
+

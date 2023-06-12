@@ -581,9 +581,12 @@ window.onclick = function (event) {
 /////
 
 //Make dropdown stack on top
-const mobileDropdown = document.getElementById("mobileDropdown");
-mobileDropdown.style.zIndex = "9999";
-
+let mobileDropdown = document.getElementById('mobileDropdown');
+if (mobileDropdown) {
+  mobileDropdown.style.zIndex = "9999";
+} else {
+  console.error("Element with ID 'mobileDropdown' not found in the DOM.");
+}
 ////
 //Catalog buttons fixed position on scroll
 const catalogsContainer = document.querySelector("#swipe-container");

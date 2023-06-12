@@ -585,7 +585,7 @@ if (window.innerWidth <= 768) {
   if (mobileDropdown) {
     mobileDropdown.style.zIndex = "9999";
   } else {
-    console.error("Element with ID 'mobileDropdown' not found in the DOM.");
+    console.error("Element with class 'dropdown-menu' not found in the DOM.");
   }
 }
 ////

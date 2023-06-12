@@ -1658,7 +1658,7 @@ top: 61%;
 
 @media (max-width: 375px) {
   .navbuttonsMobile .hamburger img {
-    margin-left: -0.4rem;
+    margin-left: 2px;
   }
 
   .navbuttonsMobile .main-logo {
@@ -1687,7 +1687,7 @@ top: 61%;
 
   .navbuttonsMobile #mobileSearchToggleBtn img {
     width: 25px;
-    margin-right: 5px;
+    margin-right: 25px;
   }
 
   .discover h4 {

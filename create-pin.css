@@ -182,6 +182,10 @@ label {
   cursor: pointer;
 }
 
+#selectedFileName {
+  color: #fff;
+}
+
 /*MOBILE VIEW*/
 @media (max-width: 768px) {
   .main-card {
@@ -217,16 +221,16 @@ label {
   }
 
   .main-card {
-    width: 98%;
+    width: 100%;
     box-shadow: none;
   }
 
   .box-left {
-    width: 98%;
+    width: 100%;
   }
 
   .box-right {
-    width: 95%;
+    width: 100%;
     padding: 0;
   }
 
@@ -238,10 +242,10 @@ label {
   #message,
   #category,
   #link {
-    width: 95%;
+    width: 98%;
   }
 
   input {
-    width: 95% !important;
+    width: 98% !important;
   }
 }

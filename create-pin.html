@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/manifest.json" />
-
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
@@ -60,10 +59,13 @@
                 id="inputGroupFile"
                 name="media"
                 accept="image/jpeg, image/jpg, image/png, image/gif, image/svg, image/tiff, image/webp, video/3gp, video/avi, video/mkv, video/wmv, video/flv, video/mov, video/mp4, video/webm"
-                maxlength="20000000"
+                max="20MB"
                 multiple
               />
             </div>
+
+            <div id="selectedFileName"></div>
+            <progress id="uploadProgress" value="0" max="100"></progress>
 
             <div id="selectedFiles"></div>
           </div>

@@ -31,6 +31,45 @@ document.addEventListener("DOMContentLoaded", function () {
   return;
 });
 
+//File upload to show progress and selected file name
+function uploadFile() {
+  var fileInput = document.getElementById('customFileInput');
+  var file = fileInput.files[0];
+
+  var formData = new FormData();
+  formData.append('file', file);
+
+  var selectedFileName = document.getElementById('selectedFileName');
+  selectedFileName.textContent = file.name; // Display the file name
+
+  fetch(`${api3}/upload`, {
+    method: 'POST',
+    body: formData,
+    onProgress: function (progressEvent) {
+      var percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
+      var progress = document.getElementById('uploadProgress');
+      progress.value = percentComplete;
+    }
+  })
+  .then(function (response) {
+    if (response.ok) {
+      // Upload successful
+      console.log('File uploaded successfully.');
+    } else {
+      // Upload failed
+      console.error('Error uploading file.');
+    }
+  })
+  .catch(function (error) {
+    console.error('Error uploading file:', error);
+  });
+}
+
+// Attach the uploadFile function to the file input change event
+var fileInput = document.getElementById('customFileInput');
+fileInput.addEventListener('change', uploadFile);
+
+
 //Create pin
 function createPin() {
   const caption = document.getElementById("caption").value;
@@ -75,17 +114,11 @@ function createPin() {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 400) {
-        return response.json().then((data) => {
-          throw new Error(data.message || "Error: " + response.statusText);
-        });
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       } else if (response.status === 403) {
-        return response.json().then((data) => {
-          throw new Error(data.message || "Error: " + response.statusText);
-        });
+        throw new Error(response.statusText);
       } else if (response.status === 500) {
-        return response.json().then((data) => {
-          throw new Error(data.message || "Error: " + response.statusText);
-        });
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
     })
     .then((data) => {

@@ -1,10 +1,10 @@
-const api4 = `https://api.snapme-ng.com/api/v1`;
+const api4 = `http://localhost:5000/api/v1`;
 
-window.addEventListener("load", function () {
-  setTimeout(function () {
-    navigator.splashscreen.hide();
-  }, 2000);
-});
+// window.addEventListener("load", function () {
+//   setTimeout(function () {
+//     navigator.splashscreen.hide();
+//   }, 2000);
+// });
 
 //Preloader
 window.onload = function () {
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentPic ===
     "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
       ? `Images/user image.svg`
-      : currentPic;
+      : currentPic || "Images/user image.svg";
   image.alt = "user Image";
   image.className = "user-image";
   image.style = "border-radius: 50%; border: 2px solid #ba00ba;";
@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
     .then((posts) => {
-      console.log(posts);
       const allPinElement = document.querySelector(".row");
 
       posts.forEach((post) => {
@@ -101,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="card mobileCard" id="card1">
             <div class="post-img">
             ${
-              post.media[0].endsWith(".mp4")
+              post.media[0]?.endsWith(".mp4")
                 ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
@@ -276,20 +275,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Social media share modal
-document.addEventListener('DOMContentLoaded', function() {
-    let parentContainer = document.querySelector('.myrow');parentContainer.addEventListener('click', function(event) {
-      let target = event.target;
+document.addEventListener("DOMContentLoaded", function () {
+  let parentContainer = document.querySelector(".myrow");
+  parentContainer.addEventListener("click", function (event) {
+    let target = event.target;
 
-  // Check if the clicked element has the desired class name
-  if (target.classList.contains('myPopupBtn')) {
-    // Code to execute when a button with the class 'myPopupBtn' is clicked
+    // Check if the clicked element has the desired class name
+    if (target.classList.contains("myPopupBtn")) {
+      // Code to execute when a button with the class 'myPopupBtn' is clicked
 
-    // Create the modal element dynamically
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
+      // Create the modal element dynamically
+      let modal = document.createElement("div");
+      modal.classList.add("modal");
 
-    // Set the modal content
-    modal.innerHTML = `
+      // Set the modal content
+      modal.innerHTML = `
       <!-- The Modal -->
                 <div class="shareModal" class="modal">
                   <!-- Modal content -->
@@ -351,21 +351,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
     `;
 
-    // Append the modal element to the DOM
-    document.body.appendChild(modal);
+      // Append the modal element to the DOM
+      document.body.appendChild(modal);
 
-    // Show the modal
-    modal.style.display = 'block';
+      // Show the modal
+      modal.style.display = "block";
 
-    // Close the modal when the close button is clicked
-    let closeButton = modal.querySelector('.close');
-    closeButton.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
-  }
-})})
-
-
+      // Close the modal when the close button is clicked
+      let closeButton = modal.querySelector(".close");
+      closeButton.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+    }
+  });
+});
 
 /*
 //Share popup modal 1
@@ -581,7 +580,7 @@ window.onclick = function (event) {
 /////
 //Make dropdown stack on top
 if (window.innerWidth <= 768) {
-  let mobileDropdown = document.querySelector('.dropdown-menu');
+  let mobileDropdown = document.querySelector(".dropdown-menu");
   if (mobileDropdown) {
     mobileDropdown.style.zIndex = "9999";
   } else {
@@ -658,63 +657,63 @@ function checkLoginStatus() {
 }
 
 // Add an event listener to the create button
-createBtn.addEventListener("click", checkLoginStatus);
-mobileCreateBtn.addEventListener("click", checkLoginStatus);
-////------------------------------
+// createBtn.addEventListener("click", checkLoginStatus);
+// mobileCreateBtn.addEventListener("click", checkLoginStatus);
+// ////------------------------------
 
 //Check login status when comment button is clicked, & redirect to homepage and show comment box
 
 //Get comment buttons
-const commentRedirect = document.querySelector(".commentRedirectBtn");
-const commentRedirect2 = document.querySelector(".commentRedirectBtn2");
-const commentRedirect3 = document.querySelector(".commentRedirectBtn3");
-const commentRedirect4 = document.querySelector(".commentRedirectBtn4");
-const commentRedirect5 = document.querySelector(".commentRedirectBtn5");
-const commentRedirect6 = document.querySelector(".commentRedirectBtn6");
-const commentRedirect7 = document.querySelector(".commentRedirectBtn7");
-const commentRedirect8 = document.querySelector(".commentRedirectBtn8");
+// const commentRedirect = document.querySelector(".commentRedirectBtn");
+// const commentRedirect2 = document.querySelector(".commentRedirectBtn2");
+// const commentRedirect3 = document.querySelector(".commentRedirectBtn3");
+// const commentRedirect4 = document.querySelector(".commentRedirectBtn4");
+// const commentRedirect5 = document.querySelector(".commentRedirectBtn5");
+// const commentRedirect6 = document.querySelector(".commentRedirectBtn6");
+// const commentRedirect7 = document.querySelector(".commentRedirectBtn7");
+// const commentRedirect8 = document.querySelector(".commentRedirectBtn8");
 
-// Add an event listener to the comment buttons
-commentRedirect.addEventListener("click", checkLoginStatus2);
-commentRedirect2.addEventListener("click", checkLoginStatus2);
-commentRedirect3.addEventListener("click", checkLoginStatus2);
-commentRedirect4.addEventListener("click", checkLoginStatus2);
-commentRedirect5.addEventListener("click", checkLoginStatus2);
-commentRedirect6.addEventListener("click", checkLoginStatus2);
-commentRedirect7.addEventListener("click", checkLoginStatus2);
-commentRedirect8.addEventListener("click", checkLoginStatus2);
+// // Add an event listener to the comment buttons
+// commentRedirect.addEventListener("click", checkLoginStatus2);
+// commentRedirect2.addEventListener("click", checkLoginStatus2);
+// commentRedirect3.addEventListener("click", checkLoginStatus2);
+// commentRedirect4.addEventListener("click", checkLoginStatus2);
+// commentRedirect5.addEventListener("click", checkLoginStatus2);
+// commentRedirect6.addEventListener("click", checkLoginStatus2);
+// commentRedirect7.addEventListener("click", checkLoginStatus2);
+// commentRedirect8.addEventListener("click", checkLoginStatus2);
 
-//Check login status when comment button is clicked, & redirect to homepage and show comment box
-function checkLoginStatus2() {
-  // Get the JWT token from local storage
-  const token = localStorage.getItem("jwtToken");
+// //Check login status when comment button is clicked, & redirect to homepage and show comment box
+// function checkLoginStatus2() {
+//   // Get the JWT token from local storage
+//   const token = localStorage.getItem("jwtToken");
 
-  // Check if the user is logged in
-  if (token) {
-    try {
-      // Attempt to decode the JWT token to get the user information
-      const decodedToken = JSON.parse(atob(token.split(".")[1]));
-      const userId = decodedToken.userId;
+//   // Check if the user is logged in
+//   if (token) {
+//     try {
+//       // Attempt to decode the JWT token to get the user information
+//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
+//       const userId = decodedToken.userId;
 
-      // Redirect the user to the homepage
-      window.location.href = "index.html";
-    } catch (err) {
-      // If there was an error decoding the token, assume the user is not logged in
-      console.error("Error decoding JWT token:", err);
+//       // Redirect the user to the homepage
+//       window.location.href = "index.html";
+//     } catch (err) {
+//       // If there was an error decoding the token, assume the user is not logged in
+//       console.error("Error decoding JWT token:", err);
 
-      // Redirect the user to the login page
-      window.location.href = "login.html";
-    }
-  } else {
-    // Redirect the user to the login page
-    window.location.href = "login.html";
-  }
+//       // Redirect the user to the login page
+//       window.location.href = "login.html";
+//     }
+//   } else {
+//     // Redirect the user to the login page
+//     window.location.href = "login.html";
+//   }
 
-  // If the user is logged in, show the comment box
-  if (token) {
-    document.getElementById("commentBox").style.display = "block";
-  }
-}
+//   // If the user is logged in, show the comment box
+//   if (token) {
+//     document.getElementById("commentBox").style.display = "block";
+//   }
+// }
 
 //Comment box close
 const commentBox = document.getElementById("commentBox");
@@ -1582,9 +1581,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1646,8 +1643,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1700,7 +1696,7 @@ function showMoreAccounts() {
 //Subscriber's badge
 document.addEventListener("DOMContentLoaded", function () {
   // Send an AJAX request to get the subscription status
-  fetch("https://api.snapme-ng.com/api/v1/user/status")
+  fetch("http://localhost:5000/api/v1/user/status")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -1741,7 +1737,7 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1793,7 +1789,7 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
   // Fetch the pin data from the backend
-  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
     .then((response) => response.json())
     .then((pin) => {
       // Create a container element to display the pin details
@@ -2071,7 +2067,7 @@ const followUserBtn = document.querySelector("#followBtn");
 followUserBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -2098,7 +2094,7 @@ const followBtn = document.querySelector(".followBtn");
 followBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

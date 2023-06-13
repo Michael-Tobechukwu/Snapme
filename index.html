@@ -32,8 +32,6 @@
       type="text/JavaScript"
       src=" https://MomentJS.com/downloads/moment.js"
     ></script>
-    <script type="text/JavaScript" src="index.js"></script>
-    <script type="text/JavaScript" src="fetchAPI.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     />
@@ -335,6 +333,7 @@
       <div class="subscribe">
         <button onclick="window.location='subscribe.html'">Subscribe</button>
       </div>
+
       <div class="tabs">
         <!--Music with popup-->
         <button
@@ -2303,7 +2302,11 @@
         </button>
         <button><img src="Images/microphone.svg" alt="" /></button>
 
-        <button class="mobileCreate" id="createBtnMobile" onclick="checkJwt('post')">
+        <button
+          class="mobileCreate"
+          id="createBtnMobile"
+          onclick="checkJwt('post')"
+        >
           <img src="Images/mobileCreate button.svg" alt="" />
         </button>
         <button><img src="Images/bell white.svg" /></button>
@@ -2323,6 +2326,8 @@
     <!--wrapper ends-->
 
     <!--scripts-->
+    <script type="text/JavaScript" src="index.js"></script>
+    <script type="text/JavaScript" src="/fetchAPI.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
     <script src="js/bootstrap.min.js"></script>

@@ -10,7 +10,7 @@ var showPasswordIcon = document.getElementsByClassName("eyeIcon")[0];
 const otpBtn = document.getElementById("otp");
 const resetForm = document.getElementById("resetForm");
 
-let api = "https://api.snapme-ng.com/api/v1";
+let api = "http://localhost:5000/api/v1";
 
 function showPwd() {
   if (pwdInput.type === "password") {
@@ -76,13 +76,21 @@ function getOtp() {
         startCountdown(); // Start the countdown
         return response.json();
       } else if (response.status === 404) {
-        throw new Error(
-          `Account with that email or username does not exist, please check it and try again!: ${response.statusText}`
-        );
+        return response.json().then((data) => {
+          throw new Error(
+            data.message ||
+              "Account with that email or username does not exist, please check it and try again!: " +
+                response.statusText
+          );
+        });
       } else if (response.status === 500) {
-        throw new Error(
-          `Uh-oh, something happened on our servers, it's not your fault! Please bear with us and try again.`
-        );
+        return response.json().then((data) => {
+          throw new Error(
+            data.message ||
+              "Uh-oh, something happened on our servers, it's not your fault! Please bear with us and try again. " +
+                response.statusText
+          );
+        });
       }
     })
     .then((data) => {

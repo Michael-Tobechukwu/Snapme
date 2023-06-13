@@ -35,7 +35,7 @@ var closeThis = document.getElementById("closeZ");
 //   }
 // };
 
-const api2 = `https://api.snapme-ng.com/api/v1`;
+const api2 = `http://localhost:5000/api/v1`;
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -135,6 +135,8 @@ window.addEventListener("load", function () {
     })
     .then((post) => {
       const pinDetailsElement = document.getElementById("pinCard");
+
+      let userId = post?.id;
 
       let mediaHTML = "";
       if (Array.isArray(post.post.media) && post.post.media.length >= 1) {
@@ -361,9 +363,15 @@ window.addEventListener("load", function () {
                 </li>
                 <li class="likeDiv">
                   <button onclick="likePost()" id="like-button">
-                    <i class="far fa-heart"></i>
+                    <i id="likeIcon" class="${
+                      post.post?.likes.includes(post?.id)
+                        ? "fas fa-heart"
+                        : "far fa-heart"
+                    }"></i>
                   </button>
-                  <p class="text-white">${post.post?.likes?.length}</p>
+                  <p class="text-white" id="likeText">${
+                    post.post?.likes?.length
+                  }</p>
                 </li>
                 <li>
                 <a href="#commentForm">
@@ -481,8 +489,20 @@ window.addEventListener("load", function () {
           .map(
             (comment) => `
       <div id="comment-${comment.id}" class="marcdiss-box">
-        <button onclick="window.location = 'user.html?user=${comment.username}'">
-          <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
+        <button onclick="window.location = 'user.html?user=${
+          comment.username
+        }'">
+        <img src="${
+          comment.userImage ===
+          "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+            ? `Images/user image.svg`
+            : comment.userImage
+        }" style="border-radius: 50%; border: 2px solid #ba00ba;" alt="${
+              comment.username
+            } Profile pic" width="50px"
+                 class="profilePic" onclick="window.location='user.html?username=${
+                   comment.username
+                 }'" />
         </button>
         <div class="marcdiss">
           <p class="username">${comment.username}</p>
@@ -491,7 +511,9 @@ window.addEventListener("load", function () {
           <ul id="signedInContent2">
             <li onclick="likeComment('${comment.id}')">Like</li>
             <li onclick="replyComment('${comment.id}')">Reply</li>
-            <li onclick="deleteReply('${comment.id}', '${comment.replies?.id}')">Remove</li>
+            <li onclick="deleteReply('${comment.id}', '${
+              comment.replies?.id
+            }')">Remove</li>
             <li onclick="deleteComment('${comment.id}')">Delete</li>
           </ul>
         </div>
@@ -624,7 +646,6 @@ window.addEventListener("load", function () {
                 </a>
 
                 <h4>${post.caption}</h4>
-                <p>${post.message}</p>
                 <div id="commentBox">
                   <form class="commentBoxForm">
                     <span id="closeComment"> &times;</span>
@@ -654,10 +675,14 @@ window.addEventListener("load", function () {
                     </button>
                   </li>
                   <li class="likeListItem">
-                    <button onclick="likePost()" class="like-button">
-                      <i class="far fa-heart" style="color: #fff"></i>
-                    </button>
-                    <p class="text-white">${post?.likes?.length}</p>
+                  <button onclick="likePost()" id="like-button">
+                    <i id="likeIcon" class="${
+                      post?.likes.includes(userId)
+                        ? "fas fa-heart"
+                        : "far fa-heart"
+                    }"></i>
+                  </button>
+                  <p class="text-white" id="likeText">${post?.likes?.length}</p>
                   </li>
                   <li>
                     <button id="commentBtn">
@@ -880,6 +905,24 @@ function likePost() {
   })
     .then((response) => response.json())
     .then((data) => {
+      const likeCount = document.getElementById("likeText");
+      const heartIcon = document.getElementById("likeIcon");
+
+      if (data.status === "liked") {
+        // Update the like count
+        likeCount.textContent = data.likes.length;
+
+        heartIcon.classList.remove("far");
+        // heartIcon.style.color = "red";
+        heartIcon.classList.add("fas");
+      } else {
+        likeCount.textContent = data.likes.length;
+        // heartIcon.style.color = "#fff";
+        heartIcon.classList.remove("fas");
+        // heartIcon.style.color = "red";
+        heartIcon.classList.add("far");
+      }
+
       console.log("Post liked successfully");
     })
     .catch((error) => console.error(error));
@@ -921,31 +964,45 @@ function commentOnPost() {
       const commentElement = document.createElement("div");
       commentElement.classList.add("marcdiss-box");
 
+      const comments = Array.isArray(data) ? data : [data];
+
       commentElement.innerHTML = `
-  ${
-    data.length !== 0
-      ? data
-          .map(
-            (comment) => `
-            <button onclick="window.location = 'user.html?user=${comment.username}'">
-              <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
-            </button>
-            <div class="marcdiss">
-              <p class="username">${comment.username}</p>
-              <p class="alias">${comment.text}</p>
-              <ul id="signedInContent2">
-                <li onclick="likeComment('${comment.id}')">Like</li>
-                <li onclick="replyComment('${comment.id}')">Reply</li>
-                <li onclick="deleteReply('${comment.id}', '${comment.replies?.id}')">Remove</li>
-                <li onclick="deleteComment('${comment.id}')">Delete</li>
-              </ul>
-            </div>
-          `
-          )
-          .join("")
-      : "<p>No comments yet!</p>"
-  }
-`;
+        ${
+          comments.length !== 0
+            ? comments
+                .map(
+                  (comment) => `
+                    <button onclick="window.location = 'user.html?user=${
+                      comment.username
+                    }'">
+                    <img src="${
+                      comment.userImage ===
+                      "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
+                        ? `Images/user image.svg`
+                        : comment.userImage
+                    }" style="border-radius: 50%; border: 2px solid #ba00ba;" alt="${
+                    comment.username
+                  } Profile pic" width="50px"
+ onclick="window.location='user.html?username=${comment.username}'" />
+                    </button>
+                    <div class="marcdiss">
+                      <p class="username">${comment.username}</p>
+                      <p class="alias">${comment.text}</p>
+                      <ul id="signedInContent2">
+                        <li onclick="likeComment('${comment.id}')">Like</li>
+                        <li onclick="replyComment('${comment.id}')">Reply</li>
+                        <li onclick="deleteReply('${comment.id}', '${
+                    comment.replies?.id
+                  }')">Remove</li>
+                        <li onclick="deleteComment('${comment.id}')">Delete</li>
+                      </ul>
+                    </div>
+                  `
+                )
+                .join("")
+            : "<p>No comments yet!</p>"
+        }
+      `;
       container.appendChild(commentElement);
     })
     .catch((error) => {
@@ -1582,20 +1639,32 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch(`http://localhost:5000/api/v1/search?query=${query}`)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       // Clear the search results list
       searchResults.innerHTML = "";
 
-      // Loop through the search results and add them to the list
-      data.results.forEach(function (result) {
+      // Check if any posts or users are found
+      if (data.posts.length === 0 && data.users.length === 0) {
+        searchResults.innerHTML = "<li>No results found</li>";
+        return;
+      }
+
+      // Loop through the posts and add them to the list
+      data.posts.forEach(function (post) {
         var li = document.createElement("li");
-        li.textContent = result.title;
+        li.textContent = post.title;
+        searchResults.appendChild(li);
+      });
+
+      // Loop through the users and add them to the list
+      data.users.forEach(function (user) {
+        var li = document.createElement("li");
+        li.textContent = user.username;
         searchResults.appendChild(li);
       });
     })
@@ -1646,8 +1715,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1819,6 +1887,7 @@ function likeComment(commentId) {
       }
     })
     .then((data) => {
+      console.log(data);
       console.log(`${data.message}`);
     })
     .catch((error) => console.error(error));
@@ -1907,11 +1976,17 @@ function deleteComment(commentId) {
         }
         return response.json();
       } else if (response.status === 404) {
-        throw new Error(`Error: ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 401) {
-        throw new Error(`Error: ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 500) {
-        throw new Error(`Error: ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((data) => {
@@ -2189,7 +2264,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 //Get request to fetch user profile
 // function thisUser() {
-//   fetch("https://api.snapme-ng.com/api/v1/:username")
+//   fetch("http://localhost:5000/api/v1/:username")
 //     .then((response) => response.json())
 //     .then((user) => {
 //       console.log(user.name);
@@ -2204,7 +2279,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details

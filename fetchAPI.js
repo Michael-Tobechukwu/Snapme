@@ -1,4 +1,4 @@
-const api5 = `https://api.snapme-ng.com/api/v1`;
+const api5 = `http://localhost:5000/api/v1`;
 
 //Search fetch API
 function searchPosts() {
@@ -131,7 +131,7 @@ function followThisUser(username) {
 //   }
 
 //   // Create the URL for the API endpoint
-//   const url = "https://api.snapme-ng.com/api/v1/pins/like";
+//   const url = "http://localhost:5000/api/v1/pins/like";
 
 //   // Fetch options for the POST request
 //   const options = {
@@ -144,10 +144,10 @@ function followThisUser(username) {
 //   };
 
 //   // Get the like button element
-//   const likeButton = document.getElementById("likeBtn"); // Replace with the actual ID of the like button element
+//   const likeBn = document.getElementById("likeBtn"); // Replace with the actual ID of the like button element
 
 //   // Check the current state of the like button
-//   const isLiked = likeButton.innerHTML === '<i class="fas fa-heart"></i>';
+//   const isLike = likeBn.innerHTML === '<i class="fas fa-heart"></i>';
 
 //   // Send the POST request to like or unlike the post
 //   fetch(url, options)
@@ -156,14 +156,14 @@ function followThisUser(username) {
 //       // For example, check the response status
 //       if (response.ok) {
 //         // Toggle the like button state
-//         if (isLiked) {
+//         if (isLike) {
 //           // Post unliked successfully
 //           console.log("Post unliked!");
-//           likeButton.innerHTML = '<i class="far fa-heart"></i>';
+//           likeBn.innerHTML = '<i class="far fa-heart"></i>';
 //         } else {
 //           // Post liked successfully
 //           console.log("Post liked!");
-//           likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+//           likeBn.innerHTML = '<i class="fas fa-heart"></i>';
 //         }
 //       } else {
 //         // Handle any error cases
@@ -177,32 +177,32 @@ function followThisUser(username) {
 // }
 
 //Add click event listener to like buttons
-document.getElementById("likeBtn").addEventListener("click", likePost);
-document.getElementById("likeBtn2").addEventListener("click", likePost);
-document.getElementById("likeBtn3").addEventListener("click", likePost);
-document.getElementById("likeBtn4").addEventListener("click", likePost);
-document.getElementById("likeBtn5").addEventListener("click", likePost);
-document.getElementById("likeBtn6").addEventListener("click", likePost);
-document.getElementById("likeBtn7").addEventListener("click", likePost);
-document.getElementById("likeBtn8").addEventListener("click", likePost);
+// document.getElementById("likeBtn").addEventListener("click", likePost);
+// document.getElementById("likeBtn2").addEventListener("click", likePost);
+// document.getElementById("likeBtn3").addEventListener("click", likePost);
+// document.getElementById("likeBtn4").addEventListener("click", likePost);
+// document.getElementById("likeBtn5").addEventListener("click", likePost);
+// document.getElementById("likeBtn6").addEventListener("click", likePost);
+// document.getElementById("likeBtn7").addEventListener("click", likePost);
+// document.getElementById("likeBtn8").addEventListener("click", likePost);
 
 ///Like & unlike a post end
 
 const userId = 456;
-const likeButton = document.getElementsByClassName("like-button")[0];
-let isLiked = false;
+// const likeBn = document.getElementsByClassName("like-button")[0];
+// let isLike = false;
 
-likeButton.addEventListener("click", () => {
-  if (isLiked) {
-    likeButton.innerHTML = '<i class="far fa-heart"></i>';
-    isLiked = false;
-  } else {
-    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-    isLiked = true;
-    likePost();
-  }
-  likeButton.style.color = "#fff";
-});
+// likeBn.addEventListener("click", () => {
+//   if (isLike) {
+//     likeBn.innerHTML = '<i class="far fa-heart"></i>';
+//     isLike = false;
+//   } else {
+//     likeBn.innerHTML = '<i class="fas fa-heart"></i>';
+//     isLike = true;
+//     likePost();
+//   }
+//   likeBn.style.color = "#fff";
+// });
 
 // async function likePost() {
 //   const response = await fetch("${api}/pins/:id/like", {

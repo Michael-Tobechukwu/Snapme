@@ -595,6 +595,11 @@ input:checked + .slider:before {
   font-size: 16px;
 }
 
+#image-cards .card .post-content-div {
+  color: #fff;
+
+}
+
 #image-cards .card .post-img a {
   position: absolute;
   top: 0.5rem;
@@ -607,6 +612,8 @@ input:checked + .slider:before {
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 }
+
+#image-cards .card #postContent
 
 #image-cards .card .card-body {
   display: flex !important;
@@ -1658,13 +1665,14 @@ top: 61%;
 }
 
 @media (max-width: 375px) {
-    .navButtonsMobile {
+
+  .navButtonsMobile {
     width: 100%;
     padding: 0 5px;
   }
-  
+
   .navbuttonsMobile .hamburger img {
-    margin-left: 2px;
+    margin-left: -0.4rem;
   }
 
   .navbuttonsMobile .main-logo {
@@ -1693,7 +1701,7 @@ top: 61%;
 
   .navbuttonsMobile #mobileSearchToggleBtn img {
     width: 25px;
-    margin-right: 25px;
+    margin-right: 5px;
   }
 
   .discover h4 {

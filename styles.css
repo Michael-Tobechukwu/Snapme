@@ -597,7 +597,11 @@ input:checked + .slider:before {
 
 #image-cards .card .post-content-div {
   color: #fff;
+  padding: 15px;
+}
 
+#image-cards .card .post-content-div a {
+  text-decoration: none;
 }
 
 #image-cards .card .post-img a {

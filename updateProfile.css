@@ -67,6 +67,11 @@ body {
   position: relative;
 }
 
+.img .placeholderPic {
+  width: 40px;
+  border-radius: 50%;
+}
+
 /*Upload Profile Pic*/
 label.uploadProfilePic input[type="file"] {
   position: absolute;

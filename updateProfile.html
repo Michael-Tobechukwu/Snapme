@@ -43,8 +43,9 @@
       <div class="content">
         <form id="profileForm">
           <div class="banner">
+            <img src="" class="bannerPlaceholderPic"/>
             <label class="uploadBanner">
-              <input type="file" required accept="image/*" />
+              <input type="file" required accept="image/*" onchange="handleProfilePicUpload(event)"/>
               <span
                 ><img src="Images/camera-filled-svgrepo-com.svg" width="50px"
               /></span>
@@ -53,7 +54,7 @@
           <div class="userInfo">
             <div class="profilePic">
               <div class="img">
-                <img src="Images/azizy.png" class="placeholderPic" />
+                <img src="Images/azizy.png" class="placeholderPic"/>
                 <label class="uploadProfilePic">
                   <input type="file" required accept="image/*" onchange="handleProfilePicUpload(event)"/>
                   <span

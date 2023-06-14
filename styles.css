@@ -622,6 +622,8 @@ input:checked + .slider:before {
   padding: 15px 10px;
   background: #fff;
   color: #000;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
 }
 
 

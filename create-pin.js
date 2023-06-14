@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //File upload to show progress and selected file name
 function uploadFile() {
-  var fileInput = document.getElementById('customFileInput');
+  var fileInput = document.getElementById('inputGroupFile');
   var file = fileInput.files[0];
 
   var formData = new FormData();
@@ -42,7 +42,7 @@ function uploadFile() {
   var selectedFileName = document.getElementById('selectedFileName');
   selectedFileName.textContent = file.name; // Display the file name
 
-  fetch(`${api3}/upload`, {
+  fetch(`${api3}/create-pin/${category}`, {
     method: 'POST',
     body: formData,
     onProgress: function (progressEvent) {
@@ -66,7 +66,7 @@ function uploadFile() {
 }
 
 // Attach the uploadFile function to the file input change event
-var fileInput = document.getElementById('customFileInput');
+var fileInput = document.getElementById('inputGroupFile');
 fileInput.addEventListener('change', uploadFile);
 
 

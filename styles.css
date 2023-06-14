@@ -620,7 +620,7 @@ input:checked + .slider:before {
 #image-cards .card #postContent {
   padding: 15px 10px;
   background: #ba00ba;
-  color: #000;
+  color: #fff;
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
   margin-top: 10px;

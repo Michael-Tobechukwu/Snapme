@@ -1,3 +1,16 @@
+//Upload profile picture
+function handleProfilePicUpload(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const imgElement = document.querySelector('.placeholderPic');
+    imgElement.src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
+}
+
 //Edit username in update profile
 const paragraph = document.getElementById("editParagraph");
 const edit_button = document.getElementById("editButton");

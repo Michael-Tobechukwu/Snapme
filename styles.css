@@ -609,14 +609,13 @@ input:checked + .slider:before {
   border-top-right-radius: 0.4rem;
 }
 
-#image-cards .card .post-content-div {
+#image-cards .card .postContent-div {
   color: #fff;
 }
 
-#image-cards .card .post-content-div a {
+#image-cards .card .postContent-div a {
   text-decoration: none;
 }
-
 
 #image-cards .card #postContent {
   padding: 15px 10px;
@@ -625,7 +624,6 @@ input:checked + .slider:before {
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 }
-
 
 #image-cards .card .card-body {
   display: flex !important;

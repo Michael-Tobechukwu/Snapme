@@ -623,6 +623,11 @@ input:checked + .slider:before {
   color: #000;
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
+  margin-top: 10px;
+}
+
+#image-cards .card #postTitle {
+  margin-left: 10px;
 }
 
 #image-cards .card .card-body {

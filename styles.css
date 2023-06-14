@@ -624,6 +624,16 @@ input:checked + .slider:before {
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
   margin-top: 10px;
+  font-size: 11px;
+}
+
+#image-cards .card .postContent-top {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#image-cards .card .postContent-top .username, #image-cards .card .postContent-top button {
+  font-size: 11px;
 }
 
 #image-cards .card #postTitle {
@@ -655,6 +665,7 @@ input:checked + .slider:before {
 #image-cards .icons-list li {
   list-style: none;
   margin-left: 0 !important;
+  margin-right: -5px;
 }
 
 #image-cards .icons-list li button:hover {

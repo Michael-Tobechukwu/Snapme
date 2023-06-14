@@ -595,14 +595,6 @@ input:checked + .slider:before {
   font-size: 16px;
 }
 
-#image-cards .card .post-content-div {
-  color: #fff;
-  padding: 15px;
-}
-
-#image-cards .card .post-content-div a {
-  text-decoration: none;
-}
 
 #image-cards .card .post-img a {
   position: absolute;
@@ -617,7 +609,21 @@ input:checked + .slider:before {
   border-top-right-radius: 0.4rem;
 }
 
-#image-cards .card #postContent
+#image-cards .card .post-content-div {
+  color: #fff;
+}
+
+#image-cards .card .post-content-div a {
+  text-decoration: none;
+}
+
+
+#image-cards .card #postContent {
+  padding: 15px 10px;
+  background: #fff;
+  color: #000;
+}
+
 
 #image-cards .card .card-body {
   display: flex !important;

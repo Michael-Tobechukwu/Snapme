@@ -670,7 +670,8 @@ input:checked + .slider:before {
 #image-cards .icons-list li {
   list-style: none;
   margin-left: 0 !important;
-  margin-right: -10px;
+  margin-right: -8px;
+  font-size: 11px;
 }
 
 #image-cards .icons-list li button:hover {

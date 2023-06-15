@@ -547,10 +547,10 @@ input:checked + .slider:before {
 }
 
 #image-cards {
-  justify-content: space-between !important;
+/*  justify-content: space-between !important;*/
   width: 95%;
-  grid-template-columns: repeat(3, 30%);
-  gap: 5px;
+  grid-template-columns: repeat(3, 30%) !important;
+  gap: 5px !important;
 }
 
 /*#image-cards .row .col, #image-cards .row .col-5 {

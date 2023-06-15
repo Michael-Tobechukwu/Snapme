@@ -547,9 +547,9 @@ input:checked + .slider:before {
 }
 
 #image-cards {
-/*  justify-content: space-between !important;*/
+  display: grid !important;
   width: 95%;
-  grid-template-columns: repeat(3, 30%) !important;
+  grid-template-columns: repeat(3, auto) !important;
   gap: 5px !important;
 }
 

@@ -553,9 +553,9 @@ input:checked + .slider:before {
   gap: 5px !important;
 }
 
-/*#image-cards .row .col, #image-cards .row .col-5 {
-
-}*/
+#image-cards .row .col, #image-cards .row .col-5 {
+  width: 30% !important;
+}
 
 #image-cards .card {
   background: #ba00ba;

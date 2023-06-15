@@ -548,8 +548,14 @@ input:checked + .slider:before {
 
 #image-cards {
   justify-content: space-between !important;
-  width: 90%;
+  width: 95%;
+  grid-template-columns: repeat(3, 30%);
+  gap: 5px;
 }
+
+/*#image-cards .row .col, #image-cards .row .col-5 {
+
+}*/
 
 #image-cards .card {
   background: #ba00ba;

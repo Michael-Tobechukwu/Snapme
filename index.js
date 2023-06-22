@@ -1,10 +1,10 @@
 const api4 = `https://api.snapme-ng.com/api/v1`;
 
-// window.addEventListener("load", function () {
-//   setTimeout(function () {
-//     navigator.splashscreen.hide();
-//   }, 2000);
-// });
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    navigator.splashscreen.hide();
+  }, 2000);
+});
 
 //Preloader
 window.onload = function () {
@@ -47,8 +47,8 @@ function getJwt() {
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
     localStorage.setItem("returnUrl", window.location.href);
-    // window.location.href = "/login.html";
-    return null;
+    window.location.href = "/login.html";
+    return;
   }
   return jwtToken;
 }
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentPic ===
     "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
       ? `Images/user image.svg`
-      : currentPic || "Images/user image.svg";
+      : currentPic;
   image.alt = "user Image";
   image.className = "user-image";
   image.style = "border-radius: 50%; border: 2px solid #ba00ba;";
@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
     .then((posts) => {
+      console.log(posts);
       const allPinElement = document.querySelector(".row");
 
       posts.forEach((post) => {
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="card mobileCard" id="card1">
             <div class="post-img">
             ${
-              post.media[0]?.endsWith(".mp4")
+              post.media[0].endsWith(".mp4")
                 ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
@@ -275,21 +276,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Social media share modal
-document.addEventListener("DOMContentLoaded", function () {
-  let parentContainer = document.querySelector(".myrow");
-  parentContainer.addEventListener("click", function (event) {
-    let target = event.target;
+document.addEventListener('DOMContentLoaded', function() {
+    let parentContainer = document.querySelector('.myrow');parentContainer.addEventListener('click', function(event) {
+      let target = event.target;
 
-    // Check if the clicked element has the desired class name
-    if (target.classList.contains("myPopupBtn")) {
-      // Code to execute when a button with the class 'myPopupBtn' is clicked
+  // Check if the clicked element has the desired class name
+  if (target.classList.contains('myPopupBtn')) {
+    // Code to execute when a button with the class 'myPopupBtn' is clicked
 
-      // Create the modal element dynamically
-      let modal = document.createElement("div");
-      modal.classList.add("modal");
+    // Create the modal element dynamically
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
 
-      // Set the modal content
-      modal.innerHTML = `
+    // Set the modal content
+    modal.innerHTML = `
       <!-- The Modal -->
                 <div class="shareModal" class="modal">
                   <!-- Modal content -->
@@ -351,20 +351,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
     `;
 
-      // Append the modal element to the DOM
-      document.body.appendChild(modal);
+    // Append the modal element to the DOM
+    document.body.appendChild(modal);
 
-      // Show the modal
-      modal.style.display = "block";
+    // Show the modal
+    modal.style.display = 'block';
 
-      // Close the modal when the close button is clicked
-      let closeButton = modal.querySelector(".close");
-      closeButton.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-    }
-  });
-});
+    // Close the modal when the close button is clicked
+    let closeButton = modal.querySelector('.close');
+    closeButton.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+  }
+})})
 
 /*
 //Share popup modal 1
@@ -577,16 +576,21 @@ window.onclick = function (event) {
 };
 */
 //Share popup modals end
-/////
+
+
+
+
 //Make dropdown stack on top
 if (window.innerWidth <= 768) {
-  let mobileDropdown = document.querySelector(".dropdown-menu");
+  let mobileDropdown = document.querySelector('.dropdown-menu');
   if (mobileDropdown) {
     mobileDropdown.style.zIndex = "9999";
   } else {
-    console.error("Element with class 'dropdown-menu' not found in the DOM.");
+    console.error("Element with ID 'mobileDropdown' not found in the DOM.");
   }
 }
+
+
 ////
 //Catalog buttons fixed position on scroll
 const catalogsContainer = document.querySelector("#swipe-container");
@@ -657,63 +661,63 @@ function checkLoginStatus() {
 }
 
 // Add an event listener to the create button
-// createBtn.addEventListener("click", checkLoginStatus);
-// mobileCreateBtn.addEventListener("click", checkLoginStatus);
-// ////------------------------------
+createBtn.addEventListener("click", checkLoginStatus);
+mobileCreateBtn.addEventListener("click", checkLoginStatus);
+////------------------------------
 
 //Check login status when comment button is clicked, & redirect to homepage and show comment box
 
 //Get comment buttons
-// const commentRedirect = document.querySelector(".commentRedirectBtn");
-// const commentRedirect2 = document.querySelector(".commentRedirectBtn2");
-// const commentRedirect3 = document.querySelector(".commentRedirectBtn3");
-// const commentRedirect4 = document.querySelector(".commentRedirectBtn4");
-// const commentRedirect5 = document.querySelector(".commentRedirectBtn5");
-// const commentRedirect6 = document.querySelector(".commentRedirectBtn6");
-// const commentRedirect7 = document.querySelector(".commentRedirectBtn7");
-// const commentRedirect8 = document.querySelector(".commentRedirectBtn8");
+const commentRedirect = document.querySelector(".commentRedirectBtn");
+const commentRedirect2 = document.querySelector(".commentRedirectBtn2");
+const commentRedirect3 = document.querySelector(".commentRedirectBtn3");
+const commentRedirect4 = document.querySelector(".commentRedirectBtn4");
+const commentRedirect5 = document.querySelector(".commentRedirectBtn5");
+const commentRedirect6 = document.querySelector(".commentRedirectBtn6");
+const commentRedirect7 = document.querySelector(".commentRedirectBtn7");
+const commentRedirect8 = document.querySelector(".commentRedirectBtn8");
 
-// // Add an event listener to the comment buttons
-// commentRedirect.addEventListener("click", checkLoginStatus2);
-// commentRedirect2.addEventListener("click", checkLoginStatus2);
-// commentRedirect3.addEventListener("click", checkLoginStatus2);
-// commentRedirect4.addEventListener("click", checkLoginStatus2);
-// commentRedirect5.addEventListener("click", checkLoginStatus2);
-// commentRedirect6.addEventListener("click", checkLoginStatus2);
-// commentRedirect7.addEventListener("click", checkLoginStatus2);
-// commentRedirect8.addEventListener("click", checkLoginStatus2);
+// Add an event listener to the comment buttons
+commentRedirect.addEventListener("click", checkLoginStatus2);
+commentRedirect2.addEventListener("click", checkLoginStatus2);
+commentRedirect3.addEventListener("click", checkLoginStatus2);
+commentRedirect4.addEventListener("click", checkLoginStatus2);
+commentRedirect5.addEventListener("click", checkLoginStatus2);
+commentRedirect6.addEventListener("click", checkLoginStatus2);
+commentRedirect7.addEventListener("click", checkLoginStatus2);
+commentRedirect8.addEventListener("click", checkLoginStatus2);
 
-// //Check login status when comment button is clicked, & redirect to homepage and show comment box
-// function checkLoginStatus2() {
-//   // Get the JWT token from local storage
-//   const token = localStorage.getItem("jwtToken");
+//Check login status when comment button is clicked, & redirect to homepage and show comment box
+function checkLoginStatus2() {
+  // Get the JWT token from local storage
+  const token = localStorage.getItem("jwtToken");
 
-//   // Check if the user is logged in
-//   if (token) {
-//     try {
-//       // Attempt to decode the JWT token to get the user information
-//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
-//       const userId = decodedToken.userId;
+  // Check if the user is logged in
+  if (token) {
+    try {
+      // Attempt to decode the JWT token to get the user information
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      const userId = decodedToken.userId;
 
-//       // Redirect the user to the homepage
-//       window.location.href = "index.html";
-//     } catch (err) {
-//       // If there was an error decoding the token, assume the user is not logged in
-//       console.error("Error decoding JWT token:", err);
+      // Redirect the user to the homepage
+      window.location.href = "index.html";
+    } catch (err) {
+      // If there was an error decoding the token, assume the user is not logged in
+      console.error("Error decoding JWT token:", err);
 
-//       // Redirect the user to the login page
-//       window.location.href = "login.html";
-//     }
-//   } else {
-//     // Redirect the user to the login page
-//     window.location.href = "login.html";
-//   }
+      // Redirect the user to the login page
+      window.location.href = "login.html";
+    }
+  } else {
+    // Redirect the user to the login page
+    window.location.href = "login.html";
+  }
 
-//   // If the user is logged in, show the comment box
-//   if (token) {
-//     document.getElementById("commentBox").style.display = "block";
-//   }
-// }
+  // If the user is logged in, show the comment box
+  if (token) {
+    document.getElementById("commentBox").style.display = "block";
+  }
+}
 
 //Comment box close
 const commentBox = document.getElementById("commentBox");
@@ -1509,6 +1513,23 @@ function moreIconsVIII() {
   var dots = document.getElementById("dots8");
   var moreIcons8 = document.getElementById("more-iconsVIII");
   var btnText = document.getElementById("myBtnVIII");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+    moreIcons8.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "";
+    moreIcons8.style.display = "inline";
+  }
+}
+
+//More icons VIX button
+function moreIconsVIX() {
+  var dots = document.getElementById("dots9");
+  var moreIcons8 = document.getElementById("more-iconsVIX");
+  var btnText = document.getElementById("myBtnVIX");
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";

@@ -18,8 +18,8 @@ body {
   margin: 0 auto;
   width: 40%;
   border-radius: 1rem;
-  box-shadow: 3px 3px 8px #000;
   padding: 1rem 1.5rem;
+  overflow: hidden;
 }
 
 .backArrow {

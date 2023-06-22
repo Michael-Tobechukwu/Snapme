@@ -554,7 +554,7 @@ input:checked + .slider:before {
 }
 
 #image-cards .row .col, #image-cards .row .col-5 {
-  width: 28%;
+
 }
 
 #image-cards .card {
@@ -1903,7 +1903,7 @@ top: 61%;
   }
 
   #card1 {
-    height: 200px;
+    height: 400px;
   }
 
   #card2 {

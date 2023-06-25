@@ -3,8 +3,8 @@ function handleProfilePicUpload(event) {
   const file = event.target.files[0];
   const reader = new FileReader();
 
-  reader.onload = function(e) {
-    const imgElement = document.querySelector('.placeholderPic');
+  reader.onload = function (e) {
+    const imgElement = document.querySelector(".placeholderPic");
     imgElement.src = e.target.result;
   };
 
@@ -16,14 +16,13 @@ function handleBannerPicUpload(event) {
   const file = event.target.files[0];
   const reader = new FileReader();
 
-  reader.onload = function(e) {
-    const imgElement = document.querySelector('.bannerPlaceholderPic');
+  reader.onload = function (e) {
+    const imgElement = document.querySelector(".bannerPlaceholderPic");
     imgElement.src = e.target.result;
   };
 
   reader.readAsDataURL(file);
 }
-
 
 //Edit username in update profile
 const paragraph = document.getElementById("editParagraph");
@@ -43,7 +42,7 @@ done_button.addEventListener("click", function () {
 });
 
 function updateProfile() {
-  fetch("https://api.snapme-ng.com/api/v1/update-profile/:username", {
+  fetch("http://localhost:5000/api/v1/update-profile/:username", {
     method: "POST",
     body: JSON.stringify({ userId: "123" }),
     headers: {

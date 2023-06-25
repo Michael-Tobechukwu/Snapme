@@ -220,7 +220,7 @@
 //   }
 // });
 
-const api6 = `https://api.snapme-ng.com/api/v1`;
+const api6 = `http://localhost:5000/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -553,13 +553,15 @@ function myPosts(id) {
               <div class="card">
               <div class="post-img">
               ${
-                post.media[0].endsWith(".mp4")
-                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
-                  <source src="${post?.media[0]}" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>`
-                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
-              }
+                post.media && post.media.length > 0
+                  ? post.media[0].endsWith(".mp4")
+                    ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                        <source src="${post.media[0]}" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>`
+                    : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+                  : `<p onclick="window.location = 'pin-details.html?id=${postId}'">${post.message}</p>`
+              }              
                 <div class="userDetails">
                   <a href="user.html?username=${post.user.username}">
                     <img src="${post.user.picture}" width="30px" />

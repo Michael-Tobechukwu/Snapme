@@ -1,6 +1,6 @@
 const create = document.getElementById("create");
 
-const api3 = `https://api.snapme-ng.com/api/v1`;
+const api3 = `http://localhost:5000/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -33,42 +33,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //File upload to show progress and selected file name
 function uploadFile() {
-  var fileInput = document.getElementById('inputGroupFile');
+  var fileInput = document.getElementById("inputGroupFile");
   var file = fileInput.files[0];
 
   var formData = new FormData();
-  formData.append('file', file);
+  formData.append("file", file);
 
-  var selectedFileName = document.getElementById('selectedFileName');
+  var selectedFileName = document.getElementById("selectedFileName");
   selectedFileName.textContent = file.name; // Display the file name
 
   fetch(`${api3}/create-pin/${category}`, {
-    method: 'POST',
+    method: "POST",
     body: formData,
     onProgress: function (progressEvent) {
       var percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
-      var progress = document.getElementById('uploadProgress');
+      var progress = document.getElementById("uploadProgress");
       progress.value = percentComplete;
-    }
+    },
   })
-  .then(function (response) {
-    if (response.ok) {
-      // Upload successful
-      console.log('File uploaded successfully.');
-    } else {
-      // Upload failed
-      console.error('Error uploading file.');
-    }
-  })
-  .catch(function (error) {
-    console.error('Error uploading file:', error);
-  });
+    .then(function (response) {
+      if (response.ok) {
+        // Upload successful
+        console.log("File uploaded successfully.");
+      } else {
+        // Upload failed
+        console.error("Error uploading file.");
+      }
+    })
+    .catch(function (error) {
+      console.error("Error uploading file:", error);
+    });
 }
 
 // Attach the uploadFile function to the file input change event
-var fileInput = document.getElementById('inputGroupFile');
-fileInput.addEventListener('change', uploadFile);
-
+var fileInput = document.getElementById("inputGroupFile");
+fileInput.addEventListener("change", uploadFile);
 
 //Create pin
 function createPin() {

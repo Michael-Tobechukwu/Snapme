@@ -39,7 +39,7 @@ let currentDate =
   minutes;
 // document.getElementById("currentDateTime2").innerHTML = currentDate;
 
-api8 = `https://api.snapme-ng.com/api/v1`;
+api8 = `http://localhost:5000/api/v1`;
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);

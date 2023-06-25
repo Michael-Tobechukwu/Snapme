@@ -1,4 +1,4 @@
-const api4 = `https://api.snapme-ng.com/api/v1`;
+const api4 = `http://localhost:5000/api/v1`;
 
 // window.addEventListener("load", function () {
 //   setTimeout(function () {
@@ -48,7 +48,7 @@ function getJwt() {
     // redirect user to login page if jwtToken doesn't exist
     localStorage.setItem("returnUrl", window.location.href);
     // window.location.href = "/login.html";
-    return null;
+    return;
   }
   return jwtToken;
 }
@@ -100,12 +100,14 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="card mobileCard" id="card1">
             <div class="post-img">
             ${
-              post.media[0]?.endsWith(".mp4")
-                ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+              post.media
+                ? post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>`
-                : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+                : `<p>${post.message}</p>`
             }
 
             <a class="username text-white" href="user.html?username=${
@@ -366,35 +368,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// //Share popup modal 1
+
+// // Get the modal
+// var modal = document.getElementsByClassName("shareModal")[0];
+
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myPopupBtn")[0];
+
+// // Get the <span> element that closes the modals
+// var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks the button, open the modals
+// //btn.onclick = function () {
+// //modal.style.display = "block";
+// //};
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function () {
+//   modal.style.display = "none";
+// };
+
+// // Close the modal
+// window.onclick = function (event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// };
+
 /*
-//Share popup modal 1
-
-// Get the modal
-var modal = document.getElementsByClassName("shareModal")[0];
-
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[0];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modals
-//btn.onclick = function () {
-  //modal.style.display = "block";
-//};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
 //Share 2
 var modal = document.getElementsByClassName("shareModal")[1];
 
@@ -577,7 +579,7 @@ window.onclick = function (event) {
 };
 */
 //Share popup modals end
-/////
+
 //Make dropdown stack on top
 if (window.innerWidth <= 768) {
   let mobileDropdown = document.querySelector(".dropdown-menu");
@@ -587,6 +589,7 @@ if (window.innerWidth <= 768) {
     console.error("Element with class 'dropdown-menu' not found in the DOM.");
   }
 }
+
 ////
 //Catalog buttons fixed position on scroll
 const catalogsContainer = document.querySelector("#swipe-container");
@@ -1004,13 +1007,18 @@ closeSuggestedBtn.addEventListener("click", closeSuggestedPopup);
 
 //Follow popup on mobile
 // Music
-var followModal = document.getElementById("mobileFollowModal");
-var mobileFollowBtn = document.getElementById("followPopup");
-var close = document.getElementsByClassName("mobileclose")[0];
+let followModal = document.getElementById("mobileFollowModal");
+let mobileFollowBtn = document.getElementById("followPopup");
+let close = document.getElementsByClassName("mobileclose")[0];
 
-mobileFollowBtn.onclick = function () {
+mobileFollowBtn.addEventListener("click", function () {
   followModal.style.display = "block";
-};
+  console.log("Clicked");
+});
+// mobileFollowBtn.onclick = function () {
+//   followModal.style.display = "block";
+//   console.log("Clicked");
+// };
 
 // When the user clicks on <span> (x), close the modals
 close.onclick = function () {
@@ -1581,9 +1589,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1645,8 +1651,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1699,7 +1704,7 @@ function showMoreAccounts() {
 //Subscriber's badge
 document.addEventListener("DOMContentLoaded", function () {
   // Send an AJAX request to get the subscription status
-  fetch("https://api.snapme-ng.com/api/v1/user/status")
+  fetch("http://localhost:5000/api/v1/user/status")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -1740,7 +1745,7 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1792,7 +1797,7 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
   // Fetch the pin data from the backend
-  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
     .then((response) => response.json())
     .then((pin) => {
       // Create a container element to display the pin details
@@ -2070,7 +2075,7 @@ const followUserBtn = document.querySelector("#followBtn");
 followUserBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -2097,7 +2102,7 @@ const followBtn = document.querySelector(".followBtn");
 followBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

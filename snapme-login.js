@@ -20,9 +20,21 @@ function goBack() {
   window.history.back();
 }
 
+function setLocalItem(key, value) {
+  const now = new Date();
+  const expiryTime = now.getTime() + 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+  const item = {
+    value: value,
+    expiry: expiryTime,
+  };
+
+  localStorage.setItem(key, JSON.stringify(item));
+}
+
 ////
 //Snapme login
-const url = "http://localhost:5000/api/v1/login";
+const url = "https://api.snapme-ng.com/api/v1/login";
 
 function loginSubmit() {
   const identifier = document.getElementById("identifier").value.toLowerCase();
@@ -62,8 +74,8 @@ function loginSubmit() {
     })
     .then((data) => {
       document.cookie = `jwtToken=${data.token}; max-age=${data.expires}; path=/;`;
-      localStorage.setItem("username", data.username);
-      localStorage.setItem("picture", data.picture);
+      setLocalItem("username", data.username);
+      setLocalItem("picture", data.picture);
       if (returnUrl) {
         localStorage.removeItem("returnUrl");
         window.location.href = returnUrl;

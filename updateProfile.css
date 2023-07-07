@@ -68,7 +68,7 @@ body {
 }
 
 .banner .bannerPlaceholderPic {
-/*  width: 463px;*/
+  /*  width: 463px;*/
   width: 100%;
   height: 130px;
   position: absolute;
@@ -158,7 +158,7 @@ label.uploadProfilePic input[type="file"] {
 }
 
 .formFields label {
-  display: inline-block;  
+  display: inline-block;
   width: 25%;
   margin: 10px auto;
   color: #fff;
@@ -174,6 +174,15 @@ label.uploadProfilePic input[type="file"] {
   border: none;
   padding: 5px;
   color: #021129;
+}
+
+#country {
+  width: 72%;
+  border-radius: 5px;
+  padding: 0.5rem 0.3rem;
+  background: #fff;
+  color: #021129;
+  border: 2px solid #fff;
 }
 
 .formFields .yourGender select {
@@ -223,7 +232,7 @@ label.uploadProfilePic input[type="file"] {
   }
 
   .formFields label {
-    display: block;  
+    display: block;
     width: 95%;
     margin: 10px 0 0 0;
     color: #fff;
@@ -231,7 +240,7 @@ label.uploadProfilePic input[type="file"] {
     border-radius: 5px;
     border: none;
   }
-  
+
   .formFields input {
     width: 98%;
     font-size: 13px;
@@ -240,7 +249,7 @@ label.uploadProfilePic input[type="file"] {
     padding: 5px;
     color: #021129;
   }
-  
+
   .formFields .yourGender select {
     width: 98%;
     margin: 0 auto;
@@ -252,4 +261,3 @@ label.uploadProfilePic input[type="file"] {
     padding: 5px;
   }
 }
-

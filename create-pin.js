@@ -1,6 +1,6 @@
 const create = document.getElementById("create");
 
-const api3 = `http://localhost:5000/api/v1`;
+const api3 = `https://api.snapme-ng.com/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -75,20 +75,6 @@ function createPin() {
   const message = document.getElementById("message").value;
   const category = document.getElementById("category").value;
 
-  // // generate unique pinId
-  // const pinId =
-  //   Math.random().toString(36).substring(2, 8) + Date.now().toString(36);
-
-  // // add pin to array with generated pinId
-  // pins.push({
-  //   pinId,
-  //   caption: pin.caption,
-  //   media: pin.media,
-  //   message: pin.message,
-  // });
-
-  // return pinId;
-
   // Create a data object with the form data
   const formData = new FormData();
   const filesInput = document.getElementById("inputGroupFile");
@@ -113,11 +99,17 @@ function createPin() {
       if (response.status === 200) {
         return response.json();
       } else if (response.status === 400) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 403) {
-        throw new Error(response.statusText);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       } else if (response.status === 500) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+        return response.json().then((data) => {
+          throw new Error(data.message || "Error: " + response.statusText);
+        });
       }
     })
     .then((data) => {
@@ -135,7 +127,6 @@ function createPin() {
         icon: "error",
         title: "Oops...",
         text: error,
-        footer: '<a href="/subscribe.html">Go to subscribe page now!</a>',
       });
     });
 }

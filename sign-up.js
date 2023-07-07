@@ -3,7 +3,7 @@ var yourPassword = document.getElementById("password");
 var confPassword = document.getElementById("confirm-password");
 var submitBtn = document.getElementById("submitBtn");
 
-let api = "http://localhost:5000/api/v1";
+let api = "https://api.snapme-ng.com/api/v1";
 
 function checkPassword() {
   if (yourPassword.value !== confPassword.value) {
@@ -17,6 +17,18 @@ function checkPassword() {
 submitBtn.addEventListener("click", checkPassword);
 
 let returnUrl = localStorage.getItem("returnUrl");
+
+function setLocalItem(key, value) {
+  const now = new Date();
+  const expiryTime = now.getTime() + 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+  const item = {
+    value: value,
+    expiry: expiryTime,
+  };
+
+  localStorage.setItem(key, JSON.stringify(item));
+}
 
 //Signup API
 function signup() {
@@ -71,8 +83,8 @@ function signup() {
     })
     .then((data) => {
       document.cookie = `jwtToken=${data.token}; max-age=${data.expires}; path=/;`;
-      localStorage.setItem("username", data.username);
-      localStorage.setItem("picture", data.picture);
+      setLocalItem("username", data.username);
+      setLocalItem("picture", data.picture);
       if (returnUrl) {
         localStorage.removeItem("returnUrl");
         window.location.href = returnUrl;

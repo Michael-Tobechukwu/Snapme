@@ -220,7 +220,7 @@
 //   }
 // });
 
-const api6 = `http://localhost:5000/api/v1`;
+const api6 = `https://api.snapme-ng.com/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -263,8 +263,13 @@ async function getRandomImage() {
 //Get user profile
 window.addEventListener("load", function () {
   if (!username) {
-    Swal.fire("Ooops!", `Search Query does not contain username!`, "error");
-    window.location.href = "index.html";
+    Swal.fire(
+      "Ooops!",
+      `Search Query does not contain username!`,
+      "error"
+    ).then(() => {
+      window.history.back();
+    });
     return;
   }
   // Make an HTTP request to the timeline API endpoint
@@ -308,7 +313,7 @@ window.addEventListener("load", function () {
           </button>
         </div>
       </div>
-      <div class="banner"s>
+      <div class="banner">
     </div>
     
       <div class="mainUserDetails">
@@ -564,7 +569,9 @@ function myPosts(id) {
               }              
                 <div class="userDetails">
                   <a href="user.html?username=${post.user.username}">
-                    <img src="${post.user.picture}" width="30px" />
+                    <img src="${
+                      post.user.picture
+                    }" width="30px" style="border-radius: 50%; border: 2px solid #ba00ba;" />
                     <span style="font-size: 13px">${post.user.username}</span>
                     ${
                       post.user.role === "subscribed"
@@ -851,7 +858,9 @@ function likedPosts(id) {
               }
                 <div class="userDetails">
                   <a href="user.html?username=${post.user.username}">
-                    <img src="${post.user.picture}" width="30px" />
+                    <img src="${
+                      post.user.picture
+                    }" width="30px" style="border-radius: 50%; border: 2px solid #ba00ba;"/>
                     <span style="font-size: 13px">${post.user.username}</span>
                     ${
                       post.user.role === "subscribed"
@@ -1140,7 +1149,9 @@ function savedPosts(id) {
               }
                 <div class="userDetails">
                   <a href="user.html?username=${post.user.username}">
-                    <img src="${post.user.picture}" width="30px" />
+                    <img src="${
+                      post.user.picture
+                    }" width="30px" style="border-radius: 50%; border: 2px solid #ba00ba;" />
                     <span style="font-size: 13px">${post.user.username}</span>
                     ${
                       post.user.role === "subscribed"
@@ -1429,7 +1440,9 @@ function followedPosts(id) {
               }
                 <div class="userDetails">
                   <a href="user.html?username=${post.user.username}">
-                    <img src="${post.user.picture}" width="30px" />
+                    <img src="${
+                      post.user.picture
+                    }" width="30px" style="border-radius: 50%; border: 2px solid #ba00ba;"/>
                     <span style="font-size: 13px">${post.user.username}</span>
                     ${
                       post.user.role === "subscribed"

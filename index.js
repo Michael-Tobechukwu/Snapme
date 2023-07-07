@@ -1,4 +1,4 @@
-const api4 = `http://localhost:5000/api/v1`;
+const api4 = `https://api.snapme-ng.com/api/v1`;
 
 // window.addEventListener("load", function () {
 //   setTimeout(function () {
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="post-img">
             ${
               post.media
-                ? post.media[0].endsWith(".mp4")
+                ? post.media[0]?.endsWith(".mp4")
                   ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
@@ -113,7 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
             <a class="username text-white" href="user.html?username=${
               post.user.username
             }">
-                <img src="${post.user.picture}" width="35px" />
+                <img src="${
+                  post.user.picture
+                }" width="35px" style="border-radius: 50%; border: 2px solid #ba00ba;" />
                 ${post.user.username}
                 ${
                   post.user.role === "subscribed"
@@ -274,6 +276,113 @@ document.addEventListener("DOMContentLoaded", function () {
       Swal.fire("Ooops!", `Error fetching all pins: ${error}`, "error");
       console.error("Error fetching all pins:", error);
     });
+
+  //Suggested Popup on mobile
+  var suggestedButton = document.getElementById("SuggestedBtn");
+  var suggestedModal = document.getElementById("suggestedBackground");
+  var closeSuggestedBtn = document.getElementById("closeThis");
+
+  function suggestedPopupModal() {
+    suggestedModal.style.display = "block";
+  }
+
+  function closeSuggestedPopup() {
+    suggestedModal.style.display = "none";
+  }
+
+  suggestedButton.addEventListener("click", suggestedPopupModal);
+  closeSuggestedBtn.addEventListener("click", closeSuggestedPopup);
+
+  //Show more suggested accounts button on mobile
+  var showMoreBtn = document.getElementById("showMore");
+  //var MoreAccounts = document.getElementById("suggestedMore")
+
+  function showMoreAccounts() {
+    var suggestedMore = document.getElementById("suggestedMore");
+    if (showMoreBtn.innerHTML === "Show more") {
+      suggestedMore.style.display = "block";
+      showMoreBtn.innerHTML = "Show less";
+    } else {
+      suggestedMore.style.display = "none";
+      showMoreBtn.innerHTML = "Show more";
+    }
+  }
+  //More suggested accounts end
+
+  //Make dropdown stack on top
+  if (window.innerWidth <= 768) {
+    let mobileDropdown = document.querySelector(".dropdown-menu");
+    if (mobileDropdown) {
+      mobileDropdown.style.zIndex = "9999";
+    } else {
+      console.error("Element with class 'dropdown-menu' not found in the DOM.");
+    }
+  }
+
+  ////
+  //Catalog buttons fixed position on scroll
+  const catalogsContainer = document.querySelector("#swipe-container");
+  const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
+
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition >= catalogsContainerOffsetTop) {
+      catalogsContainer.classList.add("fixed");
+      catalogsContainer.style.top =
+        "30px"; /* the sticky position of the tabs swipe container */
+    } else {
+      catalogsContainer.classList.remove("fixed");
+      catalogsContainer.style.top =
+        ""; /* reset the top position to its original state */
+    }
+  });
+  //Catalogs buttons fixed position on scroll
+  ////
+  //Timecapsule fixed position on scroll
+  const timelineContainer = document.querySelector("#timelineSuggested");
+  const timelineContainerOffsetTop = timelineContainer.offsetTop;
+
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition >= timelineContainerOffsetTop) {
+      timelineContainer.classList.add("fixed");
+      timelineContainer.style.top =
+        "80px"; /* the sticky position of the timelineSuggested container */
+    } else {
+      timelineContainer.classList.remove("fixed");
+      timelineContainer.style.top =
+        ""; /* reset the top position to its original state */
+    }
+  });
+  ////------------------------------
+
+  // Get the search toggle button, search container, search input, search button, and search results list
+  var searchToggleBtn = document.getElementById("search-toggle-btn");
+  var searchContainer = document.getElementById("search-container");
+  searchContainer.style.display = "none";
+  var searchInput = document.getElementById("search-input");
+  var searchBtn = document.getElementById("search-btn");
+  var searchResults = document.getElementById("search-results");
+
+  // Add an event listener to the search toggle button
+  searchToggleBtn.addEventListener("click", function () {
+    // Toggle the visibility of the search container
+    if (searchContainer.style.display === "none") {
+      searchContainer.style.display = "block";
+      searchToggleBtn.innerHTML = "&times;";
+
+      searchToggleBtn.style.zIndex = "1";
+      searchToggleBtn.style.top = "0";
+      searchToggleBtn.style.left = "0";
+    } else {
+      searchContainer.style.display = "none";
+      searchToggleBtn.innerHTML = '<img src="Images/search icon.svg" alt="" />';
+      searchInput.value = "";
+      searchResults.innerHTML = "";
+    }
+  });
 });
 
 // Social media share modal
@@ -580,55 +689,6 @@ window.onclick = function (event) {
 */
 //Share popup modals end
 
-//Make dropdown stack on top
-if (window.innerWidth <= 768) {
-  let mobileDropdown = document.querySelector(".dropdown-menu");
-  if (mobileDropdown) {
-    mobileDropdown.style.zIndex = "9999";
-  } else {
-    console.error("Element with class 'dropdown-menu' not found in the DOM.");
-  }
-}
-
-////
-//Catalog buttons fixed position on scroll
-const catalogsContainer = document.querySelector("#swipe-container");
-const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
-
-window.addEventListener("scroll", () => {
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition >= catalogsContainerOffsetTop) {
-    catalogsContainer.classList.add("fixed");
-    catalogsContainer.style.top =
-      "30px"; /* the sticky position of the tabs swipe container */
-  } else {
-    catalogsContainer.classList.remove("fixed");
-    catalogsContainer.style.top =
-      ""; /* reset the top position to its original state */
-  }
-});
-//Catalogs buttons fixed position on scroll
-////
-//Timecapsule fixed position on scroll
-const timelineContainer = document.querySelector("#timelineSuggested");
-const timelineContainerOffsetTop = timelineContainer.offsetTop;
-
-window.addEventListener("scroll", () => {
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition >= timelineContainerOffsetTop) {
-    timelineContainer.classList.add("fixed");
-    timelineContainer.style.top =
-      "80px"; /* the sticky position of the timelineSuggested container */
-  } else {
-    timelineContainer.classList.remove("fixed");
-    timelineContainer.style.top =
-      ""; /* reset the top position to its original state */
-  }
-});
-////------------------------------
-
 //Check login status when create button is clicked, & redirect to create pin page
 const createBtn = document.getElementById("createBtn");
 const mobileCreateBtn = document.getElementById("createBtnMobile");
@@ -726,61 +786,61 @@ closeComment.addEventListener("click", function () {
   commentBox.style.display = "none";
 });
 
-//Comment box close for second pin
-var commentBox2 = document.getElementsByClassName("commentBox")[0];
-var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
+// //Comment box close for second pin
+// var commentBox2 = document.getElementsByClassName("commentBox")[0];
+// var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
 
-closeCommentBtn2.addEventListener("click", function () {
-  commentBox2.style.display = "none";
-});
+// closeCommentBtn2.addEventListener("click", function () {
+//   commentBox2.style.display = "none";
+// });
 
-//Comment box close for third pin
-var commentBox3 = document.getElementsByClassName("commentBox")[1];
-var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
+// //Comment box close for third pin
+// var commentBox3 = document.getElementsByClassName("commentBox")[1];
+// var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
 
-closeCommentBtn3.addEventListener("click", function () {
-  commentBox3.style.display = "none";
-});
+// closeCommentBtn3.addEventListener("click", function () {
+//   commentBox3.style.display = "none";
+// });
 
-//Comment box close for fourth pin
-var commentBox4 = document.getElementsByClassName("commentBox")[2];
-var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
+// //Comment box close for fourth pin
+// var commentBox4 = document.getElementsByClassName("commentBox")[2];
+// var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
 
-closeCommentBtn4.addEventListener("click", function () {
-  commentBox4.style.display = "none";
-});
+// closeCommentBtn4.addEventListener("click", function () {
+//   commentBox4.style.display = "none";
+// });
 
-//Comment box close for 5th pin
-var commentBox5 = document.getElementsByClassName("commentBox")[3];
-var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
+// //Comment box close for 5th pin
+// var commentBox5 = document.getElementsByClassName("commentBox")[3];
+// var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
 
-closeCommentBtn5.addEventListener("click", function () {
-  commentBox5.style.display = "none";
-});
+// closeCommentBtn5.addEventListener("click", function () {
+//   commentBox5.style.display = "none";
+// });
 
-//Comment box close for 6th pin
-var commentBox6 = document.getElementsByClassName("commentBox")[4];
-var closeCommentBtn6 = document.getElementsByClassName("closeComment")[4];
+// //Comment box close for 6th pin
+// var commentBox6 = document.getElementsByClassName("commentBox")[4];
+// var closeCommentBtn6 = document.getElementsByClassName("closeComment")[4];
 
-closeCommentBtn6.addEventListener("click", function () {
-  commentBox6.style.display = "none";
-});
+// closeCommentBtn6.addEventListener("click", function () {
+//   commentBox6.style.display = "none";
+// });
 
-//Comment box close for 7th pin
-var commentBox7 = document.getElementsByClassName("commentBox")[5];
-var closeCommentBtn7 = document.getElementsByClassName("closeComment")[5];
+// //Comment box close for 7th pin
+// var commentBox7 = document.getElementsByClassName("commentBox")[5];
+// var closeCommentBtn7 = document.getElementsByClassName("closeComment")[5];
 
-closeCommentBtn7.addEventListener("click", function () {
-  commentBox7.style.display = "none";
-});
+// closeCommentBtn7.addEventListener("click", function () {
+//   commentBox7.style.display = "none";
+// });
 
-//Comment box close for 8th pin
-var commentBox8 = document.getElementsByClassName("commentBox")[6];
-var closeCommentBtn8 = document.getElementsByClassName("closeComment")[6];
+// //Comment box close for 8th pin
+// var commentBox8 = document.getElementsByClassName("commentBox")[6];
+// var closeCommentBtn8 = document.getElementsByClassName("closeComment")[6];
 
-closeCommentBtn8.addEventListener("click", function () {
-  commentBox8.style.display = "none";
-});
+// closeCommentBtn8.addEventListener("click", function () {
+//   commentBox8.style.display = "none";
+// });
 //Comment box close for 8th pin end
 
 ////--------
@@ -989,21 +1049,6 @@ likeButton8.addEventListener("click", () => {
 });
 //Like buttons end
 ////
-//Suggested Popup on mobile
-var suggestedButton = document.getElementById("SuggestedBtn");
-var suggestedModal = document.getElementById("suggestedBackground");
-var closeSuggestedBtn = document.getElementById("closeThis");
-
-function suggestedPopupModal() {
-  suggestedModal.style.display = "block";
-}
-
-function closeSuggestedPopup() {
-  suggestedModal.style.display = "none";
-}
-
-suggestedButton.addEventListener("click", suggestedPopupModal);
-closeSuggestedBtn.addEventListener("click", closeSuggestedPopup);
 
 //Follow popup on mobile
 // Music
@@ -1557,31 +1602,6 @@ document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
 //Actual time posted ends
 ///
 ////
-// Get the search toggle button, search container, search input, search button, and search results list
-var searchToggleBtn = document.getElementById("search-toggle-btn");
-var searchContainer = document.getElementById("search-container");
-searchContainer.style.display = "none";
-var searchInput = document.getElementById("search-input");
-var searchBtn = document.getElementById("search-btn");
-var searchResults = document.getElementById("search-results");
-
-// Add an event listener to the search toggle button
-searchToggleBtn.addEventListener("click", function () {
-  // Toggle the visibility of the search container
-  if (searchContainer.style.display === "none") {
-    searchContainer.style.display = "block";
-    searchToggleBtn.innerHTML = "&times;";
-
-    searchToggleBtn.style.zIndex = "1";
-    searchToggleBtn.style.top = "0";
-    searchToggleBtn.style.left = "0";
-  } else {
-    searchContainer.style.display = "none";
-    searchToggleBtn.innerHTML = '<img src="Images/search icon.svg" alt="" />';
-    searchInput.value = "";
-    searchResults.innerHTML = "";
-  }
-});
 
 // Add an event listener to the search button
 searchBtn.addEventListener("click", function () {
@@ -1589,7 +1609,9 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
@@ -1651,7 +1673,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1684,27 +1707,12 @@ mobileSearchInput.addEventListener("keydown", async (event) => {
 });
 // Search catalogs index on mobile ends
 ////
-//Show more suggested accounts button on mobile
-var showMoreBtn = document.getElementById("showMore");
-//var MoreAccounts = document.getElementById("suggestedMore")
 
-function showMoreAccounts() {
-  var suggestedMore = document.getElementById("suggestedMore");
-  if (showMoreBtn.innerHTML === "Show more") {
-    suggestedMore.style.display = "block";
-    showMoreBtn.innerHTML = "Show less";
-  } else {
-    suggestedMore.style.display = "none";
-    showMoreBtn.innerHTML = "Show more";
-  }
-}
-
-//More suggested accounts end
 ////
 //Subscriber's badge
 document.addEventListener("DOMContentLoaded", function () {
   // Send an AJAX request to get the subscription status
-  fetch("http://localhost:5000/api/v1/user/status")
+  fetch("https://api.snapme-ng.com/api/v1/user/status")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -1745,7 +1753,7 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
+  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1797,7 +1805,7 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
   // Fetch the pin data from the backend
-  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
     .then((response) => response.json())
     .then((pin) => {
       // Create a container element to display the pin details
@@ -1833,7 +1841,7 @@ function pinDetails() {
 }
 
 // Call the pinDetails function with a pin ID
-pinDetails();
+// pinDetails();
 
 //Get pin details end
 
@@ -2075,7 +2083,7 @@ const followUserBtn = document.querySelector("#followBtn");
 followUserBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -2102,7 +2110,7 @@ const followBtn = document.querySelector(".followBtn");
 followBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

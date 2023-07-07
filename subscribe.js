@@ -1,4 +1,4 @@
-api7 = `http://localhost:5000/api/v1`;
+api7 = `https://api.snapme-ng.com/api/v1`;
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -19,10 +19,33 @@ function getJwt() {
   return jwtToken;
 }
 
-let currentProfile = localStorage.getItem("username");
+function getLocalItem(key) {
+  const item = localStorage.getItem(key);
+  if (!item) {
+    return null; // Item not found in local storage
+  }
+
+  const parsedItem = JSON.parse(item);
+  const now = new Date().getTime();
+
+  if (now > parsedItem.expiry) {
+    localStorage.removeItem(key);
+    return null; // Item has expired
+  }
+
+  return parsedItem.value;
+}
+
+let currentProfile = getLocalItem("username");
 
 window.addEventListener("load", function () {
   const ref = getQueryParam("reference");
+
+  if (currentProfile === null) {
+    localStorage.setItem("returnUrl", window.location.href);
+    window.location.href = "/login.html";
+  }
+
   fetch(`${api7}/${currentProfile}`, {
     method: "GET",
     headers: {

@@ -4,7 +4,7 @@ window.addEventListener("load", function () {
   }, 2000);
 });
 
-let api1 = `http://localhost:5000/api/v1`;
+let api1 = `https://api.snapme-ng.com/api/v1`;
 
 //Preloader
 window.onload = function () {
@@ -12,8 +12,26 @@ window.onload = function () {
   preloader.style.display = "none";
 };
 
+function getLocalItem(key) {
+  const item = localStorage.getItem(key);
+  if (!item) {
+    return null; // Item not found in local storage
+  }
+
+  const parsedItem = JSON.parse(item);
+  const now = new Date().getTime();
+
+  if (now > parsedItem.expiry) {
+    localStorage.removeItem(key);
+    return null; // Item has expired
+  }
+
+  console.log(parsedItem);
+  return parsedItem.value;
+}
+
 function checkJwt(location) {
-  const currentProfile = localStorage.getItem("username");
+  const currentProfile = getLocalItem("username");
   const jwtToken = document.cookie
     .split("; ")
     .find((cookie) => cookie.startsWith("jwtToken="))
@@ -137,7 +155,13 @@ function slideCards(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const currentPic = localStorage.getItem("picture");
+  const currentPic = getLocalItem("picture");
+
+  if (currentPic === null) {
+    localStorage.setItem("returnUrl", window.location.href);
+    window.location.href = "/login.html";
+  }
+
   const profile = document.getElementById("profilePicture");
   const profileM = document.getElementById("profilePictureM");
 
@@ -254,16 +278,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const postElement = document.createElement("div");
             postElement.classList.add("col");
 
+            console.log(post.media);
+
             postElement.innerHTML = `
         <div class="card mobileCard">
             <div class="post-img">
             ${
-              post.media[0].endsWith(".mp4")
-                ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+              post.media
+                ? post?.media[0]?.endsWith(".mp4")
+                  ? `<video class="card-img-top" controls onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>`
-                : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
+                : `<p>${post.message}</p>`
             }
               <a class="username text-white" href="user.html?username=${
                 post.user.username
@@ -277,13 +305,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? '<span id="subscribed-badge" class="verified-badge"><img src="Images/verified.svg" alt="Profile pic" /></span>'
                     : ""
                 }
+                <span id="timePosted">${moment(post.date).fromNow()}</span>
               </a>
-              <p class="timePinned">
-                Posted <span id="timePosted">${moment(
-                  post.date
-                ).fromNow()}</span>
-              </p>
+              <button id="followBtn">Follow +</button>
+              
               <h4>${post.caption}</h4>
+              <div id="commentBox">
+                  <form class="commentBoxForm">
+                    <span id="closeComment"> &times;</span>
+                    <textarea
+                      name="comment"
+                      id="commentInput"
+                      placeholder="Enter your comment here..."
+                    ></textarea>
+
+                    <div id="submitComment">
+                      <input
+                        type="button"
+                        value="Comment"
+                        style="background: none; border: none; color: #fff"
+                      /><img src="Images/send.svg" alt="Comment" width="20px" />
+                    </div>
+                  </form>
+                </div>
             </div>
             <div class="card-body">
               <ul class="card-title icons-list">
@@ -295,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </li>
 
                 <li class="likeListItem">
-                  <button onclick="likePost()" class="like-button">
+                  <button onclick="likePost()" class="like-button" id="likeBtn">
                     <i class="far fa-heart" style="color: #fff"></i>
                   </button>
                   <p class="text-white">${post?.likes?.length}</p>
@@ -310,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li>
                   <button class="myPopupBtn">
                     <i class="fa-solid fa-share"></i>
-                    <p class="text-white">${post?.shares}123</p>
+                    <p class="text-white">${post?.shares}</p>
                   </button>
                 </li>
 
@@ -368,12 +412,37 @@ document.addEventListener("DOMContentLoaded", function () {
                           target="_blank"
                         >
                           <img src="Images/reddit.svg" alt="Reddit" />
+                        </a>
                         </div>
                       </div>
                     </div>
                   </ul>
-                  
-                  <a href="#" class="btn btn-primary">Read more</a>
+                  <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-icons" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>${post?.saves}</p>
+                        </li>
+                        <li>
+                          <i
+                            onclick="downloadPost()"
+                            class="fa-solid fa-download"
+                          ></i>
+                          <p>${post?.downloads}</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px" />
+                  </button>
+                </div>
                 </div>
           </div>`;
             timelineElement.appendChild(postElement);
@@ -768,7 +837,7 @@ setTimeout(function () {
 ///Add to home screen/install prompt end
 ////
 //Like button 1
-const likeButton = document.getElementsByClassName("like-button")[0];
+const likeButton = document.getElementsByClassName("like-button");
 let isLiked = false;
 
 likeButton.addEventListener("click", () => {
@@ -783,117 +852,117 @@ likeButton.addEventListener("click", () => {
   }
 });
 
-//Like button 2
-const likeButton2 = document.getElementsByClassName("like-button")[1];
-let isLiked2 = false;
+// //Like button 2
+// const likeButton2 = document.getElementsByClassName("like-button")[1];
+// let isLiked2 = false;
 
-likeButton2.addEventListener("click", () => {
-  if (isLiked2) {
-    likeButton2.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton2.style.color = "#fff";
-    isLiked2 = false;
-  } else {
-    likeButton2.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton2.style.color = "#fff";
-    isLiked2 = true;
-  }
-});
+// likeButton2.addEventListener("click", () => {
+//   if (isLiked2) {
+//     likeButton2.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton2.style.color = "#fff";
+//     isLiked2 = false;
+//   } else {
+//     likeButton2.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton2.style.color = "#fff";
+//     isLiked2 = true;
+//   }
+// });
 
-//Like button 3
-const likeButton3 = document.getElementsByClassName("like-button")[2];
-let isLiked3 = false;
+// //Like button 3
+// const likeButton3 = document.getElementsByClassName("like-button")[2];
+// let isLiked3 = false;
 
-likeButton3.addEventListener("click", () => {
-  if (isLiked3) {
-    likeButton3.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton3.style.color = "#fff";
-    isLiked3 = false;
-  } else {
-    likeButton3.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton3.style.color = "#fff";
-    isLiked3 = true;
-  }
-});
+// likeButton3.addEventListener("click", () => {
+//   if (isLiked3) {
+//     likeButton3.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton3.style.color = "#fff";
+//     isLiked3 = false;
+//   } else {
+//     likeButton3.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton3.style.color = "#fff";
+//     isLiked3 = true;
+//   }
+// });
 
-//Like button 4
-const likeButton4 = document.getElementsByClassName("like-button")[3];
-let isLiked4 = false;
+// //Like button 4
+// const likeButton4 = document.getElementsByClassName("like-button")[3];
+// let isLiked4 = false;
 
-likeButton4.addEventListener("click", () => {
-  if (isLiked4) {
-    likeButton4.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton4.style.color = "#fff";
-    isLiked4 = false;
-  } else {
-    likeButton4.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton4.style.color = "#fff";
-    isLiked4 = true;
-  }
-});
+// likeButton4.addEventListener("click", () => {
+//   if (isLiked4) {
+//     likeButton4.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton4.style.color = "#fff";
+//     isLiked4 = false;
+//   } else {
+//     likeButton4.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton4.style.color = "#fff";
+//     isLiked4 = true;
+//   }
+// });
 
-//Like button 5
-const likeButton5 = document.getElementsByClassName("like-button")[4];
-let isLiked5 = false;
+// //Like button 5
+// const likeButton5 = document.getElementsByClassName("like-button")[4];
+// let isLiked5 = false;
 
-likeButton5.addEventListener("click", () => {
-  if (isLiked5) {
-    likeButton5.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton5.style.color = "#fff";
-    isLiked5 = false;
-  } else {
-    likeButton5.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton5.style.color = "#fff";
-    isLiked5 = true;
-  }
-});
+// likeButton5.addEventListener("click", () => {
+//   if (isLiked5) {
+//     likeButton5.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton5.style.color = "#fff";
+//     isLiked5 = false;
+//   } else {
+//     likeButton5.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton5.style.color = "#fff";
+//     isLiked5 = true;
+//   }
+// });
 
-//Like button 6
-const likeButton6 = document.getElementsByClassName("like-button")[5];
-let isLiked6 = false;
+// //Like button 6
+// const likeButton6 = document.getElementsByClassName("like-button")[5];
+// let isLiked6 = false;
 
-likeButton6.addEventListener("click", () => {
-  if (isLiked6) {
-    likeButton6.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton6.style.color = "#fff";
-    isLiked6 = false;
-  } else {
-    likeButton6.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton6.style.color = "#fff";
-    isLiked6 = true;
-  }
-});
+// likeButton6.addEventListener("click", () => {
+//   if (isLiked6) {
+//     likeButton6.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton6.style.color = "#fff";
+//     isLiked6 = false;
+//   } else {
+//     likeButton6.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton6.style.color = "#fff";
+//     isLiked6 = true;
+//   }
+// });
 
-//Like button 7
-const likeButton7 = document.getElementsByClassName("like-button")[6];
-let isLiked7 = false;
+// //Like button 7
+// const likeButton7 = document.getElementsByClassName("like-button")[6];
+// let isLiked7 = false;
 
-likeButton7.addEventListener("click", () => {
-  if (isLiked7) {
-    likeButton7.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton7.style.color = "#fff";
-    isLiked7 = false;
-  } else {
-    likeButton7.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton7.style.color = "#fff";
-    isLiked7 = true;
-  }
-});
+// likeButton7.addEventListener("click", () => {
+//   if (isLiked7) {
+//     likeButton7.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton7.style.color = "#fff";
+//     isLiked7 = false;
+//   } else {
+//     likeButton7.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton7.style.color = "#fff";
+//     isLiked7 = true;
+//   }
+// });
 
-//Like button 8
-const likeButton8 = document.getElementsByClassName("like-button")[7];
-let isLiked8 = false;
+// //Like button 8
+// const likeButton8 = document.getElementsByClassName("like-button")[7];
+// let isLiked8 = false;
 
-likeButton8.addEventListener("click", () => {
-  if (isLiked8) {
-    likeButton8.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton8.style.color = "#fff";
-    isLiked8 = false;
-  } else {
-    likeButton8.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton8.style.color = "#fff";
-    isLiked8 = true;
-  }
-});
+// likeButton8.addEventListener("click", () => {
+//   if (isLiked8) {
+//     likeButton8.innerHTML = '<i class="far fa-heart"></i>';
+//     likeButton8.style.color = "#fff";
+//     isLiked8 = false;
+//   } else {
+//     likeButton8.innerHTML = '<i class="fas fa-heart"></i>';
+//     likeButton8.style.color = "#fff";
+//     isLiked8 = true;
+//   }
+// });
 //Like buttons end
 ////
 //Suggested Popup on mobile
@@ -1313,123 +1382,123 @@ function moreIcons() {
 }
 
 //More icons II button
-function moreIconsII() {
-  var dots = document.getElementById("dots2");
-  var moreIcons2 = document.getElementById("more-iconsII");
-  var btnText = document.getElementById("myBtnII");
+// function moreIconsII() {
+//   var dots = document.getElementById("dots2");
+//   var moreIcons2 = document.getElementById("more-iconsII");
+//   var btnText = document.getElementById("myBtnII");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons2.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons2.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons2.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons2.style.display = "inline";
+//   }
+// }
 
-//More icons III button
-function moreIconsIII() {
-  var dots = document.getElementById("dots3");
-  var moreIcons3 = document.getElementById("more-iconsIII");
-  var btnText = document.getElementById("myBtnIII");
+// //More icons III button
+// function moreIconsIII() {
+//   var dots = document.getElementById("dots3");
+//   var moreIcons3 = document.getElementById("more-iconsIII");
+//   var btnText = document.getElementById("myBtnIII");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons3.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons3.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons3.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons3.style.display = "inline";
+//   }
+// }
 
-//More icons IV button
-function moreIconsIV() {
-  var dots = document.getElementById("dots4");
-  var moreIcons4 = document.getElementById("more-iconsIV");
-  var btnText = document.getElementById("myBtnIV");
+// //More icons IV button
+// function moreIconsIV() {
+//   var dots = document.getElementById("dots4");
+//   var moreIcons4 = document.getElementById("more-iconsIV");
+//   var btnText = document.getElementById("myBtnIV");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons4.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons4.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons4.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons4.style.display = "inline";
+//   }
+// }
 
-//More icons V button
-function moreIconsV() {
-  var dots = document.getElementById("dots5");
-  var moreIcons5 = document.getElementById("more-iconsV");
-  var btnText = document.getElementById("myBtnV");
+// //More icons V button
+// function moreIconsV() {
+//   var dots = document.getElementById("dots5");
+//   var moreIcons5 = document.getElementById("more-iconsV");
+//   var btnText = document.getElementById("myBtnV");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons5.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons5.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons5.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons5.style.display = "inline";
+//   }
+// }
 
-//More icons VI button
-function moreIconsVI() {
-  var dots = document.getElementById("dots6");
-  var moreIcons6 = document.getElementById("more-iconsVI");
-  var btnText = document.getElementById("myBtnVI");
+// //More icons VI button
+// function moreIconsVI() {
+//   var dots = document.getElementById("dots6");
+//   var moreIcons6 = document.getElementById("more-iconsVI");
+//   var btnText = document.getElementById("myBtnVI");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons6.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons6.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons6.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons6.style.display = "inline";
+//   }
+// }
 
-//More icons VII button
-function moreIconsVII() {
-  var dots = document.getElementById("dots7");
-  var moreIcons7 = document.getElementById("more-iconsVII");
-  var btnText = document.getElementById("myBtnVII");
+// //More icons VII button
+// function moreIconsVII() {
+//   var dots = document.getElementById("dots7");
+//   var moreIcons7 = document.getElementById("more-iconsVII");
+//   var btnText = document.getElementById("myBtnVII");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons7.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons7.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons7.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons7.style.display = "inline";
+//   }
+// }
 
-//More icons VIII button
-function moreIconsVIII() {
-  var dots = document.getElementById("dots8");
-  var moreIcons8 = document.getElementById("more-iconsVIII");
-  var btnText = document.getElementById("myBtnVIII");
+// //More icons VIII button
+// function moreIconsVIII() {
+//   var dots = document.getElementById("dots8");
+//   var moreIcons8 = document.getElementById("more-iconsVIII");
+//   var btnText = document.getElementById("myBtnVIII");
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons8.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons8.style.display = "inline";
-  }
-}
+//   if (dots.style.display === "none") {
+//     dots.style.display = "inline";
+//     btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
+//     moreIcons8.style.display = "none";
+//   } else {
+//     dots.style.display = "none";
+//     btnText.innerHTML = "";
+//     moreIcons8.style.display = "inline";
+//   }
+// }
 //////
 ///
 //Time posted
@@ -1491,7 +1560,9 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
@@ -1553,7 +1624,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1606,7 +1678,7 @@ function showMoreAccounts() {
 //Subscriber's badge
 // document.addEventListener("DOMContentLoaded", function () {
 //   // Send an AJAX request to get the subscription status
-//   fetch("http://localhost:5000/api/v1/user/status")
+//   fetch("https://api.snapme-ng.com/api/v1/user/status")
 //     .then((response) => {
 //       if (response.ok) {
 //         return response.json();
@@ -1758,7 +1830,7 @@ closeCommentBtn8.addEventListener("click", function () {
 //     text: commentInput,
 //   };
 
-//   fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
+//   fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -1809,7 +1881,7 @@ document.getElementById("closePromote").addEventListener("click", closePromote);
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details
@@ -2087,7 +2159,7 @@ window.onscroll = function () {
 // followUserBtn.addEventListener("click", () => {
 //   const username = document.querySelector(".username").textContent;
 
-//   fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+//   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -2114,7 +2186,7 @@ window.onscroll = function () {
 // followBtn.addEventListener("click", () => {
 //   const username = document.querySelector(".username").textContent;
 
-//   fetch(`http://localhost:5000/api/v1/${username}/follow`, {
+//   fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
 //     method: "POST",
 //     headers: {
 //       "Content-Type": "application/json",

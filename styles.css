@@ -547,10 +547,17 @@ input:checked + .slider:before {
 }
 
 #image-cards {
-  display: grid !important;
+  display: block !important;
+/*  display: flex !important;*/
+  flex-direction: column;
   width: 95%;
-  grid-template-columns: repeat(1, auto) !important;
+/*  grid-template-columns: repeat(1, auto) !important;*/
   gap: 5px !important;
+}
+
+.row {
+  display: flex !important;
+  flex-direction: column;
 }
 
 #image-cards .row .col, #image-cards .row .col-5 {

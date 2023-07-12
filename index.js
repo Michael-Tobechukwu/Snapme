@@ -319,6 +319,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Nav bar sticky on mobile
+  function isMobileDevice() {
+    return window.matchMedia("(max-width: 568px)").matches;
+  }
+
+  function handleScroll() {
+    var navButtons = document.querySelector('.navbuttonsMobile');
+
+    if (isMobileDevice()) {
+      var sticky = navButtons.offsetTop;
+
+      if (window.pageYOffset > sticky) {
+        navButtons.classList.add('sticky');
+      } else {
+        navButtons.classList.remove('sticky');
+      }
+    } else {
+      navButtons.classList.remove('sticky');
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', handleScroll);
+
   ////
   //Catalog buttons fixed position on scroll
   const catalogsContainer = document.querySelector("#swipe-container");

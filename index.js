@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (scrollPosition >= catalogsContainerOffsetTop) {
       catalogsContainer.classList.add("fixed");
       catalogsContainer.style.top =
-        "30px"; /* the sticky position of the tabs swipe container */
+        "70px"; /* the sticky position of the tabs swipe container */
     } else {
       catalogsContainer.classList.remove("fixed");
       catalogsContainer.style.top =
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (scrollPosition >= timelineContainerOffsetTop) {
       timelineContainer.classList.add("fixed");
       timelineContainer.style.top =
-        "80px"; /* the sticky position of the timelineSuggested container */
+        "120px"; /* the sticky position of the timelineSuggested container */
     } else {
       timelineContainer.classList.remove("fixed");
       timelineContainer.style.top =

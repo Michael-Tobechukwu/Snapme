@@ -32,6 +32,8 @@
       type="text/JavaScript"
       src=" https://MomentJS.com/downloads/moment.js"
     ></script>
+    <script type="text/JavaScript" src="index.js"></script>
+    <script type="text/JavaScript" src="fetchAPI.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     />
@@ -333,7 +335,6 @@
       <div class="subscribe">
         <button onclick="window.location='subscribe.html'">Subscribe</button>
       </div>
-
       <div class="tabs">
         <!--Music with popup-->
         <button
@@ -1576,7 +1577,7 @@
         <div id="swipe-container">
           <div id="music">
             <div class="swipe-item">
-              <button id="followPopup">Music</button>
+              <button id="followPopup" class="followPopup">Music</button>
             </div>
 
             <!-- The Modal -->
@@ -2282,7 +2283,7 @@
           <!-- <div id="pin-container">
             New pins will be added here
           </div> -->
-          <div class="col">
+          <div class="col" style="display:none">
             <div class="card mobileCard" id="card1">
               <div class="postContent-div">
                 <div class="postContent-top">
@@ -2296,14 +2297,10 @@
                   <button id="followBtn">Follow +</button>
                 </div>
 
-                <p
-                  id="postContent"
-                  id="pinDetails"
-                  onclick="window.location='pin-details.html'"
-                >
-                  We're here to put a dent in the universe. Otherwise, why else
-                  even be here? When ordinary people are united they can do
-                  extraordinary things.
+                <p id="postContent" 
+                id="pinDetails"
+                onclick="window.location='pin-details.html'">
+                  We're here to put a dent in the universe. Otherwise, why else even be here? When ordinary people are united they can do extraordinary things.
                 </p>
 
                 <h4 id="postTitle">Motivation Quote</h4>
@@ -2336,7 +2333,10 @@
                   </li>
 
                   <li class="likeListItem">
-                    <button class="like-button" id="likeBtn">
+                    <button
+                      class="like-button"
+                      id="likeBtn"
+                    >
                       <i class="far fa-heart" style="color: #fff"></i>
                     </button>
                     <p class="text-white">5k</p>
@@ -2438,7 +2438,7 @@
                       </ul>
                     </div>
                   </div>
-                  <button onclick="moreIcons()" id="myBtnVIX">
+                  <button onclick="moreIconsVIX()" id="myBtnVIX">
                     <img src="Images/more-icon.svg" width="20px" />
                   </button>
                 </div>
@@ -2464,13 +2464,9 @@
         <button onclick="window.location='index.html'">
           <img src="Images/white house.svg" alt="" />
         </button>
-        <button><img src="Images/microphone.svg" alt="" /></button>
+        <button><img src="Images/message-circle.svg" alt="" /></button>
 
-        <button
-          class="mobileCreate"
-          id="createBtnMobile"
-          onclick="checkJwt('post')"
-        >
+        <button class="mobileCreate" id="createBtnMobile" onclick="checkJwt('post')">
           <img src="Images/mobileCreate button.svg" alt="" />
         </button>
         <button><img src="Images/bell white.svg" /></button>
@@ -2490,18 +2486,14 @@
     <!--wrapper ends-->
 
     <!--scripts-->
-    <script type="text/JavaScript" src="index.js"></script>
-    <script type="text/JavaScript" src="/fetchAPI.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     ></script>
-    <script src="sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {

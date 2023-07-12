@@ -549,12 +549,12 @@ input:checked + .slider:before {
 #image-cards {
   display: grid !important;
   width: 95%;
-  grid-template-columns: repeat(3, auto) !important;
+  grid-template-columns: repeat(1, auto) !important;
   gap: 5px !important;
 }
 
 #image-cards .row .col, #image-cards .row .col-5 {
-
+  width: 98% !important;
 }
 
 #image-cards .card {
@@ -563,6 +563,7 @@ input:checked + .slider:before {
   margin-bottom: 2rem;
   transition: ease 0.4s;
   padding: 0;
+  width: 98% !important;
 }
 
 #image-cards .card:hover {
@@ -987,6 +988,14 @@ input:checked + .slider:before {
     margin-top: 0;
     top: 0;
     z-index: 1;
+    position: relative;
+  }
+
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
   }
 
   .navbuttonsMobile .hamburger,
@@ -1094,7 +1103,7 @@ input:checked + .slider:before {
     padding: 5px;
   }
 
-  .mobileCard {
+  .mobileCard, .card {
     width: 100% !important;
     padding: 0 !important;
     border-radius: 8px !important;
@@ -1288,9 +1297,9 @@ top: 61%;
     margin-top: -35px;
     margin-bottom: 0;
     position: relative;
-
     background: #021129;
     padding: 10px 0;
+    z-index: 999;
   }
 
   #swipe-container.fixed {
@@ -1772,7 +1781,7 @@ top: 61%;
   }
 
   #card1 {
-    height: 442px;
+/*    height: 442px;*/
   }
 
   #card2 {
@@ -1847,7 +1856,7 @@ top: 61%;
   }
 
   #card1 {
-    height: 420px;
+/*    height: 420px;*/
   }
 
   #card2 {
@@ -1903,7 +1912,7 @@ top: 61%;
   }
 
   #card1 {
-    height: 400px;
+/*    height: 400px;*/
   }
 
   #card2 {

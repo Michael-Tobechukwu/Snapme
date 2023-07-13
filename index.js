@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   </div>
                 </div>
               </ul>
-              <div class="other-icons">
+              <div class="other-icons" onload="initializeMoreIcons()">
                 <div>
                   <span id="dots"></span>
                   <div id="more-icons" class="more-icons">
@@ -1463,6 +1463,13 @@ closeLiveMobile.onclick = function () {
 //Live popup ends
 
 //More icons button
+function initializeMoreIcons() {
+  var moreIconsBtn = document.getElementById("myBtn");
+  if (moreIconsBtn) {
+    moreIconsBtn.addEventListener("click", moreIcons);
+  }
+}
+
 function moreIcons() {
   var dots = document.getElementById("dots");
   var moreIcons = document.getElementById("more-icons");
@@ -1479,6 +1486,7 @@ function moreIcons() {
   }
 }
 
+/*
 //More icons II button
 function moreIconsII() {
   var dots = document.getElementById("dots2");
@@ -1597,8 +1605,8 @@ function moreIconsVIII() {
     moreIcons8.style.display = "inline";
   }
 }
+*/
 //////
-///
 //Time posted
 var timePinned = moment("20230129", "YYYYMMDD").fromNow();
 document.getElementById("timePosted").innerHTML = timePinned;

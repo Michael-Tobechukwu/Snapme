@@ -547,21 +547,25 @@ input:checked + .slider:before {
 }
 
 #image-cards {
-  display: block !important;
-/*  display: flex !important;*/
+/*  display: block !important;*/
   flex-direction: column;
-  width: 95%;
+  width: 100%;
 /*  grid-template-columns: repeat(1, auto) !important;*/
   gap: 5px !important;
+  
 }
 
 .row {
   display: flex !important;
   flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  width: 100%;
 }
 
 #image-cards .row .col, #image-cards .row .col-5 {
-  width: 98% !important;
+  width: 100% !important;
+  padding: 0;
 }
 
 #image-cards .card {
@@ -1787,9 +1791,6 @@ top: 61%;
     width: 60%;
   }
 
-  #card1 {
-/*    height: 442px;*/
-  }
 
   #card2 {
     height: 300px;
@@ -1862,9 +1863,6 @@ top: 61%;
     width: 65%;
   }
 
-  #card1 {
-/*    height: 420px;*/
-  }
 
   #card2 {
     height: 285px;
@@ -1916,10 +1914,6 @@ top: 61%;
 
   .my-video-controls input {
     width: 70px !important;
-  }
-
-  #card1 {
-/*    height: 400px;*/
   }
 
   #card2 {

@@ -361,9 +361,18 @@ body {
 }
 
 #image-cards {
+  display: flex !important;
   justify-content: space-between !important;
   width: 100%;
   margin-top: 3rem;
+}
+
+#image-cards,
+.myrow {
+  display: flex !important;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
 }
 
 #image-cards .card {
@@ -372,6 +381,7 @@ body {
   margin-bottom: 2rem;
   transition: ease 0.4s;
   position: relative;
+  width: 100%;
 }
 
 #image-cards .card:hover {
@@ -382,6 +392,7 @@ body {
 #image-cards .card .post-img {
   position: relative !important;
   text-align: left;
+  width: 100%;
 }
 
 #image-cards .card .post-img .userDetails a {

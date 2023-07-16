@@ -35,7 +35,7 @@ var closeThis = document.getElementById("closeZ");
 //   }
 // };
 
-const api2 = `http://localhost:5000/api/v1`;
+const api2 = `https://api.snapme-ng.com/api/v1`;
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -1642,7 +1642,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(`http://localhost:5000/api/v1/search?query=${query}`)
+  fetch(`https://api.snapme-ng.com/api/v1/search?query=${query}`)
     .then(function (response) {
       return response.json();
     })
@@ -1718,7 +1718,8 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
+    "https://api.snapme-ng.com/api/v1/search?q=" +
+      encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -2267,7 +2268,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 //Get request to fetch user profile
 // function thisUser() {
-//   fetch("http://localhost:5000/api/v1/:username")
+//   fetch("https://api.snapme-ng.com/api/v1/:username")
 //     .then((response) => response.json())
 //     .then((user) => {
 //       console.log(user.name);
@@ -2282,7 +2283,7 @@ closeCommentBtn5.addEventListener("click", function () {
 
 // function pinDetails() {
 //   // Fetch the pin data from the backend
-//   fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
+//   fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
 //     .then((response) => response.json())
 //     .then((pin) => {
 //       // Create a container element to display the pin details

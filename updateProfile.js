@@ -1,4 +1,4 @@
-let api8 = `http://localhost:5000/api/v1`;
+let api8 = `https://api.snapme-ng.com/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie

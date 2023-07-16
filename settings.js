@@ -49,7 +49,7 @@ function deleteAccount() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/api/v1/account/delete`, {
+        fetch(`https://api.snapme-ng.com/api/v1/account/delete`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

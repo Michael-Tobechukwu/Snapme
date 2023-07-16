@@ -34,7 +34,7 @@ function setLocalItem(key, value) {
 
 ////
 //Snapme login
-const url = "https://api.snapme-ng.com/api/v1/login";
+const url = "http://localhost:5000/api/v1/login";
 
 function loginSubmit() {
   const identifier = document.getElementById("identifier").value.toLowerCase();

@@ -43,8 +43,9 @@
           <button onclick="window.location='reset-password.html'">
             Change password
           </button>
+          <button onclick="deleteAccount()">Delete Account</button>
         </div>
-        <form id="requestDeletion" class="deleteAccount">
+        <!-- <form id="requestDeletion" class="deleteAccount">
           <h4>Delete Account?</h4>
           <input
             type="text"
@@ -74,11 +75,11 @@
           <button type="submit" class="sendBtn">
             <img src="Images/send.svg" width="30px" />
           </button>
-        </form>
+        </form> -->
 
         <p class="bottom">
-          We'll process your request after submission if all conditions are met
-          and authenticated.
+          Clicking on "Delete Account" will permanently delete your account,
+          make sure you are certain about it!
           <br />
 
           Thank you, Support Team.
@@ -91,6 +92,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {

@@ -1,4 +1,4 @@
-const api5 = `https://api.snapme-ng.com/api/v1`;
+const api5 = `http://localhost:5000/api/v1`;
 
 //Search fetch API
 function searchPosts() {
@@ -131,7 +131,7 @@ function followThisUser(username) {
 //   }
 
 //   // Create the URL for the API endpoint
-//   const url = "https://api.snapme-ng.com/api/v1/pins/like";
+//   const url = "http://localhost:5000/api/v1/pins/like";
 
 //   // Fetch options for the POST request
 //   const options = {

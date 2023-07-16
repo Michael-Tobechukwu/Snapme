@@ -1,4 +1,4 @@
-const api4 = `https://api.snapme-ng.com/api/v1`;
+const api4 = `http://localhost:5000/api/v1`;
 
 // window.addEventListener("load", function () {
 //   setTimeout(function () {
@@ -12,7 +12,25 @@ window.onload = function () {
   preloader.style.display = "none";
 };
 
-let currentProfile = localStorage.getItem("username");
+function getLocalItem(key) {
+  const item = localStorage.getItem(key);
+  if (!item) {
+    return null; // Item not found in local storage
+  }
+
+  const parsedItem = JSON.parse(item);
+  const now = new Date().getTime();
+
+  if (now > parsedItem.expiry) {
+    localStorage.removeItem(key);
+    return null; // Item has expired
+  }
+
+  console.log(parsedItem);
+  return parsedItem.value;
+}
+
+let currentProfile = getLocalItem("username");
 
 function checkJwt(location) {
   const jwtToken = document.cookie
@@ -54,7 +72,7 @@ function getJwt() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const currentPic = localStorage.getItem("picture");
+  const currentPic = getLocalItem("picture");
   const profile = document.getElementById("profilePicture");
 
   // Create an image element
@@ -325,23 +343,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function handleScroll() {
-    var navButtons = document.querySelector('.navbuttonsMobile');
+    var navButtons = document.querySelector(".navbuttonsMobile");
 
     if (isMobileDevice()) {
       var sticky = navButtons.offsetTop;
 
       if (window.pageYOffset > sticky) {
-        navButtons.classList.add('sticky');
+        navButtons.classList.add("sticky");
       } else {
-        navButtons.classList.remove('sticky');
+        navButtons.classList.remove("sticky");
       }
     } else {
-      navButtons.classList.remove('sticky');
+      navButtons.classList.remove("sticky");
     }
   }
 
-  window.addEventListener('scroll', handleScroll);
-  window.addEventListener('resize', handleScroll);
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleScroll);
 
   ////
   //Catalog buttons fixed position on scroll
@@ -1641,9 +1659,7 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
+  fetch("http://localhost:5000/api/v1/search?q=" + encodeURIComponent(query))
     .then(function (response) {
       return response.json();
     })
@@ -1705,8 +1721,7 @@ mobileSearchBtn.addEventListener("click", function () {
 
   // Make an API call to the search endpoint with the search query
   fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" +
-      encodeURIComponent(mobileQuery)
+    "http://localhost:5000/api/v1/search?q=" + encodeURIComponent(mobileQuery)
   )
     .then(function (response) {
       return response.json();
@@ -1744,7 +1759,7 @@ mobileSearchInput.addEventListener("keydown", async (event) => {
 //Subscriber's badge
 document.addEventListener("DOMContentLoaded", function () {
   // Send an AJAX request to get the subscription status
-  fetch("https://api.snapme-ng.com/api/v1/user/status")
+  fetch("http://localhost:5000/api/v1/user/status")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -1785,7 +1800,7 @@ submitCommentBtn.addEventListener("click", function () {
     text: commentInput,
   };
 
-  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+  fetch(`http://localhost:5000/api/v1/pins/:postId/:commentId`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -1837,7 +1852,7 @@ document.getElementById("pinDetails8").addEventListener("click", pinDetails);
 
 function pinDetails() {
   // Fetch the pin data from the backend
-  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+  fetch(`http://localhost:5000/api/v1/pin-details/:pinId`)
     .then((response) => response.json())
     .then((pin) => {
       // Create a container element to display the pin details
@@ -2115,7 +2130,7 @@ const followUserBtn = document.querySelector("#followBtn");
 followUserBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -2142,7 +2157,7 @@ const followBtn = document.querySelector(".followBtn");
 followBtn.addEventListener("click", () => {
   const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+  fetch(`http://localhost:5000/api/v1/${username}/follow`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

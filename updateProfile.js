@@ -1,4 +1,4 @@
-let api8 = `https://api.snapme-ng.com/api/v1`;
+let api8 = `http://localhost:5000/api/v1`;
 
 function getJwt() {
   const jwtToken = document.cookie
@@ -8,7 +8,7 @@ function getJwt() {
   if (!jwtToken) {
     // redirect user to login page if jwtToken doesn't exist
     localStorage.setItem("returnUrl", window.location.href);
-    // window.location.href = "/login.html";
+    window.location.href = "/login.html";
     return;
   }
   return jwtToken;

@@ -239,32 +239,29 @@ document.addEventListener("DOMContentLoaded", function () {
                   </div>
                 </div>
               </ul>
-              <div class="other-icons" onload="initializeMoreIcons()">
-                <div>
-                  <span id="dots"></span>
-                  <div id="more-icons" class="more-icons">
-                    <ul>
-                      <li onclick="savePost()">
-                        <i class="fa-solid fa-bookmark"></i>
-                        <p>${post?.saves}</p>
-                      </li>
-                      <li>
-                        <i
-                          onclick="downloadPost()"
-                          class="fa-solid fa-download"
-                        ></i>
-                        <p>${post?.downloads}</p>
-                      </li>
-                      <li onclick="deletePost()">
-                        <i class="fa-solid fa-trash"></i>
-                      </li>
-                    </ul>
+              <div class="other-icons">
+                  <div>
+                    <span id="dots"></span>
+                    <div id="more-icons" class="more-icons">
+                      <ul>
+                        <li onclick="savePost()">
+                          <i class="fa-solid fa-bookmark"></i>
+                          <p>0</p>
+                        </li>
+                        <li onclick="downloadPost()">
+                          <i class="fa-solid fa-download"></i>
+                          <p>0</p>
+                        </li>
+                        <li onclick="deletePost()">
+                          <i class="fa-solid fa-trash"></i>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
+                  <button onclick="moreIcons()" id="myBtn">
+                    <img src="Images/more-icon.svg" width="20px">
+                  </button>
                 </div>
-                <button onclick="moreIcons()" id="myBtn">
-                  <img src="Images/more-icon.svg" width="20px" />
-                </button>
-              </div>
             </div>
             <!--card end-->
           </div>
@@ -621,13 +618,28 @@ function checkLoginStatus() {
 // }
 
 //Comment box close
-const commentBox = document.getElementById("commentBox");
-const closeComment = document.getElementById("closeComment");
-
-closeComment.addEventListener("click", function () {
-  commentBox.style.display = "none";
+// Use DOMContentLoaded event to add the event listener
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the reference to the closeComment element after it is loaded in the DOM
+  var closeComment = document.getElementById("closeComment");
+  
+  // Check if the element exists before adding the event listener
+  if (closeComment) {
+    closeComment.addEventListener("click", function () {
+      var commentBox = document.getElementById("commentBox");
+      commentBox.style.display = "none";
+    });
+  }
 });
 
+
+/*const commentBox = document.getElementById("commentBox");
+//const closeComment = document.getElementById("closeComment");
+
+//closeComment.addEventListener("click", function () {
+  commentBox.style.display = "none";
+});
+*/
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit
 setTimeout(function () {
@@ -703,171 +715,86 @@ window.addEventListener("appinstalled", function (evt) {
 ///Add to home screen/install prompt end
 ////
 
-//Like button 1
-const likeButton = document.getElementsByClassName("like-button")[0];
-let isLiked = false;
+//Like button 
+function setupLikeButtons() {
+  const likeButtons = document.querySelectorAll(".like-button");
 
-likeButton.addEventListener("click", () => {
-  if (isLiked) {
-    likeButton.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton.style.color = "#fff";
-    isLiked = false;
-  } else {
-    likeButton.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton.style.color = "#fff";
-    isLiked = true;
-  }
+  likeButtons.forEach((likeButton) => {
+    let isLiked = false;
+
+    likeButton.addEventListener("click", () => {
+      if (isLiked) {
+        likeButton.innerHTML = '<i class="far fa-heart"></i>';
+        likeButton.style.color = "#fff";
+        isLiked = false;
+      } else {
+        likeButton.innerHTML = '<i class="fas fa-heart"></i>';
+        likeButton.style.color = "#fff";
+        isLiked = true;
+      }
+    });
+  });
+}
+
+// Call the setupLikeButtons function inside the DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function () {
+  setupLikeButtons();
 });
 
-//Like button 2
-const likeButton2 = document.getElementsByClassName("like-button")[1];
-let isLiked2 = false;
-
-likeButton2.addEventListener("click", () => {
-  if (isLiked2) {
-    likeButton2.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton2.style.color = "#fff";
-    isLiked2 = false;
-  } else {
-    likeButton2.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton2.style.color = "#fff";
-    isLiked2 = true;
-  }
-});
-
-//Like button 3
-const likeButton3 = document.getElementsByClassName("like-button")[2];
-let isLiked3 = false;
-
-likeButton3.addEventListener("click", () => {
-  if (isLiked3) {
-    likeButton3.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton3.style.color = "#fff";
-    isLiked3 = false;
-  } else {
-    likeButton3.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton3.style.color = "#fff";
-    isLiked3 = true;
-  }
-});
-
-//Like button 4
-const likeButton4 = document.getElementsByClassName("like-button")[3];
-let isLiked4 = false;
-
-likeButton4.addEventListener("click", () => {
-  if (isLiked4) {
-    likeButton4.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton4.style.color = "#fff";
-    isLiked4 = false;
-  } else {
-    likeButton4.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton4.style.color = "#fff";
-    isLiked4 = true;
-  }
-});
-
-//Like button 5
-const likeButton5 = document.getElementsByClassName("like-button")[4];
-let isLiked5 = false;
-
-likeButton5.addEventListener("click", () => {
-  if (isLiked5) {
-    likeButton5.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton5.style.color = "#fff";
-    isLiked5 = false;
-  } else {
-    likeButton5.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton5.style.color = "#fff";
-    isLiked5 = true;
-  }
-});
-
-//Like button 6
-const likeButton6 = document.getElementsByClassName("like-button")[5];
-let isLiked6 = false;
-
-likeButton6.addEventListener("click", () => {
-  if (isLiked6) {
-    likeButton6.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton6.style.color = "#fff";
-    isLiked6 = false;
-  } else {
-    likeButton6.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton6.style.color = "#fff";
-    isLiked6 = true;
-  }
-});
-
-//Like button 7
-const likeButton7 = document.getElementsByClassName("like-button")[6];
-let isLiked7 = false;
-
-likeButton7.addEventListener("click", () => {
-  if (isLiked7) {
-    likeButton7.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton7.style.color = "#fff";
-    isLiked7 = false;
-  } else {
-    likeButton7.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton7.style.color = "#fff";
-    isLiked7 = true;
-  }
-});
-
-//Like button 8
-const likeButton8 = document.getElementsByClassName("like-button")[7];
-let isLiked8 = false;
-
-likeButton8.addEventListener("click", () => {
-  if (isLiked8) {
-    likeButton8.innerHTML = '<i class="far fa-heart"></i>';
-    likeButton8.style.color = "#fff";
-    isLiked8 = false;
-  } else {
-    likeButton8.innerHTML = '<i class="fas fa-heart"></i>';
-    likeButton8.style.color = "#fff";
-    isLiked8 = true;
-  }
-});
 //Like buttons end
 ////
 
 //Follow popup on mobile
 // Music
-let followModal = document.getElementById("mobileFollowModal");
-let mobileFollowBtn = document.getElementById("followPopup");
-let close = document.getElementsByClassName("mobileclose")[0];
+function setupMobileFollowModal() {
+  let followModal = document.getElementById("mobileFollowModal");
+  let mobileFollowBtn = document.getElementById("followPopup");
+  let close = document.getElementsByClassName("mobileclose")[0];
 
-mobileFollowBtn.addEventListener("click", function () {
-  followModal.style.display = "block";
-  console.log("Clicked");
+  mobileFollowBtn.addEventListener("click", function () {
+    followModal.style.display = "block";
+    console.log("Clicked");
+  });
+
+  close.onclick = function () {
+    followModal.style.display = "none";
+  };
+}
+
+// Call the setupMobileFollowModal function inside the DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function () {
+  setupMobileFollowModal();
 });
-// mobileFollowBtn.onclick = function () {
-//   followModal.style.display = "block";
-//   console.log("Clicked");
-// };
 
-// When the user clicks on <span> (x), close the modals
-close.onclick = function () {
-  followModal.style.display = "none";
-};
 
 // Shows and concerts
-var followMeBtn = document.getElementsByClassName("followPopup")[0];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[0];
-var closeMe = document.getElementsByClassName("closeme")[0];
+function setupFollowMeModals() {
+  var followMeBtns = document.querySelectorAll(".followPopup");
+  var followMeModals = document.querySelectorAll(".mobileFollowModal");
+  var closeMes = document.querySelectorAll(".closeme");
 
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
+  // Attach event listeners for each followMeBtn element
+  followMeBtns.forEach(function (followMeBtn, index) {
+    followMeBtn.onclick = function () {
+      followMeModals[index].style.display = "block";
+    };
+  });
 
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
+  // Attach event listeners for each closeMe element
+  closeMes.forEach(function (closeMe, index) {
+    closeMe.onclick = function () {
+      followMeModals[index].style.display = "none";
+    };
+  });
+}
 
-//Dance
+// Call the setupFollowMeModals function inside the DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function () {
+  setupFollowMeModals();
+});
+
+
+/*Dance
 var followMeBtn = document.getElementsByClassName("followPopup")[1];
 var followMeModal = document.getElementsByClassName("mobileFollowModal")[1];
 var closeMe = document.getElementsByClassName("closeme")[1];
@@ -1189,36 +1116,69 @@ closeMe.onclick = function () {
   followMeModal.style.display = "none";
 };
 //Follow popup on mobile
-/////
+*////
 
 // Live popup
-var liveModal = document.getElementById("liveModal");
-var liveBtn = document.getElementById("liveButton");
-var closeLive = document.getElementById("closeLive");
-
-liveBtn.onclick = function () {
+// Function to show the live modal
+function showLiveModal() {
+  var liveModal = document.getElementById("liveModal");
   liveModal.style.display = "block";
   liveModal.style.zIndex = "9999";
-};
+}
 
-// When the user clicks on <span> (x), close the modals
-closeLive.onclick = function () {
+// Function to close the live modal
+function closeLiveModal() {
+  var liveModal = document.getElementById("liveModal");
   liveModal.style.display = "none";
-};
+}
+
+// Event delegation for dynamically added elements
+document.addEventListener("click", function (event) {
+  // Check if the clicked element is the "liveButton"
+  if (event.target && event.target.id === "liveButton") {
+    showLiveModal();
+  }
+
+  // Check if the clicked element is the "closeLive"
+  if (event.target && event.target.id === "closeLive") {
+    closeLiveModal();
+  }
+});
 
 // Live popup on mobile
-var liveModalMobile = document.getElementById("liveModalMobile");
-var mobileLiveBtn = document.getElementById("mobileLiveBtn");
-var closeLiveMobile = document.getElementById("closeLiveMobile");
-
-mobileLiveBtn.onclick = function () {
+// Function to show the live modal
+function showLiveModalMobile() {
+  var liveModalMobile = document.getElementById("liveModalMobile");
   liveModalMobile.style.display = "block";
-};
+}
 
-// When the user clicks on <span> (x), close the modals
-closeLiveMobile.onclick = function () {
+// Function to close the live modal
+function closeLiveModalMobile() {
+  var liveModalMobile = document.getElementById("liveModalMobile");
   liveModalMobile.style.display = "none";
-};
+}
+
+// Event delegation for dynamically added elements
+document.addEventListener("click", function (event) {
+  var targetElement = event.target;
+
+  // Check if the clicked element or its parent is the "mobileLiveBtn"
+  if (
+    targetElement.id === "mobileLiveBtn" ||
+    targetElement.parentElement.id === "mobileLiveBtn"
+  ) {
+    showLiveModalMobile();
+  }
+
+  // Check if the clicked element or its parent is the "closeLiveMobile"
+  if (
+    targetElement.id === "closeLiveMobile" ||
+    targetElement.parentElement.id === "closeLiveMobile"
+  ) {
+    closeLiveModalMobile();
+  }
+});
+
 //Live popup ends
 
 //More icons button
@@ -1245,151 +1205,149 @@ function moreIcons() {
   }
 }
 
-/*
-//More icons II button
-function moreIconsII() {
-  var dots = document.getElementById("dots2");
-  var moreIcons2 = document.getElementById("more-iconsII");
-  var btnText = document.getElementById("myBtnII");
+// Call the moreIcons() function inside the DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function () {
+  moreIcons();
+});
 
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons2.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons2.style.display = "inline";
-  }
-}
-
-//More icons III button
-function moreIconsIII() {
-  var dots = document.getElementById("dots3");
-  var moreIcons3 = document.getElementById("more-iconsIII");
-  var btnText = document.getElementById("myBtnIII");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons3.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons3.style.display = "inline";
-  }
-}
-
-//More icons IV button
-function moreIconsIV() {
-  var dots = document.getElementById("dots4");
-  var moreIcons4 = document.getElementById("more-iconsIV");
-  var btnText = document.getElementById("myBtnIV");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons4.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons4.style.display = "inline";
-  }
-}
-
-//More icons V button
-function moreIconsV() {
-  var dots = document.getElementById("dots5");
-  var moreIcons5 = document.getElementById("more-iconsV");
-  var btnText = document.getElementById("myBtnV");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons5.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons5.style.display = "inline";
-  }
-}
-
-//More icons VI button
-function moreIconsVI() {
-  var dots = document.getElementById("dots6");
-  var moreIcons6 = document.getElementById("more-iconsVI");
-  var btnText = document.getElementById("myBtnVI");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons6.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons6.style.display = "inline";
-  }
-}
-
-//More icons VII button
-function moreIconsVII() {
-  var dots = document.getElementById("dots7");
-  var moreIcons7 = document.getElementById("more-iconsVII");
-  var btnText = document.getElementById("myBtnVII");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons7.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons7.style.display = "inline";
-  }
-}
-
-//More icons VIII button
-function moreIconsVIII() {
-  var dots = document.getElementById("dots8");
-  var moreIcons8 = document.getElementById("more-iconsVIII");
-  var btnText = document.getElementById("myBtnVIII");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = `<img src="Images/more-icon.svg" width="20px" />`;
-    moreIcons8.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "";
-    moreIcons8.style.display = "inline";
-  }
-}
-*/
 //////
 //Time posted
-var timePinned = moment("20230129", "YYYYMMDD").fromNow();
-document.getElementById("timePosted").innerHTML = timePinned;
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20230129", "YYYYMMDD").fromNow();
+    var timePostedElement = document.getElementById("timePosted");
 
-var timePinned = moment("20220210", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
 
-var timePinned = moment("20221229", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
 
-var timePinned = moment("20230302", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20220210", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
 
-var timePinned = moment("20211202", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[3].innerHTML = timePinned;
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
 
-var timePinned = moment("20220602", "YYYYMMDD").fromNow();
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20221229", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
+
+
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
+
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20230302", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
+
+
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
+
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20211202", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[3].innerHTML = timePinned;
+
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
+
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20220602", "YYYYMMDD").fromNow();
 document.getElementsByClassName("timePosted")[4].innerHTML = timePinned;
+    
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
 
-var timePinned = moment("20210102", "YYYYMMDD").fromNow();
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20210102", "YYYYMMDD").fromNow();
 document.getElementsByClassName("timePosted")[5].innerHTML = timePinned;
+    
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
 
-var timePinned = moment("20211102", "YYYYMMDD").fromNow();
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20211102", "YYYYMMDD").fromNow();
 document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
+    
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
+
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
 //Actual time posted ends
 ///
 ////

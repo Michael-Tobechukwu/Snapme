@@ -12,25 +12,7 @@ window.onload = function () {
   preloader.style.display = "none";
 };
 
-function getLocalItem(key) {
-  const item = localStorage.getItem(key);
-  if (!item) {
-    return null; // Item not found in local storage
-  }
-
-  const parsedItem = JSON.parse(item);
-  const now = new Date().getTime();
-
-  if (now > parsedItem.expiry) {
-    localStorage.removeItem(key);
-    return null; // Item has expired
-  }
-
-  console.log(parsedItem);
-  return parsedItem.value;
-}
-
-let currentProfile = getLocalItem("username");
+let currentProfile = localStorage.getItem("username");
 
 function checkJwt(location) {
   const jwtToken = document.cookie
@@ -72,7 +54,7 @@ function getJwt() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const currentPic = getLocalItem("picture");
+  const currentPic = localStorage.getItem("picture");
   const profile = document.getElementById("profilePicture");
 
   // Create an image element
@@ -343,23 +325,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function handleScroll() {
-    var navButtons = document.querySelector(".navbuttonsMobile");
+    var navButtons = document.querySelector('.navbuttonsMobile');
 
     if (isMobileDevice()) {
       var sticky = navButtons.offsetTop;
 
       if (window.pageYOffset > sticky) {
-        navButtons.classList.add("sticky");
+        navButtons.classList.add('sticky');
       } else {
-        navButtons.classList.remove("sticky");
+        navButtons.classList.remove('sticky');
       }
     } else {
-      navButtons.classList.remove("sticky");
+      navButtons.classList.remove('sticky');
     }
   }
 
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleScroll);
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', handleScroll);
 
   ////
   //Catalog buttons fixed position on scroll
@@ -547,188 +529,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //   }
 // };
 
-/*
-//Share 2
-var modal = document.getElementsByClassName("shareModal")[1];
-
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[1];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[1];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 3
-var modal = document.getElementsByClassName("shareModal")[2];
-
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[2];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[2];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 4
-
-var modal = document.getElementsByClassName("shareModal")[3];
-
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[3];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[3];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 5
-
-var modal = document.getElementsByClassName("shareModal")[4];
-
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[4];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[4];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 6
-var modal = document.getElementsByClassName("shareModal")[5];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[5];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[5];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 7
-var modal = document.getElementsByClassName("shareModal")[6];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[6];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[6];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-
-//Share 8
-var modal = document.getElementsByClassName("shareModal")[7];
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myPopupBtn")[7];
-
-// Get the <span> element that closes the modals
-var span = document.getElementsByClassName("close")[7];
-
-// When the user clicks the button, open the modals
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-*/
 //Share popup modals end
 
 //Check login status when create button is clicked, & redirect to create pin page
@@ -827,65 +627,6 @@ const closeComment = document.getElementById("closeComment");
 closeComment.addEventListener("click", function () {
   commentBox.style.display = "none";
 });
-
-// //Comment box close for second pin
-// var commentBox2 = document.getElementsByClassName("commentBox")[0];
-// var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
-
-// closeCommentBtn2.addEventListener("click", function () {
-//   commentBox2.style.display = "none";
-// });
-
-// //Comment box close for third pin
-// var commentBox3 = document.getElementsByClassName("commentBox")[1];
-// var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
-
-// closeCommentBtn3.addEventListener("click", function () {
-//   commentBox3.style.display = "none";
-// });
-
-// //Comment box close for fourth pin
-// var commentBox4 = document.getElementsByClassName("commentBox")[2];
-// var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
-
-// closeCommentBtn4.addEventListener("click", function () {
-//   commentBox4.style.display = "none";
-// });
-
-// //Comment box close for 5th pin
-// var commentBox5 = document.getElementsByClassName("commentBox")[3];
-// var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
-
-// closeCommentBtn5.addEventListener("click", function () {
-//   commentBox5.style.display = "none";
-// });
-
-// //Comment box close for 6th pin
-// var commentBox6 = document.getElementsByClassName("commentBox")[4];
-// var closeCommentBtn6 = document.getElementsByClassName("closeComment")[4];
-
-// closeCommentBtn6.addEventListener("click", function () {
-//   commentBox6.style.display = "none";
-// });
-
-// //Comment box close for 7th pin
-// var commentBox7 = document.getElementsByClassName("commentBox")[5];
-// var closeCommentBtn7 = document.getElementsByClassName("closeComment")[5];
-
-// closeCommentBtn7.addEventListener("click", function () {
-//   commentBox7.style.display = "none";
-// });
-
-// //Comment box close for 8th pin
-// var commentBox8 = document.getElementsByClassName("commentBox")[6];
-// var closeCommentBtn8 = document.getElementsByClassName("closeComment")[6];
-
-// closeCommentBtn8.addEventListener("click", function () {
-//   commentBox8.style.display = "none";
-// });
-//Comment box close for 8th pin end
-
-////--------
 
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit

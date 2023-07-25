@@ -1353,7 +1353,8 @@ document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
 ////
 
 // Add an event listener to the search button
-searchBtn.addEventListener("click", function () {
+var searchButton = document.getElementById("search-btn");
+searchButton.addEventListener("click", function () {
   // Get the search query from the search input
   var query = searchInput.value;
 

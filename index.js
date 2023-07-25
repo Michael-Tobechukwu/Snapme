@@ -1353,33 +1353,41 @@ document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
 ////
 
 // Add an event listener to the search button
-var searchButton = document.getElementById("search-btn");
-searchButton.addEventListener("click", function () {
-  // Get the search query from the search input
-  var query = searchInput.value;
+document.addEventListener('DOMContentLoaded', function() {
+  // Code inside this function will run after the DOM is fully loaded
 
-  // Make an API call to the search endpoint with the search query
-  fetch(
-    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      // Clear the search results list
-      searchResults.innerHTML = "";
+  var searchButton = document.getElementById("search-btn");
+  var searchInput = document.getElementById("search-input");
+  var searchResults = document.getElementById("search-results");
 
-      // Loop through the search results and add them to the list
-      data.results.forEach(function (result) {
-        var li = document.createElement("li");
-        li.textContent = result.title;
-        searchResults.appendChild(li);
+  searchButton.addEventListener("click", function () {
+    // Get the search query from the search input
+    var query = searchInput.value;
+
+    // Make an API call to the search endpoint with the search query
+    fetch(
+      "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // Clear the search results list
+        searchResults.innerHTML = "";
+
+        // Loop through the search results and add them to the list
+        data.results.forEach(function (result) {
+          var li = document.createElement("li");
+          li.textContent = result.title;
+          searchResults.appendChild(li);
+        });
+      })
+      .catch(function (error) {
+        console.error(error);
       });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  });
 });
+
 
 //Search on mobile
 // Get the search toggle button, search container, search input, search button, and search results list

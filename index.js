@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (scrollPosition >= catalogsContainerOffsetTop) {
       catalogsContainer.classList.add("fixed");
       catalogsContainer.style.top =
-        "70px"; /* the sticky position of the tabs swipe container */
+        "80px"; /* the sticky position of the tabs swipe container */
     } else {
       catalogsContainer.classList.remove("fixed");
       catalogsContainer.style.top =

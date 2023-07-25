@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (scrollPosition >= timelineContainerOffsetTop) {
       timelineContainer.classList.add("fixed");
       timelineContainer.style.top =
-        "130px"; /* the sticky position of the timelineSuggested container */
+        "140px"; /* the sticky position of the timelineSuggested container */
     } else {
       timelineContainer.classList.remove("fixed");
       timelineContainer.style.top =

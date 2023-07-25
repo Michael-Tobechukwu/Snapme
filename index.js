@@ -371,6 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
       timelineContainer.classList.add("fixed");
       timelineContainer.style.top =
         "140px"; /* the sticky position of the timelineSuggested container */
+        timelineContainer.style.left = "0";
     } else {
       timelineContainer.classList.remove("fixed");
       timelineContainer.style.top =

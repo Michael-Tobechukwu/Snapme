@@ -1422,6 +1422,7 @@ top: 61%;
     justify-content: space-between;
     width: 100%;
     margin-top: -30px;
+    margin-left: 0;
     z-index: 1;
     background: #021129;
     padding: 10px 5px;

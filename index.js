@@ -1232,18 +1232,23 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   // Function to update the time dynamically
   function updateTimePosted() {
-    var timePinned = moment("20220210", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[0].innerHTML = timePinned;
+    var timePinned = moment("20220210", "YYYYMMDD").fromNow();
 
+    // Get the element with the class "timePosted"
+    var timePostedElement = document.querySelector(".timePosted");
+
+    // Check if the element exists before setting its innerHTML
     if (timePostedElement) {
       timePostedElement.innerHTML = timePinned;
     } else {
-      console.error("Element with ID 'timePosted' not found.");
+      console.error("Element with class 'timePosted' not found.");
     }
   }
-
+a
   // Call the function once when the page loads to update the time for the initially loaded content
   updateTimePosted();
 });
+
 
 document.addEventListener("DOMContentLoaded", function () {
   // Function to update the time dynamically

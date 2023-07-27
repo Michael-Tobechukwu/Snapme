@@ -1020,6 +1020,7 @@ input:checked + .slider:before {
 
   .navbuttonsMobile .hamburger {
     margin-right: 10px;
+    position: relative;
   }
 
   .navbuttonsMobile .hamburger img {
@@ -1032,6 +1033,7 @@ input:checked + .slider:before {
   .navbuttonsMobile #mobileDropdown {
     border-radius: 0.5rem;
     box-shadow: none;
+    position: absolute;
   }
 
   .navbuttonsMobile .social-icons li a {
@@ -1275,9 +1277,9 @@ top: 61%;
     margin-top: -35px;
     margin-bottom: 0;
     position: relative;
-    background: #021129;
+    background: #fff;
     padding: 10px 0;
-    z-index: 999;
+
   }
 
   #swipe-container.fixed {
@@ -1285,7 +1287,6 @@ top: 61%;
     top: 60px; /* the sticky position of the div */
     left: 0;
     width: 100%;
-    z-index: 1;
   }
 
   .swipe-item {
@@ -1294,14 +1295,13 @@ top: 61%;
   }
 
   .swipe-item button {
-    color: #fff;
-    background: #021129;
+    color: #021129;
+    background: #fff;
     padding: 0.5rem 0.7rem;
     border-radius: 2rem;
-    border: white solid 2px;
+    border: #021129 solid 2px;
     transition: 0.3s ease;
     font-size: 13px;
-    color: #fff;
   }
 
 
@@ -1313,7 +1313,7 @@ top: 61%;
     margin-top: -30px;
     margin-left: 0;
     z-index: 9999;
-    background: #021129;
+    background: #fff;
     padding: 10px 5px;
   }
 
@@ -1327,7 +1327,7 @@ top: 61%;
     background: none;
     padding: 0px;
     margin: 0;
-    color: #fff;
+    color: #021129;
     font-size: 12px;
   }
 
@@ -1363,9 +1363,9 @@ top: 61%;
   }
 
   .suggested #SuggestedBtn {
-    background: #021129;
+    background: #fff;
     padding: 0px;
-    color: #fff;
+    color: #021129;
     border-radius: 0.3rem;
     font-size: 12px;
   }
@@ -1493,7 +1493,7 @@ top: 61%;
 
   #mobileSearchToggleBtn {
     border: none;
-    color: #fff;
+    color: #021129;
   }
 
   .mobileSearch {
@@ -1511,11 +1511,11 @@ top: 61%;
     z-index: 9999;
     left: 30px;
     top: 40px;
-    background: #021129;
+    background: #fff;
     width: 75%;
-    color: #fff;
+    color: #021129;
     padding: 0.4rem 0.5rem;
-    border: 2px solid #fff;
+    border: 2px solid #021129;
     font-size: 12px;
     border-radius: 0.5rem;
   }

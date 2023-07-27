@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.innerWidth <= 768) {
     let mobileDropdown = document.querySelector(".dropdown-menu");
     if (mobileDropdown) {
-      mobileDropdown.style.zIndex = "9999";
+      mobileDropdown.style.zIndex = "1";
     } else {
       console.error("Element with class 'dropdown-menu' not found in the DOM.");
     }
@@ -344,40 +344,65 @@ document.addEventListener("DOMContentLoaded", function () {
   //Catalog buttons fixed position on scroll
   const catalogsContainer = document.querySelector("#swipe-container");
   const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
-
-  window.addEventListener("scroll", () => {
+  
+  function updateNavbarPosition() {
     const scrollPosition = window.scrollY;
-
+    const viewportWidth = window.innerWidth;
+  
     if (scrollPosition >= catalogsContainerOffsetTop) {
-      catalogsContainer.classList.add("fixed");
-      catalogsContainer.style.top =
-        "90px"; /* the sticky position of the tabs swipe container */
+      if (viewportWidth <= 424) {
+        catalogsContainer.classList.add("fixed");
+        catalogsContainer.style.top = "70px";
+      } else if (viewportWidth <= 768) {
+        catalogsContainer.classList.add("fixed");
+        catalogsContainer.style.top = "90px";
+      } else {
+        catalogsContainer.classList.add("fixed");
+        catalogsContainer.style.top = "0"; /* Fallback for larger screens */
+      }
     } else {
       catalogsContainer.classList.remove("fixed");
-      catalogsContainer.style.top =
-        ""; /* reset the top position to its original state */
+      catalogsContainer.style.top = ""; /* reset the top position to its original state */
     }
-  });
+  }
+  
+  window.addEventListener("scroll", updateNavbarPosition);
+  window.addEventListener("resize", updateNavbarPosition);
+  
   //Catalogs buttons fixed position on scroll
   ////
   //Timecapsule fixed position on scroll
   const timelineContainer = document.querySelector("#timelineSuggested");
   const timelineContainerOffsetTop = timelineContainer.offsetTop;
-
-  window.addEventListener("scroll", () => {
+  
+  function updateTimelinePosition() {
     const scrollPosition = window.scrollY;
-
+    const viewportWidth = window.innerWidth;
+  
     if (scrollPosition >= timelineContainerOffsetTop) {
-      timelineContainer.classList.add("fixed");
-      timelineContainer.style.top =
-        "140px"; /* the sticky position of the timelineSuggested container */
+      if (viewportWidth <= 424) {
+        timelineContainer.classList.add("fixed");
+        timelineContainer.style.top = "120px";
         timelineContainer.style.left = "0";
+      } else if (viewportWidth <= 768) {
+        timelineContainer.classList.add("fixed");
+        timelineContainer.style.top = "140px";
+        timelineContainer.style.left = "0";
+      } else {
+        timelineContainer.classList.add("fixed");
+        timelineContainer.style.top = "0"; /* Fallback for larger screens */
+        timelineContainer.style.left = "0"; /* Fallback for larger screens */
+      }
     } else {
       timelineContainer.classList.remove("fixed");
-      timelineContainer.style.top =
-        ""; /* reset the top position to its original state */
+      timelineContainer.style.top = ""; /* reset the top position to its original state */
+      timelineContainer.style.left = ""; /* reset the left position to its original state */
     }
-  });
+  }
+  
+  window.addEventListener("scroll", updateTimelinePosition);
+  window.addEventListener("resize", updateTimelinePosition);
+  
   ////------------------------------
 
   // Get the search toggle button, search container, search input, search button, and search results list
@@ -1774,16 +1799,23 @@ function changeButtonColor(clickedButton) {
 ////
 
 //Show/Hide footer menu on scroll
-var oldScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  var newScrollPos = window.pageYOffset;
-  if (oldScrollpos < newScrollPos) {
-    document.querySelector(".mobileView").classList.remove("hide");
-  } else {
-    document.querySelector(".mobileView").classList.add("hide");
+document.addEventListener("DOMContentLoaded", function () {
+  var oldScrollpos = window.scrollY;
+
+  function handleScroll() {
+    var newScrollPos = window.scrollY;
+
+    if (oldScrollpos < newScrollPos) {
+      document.querySelector(".mobileView").classList.remove("hide");
+    } else {
+      document.querySelector(".mobileView").classList.add("hide");
+    }
+
+    oldScrollpos = newScrollPos;
   }
-  oldScrollpos = newScrollPos;
-};
+
+  window.addEventListener("scroll", handleScroll);
+});
 
 ////
 //Mobile catalog tabs swipe control

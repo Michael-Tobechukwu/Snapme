@@ -719,7 +719,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //Like buttons end
-////
 
 //Follow popup on mobile
 // Music
@@ -1117,7 +1116,8 @@ document.addEventListener("DOMContentLoaded", function() {
 ////
 //Get pin details
 document.addEventListener("DOMContentLoaded", function() {
-  document.querySelector(".post-img").addEventListener("click", pinDetails);
+  const cardImgTop = document.querySelector(".card-img-top");
+  cardImgTop.addEventListener("click", pinDetails);
 
   function pinDetails() {
     // Fetch the pin data from the backend
@@ -1156,12 +1156,8 @@ document.addEventListener("DOMContentLoaded", function() {
       .catch((error) => console.error(error));
   }
 });
-
-
-
 //Get pin details end
 
-////
 //Play video when scrolled into view
 //Video 1
 const video = document.querySelector(".video");
@@ -1274,7 +1270,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //Video controls 1
 ////
 //Change catalog buttons colour on click
-var previousButton;
+/*var previousButton;
 
 var buttons = document.querySelectorAll(".swipe-item button");
 for (var i = 0; i < buttons.length; i++) {
@@ -1291,7 +1287,7 @@ function changeButtonColor(clickedButton) {
 
   previousButton = clickedButton;
 }
-////
+*////
 
 //Show/Hide footer menu on scroll
 document.addEventListener("DOMContentLoaded", function () {
@@ -1312,48 +1308,44 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", handleScroll);
 });
 
-////
 //Mobile catalog tabs swipe control
-document.addEventListener("DOMContentLoaded", function() {
-  const swipeContainer = document.getElementById("swipe-container");
-  const swipeContent = document.getElementById("swipe-item");
+const swipeContainer = document.getElementById("swipe-container");
+const swipeContent = document.getElementbyId("swipe-item");
 
-  let touchStartX = 0;
-  let touchEndX = 0;
-  let isFixed = false;
+let touchStartX = 0;
+let touchEndX = 0;
+let isFixed = false;
 
-  swipeContainer.addEventListener("touchstart", (event) => {
-    touchStartX = event.touches[0].clientX;
-  });
-
-  swipeContainer.addEventListener("touchmove", (event) => {
-    touchEndX = event.touches[0].clientX;
-
-    // If the user has scrolled past the top of the swipe container, fix it to the top
-    if (swipeContainer.getBoundingClientRect().top <= 0 && !isFixed) {
-      swipeContainer.classList.add("fixed");
-      isFixed = true;
-    }
-  });
-
-  swipeContainer.addEventListener("touchend", () => {
-    if (touchEndX < touchStartX) {
-      swipeContainer.style.transform = `translateX(0)`;
-    } else if (touchEndX > touchStartX) {
-      swipeContainer.style.transform = `translateX(0)`;
-    }
-  });
-
-  window.addEventListener("scroll", () => {
-    // If the user scrolls back to the top of the page, unfix the swipe container
-    if (window.scrollY <= 0 && isFixed) {
-      swipeContainer.classList.remove("fixed");
-      swipeContainer.style.transform = "";
-      isFixed = false;
-    }
-  });
+swipeContainer.addEventListener("touchstart", (event) => {
+  touchStartX = event.touches[0].clientX;
 });
 
+swipeContainer.addEventListener("touchmove", (event) => {
+  touchEndX = event.touches[0].clientX;
+
+  // If the user has scrolled past the top of the swipe container, fix it to the top
+  if (swipeContainer.getBoundingClientRect().top <= 0 && !isFixed) {
+    swipeContainer.classList.add("fixed");
+    isFixed = true;
+  }
+});
+
+swipeContainer.addEventListener("touchend", () => {
+  if (touchEndX < touchStartX) {
+    swipeContainer.style.transform = `translateX(0)`;
+  } else if (touchEndX > touchStartX) {
+    swipeContainer.style.transform = `translateX(0)`;
+  }
+});
+
+window.addEventListener("scroll", () => {
+  // If the user scrolls back to the top of the page, unfix the swipe container
+  if (window.scrollY <= 0 && isFixed) {
+    swipeContainer.classList.remove("fixed");
+    swipeContainer.style.transform = "";
+    isFixed = false;
+  }
+});
 ////
 
 //Show/hide top menu on scroll
@@ -1400,7 +1392,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ////
 // Follow user other posts
 document.addEventListener("DOMContentLoaded", function() {
-  const followBtn = document.querySelector(".followBtn");
+  const followBtn = document.querySelector("#followBtn");
 
   followBtn.addEventListener("click", () => {
     const username = document.querySelector(".username").textContent;
@@ -1426,5 +1418,14 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const followBtn = document.getElementById("followBtn");
 
+  followBtn.addEventListener("click", () => {
+    const username = document.querySelector(".username").textContent;
+    // Your code for handling the follow button click event goes here
+    // For example, you can do something with the 'username' variable
+    console.log("Clicked on Follow button for user:", username);
+  });
+});
 /////

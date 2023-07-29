@@ -998,7 +998,7 @@ input:checked + .slider:before {
     width: 100%;
     margin-top: 0;
     top: 0;
-    z-index: 1;
+    z-index: 10000 !important;
     position: relative;
   }
 
@@ -1006,7 +1006,6 @@ input:checked + .slider:before {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9999;
   }
 
   .navbuttonsMobile .hamburger,
@@ -1029,6 +1028,8 @@ input:checked + .slider:before {
   .navbuttonsMobile #mobileDropdown {
     border-radius: 0.5rem;
     box-shadow: none;
+    position: absolute;
+    /*z-index: 10000;*/
   }
 
   .navbuttonsMobile .social-icons li a {
@@ -1063,41 +1064,7 @@ input:checked + .slider:before {
     margin-right: 10px;
   }
 
-  /*All things search for mobile*/
-  .navbuttonsMobile #mobileSearchToggleBtn img {
-    width: 40px;
-    margin-right: 0;
-  }
-
-  #mobileSearchToggleBtn {
-    border: none;
-    color: #fff;
-  }
-
-  .mobileSearch {
-    display: block;
-    width: 100%;
-  }
-
-  #mobile-search-container {
-    display: none;
-    position: relative;
-  }
-
-  #mobile-search-input {
-    position: fixed;
-    z-index: 9999;
-    left: 30px;
-    top: 40px;
-    background: #021129;
-    width: 75%;
-    color: #fff;
-    padding: 0.4rem 0.5rem;
-    border: 2px solid #fff;
-    font-size: 12px;
-    border-radius: 0.5rem;
-  }
-  /*All things search for mobile*/
+ 
 
   .col,
   .col-5 {
@@ -1188,8 +1155,6 @@ top: 61%;
     #commentBox8 {
    top: 80%;
     }
-      
-
 
   #submitComment {
     font-size: 12px;
@@ -1304,13 +1269,11 @@ top: 61%;
     gap: 15px;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
-    /* position: relative;*/
     margin-top: -35px;
     margin-bottom: 0;
     position: relative;
     background: #021129;
     padding: 10px 0;
-    z-index: 999;
   }
 
   #swipe-container.fixed {
@@ -1318,7 +1281,6 @@ top: 61%;
     top: 60px; /* the sticky position of the div */
     left: 0;
     width: 100%;
-    z-index: 1;
   }
 
   .swipe-item {
@@ -1334,87 +1296,8 @@ top: 61%;
     border: white solid 2px;
     transition: 0.3s ease;
     font-size: 13px;
-    color: #fff;
   }
 
-  /* The Modal background */
-  #mobileFollowModal,
-  .mobileFollowModal,
-  #liveModalMobile {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9999; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  }
-
-  /* Modal Content */
-  .mobileModalContent,
-  .liveContentMobile {
-    background-color: #fff;
-    margin: auto;
-    padding: 1rem;
-    border: none;
-    width: 90%;
-  }
-
-  /* The Close Button */
-  .mobileclose,
-  .close2,
-  .close3,
-  .close4,
-  .close5,
-  .close6,
-  .closeme,
-  #closeLiveMobile {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .mobileclose:hover,
-  .mobileclose:focus,
-  .closeme:hover,
-  .closeme:focus,
-  #closeLiveMobile:hover {
-    color: #000;
-    text-decoration: none;
-  }
-
-  .mobileModalContent p {
-    margin-bottom: 1rem;
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-  }
-
-  .follow_popup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    width: 100%;
-  }
-
-  .follow_popup button {
-    color: #fff;
-    background: #ba00ba;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-  }
-
-  .mobileFollowModal {
-    display: none;
-  }
 
   #timelineSuggested {
     display: flex;
@@ -1423,7 +1306,7 @@ top: 61%;
     width: 100%;
     margin-top: -30px;
     margin-left: 0;
-    z-index: 1;
+    z-index: 9999;
     background: #021129;
     padding: 10px 5px;
   }
@@ -1514,6 +1397,123 @@ top: 61%;
     align-items: center;
     justify-content: space-between;
   }
+
+  
+  /* The Modal background */
+  #mobileFollowModal,
+  .mobileFollowModal,
+  #liveModalMobile {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .mobileModalContent,
+  .liveContentMobile {
+    background-color: #fff;
+    margin: auto;
+    padding: 1rem;
+    border: none;
+    width: 90%;
+    z-index: 10000; /* Sit on top */
+  }
+
+  /* The Close Button */
+  .mobileclose,
+  .close2,
+  .close3,
+  .close4,
+  .close5,
+  .close6,
+  .closeme,
+  #closeLiveMobile {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .mobileclose:hover,
+  .mobileclose:focus,
+  .closeme:hover,
+  .closeme:focus,
+  #closeLiveMobile:hover {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .mobileModalContent p {
+    margin-bottom: 1rem;
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .follow_popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 100%;
+  }
+
+  .follow_popup button {
+    color: #fff;
+    background: #ba00ba;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+  }
+
+  .mobileFollowModal {
+    display: none;
+  }
+
+   /*All things search for mobile*/
+   .navbuttonsMobile #mobileSearchToggleBtn img {
+    width: 40px;
+    margin-right: 0;
+  }
+
+  #mobileSearchToggleBtn {
+    border: none;
+    color: #fff;
+  }
+
+  .mobileSearch {
+    display: block;
+    width: 100%;
+  }
+
+  #mobile-search-container {
+    display: none;
+    position: relative;
+  }
+
+  #mobile-search-input {
+    position: fixed;
+    z-index: 9999;
+    left: 30px;
+    top: 40px;
+    background: #021129;
+    width: 75%;
+    color: #fff;
+    padding: 0.4rem 0.5rem;
+    border: 2px solid #fff;
+    font-size: 12px;
+    border-radius: 0.5rem;
+  }
+  /*All things search for mobile*/
 
   .usernameBox .username,
   .usernameBox img {

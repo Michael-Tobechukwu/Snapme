@@ -308,13 +308,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Make dropdown stack on top
   if (window.innerWidth <= 768) {
-    let mobileDropdown = document.querySelector(".dropdown-menu");
+    const screenWidth = window.innerWidth;
+    const mobileDropdown = document.querySelector(".dropdown-menu");
+  
     if (mobileDropdown) {
-      mobileDropdown.style.zIndex = "1";
+      if (screenWidth <= 375 || screenWidth <= 568) {
+        mobileDropdown.style.zIndex = "10000";
+      } else {
+        // For screens less than or equal to 768px
+        mobileDropdown.style.zIndex = "10000";
+      }
     } else {
       console.error("Element with class 'dropdown-menu' not found in the DOM.");
     }
   }
+  
 
   // Nav bar sticky on mobile
   function isMobileDevice() {
@@ -323,23 +331,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function handleScroll() {
     var navButtons = document.querySelector('.navbuttonsMobile');
-
+  
     if (isMobileDevice()) {
       var sticky = navButtons.offsetTop;
-
+  
       if (window.scrollY > sticky) {
         navButtons.classList.add('sticky');
+        navButtons.style.zIndex = '10000'; // Set the z-index to 10000 when becoming sticky
       } else {
         navButtons.classList.remove('sticky');
+        // Do not remove the z-index when scrolling up
       }
     } else {
       navButtons.classList.remove('sticky');
+      navButtons.style.zIndex = ''; // Remove the z-index for non-mobile devices
     }
   }
-
-  window.addEventListener('scroll', handleScroll);
+  
+  // Add a scroll event listener to the window to trigger handleScroll() function on scroll
+  window.addEventListener('scroll', handleScroll);  
   window.addEventListener('resize', handleScroll);
-
+  
   ////
   //Catalog buttons fixed position on scroll
   const catalogsContainer = document.querySelector("#swipe-container");
@@ -353,9 +365,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (viewportWidth <= 424) {
         catalogsContainer.classList.add("fixed");
         catalogsContainer.style.top = "70px";
+        catalogsContainer.style.zIndex = "9999";
       } else if (viewportWidth <= 768) {
         catalogsContainer.classList.add("fixed");
         catalogsContainer.style.top = "90px";
+        catalogsContainer.style.zIndex = "9999";
       } else {
         catalogsContainer.classList.add("fixed");
         catalogsContainer.style.top = "0"; /* Fallback for larger screens */
@@ -363,6 +377,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       catalogsContainer.classList.remove("fixed");
       catalogsContainer.style.top = ""; /* reset the top position to its original state */
+      catalogsContainer.style.zIndex = "";
     }
   }
   
@@ -384,10 +399,12 @@ document.addEventListener("DOMContentLoaded", function () {
         timelineContainer.classList.add("fixed");
         timelineContainer.style.top = "120px";
         timelineContainer.style.left = "0";
+        timelineContainer.style.zIndex = "1"
       } else if (viewportWidth <= 768) {
         timelineContainer.classList.add("fixed");
         timelineContainer.style.top = "140px";
         timelineContainer.style.left = "0";
+        timelineContainer.style.zIndex = "1"
       } else {
         timelineContainer.classList.add("fixed");
         timelineContainer.style.top = "0"; /* Fallback for larger screens */
@@ -584,65 +601,6 @@ function checkLoginStatus() {
   }
 }
 
-// Add an event listener to the create button
-// createBtn.addEventListener("click", checkLoginStatus);
-// mobileCreateBtn.addEventListener("click", checkLoginStatus);
-// ////------------------------------
-
-//Check login status when comment button is clicked, & redirect to homepage and show comment box
-
-//Get comment buttons
-// const commentRedirect = document.querySelector(".commentRedirectBtn");
-// const commentRedirect2 = document.querySelector(".commentRedirectBtn2");
-// const commentRedirect3 = document.querySelector(".commentRedirectBtn3");
-// const commentRedirect4 = document.querySelector(".commentRedirectBtn4");
-// const commentRedirect5 = document.querySelector(".commentRedirectBtn5");
-// const commentRedirect6 = document.querySelector(".commentRedirectBtn6");
-// const commentRedirect7 = document.querySelector(".commentRedirectBtn7");
-// const commentRedirect8 = document.querySelector(".commentRedirectBtn8");
-
-// // Add an event listener to the comment buttons
-// commentRedirect.addEventListener("click", checkLoginStatus2);
-// commentRedirect2.addEventListener("click", checkLoginStatus2);
-// commentRedirect3.addEventListener("click", checkLoginStatus2);
-// commentRedirect4.addEventListener("click", checkLoginStatus2);
-// commentRedirect5.addEventListener("click", checkLoginStatus2);
-// commentRedirect6.addEventListener("click", checkLoginStatus2);
-// commentRedirect7.addEventListener("click", checkLoginStatus2);
-// commentRedirect8.addEventListener("click", checkLoginStatus2);
-
-// //Check login status when comment button is clicked, & redirect to homepage and show comment box
-// function checkLoginStatus2() {
-//   // Get the JWT token from local storage
-//   const token = localStorage.getItem("jwtToken");
-
-//   // Check if the user is logged in
-//   if (token) {
-//     try {
-//       // Attempt to decode the JWT token to get the user information
-//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
-//       const userId = decodedToken.userId;
-
-//       // Redirect the user to the homepage
-//       window.location.href = "index.html";
-//     } catch (err) {
-//       // If there was an error decoding the token, assume the user is not logged in
-//       console.error("Error decoding JWT token:", err);
-
-//       // Redirect the user to the login page
-//       window.location.href = "login.html";
-//     }
-//   } else {
-//     // Redirect the user to the login page
-//     window.location.href = "login.html";
-//   }
-
-//   // If the user is logged in, show the comment box
-//   if (token) {
-//     document.getElementById("commentBox").style.display = "block";
-//   }
-// }
-
 //Comment box close
 // Use DOMContentLoaded event to add the event listener
 document.addEventListener('DOMContentLoaded', function () {
@@ -724,14 +682,7 @@ setTimeout(function () {
   }, 60000);
 
   // Prevent Chrome from automatically prompting the user to install a PWA
-  chrome.webNavigation.onCommitted.addListener(function (details) {
-    if (details.frameUrl === window.location.href) {
-      chrome.webNavigation.onCommitted.removeListener(this);
-      setTimeout(() => {
-        window.dispatchEvent(new Event("beforeinstallprompt"));
-      }, 60000);
-    }
-  });
+
 }, 0);
 
 // Remove the install prompt after the user has installed the app
@@ -818,331 +769,6 @@ function setupFollowMeModals() {
 document.addEventListener('DOMContentLoaded', function () {
   setupFollowMeModals();
 });
-
-
-/*Dance
-var followMeBtn = document.getElementsByClassName("followPopup")[1];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[1];
-var closeMe = document.getElementsByClassName("closeme")[1];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Afrobeats
-var followMeBtn = document.getElementsByClassName("followPopup")[2];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[2];
-var closeMe = document.getElementsByClassName("closeme")[2];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Comedy
-var followMeBtn = document.getElementsByClassName("followPopup")[3];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[3];
-var closeMe = document.getElementsByClassName("closeme")[3];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Tag Stories
-var followMeBtn = document.getElementsByClassName("followPopup")[4];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[4];
-var closeMe = document.getElementsByClassName("closeme")[4];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Photography
-var followMeBtn = document.getElementsByClassName("followPopup")[5];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[5];
-var closeMe = document.getElementsByClassName("closeme")[5];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Art
-var followMeBtn = document.getElementsByClassName("followPopup")[6];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[6];
-var closeMe = document.getElementsByClassName("closeme")[6];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Museums
-var followMeBtn = document.getElementsByClassName("followPopup")[7];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[7];
-var closeMe = document.getElementsByClassName("closeme")[7];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Tourism
-var followMeBtn = document.getElementsByClassName("followPopup")[8];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[8];
-var closeMe = document.getElementsByClassName("closeme")[8];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Fashion
-var followMeBtn = document.getElementsByClassName("followPopup")[9];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[9];
-var closeMe = document.getElementsByClassName("closeme")[9];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Beauty & Kits
-var followMeBtn = document.getElementsByClassName("followPopup")[10];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[10];
-var closeMe = document.getElementsByClassName("closeme")[10];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Food
-var followMeBtn = document.getElementsByClassName("followPopup")[11];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[11];
-var closeMe = document.getElementsByClassName("closeme")[11];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Fitness
-var followMeBtn = document.getElementsByClassName("followPopup")[12];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[12];
-var closeMe = document.getElementsByClassName("closeme")[12];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Football
-var followMeBtn = document.getElementsByClassName("followPopup")[13];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[13];
-var closeMe = document.getElementsByClassName("closeme")[13];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Basketball
-var followMeBtn = document.getElementsByClassName("followPopup")[14];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[14];
-var closeMe = document.getElementsByClassName("closeme")[14];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Sports
-var followMeBtn = document.getElementsByClassName("followPopup")[15];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[15];
-var closeMe = document.getElementsByClassName("closeme")[15];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//News
-var followMeBtn = document.getElementsByClassName("followPopup")[16];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[16];
-var closeMe = document.getElementsByClassName("closeme")[16];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Fashion TV
-var followMeBtn = document.getElementsByClassName("followPopup")[17];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[17];
-var closeMe = document.getElementsByClassName("closeme")[17];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Cars
-var followMeBtn = document.getElementsByClassName("followPopup")[18];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[18];
-var closeMe = document.getElementsByClassName("closeme")[18];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//House Decoration
-var followMeBtn = document.getElementsByClassName("followPopup")[19];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[19];
-var closeMe = document.getElementsByClassName("closeme")[19];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Nature
-var followMeBtn = document.getElementsByClassName("followPopup")[20];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[20];
-var closeMe = document.getElementsByClassName("closeme")[20];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Quotes
-var followMeBtn = document.getElementsByClassName("followPopup")[21];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[21];
-var closeMe = document.getElementsByClassName("closeme")[21];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Pets
-var followMeBtn = document.getElementsByClassName("followPopup")[22];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[22];
-var closeMe = document.getElementsByClassName("closeme")[22];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-
-//Others
-var followMeBtn = document.getElementsByClassName("followPopup")[23];
-var followMeModal = document.getElementsByClassName("mobileFollowModal")[23];
-var closeMe = document.getElementsByClassName("closeme")[23];
-
-followMeBtn.onclick = function () {
-  followMeModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-closeMe.onclick = function () {
-  followMeModal.style.display = "none";
-};
-//Follow popup on mobile
-*////
 
 // Live popup
 // Function to show the live modal
@@ -1255,7 +881,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var timePinned = moment("20220210", "YYYYMMDD").fromNow();
 
     // Get the element with the class "timePosted"
-    var timePostedElement = document.querySelector(".timePosted");
+    var timePostedElement = document.querySelector("#timePosted");
 
     // Check if the element exists before setting its innerHTML
     if (timePostedElement) {
@@ -1264,118 +890,12 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Element with class 'timePosted' not found.");
     }
   }
-a
-  // Call the function once when the page loads to update the time for the initially loaded content
-  updateTimePosted();
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the time dynamically
-  function updateTimePosted() {
-    var timePinned = moment("20221229", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[1].innerHTML = timePinned;
-
-
-    if (timePostedElement) {
-      timePostedElement.innerHTML = timePinned;
-    } else {
-      console.error("Element with ID 'timePosted' not found.");
-    }
-  }
-
-  // Call the function once when the page loads to update the time for the initially loaded content
-  updateTimePosted();
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the time dynamically
-  function updateTimePosted() {
-    var timePinned = moment("20230302", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
-
-
-    if (timePostedElement) {
-      timePostedElement.innerHTML = timePinned;
-    } else {
-      console.error("Element with ID 'timePosted' not found.");
-    }
-  }
-
-  // Call the function once when the page loads to update the time for the initially loaded content
-  updateTimePosted();
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the time dynamically
-  function updateTimePosted() {
-    var timePinned = moment("20211202", "YYYYMMDD").fromNow();document.getElementsByClassName("timePosted")[3].innerHTML = timePinned;
-
-    if (timePostedElement) {
-      timePostedElement.innerHTML = timePinned;
-    } else {
-      console.error("Element with ID 'timePosted' not found.");
-    }
-  }
-
-  // Call the function once when the page loads to update the time for the initially loaded content
-  updateTimePosted();
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the time dynamically
-  function updateTimePosted() {
-    var timePinned = moment("20220602", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[4].innerHTML = timePinned;
-    
-    if (timePostedElement) {
-      timePostedElement.innerHTML = timePinned;
-    } else {
-      console.error("Element with ID 'timePosted' not found.");
-    }
-  }
-
-  // Call the function once when the page loads to update the time for the initially loaded content
-  updateTimePosted();
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the time dynamically
-  function updateTimePosted() {
-    var timePinned = moment("20210102", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[5].innerHTML = timePinned;
-    
-    if (timePostedElement) {
-      timePostedElement.innerHTML = timePinned;
-    } else {
-      console.error("Element with ID 'timePosted' not found.");
-    }
-  }
-
-  // Call the function once when the page loads to update the time for the initially loaded content
-  updateTimePosted();
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the time dynamically
-  function updateTimePosted() {
-    var timePinned = moment("20211102", "YYYYMMDD").fromNow();
-document.getElementsByClassName("timePosted")[6].innerHTML = timePinned;
-    
-    if (timePostedElement) {
-      timePostedElement.innerHTML = timePinned;
-    } else {
-      console.error("Element with ID 'timePosted' not found.");
-    }
-  }
 
   // Call the function once when the page loads to update the time for the initially loaded content
   updateTimePosted();
 });
 
 //Actual time posted ends
-///
-////
 
 // Add an event listener to the search button
 document.addEventListener('DOMContentLoaded', function() {
@@ -1436,7 +956,8 @@ document.addEventListener('DOMContentLoaded', function () {
       mobileSearchToggleBtn.style.left = "5px";
       mobileSearchToggleBtn.style.fontSize = "15px";
       mobileSearchBtn.style.position = "absolute";
-      mobileSearchBtn.style.top = "7px";
+      mobileSearchBtn.style.top = "-5px";
+      mobileSearchBtn.style.right = "8px";
     } else {
       mobileSearchContainer.style.display = "none";
       mobileSearchToggleBtn.innerHTML =
@@ -1529,113 +1050,121 @@ document.addEventListener("DOMContentLoaded", function () {
 //Submit comment fetch API
 const submitCommentBtn = document.getElementById("submitComment");
 
-submitCommentBtn.addEventListener("click", function () {
-  const commentInput = document.getElementById("commentInput").value;
-  if (!commentInput) {
-    // Handle empty comment input error
-    return;
-  }
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the submitCommentBtn element
+  const submitCommentBtn = document.getElementById("submitCommentBtn");
 
-  const comment = {
-    text: commentInput,
-  };
-
-  fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("jwtToken"),
-    },
-    body: JSON.stringify(comment),
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Network response was not ok");
+  // Add event listener on the submitCommentBtn
+  document.addEventListener("DOMContentLoaded", function() {
+    const submitCommentBtn = document.getElementById("submitCommentBtn");
+  
+    submitCommentBtn.addEventListener("click", function () {
+      const commentInput = document.getElementById("commentInput").value;
+      if (!commentInput) {
+        // Handle empty comment input error
+        return;
       }
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+  
+      const comment = {
+        text: commentInput,
+      };
+  
+      fetch(`https://api.snapme-ng.com/api/v1/pins/:postId/:commentId`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+        },
+        body: JSON.stringify(comment),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Network response was not ok");
+          }
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     });
+  });
+  
 });
+
 //Submit comment
 ////---------
 
 //Promote popup after 10 minutes
-function openPromotePopup() {
-  document.getElementById("promotePopup").style.display = "block";
-}
+document.addEventListener("DOMContentLoaded", function() {
+  function openPromotePopup() {
+    document.getElementById("promotePopup").style.display = "block";
+  }
 
-function closePromote() {
-  document.getElementById("promotePopup").style.display = "none";
-}
+  function closePromote() {
+    document.getElementById("promotePopup").style.display = "none";
+  }
 
-// Delay the opening of the popup by 10 minutes
-setTimeout(openPromotePopup, 600000); // 10 minutes = 10 * 60 * 1000 milliseconds
+  // Delay the opening of the popup by 10 minutes
+  setTimeout(openPromotePopup, 600000); // 10 minutes = 10 * 60 * 1000 milliseconds
 
-document.getElementById("closePromote").addEventListener("click", closePromote);
+  document.getElementById("closePromote").addEventListener("click", closePromote);
+});
 //Promote notification popup
 ////
 //Get pin details
-document.getElementById("pinDetails").addEventListener("click", pinDetails);
-document.getElementById("pinDetails2").addEventListener("click", pinDetails);
-document.getElementById("pinDetails3").addEventListener("click", pinDetails);
-document.getElementById("pinDetails4").addEventListener("click", pinDetails);
-document.getElementById("pinDetails5").addEventListener("click", pinDetails);
-document.getElementById("pinDetails6").addEventListener("click", pinDetails);
-document.getElementById("pinDetails7").addEventListener("click", pinDetails);
-document.getElementById("pinDetails8").addEventListener("click", pinDetails);
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector(".post-img").addEventListener("click", pinDetails);
 
-function pinDetails() {
-  // Fetch the pin data from the backend
-  fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
-    .then((response) => response.json())
-    .then((pin) => {
-      // Create a container element to display the pin details
-      const container = document.createElement("div");
+  function pinDetails() {
+    // Fetch the pin data from the backend
+    fetch(`https://api.snapme-ng.com/api/v1/pin-details/:pinId`)
+      .then((response) => response.json())
+      .then((pin) => {
+        // Create a container element to display the pin details
+        const container = document.createElement("div");
 
-      // Create elements for the pin caption, author, and content
-      const caption = document.createElement("h1");
-      const author = document.createElement("p");
-      const content = document.createElement("p");
-      const media = document.createElement(
-        pin.media.type === "image" ? "img" : "video"
-      );
+        // Create elements for the pin caption, author, and content
+        const caption = document.createElement("h1");
+        const author = document.createElement("p");
+        const content = document.createElement("p");
+        const media = document.createElement(
+          pin.media.type === "image" ? "img" : "video"
+        );
 
-      // Set the text content of the elements to the pin data
-      caption.textContent = pin.caption;
-      author.textContent = `By ${pin.author}`;
-      content.textContent = pin.content;
+        // Set the text content of the elements to the pin data
+        caption.textContent = pin.caption;
+        author.textContent = `By ${pin.author}`;
+        content.textContent = pin.content;
 
-      // Set the attributes of the media element
-      media.src = pin.media.url;
-      media.alt = pin.caption;
+        // Set the attributes of the media element
+        media.src = pin.media.url;
+        media.alt = pin.caption;
 
-      // Add the elements to the container
-      container.appendChild(caption);
-      container.appendChild(author);
-      container.appendChild(content);
-      container.appendChild(media);
+        // Add the elements to the container
+        container.appendChild(caption);
+        container.appendChild(author);
+        container.appendChild(content);
+        container.appendChild(media);
 
-      // Add the container to the UI
-      document.body.appendChild(container);
-    })
-    .catch((error) => console.error(error));
-}
+        // Add the container to the UI
+        document.body.appendChild(container);
+      })
+      .catch((error) => console.error(error));
+  }
+});
 
-// Call the pinDetails function with a pin ID
-// pinDetails();
+
 
 //Get pin details end
 
 ////
 //Play video when scrolled into view
 //Video 1
-const video = document.getElementsByClassName("video")[0];
+const video = document.querySelector(".video");
 let isPlaying = false;
 
 window.addEventListener("scroll", () => {
@@ -1652,24 +1181,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-//Video 2
-const video2 = document.getElementsByClassName("video")[1];
-let isPlaying2 = false;
-
-window.addEventListener("scroll", () => {
-  const video2Top = video2.getBoundingClientRect().top;
-  const video2Bottom = video2.getBoundingClientRect().bottom;
-  const viewportHeight2 = window.innerHeight;
-
-  if (video2Top < viewportHeight2 && video2Bottom >= 0 && !isPlaying2) {
-    video2.play();
-    isPlaying2 = true;
-  } else if (video2Top >= viewportHeight2 || video2Bottom < 0) {
-    video2.pause();
-    isPlaying2 = false;
-  }
-});
-
 //Video controls 1
 //const video = document.getElementById("video");
 const playPauseBtn = document.getElementById("play-pause-btn");
@@ -1679,104 +1190,88 @@ const speedSelect = document.getElementById("speed-select");
 const skipBackBtn = document.getElementById("skip-back-btn");
 const skipAheadBtn = document.getElementById("skip-ahead-btn");
 
-// Play/pause button
-playPauseBtn.addEventListener("click", () => {
-  if (video.paused) {
-    video.play();
-    playPauseBtn.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
-  } else {
-    video.pause();
-    playPauseBtn.innerHTML = `<img src="Images/play-button-white.svg">`;
-  }
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the play/pause button element
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  // Get the video element
+  const video = document.getElementById("video");
+
+  // Play/pause button
+  document.addEventListener("DOMContentLoaded", function() {
+    const playPauseBtn = document.getElementById("playPauseBtn");
+  
+    playPauseBtn.addEventListener("click", () => {
+      const video = document.getElementById("video");
+  
+      if (video.paused) {
+        video.play();
+        playPauseBtn.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
+      } else {
+        video.pause();
+        playPauseBtn.innerHTML = `<img src="Images/play-button-white.svg">`;
+      }
+    });
+  });
+
+  // Volume range
+  document.addEventListener("DOMContentLoaded", function() {
+      // Get the volume range input element
+    const volumeRange = document.getElementById("volumeRange");
+    const video = document.getElementById("video");
+  
+    volumeRange.addEventListener("input", () => {
+      video.volume = volumeRange.value;
+    });
+  });  
+
+  // Mute/unmute button
+  document.addEventListener("DOMContentLoaded", function() {
+      // Get the mute/unmute button element
+    const muteBtn = document.getElementById("muteBtn");
+    const video = document.getElementById("video");
+  
+    muteBtn.addEventListener("click", () => {
+      if (video.muted) {
+        video.muted = false;
+        muteBtn.innerHTML = `<img src="Images/mute-white.svg">`;
+        volumeRange.value = video.volume;
+      } else {
+        video.muted = true;
+        muteBtn.innerHTML = `<img src="Images/unmute-white.svg" alt="Unmute/Mute" />`;
+        volumeRange.value = 0;
+      }
+    });
+  });
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get the skip back button element
+    const skipBackBtn = document.getElementById("skipBackBtn");
+  
+    // Skip back button
+    skipBackBtn.addEventListener("click", () => {
+      video.currentTime -= 10;
+    });
+  
+    // Get the skip ahead button element
+    const skipAheadBtn = document.getElementById("skipAheadBtn");
+  
+    // Skip ahead button
+    skipAheadBtn.addEventListener("click", () => {
+      video.currentTime += 10;
+    });
+  
+    // Get the playback speed select element
+    const speedSelect = document.getElementById("speedSelect");
+  
+    // Playback speed select
+    speedSelect.addEventListener("change", () => {
+      video.playbackRate = speedSelect.value;
+    });
+  });
+  
 });
 
-// Volume range
-volumeRange.addEventListener("input", () => {
-  video.volume = volumeRange.value;
-});
-
-// Mute/unmute button
-muteBtn.addEventListener("click", () => {
-  if (video.muted) {
-    video.muted = false;
-    muteBtn.innerHTML = `<img src="Images/mute-white.svg">`;
-    volumeRange.value = video.volume;
-  } else {
-    video.muted = true;
-    muteBtn.innerHTML = `<img src="Images/unmute-white.svg" alt="Unmute/Mute" />`;
-    volumeRange.value = 0;
-  }
-});
-
-// Skip back button
-skipBackBtn.addEventListener("click", () => {
-  video.currentTime -= 10;
-});
-
-// Skip ahead button
-skipAheadBtn.addEventListener("click", () => {
-  video.currentTime += 10;
-});
-
-// Playback speed select
-speedSelect.addEventListener("change", () => {
-  video.playbackRate = speedSelect.value;
-});
 //Video controls 1
-////
-
-//Video controls 2
-const playPauseBtn2 = document.getElementById("play-pause-btn2");
-const volumeRange2 = document.getElementById("volume-range2");
-const muteBtn2 = document.getElementById("mute-btn2");
-const speedSelect2 = document.getElementById("speed-select2");
-const skipBackBtn2 = document.getElementById("skip-back-btn2");
-const skipAheadBtn2 = document.getElementById("skip-ahead-btn2");
-
-// Play/pause button
-playPauseBtn2.addEventListener("click", () => {
-  if (video2.paused) {
-    video2.play();
-    playPauseBtn2.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
-  } else {
-    video2.pause();
-    playPauseBtn2.innerHTML = `<img src="Images/play-button-white.svg" alt="Play" />`;
-  }
-});
-
-// Volume range
-volumeRange2.addEventListener("input", () => {
-  video2.volume = volumeRange2.value;
-});
-
-// Mute/unmute button
-muteBtn2.addEventListener("click", () => {
-  if (video2.muted) {
-    video2.muted = false;
-    muteBtn2.innerHTML = `<img src="Images/mute-white.svg" alt="Mute" />`;
-    volumeRange2.value = video2.volume;
-  } else {
-    video2.muted = true;
-    muteBtn2.innerHTML = `<img src="Images/unmute-white.svg" alt="Mute" />`;
-    volumeRange2.value = 0;
-  }
-});
-
-// Skip back button
-skipBackBtn2.addEventListener("click", () => {
-  video2.currentTime -= 10;
-});
-
-// Skip ahead button
-skipAheadBtn2.addEventListener("click", () => {
-  video2.currentTime += 10;
-});
-
-// Playback speed select
-speedSelect2.addEventListener("change", () => {
-  video2.playbackRate = speedSelect2.value;
-});
-//Video controls 2 end
 ////
 //Change catalog buttons colour on click
 var previousButton;
@@ -1819,43 +1314,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ////
 //Mobile catalog tabs swipe control
-const swipeContainer = document.getElementById("swipe-container");
-const swipeContent = document.getElementbyId("swipe-item");
+document.addEventListener("DOMContentLoaded", function() {
+  const swipeContainer = document.getElementById("swipe-container");
+  const swipeContent = document.getElementById("swipe-item");
 
-let touchStartX = 0;
-let touchEndX = 0;
-let isFixed = false;
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isFixed = false;
 
-swipeContainer.addEventListener("touchstart", (event) => {
-  touchStartX = event.touches[0].clientX;
+  swipeContainer.addEventListener("touchstart", (event) => {
+    touchStartX = event.touches[0].clientX;
+  });
+
+  swipeContainer.addEventListener("touchmove", (event) => {
+    touchEndX = event.touches[0].clientX;
+
+    // If the user has scrolled past the top of the swipe container, fix it to the top
+    if (swipeContainer.getBoundingClientRect().top <= 0 && !isFixed) {
+      swipeContainer.classList.add("fixed");
+      isFixed = true;
+    }
+  });
+
+  swipeContainer.addEventListener("touchend", () => {
+    if (touchEndX < touchStartX) {
+      swipeContainer.style.transform = `translateX(0)`;
+    } else if (touchEndX > touchStartX) {
+      swipeContainer.style.transform = `translateX(0)`;
+    }
+  });
+
+  window.addEventListener("scroll", () => {
+    // If the user scrolls back to the top of the page, unfix the swipe container
+    if (window.scrollY <= 0 && isFixed) {
+      swipeContainer.classList.remove("fixed");
+      swipeContainer.style.transform = "";
+      isFixed = false;
+    }
+  });
 });
 
-swipeContainer.addEventListener("touchmove", (event) => {
-  touchEndX = event.touches[0].clientX;
-
-  // If the user has scrolled past the top of the swipe container, fix it to the top
-  if (swipeContainer.getBoundingClientRect().top <= 0 && !isFixed) {
-    swipeContainer.classList.add("fixed");
-    isFixed = true;
-  }
-});
-
-swipeContainer.addEventListener("touchend", () => {
-  if (touchEndX < touchStartX) {
-    swipeContainer.style.transform = `translateX(0)`;
-  } else if (touchEndX > touchStartX) {
-    swipeContainer.style.transform = `translateX(0)`;
-  }
-});
-
-window.addEventListener("scroll", () => {
-  // If the user scrolls back to the top of the page, unfix the swipe container
-  if (window.scrollY <= 0 && isFixed) {
-    swipeContainer.classList.remove("fixed");
-    swipeContainer.style.transform = "";
-    isFixed = false;
-  }
-});
 ////
 
 //Show/hide top menu on scroll
@@ -1872,56 +1370,61 @@ window.onscroll = function () {
 
 ////
 //Follow user for first post
-const followUserBtn = document.querySelector("#followBtn");
+document.addEventListener("DOMContentLoaded", function() {
+  const followUserBtn = document.querySelector("#followBtn");
 
-followUserBtn.addEventListener("click", () => {
-  const username = document.querySelector(".username").textContent;
+  followUserBtn.addEventListener("click", () => {
+    const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Replace with the actual name of your JWT token in localStorage
-    },
-    credentials: "include",
-    mode: "cors",
-    // Add any other necessary options here
-  })
-    .then((response) => {
-      if (response.ok) {
-        followUserBtn.textContent = "Following";
-      }
+    fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Replace with the actual name of your JWT token in localStorage
+      },
+      credentials: "include",
+      mode: "cors",
+      // Add any other necessary options here
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+      .then((response) => {
+        if (response.ok) {
+          followUserBtn.textContent = "Following";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
 });
 
 ////
 // Follow user other posts
-const followBtn = document.querySelector(".followBtn");
+document.addEventListener("DOMContentLoaded", function() {
+  const followBtn = document.querySelector(".followBtn");
 
-followBtn.addEventListener("click", () => {
-  const username = document.querySelector(".username").textContent;
+  followBtn.addEventListener("click", () => {
+    const username = document.querySelector(".username").textContent;
 
-  fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-    },
-    credentials: "include",
-    mode: "cors",
-    // Add any other necessary options here
-  })
-    .then((response) => {
-      if (response.ok) {
-        followBtn.textContent = "Following";
-      }
+    fetch(`https://api.snapme-ng.com/api/v1/${username}/follow`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+      },
+      credentials: "include",
+      mode: "cors",
+      // Add any other necessary options here
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+      .then((response) => {
+        if (response.ok) {
+          followBtn.textContent = "Following";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
 });
+
 
 /////

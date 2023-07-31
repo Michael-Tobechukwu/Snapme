@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top video" muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top video" autoplay muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video><div id="my-video-controls" class="my-video-controls">

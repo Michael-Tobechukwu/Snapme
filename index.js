@@ -102,36 +102,36 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top" muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top video" muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video><div id="my-video-controls" class="my-video-controls">
-              <button id="play-pause-btn">
-                <img src="Images/pause-white.svg" alt="Pause/Play" />
+              <button class="playPauseButton" data-playing="false">
+                <img src="Images/pause-white.svg" alt="Pause/play" />
                 
               </button>
               <input
                 type="range"
-                id="volume-range"
+                class="volume-range"
                 min="0"
                 max="1"
                 step="0.1"
                 value="1"
               />
-              <button id="mute-btn">
+              <button class="mute-btn">
                 <img src="Images/unmute-white.svg" alt="Unmute/Mute" />
                 
               </button>
-              <select id="speed-select" class="desktopOnly">
+              <select class="speed-select" class="desktopOnly">
                 <option value="1">1x</option>
                 <option value="0.5">0.5x</option>
                 <option value="1.5">1.5x</option>
                 <option value="2">2x</option>
               </select>
-              <button id="skip-back-btn">
+              <button class="skip-back-btn">
                 <img src="Images/skip-backward-white.svg" alt="<<" />
               </button>
-              <button id="skip-ahead-btn">
+              <button class="skip-ahead-btn">
                 <img src="Images/skip-forward-white.svg" alt=">>" />
               </button>
             </div>` 
@@ -1222,38 +1222,39 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-//const video = document.getElementById("video");
+/*const video = document.getElementById("video");
 const playPauseBtn = document.getElementById("play-pause-btn");
 const volumeRange = document.getElementById("volume-range");
 const muteBtn = document.getElementById("mute-btn");
 const speedSelect = document.getElementById("speed-select");
 const skipBackBtn = document.getElementById("skip-back-btn");
 const skipAheadBtn = document.getElementById("skip-ahead-btn");
+*/
 
-document.addEventListener("DOMContentLoaded", function() {
-  // Get the play/pause button element
-  const playPauseBtn = document.getElementById("playPauseBtn");
-  // Get the video element
-  const video = document.getElementById("video");
-
+// Video Controls 
   // Play/pause button
   document.addEventListener("DOMContentLoaded", function() {
-    // Get the play/pause button element
-    const playPauseBtn = document.getElementById("playPauseBtn");
+    const videos = document.querySelectorAll(".video");
+    const playPauseButtons = document.querySelectorAll(".playPauseButton");
   
-    playPauseBtn.addEventListener("click", () => {
-      // Get the video element
-      const video = document.getElementById("video");
+    playPauseButtons.forEach((button, index) => {
+      button.addEventListener("click", function() {
+        const video = videos[index];
+        const isPlaying = button.dataset.playing === "true";
   
-      if (video.paused) {
-        video.play();
-        playPauseBtn.innerHTML = `<img src="Images/pause-white.svg" alt="Pause/Play" />`;
-      } else {
-        video.pause();
-        playPauseBtn.innerHTML = `<img src="Images/play-button-white.svg">`;
-      }
+        if (isPlaying) {
+          video.pause();
+          button.dataset.playing = "false";
+          button.innerHTML = `<img src="Images/play-button-white.svg" alt="Play" />`;
+        } else {
+          video.play();
+          button.dataset.playing = "true";
+          button.innerHTML = `<img src="Images/pause-white.svg" alt="Pause" />`;
+        }
+      });
     });
   });
+  
 
   // Volume range
   document.addEventListener("DOMContentLoaded", function() {
@@ -1310,8 +1311,6 @@ document.addEventListener("DOMContentLoaded", function() {
       video.playbackRate = speedSelect.value;
     });
   });
-  
-});
 
 //Video controls 1
 ////

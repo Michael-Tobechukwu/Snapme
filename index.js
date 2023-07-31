@@ -1224,26 +1224,30 @@ document.addEventListener("DOMContentLoaded", () => {
 // Video Controls 
 // Play/pause button
 document.addEventListener("DOMContentLoaded", function() {
-    const videos = document.querySelectorAll(".video");
-    const playPauseButtons = document.querySelectorAll(".playPauseButton");
-  
-    playPauseButtons.forEach((button, index) => {
-      button.addEventListener("click", function() {
-        const video = videos[index];
-        const isPlaying = button.dataset.playing === "true";
-  
-        if (isPlaying) {
-          video.pause();
-          button.dataset.playing = "false";
-          button.innerHTML = `<img src="Images/play-button-white.svg" alt="Play" />`;
-        } else {
-          video.play();
-          button.dataset.playing = "true";
-          button.innerHTML = `<img src="Images/pause-white.svg" alt="Pause" />`;
-        }
-      });
+  const videos = document.querySelectorAll(".video");
+  const playPauseButtons = document.querySelectorAll(".playPauseButton");
+
+  playPauseButtons.forEach((button, index) => {
+    const video = videos[index];
+    // Play the video at the start
+    video.play();
+
+    button.addEventListener("click", function() {
+      const isPlaying = button.dataset.playing === "true";
+
+      if (isPlaying) {
+        video.pause();
+        button.dataset.playing = "false";
+        button.innerHTML = `<img src="Images/play-button-white.svg" alt="Play" />`;
+      } else {
+        video.play();
+        button.dataset.playing = "true";
+        button.innerHTML = `<img src="Images/pause-white.svg" alt="Pause" />`;
+      }
     });
+  });
 });
+
   
 // Volume range
 document.addEventListener("DOMContentLoaded", function() {

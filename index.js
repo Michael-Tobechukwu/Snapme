@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top" muted onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>`
@@ -1116,8 +1116,10 @@ document.addEventListener("DOMContentLoaded", function() {
 ////
 //Get pin details
 document.addEventListener("DOMContentLoaded", function() {
-  const cardImgTop = document.querySelector(".card-img-top");
+  const cardImgTops = document.querySelectorAll(".card-img-top");
+  cardImgTops.forEach((cardImgTop) => {
   cardImgTop.addEventListener("click", pinDetails);
+});
 
   function pinDetails() {
     // Fetch the pin data from the backend
@@ -1159,25 +1161,38 @@ document.addEventListener("DOMContentLoaded", function() {
 //Get pin details end
 
 //Play video when scrolled into view
-//Video 1
-const video = document.querySelector(".video");
-let isPlaying = false;
+document.addEventListener("DOMContentLoaded", () => {
+  const videos = document.querySelectorAll("video");
+  let isPlayingMap = new Map();
 
-window.addEventListener("scroll", () => {
-  const videoTop = video.getBoundingClientRect().top;
-  const videoBottom = video.getBoundingClientRect().bottom;
-  const viewportHeight = window.innerHeight;
+  function updateVideoState(video) {
+    const videoTop = video.getBoundingClientRect().top;
+    const videoBottom = video.getBoundingClientRect().bottom;
+    const viewportHeight = window.innerHeight;
+    const isPlaying = isPlayingMap.get(video) || false;
 
-  if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
-    video.play();
-    isPlaying = true;
-  } else if (videoTop >= viewportHeight || videoBottom < 0) {
-    video.pause();
-    isPlaying = false;
+    if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
+      video.play();
+      isPlayingMap.set(video, true);
+    } else if (videoTop >= viewportHeight || videoBottom < 0) {
+      video.pause();
+      isPlayingMap.set(video, false);
+    }
   }
+
+  window.addEventListener("scroll", () => {
+    videos.forEach((video) => {
+      updateVideoState(video);
+    });
+  });
+
+  // Additional logic to update video states on initial load
+  videos.forEach((video) => {
+    updateVideoState(video);
+  });
 });
 
-//Video controls 1
+
 //const video = document.getElementById("video");
 const playPauseBtn = document.getElementById("play-pause-btn");
 const volumeRange = document.getElementById("volume-range");
@@ -1194,9 +1209,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Play/pause button
   document.addEventListener("DOMContentLoaded", function() {
+    // Get the play/pause button element
     const playPauseBtn = document.getElementById("playPauseBtn");
   
     playPauseBtn.addEventListener("click", () => {
+      // Get the video element
       const video = document.getElementById("video");
   
       if (video.paused) {
@@ -1310,7 +1327,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
-const swipeContent = document.getElementbyId("swipe-item");
+const swipeContent = document.getElementById("swipe-item");
 
 let touchStartX = 0;
 let touchEndX = 0;

@@ -102,10 +102,39 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top" muted onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top" muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
-              </video>`
+              </video><div id="my-video-controls" class="my-video-controls">
+              <button id="play-pause-btn">
+                <img src="Images/pause-white.svg" alt="Pause/Play" />
+                
+              </button>
+              <input
+                type="range"
+                id="volume-range"
+                min="0"
+                max="1"
+                step="0.1"
+                value="1"
+              />
+              <button id="mute-btn">
+                <img src="Images/unmute-white.svg" alt="Unmute/Mute" />
+                
+              </button>
+              <select id="speed-select" class="desktopOnly">
+                <option value="1">1x</option>
+                <option value="0.5">0.5x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+              </select>
+              <button id="skip-back-btn">
+                <img src="Images/skip-backward-white.svg" alt="<<" />
+              </button>
+              <button id="skip-ahead-btn">
+                <img src="Images/skip-forward-white.svg" alt=">>" />
+              </button>
+            </div>` 
                   : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${postId}'" />`
                 : `<p>${post.message}</p>`
             }

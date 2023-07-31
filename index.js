@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top video" autoplay muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top video" muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video><div id="my-video-controls" class="my-video-controls">
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 step="0.1"
                 value="1"
               />
-              <button class="mute-btn">
+              <button class="mute-btn" data-muted="false">
                 <img src="Images/unmute-white.svg" alt="Unmute/Mute" />
                 
               </button>
@@ -1221,19 +1221,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-/*const video = document.getElementById("video");
-const playPauseBtn = document.getElementById("play-pause-btn");
-const volumeRange = document.getElementById("volume-range");
-const muteBtn = document.getElementById("mute-btn");
-const speedSelect = document.getElementById("speed-select");
-const skipBackBtn = document.getElementById("skip-back-btn");
-const skipAheadBtn = document.getElementById("skip-ahead-btn");
-*/
-
 // Video Controls 
-  // Play/pause button
-  document.addEventListener("DOMContentLoaded", function() {
+// Play/pause button
+document.addEventListener("DOMContentLoaded", function() {
     const videos = document.querySelectorAll(".video");
     const playPauseButtons = document.querySelectorAll(".playPauseButton");
   
@@ -1253,64 +1243,87 @@ const skipAheadBtn = document.getElementById("skip-ahead-btn");
         }
       });
     });
-  });
+});
   
+// Volume range
+document.addEventListener("DOMContentLoaded", function() {
+  const volumeRanges = document.querySelectorAll(".volume-range");
+  const videos = document.querySelectorAll(".video");
 
-  // Volume range
-  document.addEventListener("DOMContentLoaded", function() {
-      // Get the volume range input element
-    const volumeRange = document.getElementById("volumeRange");
-    const video = document.getElementById("video");
-  
+  volumeRanges.forEach((volumeRange, index) => {
+    const video = videos[index];
+
     volumeRange.addEventListener("input", () => {
       video.volume = volumeRange.value;
     });
-  });  
+  });
+});
 
-  // Mute/unmute button
-  document.addEventListener("DOMContentLoaded", function() {
-      // Get the mute/unmute button element
-    const muteBtn = document.getElementById("muteBtn");
-    const video = document.getElementById("video");
-  
+// Mute/unmute button
+document.addEventListener("DOMContentLoaded", function() {
+  const muteButtons = document.querySelectorAll(".mute-btn");
+  const videos = document.querySelectorAll(".video");
+
+  muteButtons.forEach((muteBtn, index) => {
+    const video = videos[index];
+
     muteBtn.addEventListener("click", () => {
-      if (video.muted) {
+      const isMuted = muteBtn.dataset.muted === "true";
+
+      if (isMuted) {
         video.muted = false;
-        muteBtn.innerHTML = `<img src="Images/mute-white.svg">`;
-        volumeRange.value = video.volume;
+        muteBtn.dataset.muted = "false";
+        muteBtn.innerHTML = `<img src="Images/mute-white.svg" alt="Mute" />`;
+        video.volume = parseFloat(video.dataset.savedVolume);
       } else {
         video.muted = true;
-        muteBtn.innerHTML = `<img src="Images/unmute-white.svg" alt="Unmute/Mute" />`;
-        volumeRange.value = 0;
+        muteBtn.dataset.muted = "true";
+        muteBtn.innerHTML = `<img src="Images/unmute-white.svg" alt="Unmute" />`;
+        video.dataset.savedVolume = video.volume;
+        video.volume = 0;
       }
     });
   });
-  
-  document.addEventListener("DOMContentLoaded", function() {
-    // Get the skip back button element
-    const skipBackBtn = document.getElementById("skipBackBtn");
-  
-    // Skip back button
+});
+
+// Skip back and skip ahead controls
+document.addEventListener("DOMContentLoaded", function() {
+  const skipBackButtons = document.querySelectorAll(".skip-back-btn");
+  const skipAheadButtons = document.querySelectorAll(".skip-ahead-btn");
+  const videos = document.querySelectorAll(".video");
+
+  skipBackButtons.forEach((skipBackBtn, index) => {
+    const video = videos[index];
+
     skipBackBtn.addEventListener("click", () => {
       video.currentTime -= 10;
     });
-  
-    // Get the skip ahead button element
-    const skipAheadBtn = document.getElementById("skipAheadBtn");
-  
-    // Skip ahead button
+  });
+
+  skipAheadButtons.forEach((skipAheadBtn, index) => {
+    const video = videos[index];
+
     skipAheadBtn.addEventListener("click", () => {
       video.currentTime += 10;
     });
-  
-    // Get the playback speed select element
-    const speedSelect = document.getElementById("speedSelect");
-  
-    // Playback speed select
+  });
+});
+
+//Video speed control 
+// Get the playback speed select element
+document.addEventListener("DOMContentLoaded", function() {
+  const speedSelects = document.querySelectorAll(".speed-select");
+  const videos = document.querySelectorAll(".video");
+
+  speedSelects.forEach((speedSelect, index) => {
+    const video = videos[index];
+
     speedSelect.addEventListener("change", () => {
       video.playbackRate = speedSelect.value;
     });
   });
+});
+
 
 //Video controls 1
 ////

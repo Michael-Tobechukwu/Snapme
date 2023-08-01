@@ -746,8 +746,8 @@ function setupLikeButtons() {
 document.addEventListener('DOMContentLoaded', function () {
   setupLikeButtons();
 });
-
 //Like buttons end
+
 
 //Follow popup on mobile
 // Music
@@ -771,8 +771,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setupMobileFollowModal();
 });
 
-
-// Shows and concerts
+// Others
 function setupFollowMeModals() {
   var followMeBtns = document.querySelectorAll(".followPopup");
   var followMeModals = document.querySelectorAll(".mobileFollowModal");
@@ -797,6 +796,7 @@ function setupFollowMeModals() {
 document.addEventListener('DOMContentLoaded', function () {
   setupFollowMeModals();
 });
+
 
 // Live popup
 // Function to show the live modal
@@ -1328,29 +1328,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
-//Video controls 1
-////
-//Change catalog buttons colour on click
-/*var previousButton;
-
-var buttons = document.querySelectorAll(".swipe-item button");
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", function () {
-    changeButtonColor(this);
-  });
-}
-
-function changeButtonColor(clickedButton) {
-  if (previousButton) {
-    previousButton.style.backgroundColor = "#021129";
-  }
-  clickedButton.style.backgroundColor = "#bd74bd";
-
-  previousButton = clickedButton;
-}
-*////
-
 //Show/Hide footer menu on scroll
 document.addEventListener("DOMContentLoaded", function () {
   var oldScrollpos = window.scrollY;
@@ -1372,7 +1349,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
-const swipeContent = document.getElementById("swipe-item");
+const swipeContent = document.getElementbyId("swipe-item");
 
 let touchStartX = 0;
 let touchEndX = 0;

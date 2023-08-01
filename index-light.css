@@ -1034,6 +1034,7 @@ input:checked + .slider:before {
     border-radius: 0.5rem;
     box-shadow: none;
     position: absolute;
+    z-index: 1;
   }
 
   .navbuttonsMobile .social-icons li a {
@@ -1251,6 +1252,7 @@ top: 61%;
     /*Trending catalogs*/
     font-size: 16px;
     margin: 0;
+    color: #021129;
   }
 
   .discover button {

@@ -136,10 +136,8 @@ window.addEventListener("load", function () {
     .then((post) => {
       const pinDetailsElement = document.getElementById("pinCard");
 
-      let userId = post?.id;
-
       let mediaHTML = "";
-      if (Array.isArray(post.post.media) && post.post.media.length >= 1) {
+      if (Array.isArray(post.post.media) && post.post.media.length > 0) {
         // Determine if the media is an image or video
         const isImage =
           post.post.media[0].endsWith(".jpg") ||
@@ -170,7 +168,7 @@ window.addEventListener("load", function () {
         }
 
         // If there are more than one media, create a slider
-        if (post.post.media.length >= 1) {
+        if (post.post.media.length > 1) {
           mediaHTML = `
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
@@ -251,7 +249,7 @@ window.addEventListener("load", function () {
           <div class="mobileIcons">
             <img
               src="Images/back arrow.svg" class="backArrow"
-              onclick="history.back()"
+              onclick="history.back()" 
             />
             <img src="Images/Snapme icon white.png" class="white-logo" alt="logo" />
           </div>
@@ -362,16 +360,10 @@ window.addEventListener("load", function () {
                   </button>
                 </li>
                 <li class="likeDiv">
-                  <button onclick="likePost()" id="like-button">
-                    <i id="likeIcon" class="${
-                      post.post?.likes.includes(post?.id)
-                        ? "fas fa-heart"
-                        : "far fa-heart"
-                    }"></i>
+                  <button onclick="likePost()" class="like-button">
+                    <i class="far fa-heart"></i>
                   </button>
-                  <p class="text-white" id="likeText">${
-                    post.post?.likes?.length
-                  }</p>
+                  <p class="text-white">${post.post?.likes?.length}</p>
                 </li>
                 <li>
                 <a href="#commentForm">
@@ -489,20 +481,8 @@ window.addEventListener("load", function () {
           .map(
             (comment) => `
       <div id="comment-${comment.id}" class="marcdiss-box">
-        <button onclick="window.location = 'user.html?user=${
-          comment.username
-        }'">
-        <img src="${
-          comment.userImage ===
-          "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
-            ? `Images/user image.svg`
-            : comment.userImage
-        }" style="border-radius: 50%; border: 2px solid #ba00ba;" alt="${
-              comment.username
-            } Profile pic" width="50px"
-                 class="profilePic" onclick="window.location='user.html?username=${
-                   comment.username
-                 }'" />
+        <button onclick="window.location = 'user.html?user=${comment.username}'">
+          <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
         </button>
         <div class="marcdiss">
           <p class="username">${comment.username}</p>
@@ -511,9 +491,7 @@ window.addEventListener("load", function () {
           <ul id="signedInContent2">
             <li onclick="likeComment('${comment.id}')">Like</li>
             <li onclick="replyComment('${comment.id}')">Reply</li>
-            <li onclick="deleteReply('${comment.id}', '${
-              comment.replies?.id
-            }')">Remove</li>
+            <li onclick="deleteReply('${comment.id}', '${comment.replies?.id}')">Remove</li>
             <li onclick="deleteComment('${comment.id}')">Delete</li>
           </ul>
         </div>
@@ -609,16 +587,12 @@ window.addEventListener("load", function () {
             <div class="card mobileCard">
               <div class="post-img">
               ${
-                post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top" controls onclick="window.location = 'pin-details.html?id=${post._id}'">
+                post.media[0].endsWith(".mp4")
+                  ? `<video class="card-img-top" controls autoplay muted onclick="window.location = 'pin-details.html?id=${post._id}'">
                   <source src="${post?.media[0]}" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>`
-                  : `<img src="${post.media[0]}" style="${
-                      !post.media[0] ? `display: none;` : `display: flex;`
-                    }" class="card-img-top" onclick="window.location = 'pin-details.html?id=${
-                      post._id
-                    }'" />`
+                  : `<img src="${post.media[0]}" class="card-img-top" onclick="window.location = 'pin-details.html?id=${post._id}'" />`
               }
                 <a class="username text-white" href="user.html?username=${
                   post.user.username
@@ -646,9 +620,9 @@ window.addEventListener("load", function () {
                 </a>
 
                 <h4>${post.caption}</h4>
-                <div id="commentBox">
+                <div class="commentBox">
                   <form class="commentBoxForm">
-                    <span id="closeComment"> &times;</span>
+                    <span class="closeComment"> &times;</span>
                     <textarea
                       name="comment"
                       id="commentInput"
@@ -675,17 +649,13 @@ window.addEventListener("load", function () {
                     </button>
                   </li>
                   <li class="likeListItem">
-                  <button onclick="likePost()" id="like-button">
-                    <i id="likeIcon" class="${
-                      post?.likes.includes(userId)
-                        ? "fas fa-heart"
-                        : "far fa-heart"
-                    }"></i>
-                  </button>
-                  <p class="text-white" id="likeText">${post?.likes?.length}</p>
+                    <button onclick="likePost()" class="like-button">
+                      <i class="far fa-heart" style="color: #fff"></i>
+                    </button>
+                    <p class="text-white">${post?.likes?.length}</p>
                   </li>
                   <li>
-                    <button id="commentBtn">
+                    <button class="commentBtn">
                       <i class="fa-solid fa-comment"></i>
                       <p class="text-white">${post?.comment?.length}</p>
                     </button>
@@ -819,43 +789,51 @@ window.addEventListener("load", function () {
 
   //Catalogs for you pins share
   //Share 1
-  var btn = document.getElementsByClassName("myPopupBtn")[0];
-  var modal = document.getElementsByClassName("shareModal")[0];
-  var closeThisNow = document.getElementsByClassName("close")[0];
-
-  // When the user clicks the button, open the modals
-  btn.onclick = function () {
-    modal.style.display = "block";
-  };
-
-  // When the user clicks on <span> (x), close the modal
-  closeThisNow.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  // Close the modal
-  window.onclick = function (event) {
-    if (event.target == modal) {
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementsByClassName("myPopupBtn")[0];
+    var modal = document.getElementsByClassName("shareModal")[0];
+    var closeThisNow = document.getElementsByClassName("close")[0];
+  
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+  
+    // When the user clicks on <span> (x), close the modal
+    closeThisNow.onclick = function () {
       modal.style.display = "none";
-    }
-  };
+    };
+  
+    // Close the modal when the user clicks outside the modal
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+  
 
   //Suggested catalogs like buttons
   //Like button for suggested catalog 1
-  const likeButton1 = document.getElementsByClassName("like-button")[0];
-  let isLiked1 = false;
-
-  likeButton1.addEventListener("click", () => {
-    if (isLiked1) {
-      likeButton1.innerHTML = `<i class="far fa-heart"></i>`;
-      likeButton1.style.color = "#fff";
-      isLiked1 = false;
-    } else {
-      likeButton1.innerHTML = `<i class="fas fa-heart"></i>`;
-      likeButton1.style.color = "#fff";
-      isLiked1 = true;
-    }
+  document.addEventListener('DOMContentLoaded', function() {
+    const likeButtons = document.querySelectorAll(".like-button");
+    const isLiked = new Array(likeButtons.length).fill(false);
+  
+    likeButtons.forEach((likeButton, index) => {
+      likeButton.addEventListener("click", () => {
+        if (isLiked[index]) {
+          likeButton.innerHTML = `<i class="far fa-heart"></i>`;
+          likeButton.style.color = "#fff";
+          isLiked[index] = false;
+        } else {
+          likeButton.innerHTML = `<i class="fas fa-heart"></i>`;
+          likeButton.style.color = "#fff";
+          isLiked[index] = true;
+        }
+      });
+    });
   });
+  
 
   //Play video when scrolled into view
   //Video 1
@@ -878,35 +856,6 @@ window.addEventListener("load", function () {
 
   var timePinned = moment("20230129", "YYYYMMDD").fromNow();
   document.getElementById("timePosted").innerHTML = timePinned;
-
-  // Live popup
-  var liveModal = document.getElementById("liveModal");
-  var liveBtn = document.getElementById("liveButton");
-  var closeLive = document.getElementById("closeLive");
-
-  liveBtn.onclick = function () {
-    liveModal.style.display = "block";
-  };
-
-  // When the user clicks on <span> (x), close the modals
-  closeLive.onclick = function () {
-    liveModal.style.display = "none";
-  };
-
-  // Live popup on mobile
-  var liveModalMobile = document.getElementById("liveModalMobile");
-  var mobileLiveBtn = document.getElementById("mobileLiveBtn");
-  var closeLiveMobile = document.getElementById("closeLiveMobile");
-
-  mobileLiveBtn.onclick = function () {
-    liveModalMobile.style.display = "block";
-  };
-
-  // When the user clicks on <span> (x), close the modals
-  closeLiveMobile.onclick = function () {
-    liveModalMobile.style.display = "none";
-  };
-  //Live popup ends
 });
 
 function openFullscreen(element) {
@@ -934,24 +883,6 @@ function likePost() {
   })
     .then((response) => response.json())
     .then((data) => {
-      const likeCount = document.getElementById("likeText");
-      const heartIcon = document.getElementById("likeIcon");
-
-      if (data.status === "liked") {
-        // Update the like count
-        likeCount.textContent = data.likes.length;
-
-        heartIcon.classList.remove("far");
-        // heartIcon.style.color = "red";
-        heartIcon.classList.add("fas");
-      } else {
-        likeCount.textContent = data.likes.length;
-        // heartIcon.style.color = "#fff";
-        heartIcon.classList.remove("fas");
-        // heartIcon.style.color = "red";
-        heartIcon.classList.add("far");
-      }
-
       console.log("Post liked successfully");
     })
     .catch((error) => console.error(error));
@@ -993,45 +924,31 @@ function commentOnPost() {
       const commentElement = document.createElement("div");
       commentElement.classList.add("marcdiss-box");
 
-      const comments = Array.isArray(data) ? data : [data];
-
       commentElement.innerHTML = `
-        ${
-          comments.length !== 0
-            ? comments
-                .map(
-                  (comment) => `
-                    <button onclick="window.location = 'user.html?user=${
-                      comment.username
-                    }'">
-                    <img src="${
-                      comment.userImage ===
-                      "https://res.cloudinary.com/ddbtxfsfk/image/upload/v1677178789/user-image-with-black-background_oslni5.png"
-                        ? `Images/user image.svg`
-                        : comment.userImage
-                    }" style="border-radius: 50%; border: 2px solid #ba00ba;" alt="${
-                    comment.username
-                  } Profile pic" width="50px"
- onclick="window.location='user.html?username=${comment.username}'" />
-                    </button>
-                    <div class="marcdiss">
-                      <p class="username">${comment.username}</p>
-                      <p class="alias">${comment.text}</p>
-                      <ul id="signedInContent2">
-                        <li onclick="likeComment('${comment.id}')">Like</li>
-                        <li onclick="replyComment('${comment.id}')">Reply</li>
-                        <li onclick="deleteReply('${comment.id}', '${
-                    comment.replies?.id
-                  }')">Remove</li>
-                        <li onclick="deleteComment('${comment.id}')">Delete</li>
-                      </ul>
-                    </div>
-                  `
-                )
-                .join("")
-            : "<p>No comments yet!</p>"
-        }
-      `;
+  ${
+    data.length !== 0
+      ? data
+          .map(
+            (comment) => `
+            <button onclick="window.location = 'user.html?user=${comment.username}'">
+              <img src="${comment.userImage}" width="50px" alt="${comment.username} Profile Picture" />
+            </button>
+            <div class="marcdiss">
+              <p class="username">${comment.username}</p>
+              <p class="alias">${comment.text}</p>
+              <ul id="signedInContent2">
+                <li onclick="likeComment('${comment.id}')">Like</li>
+                <li onclick="replyComment('${comment.id}')">Reply</li>
+                <li onclick="deleteReply('${comment.id}', '${comment.replies?.id}')">Remove</li>
+                <li onclick="deleteComment('${comment.id}')">Delete</li>
+              </ul>
+            </div>
+          `
+          )
+          .join("")
+      : "<p>No comments yet!</p>"
+  }
+`;
       container.appendChild(commentElement);
     })
     .catch((error) => {
@@ -1040,175 +957,21 @@ function commentOnPost() {
     });
 }
 
-// //Share 2
-// var btn = document.getElementsByClassName("myPopupBtn")[1];
-// var modal = document.getElementsByClassName("shareModal")[1];
-// var closeThisNow = document.getElementsByClassName("close")[1];
-
-// // When the user clicks the button, open the modals
-// btn.onclick = function () {
-//   modal.style.display = "block";
-// };
-
-// // When the user clicks on <span> (x), close the modal
-// closeThisNow.onclick = function () {
-//   modal.style.display = "none";
-// };
-
-// // Close the modal
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// };
-
-// //Share 3
-// var btn = document.getElementsByClassName("myPopupBtn")[2];
-// var modal = document.getElementsByClassName("shareModal")[2];
-// var closeThisNow = document.getElementsByClassName("close")[2];
-
-// // When the user clicks the button, open the modals
-// btn.onclick = function () {
-//   modal.style.display = "block";
-// };
-
-// // When the user clicks on <span> (x), close the modal
-// closeThisNow.onclick = function () {
-//   modal.style.display = "none";
-// };
-
-// // Close the modal
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// };
-
-// //Share 4
-// var btn = document.getElementsByClassName("myPopupBtn")[3];
-// var modal = document.getElementsByClassName("shareModal")[3];
-// var closeThisNow = document.getElementsByClassName("close")[3];
-
-// // When the user clicks the button, open the modals
-// btn.onclick = function () {
-//   modal.style.display = "block";
-// };
-
-// // When the user clicks on <span> (x), close the modal
-// closeThisNow.onclick = function () {
-//   modal.style.display = "none";
-// };
-
-// // Close the modal
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// };
-
-//Catalogs for you pins share
 ////
-//Signedin Users Content
-//Check signed in status on page
-// window.addEventListener("load", () => {
-//   // Get the JWT token from local storage
-//   const token = localStorage.getItem("jwtToken");
+//Follow catalog popup on mobile
+// Music
+var followModal = document.getElementById("mobileFollowModal");
+var mobileFollowBtn = document.getElementById("followPopup");
+var close = document.getElementsByClassName("mobileclose")[0];
 
-//   if (token) {
-//     try {
-//       // Attempt to decode the JWT token to get the user information
-//       const decodedToken = JSON.parse(atob(token.split(".")[1]));
-//       const userId = decodedToken.userId; // Example: extract the user ID from the JWT payload
+mobileFollowBtn.onclick = function () {
+  followModal.style.display = "block";
+};
 
-//       // Display the content for signed-in users
-//       const signedInContent = document.getElementById("signedInContent");
-//       const signedInContent2 = document.getElementById("signedInContent2");
-//       signedInContent.style.display = "block";
-//       signedInContent2.style.display = "block";
-//     } catch (err) {
-//       // If there was an error decoding the token, assume the user is not signed in
-//       console.error("Error decoding JWT token:", err);
-
-// Redirect the user to the login page
-//       window.location.href = "login.html";
-//     }
-//   } else {
-//     // Redirect the user to the login page
-//     window.location.href = "login.html";
-//   }
-// });
-
-////
-
-// //Video 2
-// const video2 = document.getElementsByClassName("video")[1];
-// let isPlaying2 = false;
-
-// window.addEventListener("scroll", () => {
-//   const video2Top = video2.getBoundingClientRect().top;
-//   const video2Bottom = video2.getBoundingClientRect().bottom;
-//   const viewportHeight = window.innerHeight;
-
-//   if (video2Top < viewportHeight && video2Bottom >= 0 && !isPlaying2) {
-//     video2.play();
-//     isPlaying2 = true;
-//   } else if (video2Top >= viewportHeight || video2Bottom < 0) {
-//     video2.pause();
-//     isPlaying2 = false;
-//   }
-// });
-//Video played when scrolled into view end
-////
-
-// //Like button for suggested catalog 2
-// const likeButton2 = document.getElementsByClassName("like-button")[1];
-// let isLiked2 = false;
-
-// likeButton2.addEventListener("click", () => {
-//   if (isLiked2) {
-//     likeButton2.innerHTML = `<i class="far fa-heart"></i>`;
-//     likeButton2.style.color = "#fff";
-//     isLiked2 = false;
-//   } else {
-//     likeButton2.innerHTML = `<i class="fas fa-heart"></i>`;
-//     likeButton2.style.color = "#fff";
-//     isLiked2 = true;
-//   }
-// });
-
-// //Like button for suggested 3
-// const likeButton3 = document.getElementsByClassName("like-button")[2];
-// let isLiked3 = false;
-
-// likeButton3.addEventListener("click", () => {
-//   if (isLiked3) {
-//     likeButton3.innerHTML = '<i class="far fa-heart"></i>';
-//     likeButton3.style.color = "#fff";
-//     isLiked3 = false;
-//   } else {
-//     likeButton3.innerHTML = '<i class="fas fa-heart"></i>';
-//     likeButton3.style.color = "#fff";
-//     isLiked3 = true;
-//   }
-// });
-
-// //Like button for suggested 4
-// const likeButton4 = document.getElementsByClassName("like-button")[3];
-// let isLiked4 = false;
-
-// likeButton4.addEventListener("click", () => {
-//   if (isLiked4) {
-//     likeButton4.innerHTML = '<i class="far fa-heart"></i>';
-//     likeButton4.style.color = "#fff";
-//     isLiked4 = false;
-//   } else {
-//     likeButton4.innerHTML = '<i class="fas fa-heart"></i>';
-//     likeButton4.style.color = "#fff";
-//     isLiked4 = true;
-//   }
-// });
-////
-
+// When the user clicks on <span> (x), close the modals
+close.onclick = function () {
+  followModal.style.display = "none";
+};
 ////
 //Time posted
 
@@ -1221,358 +984,371 @@ function commentOnPost() {
 // var timePinned = moment("20230228", "YYYYMMDD").fromNow();
 // document.getElementsByClassName("timePosted")[2].innerHTML = timePinned;
 
-//Follow catalog popup on mobile
-// Music
-var followModal = document.getElementById("followMusicModal");
-var mobileFollowBtn = document.getElementById("followPopup");
-var close = document.getElementsByClassName("mobileclose")[0];
-
-mobileFollowBtn.onclick = function () {
-  followModal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modals
-close.onclick = function () {
-  followModal.style.display = "none";
-};
-
 // Shows and concerts
-var followMeBtn1 = document.getElementsByClassName("followPopup")[0];
-var followMeModal1 = document.getElementsByClassName("mobileFollowModal")[0];
-var closeMe1 = document.getElementsByClassName("closeme")[0];
+var followMeBtn = document.getElementsByClassName("followPopup")[0];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[0];
+var closeMe = document.getElementsByClassName("closeme")[0];
 
-followMeBtn1.onclick = function () {
-  followMeModal1.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe1.onclick = function () {
-  followMeModal1.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Dance
-var followMeBtn2 = document.getElementsByClassName("followPopup")[1];
-var followMeModal2 = document.getElementsByClassName("mobileFollowModal")[1];
-var closeMe2 = document.getElementsByClassName("closeme")[1];
+var followMeBtn = document.getElementsByClassName("followPopup")[1];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[1];
+var closeMe = document.getElementsByClassName("closeme")[1];
 
-followMeBtn2.onclick = function () {
-  followMeModal2.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe2.onclick = function () {
-  followMeModal2.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Afrobeats
-var followMeBtn3 = document.getElementsByClassName("followPopup")[2];
-var followMeModal3 = document.getElementsByClassName("mobileFollowModal")[2];
-var closeMe3 = document.getElementsByClassName("closeme")[2];
+var followMeBtn = document.getElementsByClassName("followPopup")[2];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[2];
+var closeMe = document.getElementsByClassName("closeme")[2];
 
-followMeBtn3.onclick = function () {
-  followMeModal3.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe3.onclick = function () {
-  followMeModal3.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Comedy
-var followMeBtn4 = document.getElementsByClassName("followPopup")[3];
-var followMeModal4 = document.getElementsByClassName("mobileFollowModal")[3];
-var closeMe4 = document.getElementsByClassName("closeme")[3];
+var followMeBtn = document.getElementsByClassName("followPopup")[3];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[3];
+var closeMe = document.getElementsByClassName("closeme")[3];
 
-followMeBtn4.onclick = function () {
-  followMeModal4.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe4.onclick = function () {
-  followMeModal4.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Tag Stories
-var followMeBtn5 = document.getElementsByClassName("followPopup")[4];
-var followMeModal5 = document.getElementsByClassName("mobileFollowModal")[4];
-var closeMe5 = document.getElementsByClassName("closeme")[4];
+var followMeBtn = document.getElementsByClassName("followPopup")[4];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[4];
+var closeMe = document.getElementsByClassName("closeme")[4];
 
-followMeBtn5.onclick = function () {
-  followMeModal5.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe5.onclick = function () {
-  followMeModal5.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Photography
-var followMeBtn6 = document.getElementsByClassName("followPopup")[5];
-var followMeModal6 = document.getElementsByClassName("mobileFollowModal")[5];
-var closeMe6 = document.getElementsByClassName("closeme")[5];
+var followMeBtn = document.getElementsByClassName("followPopup")[5];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[5];
+var closeMe = document.getElementsByClassName("closeme")[5];
 
-followMeBtn6.onclick = function () {
-  followMeModal6.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe6.onclick = function () {
-  followMeModal6.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Art
-var followMeBtn7 = document.getElementsByClassName("followPopup")[6];
-var followMeModal7 = document.getElementsByClassName("mobileFollowModal")[6];
-var closeMe7 = document.getElementsByClassName("closeme")[6];
+var followMeBtn = document.getElementsByClassName("followPopup")[6];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[6];
+var closeMe = document.getElementsByClassName("closeme")[6];
 
-followMeBtn7.onclick = function () {
-  followMeModal7.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe7.onclick = function () {
-  followMeModal7.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Museums
-var followMeBtn8 = document.getElementsByClassName("followPopup")[7];
-var followMeModal8 = document.getElementsByClassName("mobileFollowModal")[7];
-var closeMe8 = document.getElementsByClassName("closeme")[7];
+var followMeBtn = document.getElementsByClassName("followPopup")[7];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[7];
+var closeMe = document.getElementsByClassName("closeme")[7];
 
-followMeBtn8.onclick = function () {
-  followMeModal8.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe8.onclick = function () {
-  followMeModal8.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Tourism
-var followMeBtn9 = document.getElementsByClassName("followPopup")[8];
-var followMeModal9 = document.getElementsByClassName("mobileFollowModal")[8];
-var closeMe9 = document.getElementsByClassName("closeme")[8];
+var followMeBtn = document.getElementsByClassName("followPopup")[8];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[8];
+var closeMe = document.getElementsByClassName("closeme")[8];
 
-followMeBtn9.onclick = function () {
-  followMeModal9.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe9.onclick = function () {
-  followMeModal9.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Fashion
-var followMeBtn10 = document.getElementsByClassName("followPopup")[9];
-var followMeModal10 = document.getElementsByClassName("mobileFollowModal")[9];
-var closeMe10 = document.getElementsByClassName("closeme")[9];
+var followMeBtn = document.getElementsByClassName("followPopup")[9];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[9];
+var closeMe = document.getElementsByClassName("closeme")[9];
 
-followMeBtn10.onclick = function () {
-  followMeModal10.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe10.onclick = function () {
-  followMeModal10.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Beauty & Kits
-var followMeBtn11 = document.getElementsByClassName("followPopup")[10];
-var followMeModal11 = document.getElementsByClassName("mobileFollowModal")[10];
-var closeMe11 = document.getElementsByClassName("closeme")[10];
+var followMeBtn = document.getElementsByClassName("followPopup")[10];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[10];
+var closeMe = document.getElementsByClassName("closeme")[10];
 
-followMeBtn11.onclick = function () {
-  followMeModal11.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe11.onclick = function () {
-  followMeModal11.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Food
-var followMeBtn12 = document.getElementsByClassName("followPopup")[11];
-var followMeModal12 = document.getElementsByClassName("mobileFollowModal")[11];
-var closeMe12 = document.getElementsByClassName("closeme")[11];
+var followMeBtn = document.getElementsByClassName("followPopup")[11];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[11];
+var closeMe = document.getElementsByClassName("closeme")[11];
 
-followMeBtn12.onclick = function () {
-  followMeModal12.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe12.onclick = function () {
-  followMeModal12.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Fitness
-var followMeBtn13 = document.getElementsByClassName("followPopup")[12];
-var followMeModal13 = document.getElementsByClassName("mobileFollowModal")[12];
-var closeMe13 = document.getElementsByClassName("closeme")[12];
+var followMeBtn = document.getElementsByClassName("followPopup")[12];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[12];
+var closeMe = document.getElementsByClassName("closeme")[12];
 
-followMeBtn13.onclick = function () {
-  followMeModal13.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe13.onclick = function () {
-  followMeModal13.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Football
-var followMeBtn14 = document.getElementsByClassName("followPopup")[13];
-var followMeModal14 = document.getElementsByClassName("mobileFollowModal")[13];
-var closeMe14 = document.getElementsByClassName("closeme")[13];
+var followMeBtn = document.getElementsByClassName("followPopup")[13];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[13];
+var closeMe = document.getElementsByClassName("closeme")[13];
 
-followMeBtn14.onclick = function () {
-  followMeModal14.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe14.onclick = function () {
-  followMeModal14.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Basketball
-var followMeBtn15 = document.getElementsByClassName("followPopup")[14];
-var followMeModal15 = document.getElementsByClassName("mobileFollowModal")[14];
-var closeMe15 = document.getElementsByClassName("closeme")[14];
+var followMeBtn = document.getElementsByClassName("followPopup")[14];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[14];
+var closeMe = document.getElementsByClassName("closeme")[14];
 
-followMeBtn15.onclick = function () {
-  followMeModal15.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe15.onclick = function () {
-  followMeModal15.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Sports
-var followMeBtn16 = document.getElementsByClassName("followPopup")[15];
-var followMeModal16 = document.getElementsByClassName("mobileFollowModal")[15];
-var closeMe16 = document.getElementsByClassName("closeme")[15];
+var followMeBtn = document.getElementsByClassName("followPopup")[15];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[15];
+var closeMe = document.getElementsByClassName("closeme")[15];
 
-followMeBtn16.onclick = function () {
-  followMeModal16.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe16.onclick = function () {
-  followMeModal16.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //News
-var followMeBtn17 = document.getElementsByClassName("followPopup")[16];
-var followMeModal17 = document.getElementsByClassName("mobileFollowModal")[16];
-var closeMe17 = document.getElementsByClassName("closeme")[16];
+var followMeBtn = document.getElementsByClassName("followPopup")[16];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[16];
+var closeMe = document.getElementsByClassName("closeme")[16];
 
-followMeBtn17.onclick = function () {
-  followMeModal17.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe17.onclick = function () {
-  followMeModal17.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Fashion TV
-var followMeBtn19 = document.getElementsByClassName("followPopup")[17];
-var followMeModal19 = document.getElementsByClassName("mobileFollowModal")[17];
-var closeMe19 = document.getElementsByClassName("closeme")[17];
+var followMeBtn = document.getElementsByClassName("followPopup")[17];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[17];
+var closeMe = document.getElementsByClassName("closeme")[17];
 
-followMeBtn19.onclick = function () {
-  followMeModal19.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe19.onclick = function () {
-  followMeModal19.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Cars
-var followMeBtn20 = document.getElementsByClassName("followPopup")[18];
-var followMeModal20 = document.getElementsByClassName("mobileFollowModal")[18];
-var closeMe20 = document.getElementsByClassName("closeme")[18];
+var followMeBtn = document.getElementsByClassName("followPopup")[18];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[18];
+var closeMe = document.getElementsByClassName("closeme")[18];
 
-followMeBtn20.onclick = function () {
-  followMeModal20.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe20.onclick = function () {
-  followMeModal20.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //House Decoration
-var followMeBtn21 = document.getElementsByClassName("followPopup")[19];
-var followMeModal21 = document.getElementsByClassName("mobileFollowModal")[19];
-var closeMe21 = document.getElementsByClassName("closeme")[19];
+var followMeBtn = document.getElementsByClassName("followPopup")[19];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[19];
+var closeMe = document.getElementsByClassName("closeme")[19];
 
-followMeBtn21.onclick = function () {
-  followMeModal21.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe21.onclick = function () {
-  followMeModal21.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Nature
-var followMeBtn22 = document.getElementsByClassName("followPopup")[20];
-var followMeModal22 = document.getElementsByClassName("mobileFollowModal")[20];
-var closeMe22 = document.getElementsByClassName("closeme")[20];
+var followMeBtn = document.getElementsByClassName("followPopup")[20];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[20];
+var closeMe = document.getElementsByClassName("closeme")[20];
 
-followMeBtn22.onclick = function () {
-  followMeModal22.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe22.onclick = function () {
-  followMeModal22.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Quotes
-var followMeBtn23 = document.getElementsByClassName("followPopup")[21];
-var followMeModal23 = document.getElementsByClassName("mobileFollowModal")[21];
-var closeMe23 = document.getElementsByClassName("closeme")[21];
+var followMeBtn = document.getElementsByClassName("followPopup")[21];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[21];
+var closeMe = document.getElementsByClassName("closeme")[21];
 
-followMeBtn23.onclick = function () {
-  followMeModal23.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe23.onclick = function () {
-  followMeModal23.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Pets
-var followMeBtn24 = document.getElementsByClassName("followPopup")[22];
-var followMeModal24 = document.getElementsByClassName("mobileFollowModal")[22];
-var closeMe24 = document.getElementsByClassName("closeme")[22];
+var followMeBtn = document.getElementsByClassName("followPopup")[22];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[22];
+var closeMe = document.getElementsByClassName("closeme")[22];
 
-followMeBtn24.onclick = function () {
-  followMeModal24.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe24.onclick = function () {
-  followMeModal24.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 
 //Others
-var followMeBtn25 = document.getElementsByClassName("followPopup")[23];
-var followMeModal25 = document.getElementsByClassName("mobileFollowModal")[23];
-var closeMe25 = document.getElementsByClassName("closeme")[23];
+var followMeBtn = document.getElementsByClassName("followPopup")[23];
+var followMeModal = document.getElementsByClassName("mobileFollowModal")[23];
+var closeMe = document.getElementsByClassName("closeme")[23];
 
-followMeBtn25.onclick = function () {
-  followMeModal25.style.display = "block";
+followMeBtn.onclick = function () {
+  followMeModal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modals
-closeMe25.onclick = function () {
-  followMeModal25.style.display = "none";
+closeMe.onclick = function () {
+  followMeModal.style.display = "none";
 };
 //Follow catalog popup on mobile
 
+// Live popup
+var liveModal = document.getElementById("liveModal");
+var liveBtn = document.getElementById("liveButton");
+var closeLive = document.getElementById("closeLive");
+
+liveBtn.onclick = function () {
+  liveModal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modals
+closeLive.onclick = function () {
+  liveModal.style.display = "none";
+};
+
+// Live popup on mobile
+var liveModalMobile = document.getElementById("liveModalMobile");
+var mobileLiveBtn = document.getElementById("mobileLiveBtn");
+var closeLiveMobile = document.getElementById("closeLiveMobile");
+
+mobileLiveBtn.onclick = function () {
+  liveModalMobile.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modals
+closeLiveMobile.onclick = function () {
+  liveModalMobile.style.display = "none";
+};
+//Live popup ends
 ////
 //Follow/unfollow user on desktop
 // let isFollowingDesktop = false;
@@ -1642,32 +1418,20 @@ searchBtn.addEventListener("click", function () {
   var query = searchInput.value;
 
   // Make an API call to the search endpoint with the search query
-  fetch(`https://api.snapme-ng.com/api/v1/search?query=${query}`)
+  fetch(
+    "https://api.snapme-ng.com/api/v1/search?q=" + encodeURIComponent(query)
+  )
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       // Clear the search results list
       searchResults.innerHTML = "";
 
-      // Check if any posts or users are found
-      if (data.posts.length === 0 && data.users.length === 0) {
-        searchResults.innerHTML = "<li>No results found</li>";
-        return;
-      }
-
-      // Loop through the posts and add them to the list
-      data.posts.forEach(function (post) {
+      // Loop through the search results and add them to the list
+      data.results.forEach(function (result) {
         var li = document.createElement("li");
-        li.textContent = post.title;
-        searchResults.appendChild(li);
-      });
-
-      // Loop through the users and add them to the list
-      data.users.forEach(function (user) {
-        var li = document.createElement("li");
-        li.textContent = user.username;
+        li.textContent = result.title;
         searchResults.appendChild(li);
       });
     })
@@ -1891,7 +1655,6 @@ function likeComment(commentId) {
       }
     })
     .then((data) => {
-      console.log(data);
       console.log(`${data.message}`);
     })
     .catch((error) => console.error(error));
@@ -1980,17 +1743,11 @@ function deleteComment(commentId) {
         }
         return response.json();
       } else if (response.status === 404) {
-        return response.json().then((data) => {
-          throw new Error(data.message || "Error: " + response.statusText);
-        });
+        throw new Error(`Error: ${response.statusText}`);
       } else if (response.status === 401) {
-        return response.json().then((data) => {
-          throw new Error(data.message || "Error: " + response.statusText);
-        });
+        throw new Error(`Error: ${response.statusText}`);
       } else if (response.status === 500) {
-        return response.json().then((data) => {
-          throw new Error(data.message || "Error: " + response.statusText);
-        });
+        throw new Error(`Error: ${response.statusText}`);
       }
     })
     .then((data) => {
@@ -2004,113 +1761,113 @@ function deleteComment(commentId) {
 //Delete comment end
 /////
 
-//Video controls
-//const video = document.getElementById("video");
-const playPauseBtn = document.getElementById("play-pause-btn");
-const volumeRange = document.getElementById("volume-range");
-const muteBtn = document.getElementById("mute-btn");
-const speedSelect = document.getElementById("speed-select");
-const skipBackBtn = document.getElementById("skip-back-btn");
-const skipAheadBtn = document.getElementById("skip-ahead-btn");
-
+// Video Controls 
 // Play/pause button
-playPauseBtn.addEventListener("click", () => {
-  if (video.paused) {
+document.addEventListener("DOMContentLoaded", function() {
+  const videos = document.querySelectorAll(".video");
+  const playPauseButtons = document.querySelectorAll(".playPauseButton");
+
+  playPauseButtons.forEach((button, index) => {
+    const video = videos[index];
+    // Play the video at the start
     video.play();
-    playPauseBtn.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
-  } else {
-    video.pause();
-    playPauseBtn.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
-  }
+
+    button.addEventListener("click", function() {
+      const isPlaying = button.dataset.playing === "true";
+
+      if (isPlaying) {
+        video.pause();
+        button.dataset.playing = "false";
+        button.innerHTML = `<img src="Images/play-button-white.svg" alt="Play" />`;
+      } else {
+        video.play();
+        button.dataset.playing = "true";
+        button.innerHTML = `<img src="Images/pause-white.svg" alt="Pause" />`;
+      }
+    });
+  });
 });
 
+  
 // Volume range
-volumeRange.addEventListener("input", () => {
-  video.volume = volumeRange.value;
+document.addEventListener("DOMContentLoaded", function() {
+  const volumeRanges = document.querySelectorAll(".volume-range");
+  const videos = document.querySelectorAll(".video");
+
+  volumeRanges.forEach((volumeRange, index) => {
+    const video = videos[index];
+
+    volumeRange.addEventListener("input", () => {
+      video.volume = volumeRange.value;
+    });
+  });
 });
 
 // Mute/unmute button
-muteBtn.addEventListener("click", () => {
-  if (video.muted) {
-    video.muted = false;
-    muteBtn.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
-    volumeRange.value = video.volume;
-  } else {
-    video.muted = true;
-    muteBtn.innerHTML = `<img src="Images/unmute button.svg" alt="Unmute" />`;
-    volumeRange.value = 0;
-  }
+document.addEventListener("DOMContentLoaded", function() {
+  const muteButtons = document.querySelectorAll(".mute-btn");
+  const videos = document.querySelectorAll(".video");
+
+  muteButtons.forEach((muteBtn, index) => {
+    const video = videos[index];
+
+    muteBtn.addEventListener("click", () => {
+      const isMuted = muteBtn.dataset.muted === "true";
+
+      if (isMuted) {
+        video.muted = false;
+        muteBtn.dataset.muted = "false";
+        muteBtn.innerHTML = `<img src="Images/mute-white.svg" alt="Mute" />`;
+        video.volume = parseFloat(video.dataset.savedVolume);
+      } else {
+        video.muted = true;
+        muteBtn.dataset.muted = "true";
+        muteBtn.innerHTML = `<img src="Images/unmute-white.svg" alt="Unmute" />`;
+        video.dataset.savedVolume = video.volume;
+        video.volume = 0;
+      }
+    });
+  });
 });
 
-// Skip back button
-skipBackBtn.addEventListener("click", () => {
-  video.currentTime -= 10;
+// Skip back and skip ahead controls
+document.addEventListener("DOMContentLoaded", function() {
+  const skipBackButtons = document.querySelectorAll(".skip-back-btn");
+  const skipAheadButtons = document.querySelectorAll(".skip-ahead-btn");
+  const videos = document.querySelectorAll(".video");
+
+  skipBackButtons.forEach((skipBackBtn, index) => {
+    const video = videos[index];
+
+    skipBackBtn.addEventListener("click", () => {
+      video.currentTime -= 10;
+    });
+  });
+
+  skipAheadButtons.forEach((skipAheadBtn, index) => {
+    const video = videos[index];
+
+    skipAheadBtn.addEventListener("click", () => {
+      video.currentTime += 10;
+    });
+  });
 });
 
-// Skip ahead button
-skipAheadBtn.addEventListener("click", () => {
-  video.currentTime += 10;
-});
+//Video speed control 
+// Get the playback speed select element
+document.addEventListener("DOMContentLoaded", function() {
+  const speedSelects = document.querySelectorAll(".speed-select");
+  const videos = document.querySelectorAll(".video");
 
-// Playback speed select
-speedSelect.addEventListener("change", () => {
-  video.playbackRate = speedSelect.value;
-});
-//Video controls 1
-////
+  speedSelects.forEach((speedSelect, index) => {
+    const video = videos[index];
 
-//Video controls 2
-const playPauseBtn2 = document.getElementById("play-pause-btn2");
-const volumeRange2 = document.getElementById("volume-range2");
-const muteBtn2 = document.getElementById("mute-btn2");
-const speedSelect2 = document.getElementById("speed-select2");
-const skipBackBtn2 = document.getElementById("skip-back-btn2");
-const skipAheadBtn2 = document.getElementById("skip-ahead-btn2");
-
-// Play/pause button
-playPauseBtn2.addEventListener("click", () => {
-  if (video2.paused) {
-    video2.play();
-    playPauseBtn2.innerHTML = `<img src="Images/pause-button.svg" alt="Pause" />`;
-  } else {
-    video2.pause();
-    playPauseBtn2.innerHTML = `<img src="Images/play-button.svg" alt="Play" />`;
-  }
+    speedSelect.addEventListener("change", () => {
+      video.playbackRate = speedSelect.value;
+    });
+  });
 });
-
-// Volume range
-volumeRange2.addEventListener("input", () => {
-  video2.volume = volumeRange2.value;
-});
-
-// Mute/unmute button
-muteBtn2.addEventListener("click", () => {
-  if (video2.muted) {
-    video2.muted = false;
-    muteBtn2.innerHTML = `<img src="Images/mute button.svg" alt="Mute" />`;
-    volumeRange2.value = video2.volume;
-  } else {
-    video2.muted = true;
-    muteBtn2.innerHTML = `<img src="Images/unmute button.svg" alt="Mute" />`;
-    volumeRange2.value = 0;
-  }
-});
-
-// Skip back button
-skipBackBtn2.addEventListener("click", () => {
-  video2.currentTime -= 10;
-});
-
-// Skip ahead button
-skipAheadBtn2.addEventListener("click", () => {
-  video2.currentTime += 10;
-});
-
-// Playback speed select
-speedSelect2.addEventListener("change", () => {
-  video2.playbackRate = speedSelect2.value;
-});
-//Video controls 2 end
+//Video controls end
 
 //Mobile catalog tabs swipe control
 const swipeContainer = document.getElementById("swipe-container");
@@ -2194,76 +1951,30 @@ footerLike.addEventListener("click", () => {
   }
 });
 ////
-////
 //Comment box popup for first catalogs for you pin
-const commentBtn = document.getElementById("commentBtn");
-const commentBox = document.getElementById("commentBox");
-const closeComment = document.getElementById("closeComment");
+document.addEventListener('DOMContentLoaded', function() {
+  const commentButtons = document.querySelectorAll(".commentBtn");
+  const commentBoxes = document.querySelectorAll(".commentBox");
+  const closeButtons = document.querySelectorAll(".closeComment");
 
-commentBtn.addEventListener("click", function () {
-  commentBox.style.display = "block";
+  commentButtons.forEach((commentBtn, index) => {
+    const commentBox = commentBoxes[index];
+
+    commentBtn.addEventListener("click", function () {
+      commentBox.style.display = "block";
+    });
+  });
+
+  closeButtons.forEach((closeButton, index) => {
+    const commentBox = commentBoxes[index];
+
+    closeButton.addEventListener("click", function () {
+      commentBox.style.display = "none";
+    });
+  });
 });
 
-closeComment.addEventListener("click", function () {
-  commentBox.style.display = "none";
-});
-//Comment box popup first catalogs for you pin end
-////
-//Comment box popup for second catalogs for you pin
-var commentBtn2 = document.getElementsByClassName("commentBtn")[0];
-var commentBox2 = document.getElementsByClassName("commentBox")[0];
-var closeCommentBtn2 = document.getElementsByClassName("closeComment")[0];
-
-commentBtn2.addEventListener("click", function () {
-  commentBox2.style.display = "block";
-});
-
-closeCommentBtn2.addEventListener("click", function () {
-  commentBox2.style.display = "none";
-});
-//Comment box popup for second catalogs for you pin end
-////
-//Comment box popup for third catalogs for you pin
-var commentBtn3 = document.getElementsByClassName("commentBtn")[1];
-var commentBox3 = document.getElementsByClassName("commentBox")[1];
-var closeCommentBtn3 = document.getElementsByClassName("closeComment")[1];
-
-commentBtn3.addEventListener("click", function () {
-  commentBox3.style.display = "block";
-});
-
-closeCommentBtn3.addEventListener("click", function () {
-  commentBox3.style.display = "none";
-});
-//Comment box popup for third catalogs for you pin end
-////
-//Comment box popup for fourth catalogs for you pin
-var commentBtn4 = document.getElementsByClassName("commentBtn")[2];
-var commentBox4 = document.getElementsByClassName("commentBox")[2];
-var closeCommentBtn4 = document.getElementsByClassName("closeComment")[2];
-
-commentBtn4.addEventListener("click", function () {
-  commentBox4.style.display = "block";
-});
-
-closeCommentBtn4.addEventListener("click", function () {
-  commentBox4.style.display = "none";
-});
-//Comment box popup for fourth catalogs for you pin end
-////
-//Comment box popup for 5th pin
-var commentBtn5 = document.getElementsByClassName("commentBtn")[3];
-var commentBox5 = document.getElementsByClassName("commentBox")[3];
-var closeCommentBtn5 = document.getElementsByClassName("closeComment")[3];
-
-commentBtn5.addEventListener("click", function () {
-  commentBox5.style.display = "block";
-});
-
-closeCommentBtn5.addEventListener("click", function () {
-  commentBox5.style.display = "none";
-});
-//Comment box popup for 5th pin end
+//All Comments popup
 ////
 
 //Get request to fetch user profile

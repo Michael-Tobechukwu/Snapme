@@ -250,7 +250,7 @@ window.addEventListener("load", function () {
 
           <div class="mobileIcons">
             <img
-              src="Images/back arrow.svg"
+              src="Images/back arrow.svg" class="backArrow"
               onclick="history.back()"
             />
             <img src="Images/Snapme icon white.png" class="white-logo" alt="logo" />

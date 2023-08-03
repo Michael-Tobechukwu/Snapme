@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snapme || Photo & Video</title>
+    <title>Snapme || Pin details</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
@@ -44,59 +44,85 @@
             >
               <img src="Images/hamburger gray.svg" />
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">About</a></li>
-              <li><a class="dropdown-item" href="#">Terms</a></li>
-              <li><a class="dropdown-item" href="#">Policy</a></li>
+            <ul class="dropdown-menu" id="mobileDropdown">
+              <li><a class="dropdown-item" href="about.html">About</a></li>
+              <li><a class="dropdown-item" href="terms.html">Terms</a></li>
+              <li>
+                <a class="dropdown-item" href="privacy.html"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="promotions.html">Promotions</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="support.html">Support</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="settings.html">Settings</a>
+              </li>
+
               <div class="social-icons">
                 <hr />
-                <li class="copy">&copy; 2023. Snapme, Ekoverse Technologies</li>
+                <li class="copy">
+                  &copy; 2023 Snapme, Ekoverse Technologies
+                </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    ><img src="Images/twitter.svg" alt=""
+                  <a
+                    class="dropdown-item"
+                    href="http://twitter.com/snapmeng"
+                    target="_blank"
+                    ><img src="Images/twitter.svg"
                   /></a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    ><img src="Images/instagram.svg" alt=""
+                  <a
+                    class="dropdown-item"
+                    href="http://instagram.com/snapmeng/"
+                    target="_blank"
+                    ><img src="Images/instagram.svg"
                   /></a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    ><img src="Images/facebook.svg" alt=""
+                  <a
+                    class="dropdown-item"
+                    href="https://m.facebook.com/groups/1661995654256478?group_view_referrer=search&_rdc=1&_rdr&paipv=0&eav=AfYEFfq9LrYXwGrD4O8UFGJQab45Hoqhj5noDv2hvMXRxbpiptRvWkL8Sx3NRkuaB28"
+                    target="_blank"
+                    ><img src="Images/facebook.svg"
                   /></a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    ><img src="Images/telegram.svg" alt=""
+                  <a
+                    class="dropdown-item"
+                    href="https://t.me/snapmeng"
+                    target="_blank"
+                    ><img src="Images/telegram.svg"
                   /></a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#"
-                    ><img src="Images/snapme.png" alt=""
+                  <a
+                    class="dropdown-item"
+                    href="http://snapme-ng.com/snapmeng"
+                    target="_blank"
+                    ><img src="Images/snapme.png"
                   /></a>
                 </li>
               </div>
             </ul>
           </div>
-          <button class="hamburger"></button>
-          <div id="menu-items">
-            <ul class="menu-list"></ul>
-          </div>
         </div>
         <div class="main-logo">
-          <a href="all-pins-light.html"
+          <a href="index-light.html"
             ><img src="Images/Snapme logo main white .png"
           /></a>
         </div>
         <div class="navbuttons">
-          <a href="post.html" id="toggle">
-            <img class="toggle-button" src="Images/toggle light.svg" />
+          <a href="pin-details.html" id="toggle">
+            <img class="toggle-button" src="Images/switch-light.svg" />
           </a>
           <button class="live-button">LIVE</button>
           <button class="search">
-            <img class="search-icon" src="Images/search icon gray.svg" />
+            <img class="search-icon" src="Images/search-black.svg" />
           </button>
           <div class="user-create">
             <a href="#"
@@ -107,154 +133,1958 @@
             /></a>
           </div>
         </div>
+
+        <div class="navbuttonsMobile">
+          <div class="hamburger">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary bg-transparent dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="Images/hamburger gray.svg" />
+              </button>
+              <ul class="dropdown-menu" id="mobileDropdown">
+                <li><a class="dropdown-item" href="about.html">About</a></li>
+                <li><a class="dropdown-item" href="terms.html">Terms</a></li>
+                <li>
+                  <a class="dropdown-item" href="privacy.html"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="promotions.html">Promotions</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="support.html">Support</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="settings.html">Settings</a>
+                </li>
+
+                <div class="social-icons">
+                  <hr />
+                  <li class="copy">
+                    &copy; 2023 Snapme, Ekoverse Technologies
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://twitter.com/snapmeng"
+                      target="_blank"
+                      ><img src="Images/twitter.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://instagram.com/snapmeng/"
+                      target="_blank"
+                      ><img src="Images/instagram.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://m.facebook.com/groups/1661995654256478?group_view_referrer=search&_rdc=1&_rdr&paipv=0&eav=AfYEFfq9LrYXwGrD4O8UFGJQab45Hoqhj5noDv2hvMXRxbpiptRvWkL8Sx3NRkuaB28"
+                      target="_blank"
+                      ><img src="Images/facebook.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://t.me/snapmeng"
+                      target="_blank"
+                      ><img src="Images/telegram.svg"
+                    /></a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="http://snapme-ng.com/snapmeng"
+                      target="_blank"
+                      ><img src="Images/snapme.png"
+                    /></a>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div class="main-logo">
+            <a href="index-light.html"><img src="Images/Snapme logo main white .png" /></a>
+          </div>
+          <a href="pin-details.html" id="toggle">
+            <img
+              class="toggle-button"
+              src="Images/switch-light.svg"
+              width="40px"
+            />
+          </a>
+          <button class="live-button" id="mobileLiveBtn">LIVE</button>
+          <!--Live pop up modal-->
+          <div id="liveModalMobile">
+            <!-- Modal content -->
+            <div class="liveContentMobile">
+              <span id="closeLiveMobile">&times;</span>
+
+              <div class="livePopup">
+                <button id="goLive" onclick="window.location='live-start.html'">
+                  Go live
+                </button>
+                <button id="watchLive" onclick="window.location='live.html'">
+                  Watch live
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="user-create">
+            <button id="profilePicture" onclick="checkJwt('profile')"></button>
+            <button id="createBtn" onclick="checkJwt('post')">
+              <img class="create-plus" src="Images/create plus.svg" />
+            </button>
+          </div>
+
+          <!-- <div class="user-create">
+            <button id="profilePicture" onclick="checkJwt('profile')"></button>
+            <button onclick="checkJwt('post')">
+              <img class="create-plus" src="Images/create plus.svg" />
+            </button>
+          </div> -->
+
+          <div class="mobileSearch">
+            <button id="mobileSearchToggleBtn">
+              <img src="Images/search-black.svg" />
+            </button>
+            <div id="mobile-search-container">
+              <input
+                type="search"
+                id="mobile-search-input"
+                placeholder="Search catalogs..."
+              />
+              <button id="mobile-search-btn">
+                <img src="Images/search icon.svg" alt="" />
+              </button>
+              <ul id="mobile-search-results"></ul>
+            </div>
+          </div>
+        </div>
       </nav>
       <div class="tabs">
-        <a href="#"><p>Music</p></a>
-        <a href="#"><p>Shows & Concerts</p></a>
-        <a href="#"><p>Dance</p></a>
-        <a href="#"><p>Afrobeats</p></a>
-        <a href="#"><p>Photo</p></a>
-        <a href="#"><p>Photography</p></a>
-        <a href="#"><p>Sports</p></a>
-        <a href="#"><p>Comedy</p></a>
-        <a href="#"><p>Fashion</p></a>
-        <a href="#"><p>Food</p></a>
-        <a href="#"><p>Art</p></a>
-        <a href="#"><p>Artistes</p></a>
-        <a href="#"><p>Museums</p></a>
-        <a href="#"><p>News</p></a>
-        <a href="#"><p>Television</p></a>
-        <a href="#"><p>Tourism</p></a>
-        <a href="#"><p>Cars</p></a>
-        <a href="#"><p>House Decoration</p></a>
-        <a href="#"><p>Nature</p></a>
-        <a href="#"><p>Quotes</p></a>
-        <a href="#"><p>Pets</p></a>
-        <a href="#"><p>Others</p></a>
+        <!--Music with popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Music
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog w-100">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followMusicBtn" onclick="followCatalog('music')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button
+                  type="button"
+                  class="btn btn-success visually-hidden"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Music with popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal2"
+        >
+          Shows & Concerts
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal2"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a
+                  id="followShowsBtn"
+                  onclick="followCatalog('shows-&-concerts')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal3"
+        >
+          Dance
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal3"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followDanceBtn" onclick="followCatalog('dance')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal4"
+        >
+          Afrobeats
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal4"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followAfrobeatsBtn" onclick="followCatalog('afrobeats')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal5"
+        >
+          Comedy
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal5"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followComedyBtn" onclick="followCatalog('comedy')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal6"
+        >
+          Tag Stories
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal6"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a
+                  id="followTagStoriesBtn"
+                  onclick="followCatalog('tag-stories')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal7"
+        >
+          Photography
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal7"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a
+                  id="followPhotographyBtn"
+                  onclick="followCatalog('photography')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal8"
+        >
+          Art
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal8"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followArtBtn" onclick="followCatalog('art')">Follow +</a>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal9"
+        >
+          Museums
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal9"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followMuseumsBtn" onclick="followCatalog('museums')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal10"
+        >
+          Tourism
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal10"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followTourismBtn" onclick="followCatalog('museums')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal11"
+        >
+          Fashion
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal11"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followFashionBtn" onclick="followCatalog('fashion')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal12"
+        >
+          Beauty & Kits
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal12"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a
+                  id="followBeautyKitsBtn"
+                  onclick="followCatalog('beauty-&-kits')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal13"
+        >
+          Food
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal13"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followFoodBtn" onclick="followCatalog('food')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Tabs Popup-->
+
+        <!--Tabs Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal14"
+        >
+          Fitness
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal14"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followFitnessBtn" onclick="followCatalog('fitness')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal15"
+        >
+          Football
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal15"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followFootballBtn" onclick="followCatalog('football')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal16"
+        >
+          Basketball
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal16"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a
+                  id="followBasketballBtn"
+                  onclick="followCatalog('basketball')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal17"
+        >
+          Sports
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal17"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followSportsBtn" onclick="followCatalog('sports')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal18"
+        >
+          News
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal18"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followNewsBtn" onclick="followCatalog('news')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal19"
+        >
+          Fashion TV
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal19"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followFashionTVBtn" onclick="followCatalog('fashion-tv')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal20"
+        >
+          Cars
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal20"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followCarsBtn" onclick="followCatalog('cars')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal21"
+        >
+          House Decoration
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal21"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a
+                  id="followHouseDecorationBtn"
+                  onclick="followCatalog('house-decoration')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal21"
+        >
+          Nature
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal22"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followNatureBtn" onclick="followCatalog('nature')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal22"
+        >
+          Quotes
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal22"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followQuotesBtn" onclick="followCatalog('quotes')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Popup-->
+
+        <!--Popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal23"
+        >
+          Pets
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal23"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followPetsBtn" onclick="followCatalog('pets')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Tabs popup-->
+
+        <!--Others with popup-->
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal24"
+        >
+          Others
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal24"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content bg-white">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Follow catalog
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body tabs-follow">
+                <a id="followOthersBtn" onclick="followCatalog('others')"
+                  >Follow +</a
+                >
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary visually-hidden"
+                  data-bs-dismiss="modal"
+                ></button>
+                <button type="button" class="btn visually-hidden"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Others with popup-->
       </div>
       <!--catalog tabs end-->
 
-      <div class="post-card">
-        <div class="img"><img src="Images/ruger 7.jpg" alt="" /></div>
-        <div class="content">
-          <div class="content-top">
-            <img src="Images/azizy.png" />
-            <div class="text">
-              <p>azizymakim</p>
-              <p>22:07</p>
-            </div>
-            <button
-              onclick="window.location.href='https://snapme-ng.com/api/v1/:username/follow'"
-            >
-              Follow +
-            </button>
-          </div>
-          <div class="content-mid">
-            <h3>The Jonzing World Imprint</h3>
-            <p>
-              Nigeria's reggae-styled music sensation Ruger. His history,
-              lifestyle, and a stylishly covered left eye. Always a cool dude
-              and a fans favourite all the time. #ArtisteRuger
-              <span id="dots">...</span
-              ><span id="more-text"
-                >More info about Ruger....Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Phasellus imperdiet, nulla et
-                dictum interdum, nisi lorem egestas vitae scelerisque enim
-                ligula venenatis dolor.</span
-              >
-            </p>
-            <button
-              onclick="readMore()"
-              id="myBtn"
-              style="color: #000; font-weight: bold"
-            >
-              Show more
-            </button>
+      <!--Tabs for mobile-->
+      <div class="discover">
+        <h4>Discover</h4>
+        <p>Trending catalogs</p>
+      </div>
 
-            <div class="show-more">
-              <ul class="card-title icons-list">
-                <li>
-                  <button>
-                    <i class="fa-solid fa-eye"></i>
-                    <p class="text-black">2.4k</p>
+      <div class="mobileTabs">
+        <div id="swipe-container">
+          <div id="music">
+            <div class="swipe-item">
+              <button id="followPopup" class="followPopup">Music</button>
+            </div>
+
+            <!-- The Modal -->
+            <div id="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="mobileclose">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followMusicMobile"
+                    onclick="followCatalog('music')"
+                  >
+                    Follow +
                   </button>
-                </li>
-                <li>
-                  <button>
-                    <i onclick="myLike(this)" class="fa-solid fa-heart"></i>
-                    <p class="text-black">5k</p>
-                  </button>
-                </li>
-                <li>
-                  <button>
-                    <i class="fa-solid fa-comment"></i>
-                    <p class="text-black">396</p>
-                  </button>
-                </li>
-                <li>
-                  <button>
-                    <i class="fa-solid fa-share"></i>
-                    <p class="text-black">123</p>
-                  </button>
-                </li>
-                <li>
-                  <button>
-                    <i class="fa-solid fa-bookmark"></i>
-                    <p class="text-black">197</p>
-                  </button>
-                </li>
-                <li>
-                  <button>
-                    <i class="fa-solid fa-download"></i>
-                    <p class="text-black">29</p>
-                  </button>
-                </li>
-              </ul>
-              <div class="other-icons">
-                <div>
-                  <span id="dots"></span>
-                  <div id="more-icons">
-                    <ul></ul>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="content-bottom">
-            <p class="text-black">Comments</p>
-            <div class="marcdiss-box">
-              <button onclick="userProfile()">
-                <img src="Images/azizy.png" alt="" />
-              </button>
-              <div class="marcdiss">
-                <p class="name">Marc Diss</p>
-                <p class="alias">The show maker</p>
-                <ul>
-                  <li><a href="#">Like</a></li>
-                  <li><a href="#">Reply</a></li>
-                </ul>
+
+          <div id="showsConcerts">
+            <div class="swipe-item">
+              <button class="followPopup">Shows & Concerts</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followShowsMobile"
+                    onclick="followCatalog('shows-&-concerts')"
+                  >
+                    Follow +
+                  </button>
+                </div>
               </div>
             </div>
-            <form action="#">
-              <div class="form-input-button">
-                <button onclick="commenterProfile()">
-                  <img src="Images/user image.svg" alt="" />
-                </button>
-                <input type="text" placeholder="Add your comment..." />
-                <button type="submit">
-                  <i class="fas fa-paper-plane"></i>
-                </button>
+          </div>
+
+          <div id="dance">
+            <div class="swipe-item">
+              <button class="followPopup">Dance</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followDanceMobile"
+                    onclick="followCatalog('dance')"
+                  >
+                    Follow +
+                  </button>
+                </div>
               </div>
-            </form>
+            </div>
+          </div>
+
+          <div id="Afrobeats">
+            <div class="swipe-item">
+              <button class="followPopup">Afrobeats</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followAfrobeatsMobile"
+                    onclick="followCatalog('afrobeats')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Comedy">
+            <div class="swipe-item">
+              <button class="followPopup">Comedy</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followComedyMobile"
+                    onclick="followCatalog('comedy')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tagStories">
+            <div class="swipe-item">
+              <button class="followPopup">Tag Stories</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followTagStoriesMobile"
+                    onclick="followCatalog('tag-stories')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Photography">
+            <div class="swipe-item">
+              <button class="followPopup">Photography</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followMPhotographyMobile"
+                    onclick="followCatalog('photography')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Art">
+            <div class="swipe-item">
+              <button class="followPopup">Art</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button id="followArtMobile" onclick="followCatalog('art')">
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Museums">
+            <div class="swipe-item">
+              <button class="followPopup">Museum</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followMuseumsMobile"
+                    onclick="followCatalog('museums')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Tourism">
+            <div class="swipe-item">
+              <button class="followPopup">Tourism</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followTourismcMobile"
+                    onclick="followCatalog('tourism')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Fashion">
+            <div class="swipe-item">
+              <button class="followPopup">Fashion</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followMFashionMobile"
+                    onclick="followCatalog('fashion')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="BeautyKits">
+            <div class="swipe-item">
+              <button class="followPopup">Beauty & Kits</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followBeautyKitsMobile"
+                    onclick="followCatalog('beauty-&-kits')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Food">
+            <div class="swipe-item">
+              <button class="followPopup">Food</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button id="followFoodMobile" onclick="followCatalog('food')">
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Fitness">
+            <div class="swipe-item">
+              <button class="followPopup">Fitness</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followFitnessMobile"
+                    onclick="followCatalog('cars')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Football">
+            <div class="swipe-item">
+              <button class="followPopup">Football</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followFootballMobile"
+                    onclick="followCatalog('football')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Basketball">
+            <div class="swipe-item">
+              <button class="followPopup">Basketball</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followBasketballMobile"
+                    onclick="followCatalog('basketball')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Sports">
+            <div class="swipe-item">
+              <button class="followPopup">Sports</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followSportsMobile"
+                    onclick="followCatalog('sports')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="News">
+            <div class="swipe-item">
+              <button class="followPopup">News</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button id="followNewsMobile" onclick="followCatalog('news')">
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="FashionTV">
+            <div class="swipe-item">
+              <button class="followPopup">Fashion TV</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followFashionTVMobile"
+                    onclick="followCatalog('fashion-tv')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Cars">
+            <div class="swipe-item">
+              <button class="followPopup">Cars</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button id="followCarsMobile" onclick="followCatalog('cars')">
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="HouseDecoration">
+            <div class="swipe-item">
+              <button class="followPopup">House Decoration</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followHouseMobile"
+                    onclick="followCatalog('house-decoration')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Nature">
+            <div class="swipe-item">
+              <button class="followPopup">Nature</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followMusicMobile"
+                    onclick="followCatalog('nature')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Quotes">
+            <div class="swipe-item">
+              <button class="followPopup">Quotes</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followQuotesMobile"
+                    onclick="followCatalog('quotes')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Pets">
+            <div class="swipe-item">
+              <button class="followPopup">Pets</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button id="followPetMobile" onclick="followCatalog('pet')">
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Others">
+            <div class="swipe-item">
+              <button class="followPopup">Others</button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="mobileFollowModal" class="modal">
+              <!-- Modal content -->
+              <div class="mobileModalContent">
+                <span class="closeme">&times;</span>
+                <p>Follow catalog</p>
+                <div class="follow_popup">
+                  <button
+                    id="followOthersMobile"
+                    onclick="followCatalog('others')"
+                  >
+                    Follow +
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <!--swipe container ends-->
+      </div>
+      <!--mobile tabs ends-->
+
+      <div class="post-card" id="pinCard">
         <!--content div-->
       </div>
 
       <!--wrapper end-->
     </div>
 
-    <script src="main.js"></script>
+    <script src="pin-details.js"></script>
+    <script src="fetchAPI.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

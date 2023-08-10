@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="index-light.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -32,8 +33,9 @@
       type="text/JavaScript"
       src=" https://MomentJS.com/downloads/moment.js"
     ></script>
-    <script type="text/JavaScript" src="index-light.js"></script>
-    <script type="text/JavaScript" src="fetchAPI.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/JavaScript" defer src="index-light.js"></script>
+    <script type="text/JavaScript" defer src="fetchAPI.js"></script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     />
@@ -50,8 +52,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-  </head>
-  <body>
+  </head>  <body>
     <div id="preloader">
       <div class="preloader">
         <img
@@ -139,7 +140,7 @@
           </div>
         </div>
         <div class="main-logo">
-          <a href="index-light.html"><img src="Images/Snapme logo main white .png" /></a>
+          <a href="index.html"><img src="Images/Snapme logo main white .png" /></a>
         </div>
         <br />
         <div class="navbuttons">
@@ -169,7 +170,7 @@
 
           <div class="search">
             <button id="search-toggle-btn">
-              <img src="Images/search-black.svg" alt="search" />
+              <img src="Images/search-black.svg" alt="" />
             </button>
             <div id="search-container">
               <input
@@ -273,13 +274,13 @@
             </div>
           </div>
           <div class="main-logo">
-            <a href="index-light.html"><img src="Images/Snapme logo main white .png" /></a>
+            <a href="index.html"><img src="Images/Snapme logo main white .png" /></a>
           </div>
           <a href="index.html" id="toggle">
             <img
               class="toggle-button"
               src="Images/switch-light.svg"
-              width="30px"
+              width="40px"
             />
           </a>
           <button class="live-button" id="mobileLiveBtn">LIVE</button>
@@ -320,7 +321,7 @@
                 placeholder="Search catalogs..."
               />
               <button id="mobile-search-btn">
-                <img src="Images/search-black.svg" alt="Go" width="35px"/>
+                <img src="Images/search-black.svg" width="30px" />
               </button>
               <ul id="mobile-search-results"></ul>
             </div>
@@ -2476,7 +2477,7 @@
       <!--Mobile footer-->
 
       <div class="install-prompt">
-        <p>Do you want to install this app?</p>
+        <p>Install this app?</p>
         <div class="install-buttons">
           <button class="install-yes">Yes</button>
           <button class="install-no">No</button>
@@ -2487,6 +2488,7 @@
 
     <!--scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -95,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const postElement = document.createElement("div");
         postElement.classList.add("col");
 
+        const username = post.user ? post.user.username : "Unknown User";
+
         postElement.innerHTML = `
           <div class="col">
           <div class="card mobileCard" id="card1">
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top video" controls muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top video" controls autoplay muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video><div id="my-video-controls" class="my-video-controls" style="display:none">
@@ -139,9 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 : `<p>${post.message}</p>`
             }
 
-            <a class="username text-white" href="user.html?username=${
-              post.user.username
-            }">
+            <a class="username text-white" href="user.html?username=${username}">
                 <img src="${
                   post.user.picture
                 }" width="35px" style="border-radius: 50%; border: 2px solid #ba00ba;" />
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li class="likeListItem">
                   <button
                     class="like-button"
-                    id="likeBtn"
+                    onclick="likePost()"
                   >
                     <i class="far fa-heart" style="color: #fff"></i>
                   </button>
@@ -299,11 +299,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .catch((error) => {
-      Swal.fire("Ooops!", `Error fetching all pins: ${error}`, "error");
-      console.error("Error fetching all pins:", error);
+     // Swal.fire("Ooops!", `Error fetching all pins: ${error}`, "error");
+      //console.error("Error fetching all pins:", error);
     });
+});
 
-  //Suggested Popup on mobile
+document.addEventListener("DOMContentLoaded", function() {
+  // Suggested Popup on mobile
   var suggestedButton = document.getElementById("SuggestedBtn");
   var suggestedModal = document.getElementById("suggestedBackground");
   var closeSuggestedBtn = document.getElementById("closeThis");
@@ -319,9 +321,8 @@ document.addEventListener("DOMContentLoaded", function () {
   suggestedButton.addEventListener("click", suggestedPopupModal);
   closeSuggestedBtn.addEventListener("click", closeSuggestedPopup);
 
-  //Show more suggested accounts button on mobile
+  // Show more suggested accounts button on mobile
   var showMoreBtn = document.getElementById("showMore");
-  //var MoreAccounts = document.getElementById("suggestedMore")
 
   function showMoreAccounts() {
     var suggestedMore = document.getElementById("suggestedMore");
@@ -333,8 +334,12 @@ document.addEventListener("DOMContentLoaded", function () {
       showMoreBtn.innerHTML = "Show more";
     }
   }
-  //More suggested accounts end
 
+  showMoreBtn.addEventListener("click", showMoreAccounts);
+});
+//More suggested accounts end
+
+document.addEventListener("DOMContentLoaded", function(){
   //Make dropdown stack on top
   if (window.innerWidth <= 768) {
     const screenWidth = window.innerWidth;
@@ -351,104 +356,107 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Element with class 'dropdown-menu' not found in the DOM.");
     }
   }
+
+})
+
   
 
-  // Nav bar sticky on mobile
-  function isMobileDevice() {
-    return window.matchMedia("(max-width: 568px)").matches;
-  }
+// Nav bar sticky on mobile
+function isMobileDevice() {
+  return window.matchMedia("(max-width: 568px)").matches;
+}
 
-  function handleScroll() {
-    var navButtons = document.querySelector('.navbuttonsMobile');
-  
-    if (isMobileDevice()) {
-      var sticky = navButtons.offsetTop;
-  
-      if (window.scrollY > sticky) {
-        navButtons.classList.add('sticky');
-        navButtons.style.zIndex = '10000'; // Set the z-index to 10000 when becoming sticky
-      } else {
-        navButtons.classList.remove('sticky');
-        // Do not remove the z-index when scrolling up
-      }
+function handleScroll() {
+  var navButtons = document.querySelector('.navbuttonsMobile');
+
+  if (isMobileDevice()) {
+    var sticky = navButtons.offsetTop;
+
+    if (window.scrollY > sticky) {
+      navButtons.classList.add('sticky');
+      navButtons.style.zIndex = '10000'; // Set the z-index to 10000 when becoming sticky
     } else {
       navButtons.classList.remove('sticky');
-      navButtons.style.zIndex = ''; // Remove the z-index for non-mobile devices
+      // Do not remove the z-index when scrolling up
     }
+  } else {
+    navButtons.classList.remove('sticky');
+    navButtons.style.zIndex = ''; // Remove the z-index for non-mobile devices
   }
-  
-  // Add a scroll event listener to the window to trigger handleScroll() function on scroll
-  window.addEventListener('scroll', handleScroll);  
-  window.addEventListener('resize', handleScroll);
-  
-  ////
-  //Catalog buttons fixed position on scroll
-  const catalogsContainer = document.querySelector("#swipe-container");
-  const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
-  
-  function updateNavbarPosition() {
-    const scrollPosition = window.scrollY;
-    const viewportWidth = window.innerWidth;
-  
-    if (scrollPosition >= catalogsContainerOffsetTop) {
-      if (viewportWidth <= 424) {
-        catalogsContainer.classList.add("fixed");
-        catalogsContainer.style.top = "70px";
-        catalogsContainer.style.zIndex = "9999";
-      } else if (viewportWidth <= 768) {
-        catalogsContainer.classList.add("fixed");
-        catalogsContainer.style.top = "90px";
-        catalogsContainer.style.zIndex = "9999";
-      } else {
-        catalogsContainer.classList.add("fixed");
-        catalogsContainer.style.top = "0"; /* Fallback for larger screens */
-      }
+}
+
+// Add a scroll event listener to the window to trigger handleScroll() function on scroll
+window.addEventListener('scroll', handleScroll);  
+window.addEventListener('resize', handleScroll);
+
+////
+//Catalog buttons fixed position on scroll
+const catalogsContainer = document.querySelector("#swipe-container");
+const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
+
+function updateNavbarPosition() {
+  const scrollPosition = window.scrollY;
+  const viewportWidth = window.innerWidth;
+
+  if (scrollPosition >= catalogsContainerOffsetTop) {
+    if (viewportWidth <= 424) {
+      catalogsContainer.classList.add("fixed");
+      catalogsContainer.style.top = "70px";
+      catalogsContainer.style.zIndex = "9999";
+    } else if (viewportWidth <= 768) {
+      catalogsContainer.classList.add("fixed");
+      catalogsContainer.style.top = "90px";
+      catalogsContainer.style.zIndex = "9999";
     } else {
-      catalogsContainer.classList.remove("fixed");
-      catalogsContainer.style.top = ""; /* reset the top position to its original state */
-      catalogsContainer.style.zIndex = "";
+      catalogsContainer.classList.add("fixed");
+      catalogsContainer.style.top = "0"; /* Fallback for larger screens */
     }
+  } else {
+    catalogsContainer.classList.remove("fixed");
+    catalogsContainer.style.top = ""; /* reset the top position to its original state */
+    catalogsContainer.style.zIndex = "";
   }
-  
-  window.addEventListener("scroll", updateNavbarPosition);
-  window.addEventListener("resize", updateNavbarPosition);
-  
-  //Catalogs buttons fixed position on scroll
-  ////
-  //Timecapsule fixed position on scroll
-  const timelineContainer = document.querySelector("#timelineSuggested");
-  const timelineContainerOffsetTop = timelineContainer.offsetTop;
-  
-  function updateTimelinePosition() {
-    const scrollPosition = window.scrollY;
-    const viewportWidth = window.innerWidth;
-  
-    if (scrollPosition >= timelineContainerOffsetTop) {
-      if (viewportWidth <= 424) {
-        timelineContainer.classList.add("fixed");
-        timelineContainer.style.top = "120px";
-        timelineContainer.style.left = "0";
-        timelineContainer.style.zIndex = "1"
-      } else if (viewportWidth <= 768) {
-        timelineContainer.classList.add("fixed");
-        timelineContainer.style.top = "140px";
-        timelineContainer.style.left = "0";
-        timelineContainer.style.zIndex = "1"
-      } else {
-        timelineContainer.classList.add("fixed");
-        timelineContainer.style.top = "0"; /* Fallback for larger screens */
-        timelineContainer.style.left = "0"; /* Fallback for larger screens */
-      }
+}
+
+window.addEventListener("scroll", updateNavbarPosition);
+window.addEventListener("resize", updateNavbarPosition);
+
+//Catalogs buttons fixed position on scroll
+////
+//Timecapsule fixed position on scroll
+const timelineContainer = document.querySelector("#timelineSuggested");
+const timelineContainerOffsetTop = timelineContainer.offsetTop;
+
+function updateTimelinePosition() {
+  const scrollPosition = window.scrollY;
+  const viewportWidth = window.innerWidth;
+
+  if (scrollPosition >= timelineContainerOffsetTop) {
+    if (viewportWidth <= 424) {
+      timelineContainer.classList.add("fixed");
+      timelineContainer.style.top = "120px";
+      timelineContainer.style.left = "0";
+      timelineContainer.style.zIndex = "1"
+    } else if (viewportWidth <= 768) {
+      timelineContainer.classList.add("fixed");
+      timelineContainer.style.top = "140px";
+      timelineContainer.style.left = "0";
+      timelineContainer.style.zIndex = "1"
     } else {
-      timelineContainer.classList.remove("fixed");
-      timelineContainer.style.top = ""; /* reset the top position to its original state */
-      timelineContainer.style.left = ""; /* reset the left position to its original state */
+      timelineContainer.classList.add("fixed");
+      timelineContainer.style.top = "0"; /* Fallback for larger screens */
+      timelineContainer.style.left = "0"; /* Fallback for larger screens */
     }
+  } else {
+    timelineContainer.classList.remove("fixed");
+    timelineContainer.style.top = ""; /* reset the top position to its original state */
+    timelineContainer.style.left = ""; /* reset the left position to its original state */
   }
-  
-  window.addEventListener("scroll", updateTimelinePosition);
-  window.addEventListener("resize", updateTimelinePosition);
-  
+}
+
+window.addEventListener("scroll", updateTimelinePosition);
+window.addEventListener("resize", updateTimelinePosition);
+
   ////------------------------------
 
   // Get the search toggle button, search container, search input, search button, and search results list
@@ -459,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var searchBtn = document.getElementById("search-btn");
   var searchResults = document.getElementById("search-results");
 
-  // Add an event listener to the search toggle button
+// Add an event listener to the search toggle button
   searchToggleBtn.addEventListener("click", function () {
     // Toggle the visibility of the search container
     if (searchContainer.style.display === "none") {
@@ -476,7 +484,7 @@ document.addEventListener("DOMContentLoaded", function () {
       searchResults.innerHTML = "";
     }
   });
-});
+
 
 // Social media share modal
 document.addEventListener("DOMContentLoaded", function () {
@@ -1125,7 +1133,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Submit comment
 ////---------
-
+/*
 //Promote popup after 10 minutes
 document.addEventListener("DOMContentLoaded", function() {
   function openPromotePopup() {
@@ -1142,6 +1150,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("closePromote").addEventListener("click", closePromote);
 });
 //Promote notification popup
+*/
 ////
 //Get pin details
 document.addEventListener("DOMContentLoaded", function() {

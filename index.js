@@ -95,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const postElement = document.createElement("div");
         postElement.classList.add("col");
 
+        const username = post.user ? post.user.username : "Unknown User";
+
         postElement.innerHTML = `
           <div class="col">
           <div class="card mobileCard" id="card1">
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${
               post.media
                 ? post.media[0]?.endsWith(".mp4")
-                  ? `<video class="card-img-top video" controls muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
+                  ? `<video class="card-img-top video" controls autoplay muted loop onclick="window.location = 'pin-details.html?id=${postId}'">
                 <source src="${post?.media[0]}" type="video/mp4">
                 Your browser does not support the video tag.
               </video><div id="my-video-controls" class="my-video-controls" style="display:none">
@@ -139,9 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 : `<p>${post.message}</p>`
             }
 
-            <a class="username text-white" href="user.html?username=${
-              post.user.username
-            }">
+            <a class="username text-white" href="user.html?username=${username}">
                 <img src="${
                   post.user.picture
                 }" width="35px" style="border-radius: 50%; border: 2px solid #ba00ba;" />
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li class="likeListItem">
                   <button
                     class="like-button"
-                    id="likeBtn"
+                    onclick="likePost()"
                   >
                     <i class="far fa-heart" style="color: #fff"></i>
                   </button>
@@ -299,11 +299,13 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .catch((error) => {
-      Swal.fire("Ooops!", `Error fetching all pins: ${error}`, "error");
-      console.error("Error fetching all pins:", error);
+     // Swal.fire("Ooops!", `Error fetching all pins: ${error}`, "error");
+    //  console.error("Error fetching all pins:", error);
     });
+});
 
-  //Suggested Popup on mobile
+document.addEventListener("DOMContentLoaded", function() {
+  // Suggested Popup on mobile
   var suggestedButton = document.getElementById("SuggestedBtn");
   var suggestedModal = document.getElementById("suggestedBackground");
   var closeSuggestedBtn = document.getElementById("closeThis");
@@ -319,9 +321,8 @@ document.addEventListener("DOMContentLoaded", function () {
   suggestedButton.addEventListener("click", suggestedPopupModal);
   closeSuggestedBtn.addEventListener("click", closeSuggestedPopup);
 
-  //Show more suggested accounts button on mobile
+  // Show more suggested accounts button on mobile
   var showMoreBtn = document.getElementById("showMore");
-  //var MoreAccounts = document.getElementById("suggestedMore")
 
   function showMoreAccounts() {
     var suggestedMore = document.getElementById("suggestedMore");
@@ -333,9 +334,12 @@ document.addEventListener("DOMContentLoaded", function () {
       showMoreBtn.innerHTML = "Show more";
     }
   }
-  //More suggested accounts end
 
-  //Make dropdown stack on top
+  showMoreBtn.addEventListener("click", showMoreAccounts);
+});
+//More suggested accounts end
+
+//Make dropdown stack on top
   if (window.innerWidth <= 768) {
     const screenWidth = window.innerWidth;
     const mobileDropdown = document.querySelector(".dropdown-menu");
@@ -351,9 +355,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Element with class 'dropdown-menu' not found in the DOM.");
     }
   }
-  
 
-  // Nav bar sticky on mobile
+// Nav bar sticky on mobile
   function isMobileDevice() {
     return window.matchMedia("(max-width: 568px)").matches;
   }
@@ -377,12 +380,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   
-  // Add a scroll event listener to the window to trigger handleScroll() function on scroll
-  window.addEventListener('scroll', handleScroll);  
-  window.addEventListener('resize', handleScroll);
+// Add a scroll event listener to the window to trigger handleScroll() function on scroll
+window.addEventListener('scroll', handleScroll);  
+window.addEventListener('resize', handleScroll);
   
-  ////
-  //Catalog buttons fixed position on scroll
+////
+//Catalog buttons fixed position on scroll
   const catalogsContainer = document.querySelector("#swipe-container");
   const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
   
@@ -471,12 +474,11 @@ document.addEventListener("DOMContentLoaded", function () {
       searchToggleBtn.style.left = "0";
     } else {
       searchContainer.style.display = "none";
-      searchToggleBtn.innerHTML = '<img src="Images/search icon.svg" alt="" />';
+      searchToggleBtn.innerHTML = `<img src="Images/search icon.svg" alt="" />`;
       searchInput.value = "";
       searchResults.innerHTML = "";
     }
   });
-});
 
 // Social media share modal
 document.addEventListener("DOMContentLoaded", function () {
@@ -653,6 +655,7 @@ document.addEventListener('DOMContentLoaded', function () {
   commentBox.style.display = "none";
 });
 */
+
 //Add to home screen/install prompt
 // Wait for 1 minute (60,000 milliseconds) after the first visit
 setTimeout(function () {
@@ -748,6 +751,28 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 //Like buttons end
 
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+const id = getQueryParam("id");
+
+//Put request to like a post
+function likePost() {
+  fetch(`${api4}/pins/${id}/like`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getJwt()}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Post liked successfully");
+    })
+    .catch((error) => console.error(error));
+}
 
 //Follow popup on mobile
 // Music
@@ -1076,14 +1101,10 @@ document.addEventListener("DOMContentLoaded", function () {
 ////
 
 //Submit comment fetch API
-const submitCommentBtn = document.getElementById("submitComment");
-
 document.addEventListener("DOMContentLoaded", function() {
-  // Get the submitCommentBtn element
-  const submitCommentBtn = document.getElementById("submitCommentBtn");
-
   // Add event listener on the submitCommentBtn
   document.addEventListener("DOMContentLoaded", function() {
+    // Get the submitCommentBtn element
     const submitCommentBtn = document.getElementById("submitCommentBtn");
   
     submitCommentBtn.addEventListener("click", function () {
@@ -1127,7 +1148,7 @@ document.addEventListener("DOMContentLoaded", function() {
 ////---------
 
 //Promote popup after 10 minutes
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
   function openPromotePopup() {
     document.getElementById("promotePopup").style.display = "block";
   }
@@ -1142,6 +1163,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("closePromote").addEventListener("click", closePromote);
 });
 //Promote notification popup
+*/
 ////
 //Get pin details
 document.addEventListener("DOMContentLoaded", function() {

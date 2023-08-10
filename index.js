@@ -1009,8 +1009,8 @@ document.addEventListener('DOMContentLoaded', function () {
       mobileSearchToggleBtn.style.left = "5px";
       mobileSearchToggleBtn.style.fontSize = "15px";
       mobileSearchBtn.style.position = "absolute";
-      mobileSearchBtn.style.top = "-5px";
-      mobileSearchBtn.style.right = "8px";
+      mobileSearchBtn.style.top = "5px";
+      mobileSearchBtn.style.right = "20px";
     } else {
       mobileSearchContainer.style.display = "none";
       mobileSearchToggleBtn.innerHTML =

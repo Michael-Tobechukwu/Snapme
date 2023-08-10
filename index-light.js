@@ -392,7 +392,7 @@ window.addEventListener('resize', handleScroll);
 ////
 //Catalog buttons fixed position on scroll
 const catalogsContainer = document.querySelector("#swipe-container");
-const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
+  const catalogsContainerOffsetTop = catalogsContainer.offsetTop;
 
 function updateNavbarPosition() {
   const scrollPosition = window.scrollY;
@@ -973,7 +973,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //Search on mobile
 // Get the search toggle button, search container, search input, search button, and search results list
 document.addEventListener('DOMContentLoaded', function () {
-  // Your code here...
+  
   var mobileSearchToggleBtn = document.getElementById("mobileSearchToggleBtn");
   var mobileSearchContainer = document.getElementById("mobile-search-container");
   mobileSearchContainer.style.display = "none";
@@ -992,8 +992,8 @@ document.addEventListener('DOMContentLoaded', function () {
       mobileSearchToggleBtn.style.left = "5px";
       mobileSearchToggleBtn.style.fontSize = "15px";
       mobileSearchBtn.style.position = "absolute";
-      mobileSearchBtn.style.top = "-5px";
-      mobileSearchBtn.style.right = "8px";
+      mobileSearchBtn.style.top = "5px";
+      mobileSearchBtn.style.right = "20px";
     } else {
       mobileSearchContainer.style.display = "none";
       mobileSearchToggleBtn.innerHTML =

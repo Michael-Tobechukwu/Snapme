@@ -760,15 +760,15 @@ window.addEventListener("load", function () {
           });
         })
         .catch((error) => {
-          Swal.fire("Ooops!", `${error}`, "error");
-          console.log(error);
+          //Swal.fire("Ooops!", `${error}`, "error");
+          //console.log(error);
         });
     })
     .catch((error) => {
       Swal.fire("Ooops!", `${error}`, "error");
       console.log(error);
     });
-
+  })
   // const likeBtns = document.querySelector("#like-button");
   // let isLiked = false;
 
@@ -789,30 +789,35 @@ window.addEventListener("load", function () {
 
   //Catalogs for you pins share
   //Share 1
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementsByClassName("myPopupBtn")[0];
-    var modal = document.getElementsByClassName("shareModal")[0];
-    var closeThisNow = document.getElementsByClassName("close")[0];
-  
-    // When the user clicks the button, open the modal
-    btn.onclick = function () {
-      modal.style.display = "block";
-    };
-  
-    // When the user clicks on <span> (x), close the modal
-    closeThisNow.onclick = function () {
-      modal.style.display = "none";
-    };
-  
+  document.addEventListener('DOMContentLoaded', function () {
+    var btns = document.querySelectorAll(".myPopupBtn");
+    var modals = document.querySelectorAll(".shareModal");
+    var closes = document.querySelectorAll(".close");
+
+    // When the user clicks a button, open the corresponding modal
+    btns.forEach(function (btn, index) {
+        btn.onclick = function () {
+            modals[index].style.display = "block";
+        };
+    });
+
+    // When the user clicks on <span> (x), close the corresponding modal
+    closes.forEach(function (close, index) {
+        close.onclick = function () {
+            modals[index].style.display = "none";
+        };
+    });
+
     // Close the modal when the user clicks outside the modal
     window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+        modals.forEach(function (modal) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
     };
-  });
+});
   
-
   //Suggested catalogs like buttons
   //Like button for suggested catalog 1
   document.addEventListener('DOMContentLoaded', function() {
@@ -833,30 +838,76 @@ window.addEventListener("load", function () {
       });
     });
   });
-  
 
-  //Play video when scrolled into view
-  //Video 1
-  const video = document.getElementsByClassName("video")[0];
-  let isPlaying = false;
+//Play video when scrolled into view
+document.addEventListener("DOMContentLoaded", () => {
+  const videos = document.querySelectorAll(".video");
+  let isPlayingMap = new Map();
 
-  window.addEventListener("scroll", () => {
+  function updateVideoState(video) {
     const videoTop = video.getBoundingClientRect().top;
     const videoBottom = video.getBoundingClientRect().bottom;
     const viewportHeight = window.innerHeight;
+    const isPlaying = isPlayingMap.get(video) || false;
 
     if (videoTop < viewportHeight && videoBottom >= 0 && !isPlaying) {
       video.play();
-      isPlaying = true;
+      isPlayingMap.set(video, true);
     } else if (videoTop >= viewportHeight || videoBottom < 0) {
       video.pause();
-      isPlaying = false;
+      isPlayingMap.set(video, false);
     }
+  }
+
+  window.addEventListener("scroll", () => {
+    videos.forEach((video) => {
+      updateVideoState(video);
+    });
   });
 
-  var timePinned = moment("20230129", "YYYYMMDD").fromNow();
-  document.getElementById("timePosted").innerHTML = timePinned;
+  // Additional logic to update video states on initial load
+  videos.forEach((video) => {
+    updateVideoState(video);
+  });
 });
+
+//Time posted
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20230129", "YYYYMMDD").fromNow();
+    var timePostedElement = document.getElementById("timePosted");
+
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
+
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+
+
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the time dynamically
+  function updateTimePosted() {
+    var timePinned = moment("20230129", "YYYYMMDD").fromNow();
+    var timePostedElement = document.getElementById("timePosted");
+
+    if (timePostedElement) {
+      timePostedElement.innerHTML = timePinned;
+    } else {
+      console.error("Element with ID 'timePosted' not found.");
+    }
+  }
+
+  // Call the function once when the page loads to update the time for the initially loaded content
+  updateTimePosted();
+});
+*/
 
 function openFullscreen(element) {
   if (element.requestFullscreen) {
@@ -1885,9 +1936,9 @@ swipeContainer.addEventListener("touchmove", (event) => {
 
 swipeContainer.addEventListener("touchend", () => {
   if (touchEndX < touchStartX) {
-    swipeContainer.scrollBy({ left: 50, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: 0, behavior: "smooth" });
   } else if (touchEndX > touchStartX) {
-    swipeContainer.scrollBy({ left: -50, behavior: "smooth" });
+    swipeContainer.scrollBy({ left: 0, behavior: "smooth" });
   }
 });
 ////
@@ -1904,9 +1955,9 @@ window.onscroll = function () {
 };
 
 //Show/Hide footer menu on scroll
-var oldScrollpos = window.pageYOffset;
+var oldScrollpos = window.scrollY;
 window.onscroll = function () {
-  var newScrollPos = window.pageYOffset;
+  var newScrollPos = window.scrollY;
   if (oldScrollpos < newScrollPos) {
     document.querySelector(".mobileView").classList.remove("hide");
   } else {
@@ -1977,6 +2028,12 @@ document.addEventListener('DOMContentLoaded', function() {
 //All Comments popup
 ////
 
+//Go back to previous page
+function goBack () {
+  window.history.back();
+
+}
+
 //Get request to fetch user profile
 // function thisUser() {
 //   fetch("https://api.snapme-ng.com/api/v1/:username")
@@ -2033,8 +2090,3 @@ document.addEventListener('DOMContentLoaded', function() {
 // pinDetails();
 
 //Get pin details end
-
-//Go back to previous page
-function goBack() {
-  window.history.back();
-}

@@ -418,6 +418,27 @@ window.addEventListener('resize', handleScroll);
   
   //Catalogs buttons fixed position on scroll
   ////
+
+//Active catalog button on click on mobile
+var previousButton;
+
+var buttons = document.querySelectorAll(".followPopup");
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    changeButtonColor(this);
+  });
+}
+
+function changeButtonColor(clickedButton) {
+  if (previousButton) {
+    previousButton.style.backgroundColor = "#021129";
+  }
+  clickedButton.style.backgroundColor = "#bd74bd";
+
+  previousButton = clickedButton;
+}
+//Active catalog button on click on mobile
+
   //Timecapsule fixed position on scroll
   const timelineContainer = document.querySelector("#timelineSuggested");
   const timelineContainerOffsetTop = timelineContainer.offsetTop;
